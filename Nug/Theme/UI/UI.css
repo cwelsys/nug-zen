@@ -1,0 +1,13 @@
+@import 'BrowserBackground.css';
+@import 'WindowButtons.css';
+@import 'Findbar.css';
+@import 'Sidebar-Panel.css';
+@import 'CustomizationScreen.css';
+
+@media not (-moz-pref('nug-theme-disabled')) {
+	@media not (-moz-pref('nug-theme-scrollbar-enabled')) {
+		scrollbox {
+			scrollbar-width: none !important;
+		}
+	}
+}

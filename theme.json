@@ -1,0 +1,17 @@
+{
+	"id": "Nug",
+	"homepage": "https://github.com/cwelsys/nug-zen",
+	"author": "cwelsys",
+	"name": "Nug",
+	"description": "🍴",
+	"version": "1.6.9",
+	"createdAt": "2025-07-04",
+	"updatedAt": "2025-07-04",
+	"style": {
+		"chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
+		"content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
+	},
+	"preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
+	"tags": ["content", "chrome", "minimal"],
+	"fork": ["zen"]
+}

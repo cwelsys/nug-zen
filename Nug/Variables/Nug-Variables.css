@@ -1,0 +1,47 @@
+:root {
+	--nug-Color-Dark: color-mix(in srgb, var(--zen-primary-color) 10%, #000000c0);
+	--nug-Color-Light: color-mix(in srgb, var(--zen-primary-color) 25%, white);
+
+	/* Black colors*/
+	--nug-Black-1: light-dark(color-mix(in srgb, #ffffff 40%, transparent), color-mix(in srgb, #000000 35%, transparent));
+	--nug-Black-2: light-dark(
+		color-mix(in srgb, #ffffff 100%, transparent),
+		color-mix(in srgb, #000000 35%, transparent)
+	);
+	--nug-Black-3: light-dark(color-mix(in srgb, #ffffff 25%, transparent), color-mix(in srgb, #000000 60%, transparent));
+
+	/* Shadow */
+	--nug-Shadow-Color-1: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4));
+	--nug-Shadow-Color-2: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.8));
+	--nug-Shadow-Color-3: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 1));
+
+	/*Glow Colors*/
+	--nug-Glow-Color-1: color-mix(in srgb, var(--zen-primary-color) 90%, white);
+	--nug-Glow-Color-2: color-mix(in srgb, var(--zen-primary-color) 80%, white);
+	--nug-Glow-Color-3: color-mix(in srgb, var(--zen-primary-color) 70%, white);
+
+	/* Border radius */
+	--nug-Border-Radius: 4px;
+
+	/* Blur */
+	--nug-Blur: blur(52px) saturate(180%) brightness(110%);
+	--nug-Blur-Simple: blur(15px) brightness(110%) saturate(260%);
+
+	/* Blur colors */
+	--nug-Blur-Color: color-mix(in srgb, var(--zen-primary-color) 1%, #000000a0);
+
+	/* Width Compact Mode */
+	--nug-Width-Compact-Expanded: 21em;
+
+	/* Delays */
+	--nug-Delay: 4s;
+	--nug-Delay-Expanding-Indicator: 2.5s;
+
+	/* URL-Bar */
+
+	--nug-Rows-Height: 45px;
+	--nug-Margin-Height: 10px;
+
+	/* Background color */
+	--nug-Background-Color: light-dark(rgba(215, 215, 215, 1), rgba(30, 30, 30, 1));
+}

@@ -1,0 +1,19 @@
+@import 'Variables/Variables.css';
+@import 'Nug-Features/Nug-Features.css';
+@import 'Theme/Theme.css';
+@import 'Animations/Animations.css';
+
+/* Required for blur rendering */
+browser {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+:root {
+	--tab-collapsed-background-width: 40px !important;
+}
+
+@media not (-moz-bool-pref: 'zen.view.sidebar-expanded') {
+	:root {
+		--tab-min-height: 39px !important;
+	}
+}
