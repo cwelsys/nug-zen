@@ -12,6 +12,9 @@
 		"content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
 	},
 	"preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
+	"readme": "https://raw.githubusercontent.com/cwelsys/nug-zen/refs/heads/main/README.md",
+	"image": "https://github.com/user-attachments/assets/0e597435-e617-4b8e-ae56-e6fd45df9c6b",
+	"modules": "Anoms12/Advanced-Tab-Groups",
 	"tags": ["content", "chrome", "minimal"],
 	"fork": ["zen"]
 }
