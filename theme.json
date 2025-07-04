@@ -13,7 +13,7 @@
 	},
 	"preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
 	"readme": "https://raw.githubusercontent.com/cwelsys/nug-zen/refs/heads/main/README.md",
-	"image": "https://raw.githubusercontent.com/cwelsys/nug-zen/Assets/tim-heidecker.png",
+	"image": "https://github.com/cwelsys/nug-zen/blob/4c29e022daded7d586741a755d297365eb5cf1ff/Assets/tim-heidecker.png",
 	"modules": "Anoms12/Advanced-Tab-Groups",
 	"tags": ["content", "chrome", "minimal"],
 	"fork": ["zen"]
