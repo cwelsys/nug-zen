@@ -1,0 +1,80 @@
+/* #forward-button image {
+	list-style-image: url('chrome://global/skin/icons/arrow-right.svg') !important;
+	stroke: var(--uc-accent-iii) !important;
+} */
+
+/* #back-button image {
+	list-style-image: url('chrome://global/skin/icons/arrow-left.svg') !important;
+	stroke: var(--uc-accent-iii) !important;
+} */
+
+/* #nav-bar-overflow-button {
+	list-style-image: url('chrome://global/skin/icons/more.svg') !important;
+} */
+
+/* #alltabs-button {
+	list-style-image: url('chrome://global/skin/icons/arrow-down-12.svg') !important;
+} */
+
+.bookmark-item[container='true'] {
+	list-style-image: url('icons/bm.svg') !important;
+}
+
+/* ublock on */
+#ublock0_raymondhill_net-BAP image {
+	list-style-image: url('icons/lock.svg') !important;
+}
+/* ublock off */
+#ublock0_raymondhill_net-BAP[tooltiptext='uBlock Origin (off)'] image {
+	list-style-image: url('icons/lock.svg') !important;
+	fill: rgb(231, 107, 127) !important;
+}
+
+/* Dark Reader */
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid='addon@darkreader.org'] .toolbarbutton-icon {
+	list-style-image: url('icons/moon.svg') !important;
+}
+
+/* image.blocked-permission-icon:nth-child(9) {
+	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
+		contrast(92%) !important;
+} */
+
+/* #identity-icon {
+	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
+		contrast(92%) !important;
+} */
+
+/* #permissions-granted-icon {
+	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
+		contrast(92%) !important;
+} */
+
+/* #picture-in-picture-button-icon,
+.pip-button,
+.pip-icon,
+#pictureInPicture,
+#pictureinpicture-button,
+#picture-in-picture-button,
+button[data-l10n-id*='pictureinpicture'] > image,
+button[tooltiptext*='Picture-in-Picture'] > image {
+	filter: brightness(0) saturate(100%) invert(5%) sepia(19%) saturate(1142%) hue-rotate(222deg) brightness(102%)
+		contrast(93%) !important;
+} */
+
+/* #connection-icon,
+#identity-icon-labels {
+	filter: brightness(0) saturate(100%) invert(5%) sepia(19%) saturate(1142%) hue-rotate(222deg) brightness(102%)
+		contrast(93%) !important;
+} */
+
+/* #tracking-protection-icon,
+#tracking-protection-icon-container {
+	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
+		contrast(92%) !important;
+} */
+
+/* .urlbar-page-action {
+	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
+		contrast(92%) !important;
+} */
