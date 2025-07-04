@@ -15,6 +15,16 @@
 		"label": "Disable all the nug features."
 	},
 	{
+		"type": "checkbox",
+		"property": "nug-feature-custom-font-disabled",
+		"label": "Disables the Custom Font"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-feature-bigger-text-normal-tabs-disabled",
+		"label": "Disables Big Text For Normal Tabs."
+	},
+	{
 		"type": "separator",
 		"label": "nug Sidebar"
 	},
