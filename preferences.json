@@ -20,11 +20,6 @@
 		"label": "Use zen (theme) base colors."
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-color-icons-disabled",
-		"label": "Disable color icons."
-	},
-	{
 		"type": "separator",
 		"label": "Fonts"
 	},
@@ -429,5 +424,21 @@
 		"type": "checkbox",
 		"property": "nug-theme-urlbar-border-disabled",
 		"label": "Disable border around the floating urlbar without disabling the glow."
+	},
+	{
+		"type": "separator",
+		"label": "Icons"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-color-icons-disabled",
+		"label": "Disable color icons."
+	},
+	{
+		"type": "string",
+		"property": "nug-icon-color",
+		"label": "Icon Color",
+		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
+		"default": ""
 	}
 ]

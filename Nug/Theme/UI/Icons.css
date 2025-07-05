@@ -1,99 +1,67 @@
 @media not (-moz-bool-pref: 'nug-color-icons-disabled') {
 	:root {
-		--toolbaricon: #cba6f7;
-		#navigator-toolbox .toolbarbutton-1 .toolbarbutton-icon,
-		#nav-bar .toolbarbutton-1 .toolbarbutton-icon,
-		toolbar .toolbarbutton-1 .toolbarbutton-icon {
-			fill: var(--toolbaricon) !important;
+		--nug-icon-color: #cba6f7; /* Default fallback */
+	}
+
+	/* Custom icon color from preferences */
+	@media (-moz-string-pref: 'nug-icon-color') {
+		:root {
+			--nug-icon-color: var(--nug-icon-color-custom, #cba6f7);
 		}
+	}
 
-		#downloads-button .toolbarbutton-icon,
-		#downloads-indicator-icon {
-			fill: var(--toolbaricon) !important;
-		}
-		/*
-		#forward-button image {
-			list-style-image: url('chrome://global/skin/icons/arrow-right.svg') !important;
-			stroke: var(--uc-accent-iii) !important;
-		}
+	/* Apply icon color to all toolbar icons */
+	#navigator-toolbox .toolbarbutton-1 .toolbarbutton-icon,
+	#nav-bar .toolbarbutton-1 .toolbarbutton-icon,
+	toolbar .toolbarbutton-1 .toolbarbutton-icon {
+		fill: var(--nug-icon-color) !important;
+	}
 
-		#back-button image {
-			list-style-image: url('chrome://global/skin/icons/arrow-left.svg') !important;
-			stroke: var(--uc-accent-iii) !important;
-		}
+	#downloads-button .toolbarbutton-icon,
+	#downloads-indicator-icon {
+		fill: var(--nug-icon-color) !important;
+	}
 
-		#nav-bar-overflow-button {
-			list-style-image: url('chrome://global/skin/icons/more.svg') !important;
-		}
+	#identity-box[pageproxystate='valid'].chromeUI #identity-icon {
+		list-style-image: url('firefox.svg') !important;
+	}
 
-		#alltabs-button {
-			list-style-image: url('chrome://global/skin/icons/arrow-down-12.svg') !important;
-		}
+	#forward-button image {
+		list-style-image: url('chrome://global/skin/icons/arrow-right.svg') !important;
+	}
 
-		.bookmark-item[container='true'] {
-			list-style-image: url('icons/bm.svg') !important;
-			fill: var(--toolbaricon) !important;
-		} */
+	#back-button image {
+		list-style-image: url('chrome://global/skin/icons/arrow-left.svg') !important;
+	}
 
-		/* ublock on */
-		#ublock0_raymondhill_net-BAP image {
-			list-style-image: url('icons/lock.svg') !important;
-			fill: var(--toolbaricon) !important;
-		}
-		/* ublock off */
-		#ublock0_raymondhill_net-BAP[tooltiptext='uBlock Origin (off)'] image {
-			list-style-image: url('icons/lock.svg') !important;
-			fill: rgb(231, 107, 127) !important;
-		}
+	#nav-bar-overflow-button {
+		list-style-image: url('chrome://global/skin/icons/more.svg') !important;
+	}
 
-		/* Dark Reader */
-		:is(.webextension-browser-action, .eom-addon-button)[data-extensionid='addon@darkreader.org'] .toolbarbutton-icon {
-			list-style-image: url('icons/moon.svg') !important;
-			fill: var(--toolbaricon) !important;
-		}
+	#alltabs-button {
+		list-style-image: url('chrome://global/skin/icons/arrow-down-12.svg') !important;
+	}
 
-		/* image.blocked-permission-icon:nth-child(9) {
-	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
-		contrast(92%) !important;
-} */
+	.bookmark-item[container='true'] {
+		list-style-image: url('icons/bm.svg') !important;
+		fill: var(--nug-icon-color) !important;
+	}
 
-		/* #identity-icon {
-	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
-		contrast(92%) !important;
-} */
+	/* ublock on */
+	#ublock0_raymondhill_net-BAP image {
+		list-style-image: url('icons/lock.svg') !important;
+		fill: var(--nug-icon-color) !important;
+	}
 
-		/* #permissions-granted-icon {
-	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
-		contrast(92%) !important;
-} */
+	/* ublock off - keep red color for "off" state */
+	#ublock0_raymondhill_net-BAP[tooltiptext='uBlock Origin (off)'] image {
+		list-style-image: url('icons/lock.svg') !important;
+		fill: #f38ba8 !important; /* Keep red for off state */
+	}
 
-		/* #picture-in-picture-button-icon,
-.pip-button,
-.pip-icon,
-#pictureInPicture,
-#pictureinpicture-button,
-#picture-in-picture-button,
-button[data-l10n-id*='pictureinpicture'] > image,
-button[tooltiptext*='Picture-in-Picture'] > image {
-	filter: brightness(0) saturate(100%) invert(5%) sepia(19%) saturate(1142%) hue-rotate(222deg) brightness(102%)
-		contrast(93%) !important;
-} */
-
-		/* #connection-icon,
-#identity-icon-labels {
-	filter: brightness(0) saturate(100%) invert(5%) sepia(19%) saturate(1142%) hue-rotate(222deg) brightness(102%)
-		contrast(93%) !important;
-} */
-
-		/* #tracking-protection-icon,
-#tracking-protection-icon-container {
-	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
-		contrast(92%) !important;
-} */
-
-		/* .urlbar-page-action {
-	filter: brightness(0) saturate(100%) invert(83%) sepia(29%) saturate(638%) hue-rotate(158deg) brightness(92%)
-		contrast(92%) !important;
-} */
+	/* Dark Reader */
+	:is(.webextension-browser-action, .eom-addon-button)[data-extensionid='addon@darkreader.org'] .toolbarbutton-icon {
+		list-style-image: url('icons/moon.svg') !important;
+		fill: var(--nug-icon-color) !important;
 	}
 }
