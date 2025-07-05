@@ -6,4 +6,16 @@
 @import 'Nav-Bar/Nav-Bar.css';
 @import 'URL-Bar/URL-Bar.css';
 @import 'Dev-Tools/Dev-Tools.css';
-@import 'Font/font.css';
+
+@-moz-document url-prefix("chrome:") {
+	:root:has(#nug-Custom-uiFont[nug-custom_uifont-default='Serif']) {
+		* {
+			font-family: serif !important;
+		}
+	}
+	:root:has(#nug-Custom-uiFont[nug-custom_uifont-default='Custom']) {
+		* {
+			font-family: var(--theme-custom_uifont-custom) !important;
+		}
+	}
+}
