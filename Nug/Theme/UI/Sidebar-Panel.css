@@ -24,7 +24,7 @@
 			padding: 4px 8px !important;
 			appearance: none !important;
 			background-color: transparent !important;
-			border-radius: var(--nug-border-radius) !important;
+			border-radius: var(--nug-Border-Radius) !important;
 			border: none !important;
 		}
 
@@ -33,7 +33,7 @@
 		#sidebar-search-container > #search-box:active,
 		#viewButton:active {
 			background-color: transparent !important;
-			border-radius: var(--nug-border-radius) !important;
+			border-radius: var(--nug-Border-Radius) !important;
 			transition: background-color 0.5s ease !important;
 		}
 
@@ -41,7 +41,7 @@
 		#viewButton:hover,
 		#sidebar-search-container > #search-box:active,
 		#viewButton:active {
-			border-radius: var(--nug-border-radius) !important;
+			border-radius: var(--nug-Border-Radius) !important;
 			background-color: light-dark(rgba(255, 255, 255, 0.11), rgba(0, 0, 0, 0.2)) !important;
 			transition: background-color 0.5s ease !important;
 		}

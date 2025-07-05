@@ -3,7 +3,7 @@
 @media not (-moz-pref('nug-theme-urlbar-disabled')) {
 	#urlbar-container {
 		#nav-bar:is([downloadsbuttonshown], [unifiedextensionsbuttonshown]) & {
-			border-radius: var(--nug-border-radius) !important;
+			border-radius: var(--nug-Border-Radius) !important;
 			background: #00000000 !important;
 			transition: background 0.5s ease !important;
 		}
@@ -23,7 +23,7 @@
 
 	#urlbar:not([breakout-extend='true']) {
 		:root:not([supress-primary-adjustment]) & #urlbar-background {
-			border-radius: var(--nug-border-radius) !important;
+			border-radius: var(--nug-Border-Radius) !important;
 			background: var(--nug-Black-1) !important;
 			filter: blur(20px), brightness (1.2) !important;
 			transition: background 0.55s ease !important;
@@ -33,7 +33,7 @@
 	}
 
 	#urlbar:not([open]) .urlbar-input-container {
-		border-radius: var(--nug-border-radius) !important;
+		border-radius: var(--nug-Border-Radius) !important;
 		border: 1px solid color-mix(in srgb, var(--zen-primary-color) 40%, transparent) !important;
 		transition: border 0.5s ease, color 0.5s ease, box-shadow 0.5s ease !important;
 		box-shadow: 0 0px 6px transparent !important;
@@ -74,6 +74,6 @@
 	}
 
 	#urlbar:not([open]) #urlbar-background {
-		border-radius: var(--nug-border-radius) !important;
+		border-radius: var(--nug-Border-Radius) !important;
 	}
 }

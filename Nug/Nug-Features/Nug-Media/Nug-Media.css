@@ -14,7 +14,7 @@
 		#zen-media-controls-toolbar > toolbaritem {
 			background: var(--nug-Blur-Color) !important;
 			backdrop-filter: var(--nug-Blur-Simple) !important;
-			border-radius: var(--nug-border-radius) !important;
+			border-radius: var(--nug-Border-Radius) !important;
 		}
 	}
 }

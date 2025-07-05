@@ -88,7 +88,7 @@
 					height: 75px !important;
 					bottom: 10px !important;
 					opacity: 1 !important;
-					border-radius: calc(var(--nug-border-radius) + 2px) !important;
+					border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
 
 					& .findbar-container {
 						display: flex !important;

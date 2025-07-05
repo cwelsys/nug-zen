@@ -19,7 +19,7 @@
 				margin-top: 0px !important;
 				margin-bottom: 0px !important;
 
-				border-radius: calc(var(--nug-border-radius) + 2px);
+				border-radius: calc(var(--nug-Border-Radius) + 2px);
 				visibility: visible;
 
 				transition: opacity 0s ease, bottom 1s ease, width 1s ease, height 1s ease !important;
@@ -37,7 +37,7 @@
 			:has(.browserSidebarContainer.deck-selected > .browserContainer > findbar:not([hidden='true']):hover) {
 				#zen-tabbox-wrapper::before {
 					height: 75px !important;
-					border-radius: calc(var(--nug-border-radius) + 2px) !important;
+					border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
 					width: calc(70%) !important;
 				}
 			}

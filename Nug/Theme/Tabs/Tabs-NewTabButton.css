@@ -4,7 +4,7 @@
 			:root[zen-sidebar-expanded='true'] {
 				#tabs-newtab-button {
 					background: var(--nug-Black-1) !important;
-					border-radius: var(--nug-border-radius) !important;
+					border-radius: var(--nug-Border-Radius) !important;
 					box-shadow: 0px 0px 0px var(--nug-Glow-Color-3) !important;
 					border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 					transition: opacity 0.3s ease, box-shadow 0.3s ease !important;
@@ -48,7 +48,7 @@
 					margin: 10px auto !important;
 					justify-self: center !important;
 					background: var(--nug-Black-1) !important;
-					border-radius: var(--nug-border-radius) !important;
+					border-radius: var(--nug-Border-Radius) !important;
 					box-shadow: 0px 0px 0px var(--nug-Glow-Color-3) !important;
 					border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 					transition: opacity 0.3s ease, box-shadow 0.3s ease !important;

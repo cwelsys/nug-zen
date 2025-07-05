@@ -14,7 +14,7 @@
 				opacity: 1 !important;
 
 				border-top: unset !important;
-				border-radius: calc(var(--nug-border-radius) + 2px) !important;
+				border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
 				background: var(--nug-Blur-Color) !important;
 				backdrop-filter: var(--nug-Blur-Simple);
 

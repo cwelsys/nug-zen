@@ -8,7 +8,7 @@
 				opacity: 1;
 
 				background-color: var(--nug-Background-Color);
-				border-radius: calc(var(--nug-border-radius) + 2px) !important;
+				border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
 
 				width: auto;
 				height: auto;
