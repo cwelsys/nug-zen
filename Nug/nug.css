@@ -42,6 +42,9 @@ browser {
 		--zen-themed-toolbar-bg: #181825 !important;
 		--zen-main-browser-background: #181825 !important;
 		--toolbox-bgcolor-inactive: #181825 !important;
+		--w-urlbar-bg_color: #f5c2e7aa, #cba6f7aa, #f38ba8aa, #eba0acaa, #fab387aa, #f9e2afaa, #a6e3a1aa, #94e2d5aa,
+			#89dcebaa, #74c7ecaa, #89b4faaa, #b4befeaa, #f5c2e7aa, #cba6f7aa, #f38ba8aa, #eba0acaa, #fab387aa, #f9e2afaa,
+			#a6e3a1aa, #94e2d5aa, #89dcebaa, #74c7ecaa, #89b4faaa, #b4befeaa;
 	}
 
 	.identity-color-blue {
