@@ -15,23 +15,47 @@
 		"label": "Disable all the nug features."
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-feature-custom-font-disabled",
-		"label": "Disables the Custom Font"
+		"type": "separator",
+		"label": "Font"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-feature-bigger-text-normal-tabs-disabled",
-		"label": "Disables Big Text For Normal Tabs."
+		"property": "theme.custom_uifont.default",
+		"label": "Select Font:",
+		"type": "dropdown",
+		"defaultValue": "Serif",
+		"options": [
+			{
+				"label": "Serif",
+				"value": "Serif"
+			},
+			{
+				"label": "Custom",
+				"value": "Custom"
+			}
+		]
+	},
+	{
+		"property": "theme.custom_uifont.custom",
+		"label": "font-family:",
+		"type": "string",
+		"placeholder": "sans-serif",
+		"defaultValue": "sans-serif"
+	},
+	{
+		"property": "theme.custom_uifont.shadow",
+		"label": "text-shadow:",
+		"type": "string",
+		"placeholder": "0.01em 0.01em 0.05em #7C7C7C70",
+		"defaultValue": "none"
 	},
 	{
 		"type": "separator",
-		"label": "nug Sidebar"
+		"label": "Sidebar"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-sidebar-disabled",
-		"label": "Disable nug sidebar, this will also disable the sidebar background and align features."
+		"label": "Disable sidebar, this will also disable the sidebar background and align features."
 	},
 	{
 		"type": "checkbox",
@@ -40,36 +64,36 @@
 	},
 	{
 		"type": "separator",
-		"label": "nug Workspace"
+		"label": "Workspace"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-workspace-disabled",
-		"label": "Disable nug workspace features."
+		"label": "Disable workspace features."
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-workspace-halo-mode-disabled",
-		"label": "Disable nug workspace halo mode, if disabled all the subbuttons will be displayed in both modes (expanded and collapsed)."
+		"label": "Disable workspace halo mode, if disabled all the subbuttons will be displayed in both modes (expanded and collapsed)."
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-workspace-halo-mode-collapsed-disabled",
-		"label": "Disable nug workspace halo mode in collapsed mode, if disabled it will enable automatically the scrollable mode for collapsed mode."
+		"label": "Disable workspace halo mode in collapsed mode, if disabled it will enable automatically the scrollable mode for collapsed mode."
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-workspace-halo-mode-expanded-disabled",
-		"label": "Disable nug workspace halo mode in expanded mode, if disabled it will display all the subbuttons in expanded mode."
+		"label": "Disable workspace halo mode in expanded mode, if disabled it will display all the subbuttons in expanded mode."
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-workspace-button-hidden",
-		"label": "Hide the nug workspace button, This will expand the bottom section automatically in expanded mode, and display all the subbuttons for both modes."
+		"label": "Hide the workspace button, This will expand the bottom section automatically in expanded mode, and display all the subbuttons for both modes."
 	},
 	{
 		"type": "separator",
-		"label": "nug Bottom V2"
+		"label": "Bottom V2"
 	},
 	{
 		"type": "checkbox",
@@ -84,12 +108,12 @@
 	{
 		"type": "checkbox",
 		"property": "nug-bottom-at-bottom",
-		"label": "Move the nug bottom section to the bottom."
+		"label": "Move the bottom section to the bottom."
 	},
 	{
 		"type": "dropdown",
 		"property": "nug-features-bottom-height",
-		"label": "Change the height of the nug bottom section in collapsed mode. Default: 220px",
+		"label": "Change the height of the bottom section in collapsed mode. Default: 220px",
 		"value": "number",
 		"default": 5,
 		"options": [
@@ -118,12 +142,12 @@
 	},
 	{
 		"type": "separator",
-		"label": "nug Essentials"
+		"label": "Essentials"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-essentials-disabled",
-		"label": "Disable nug Essentials feature."
+		"label": "Disable Essentials feature."
 	},
 	{
 		"type": "checkbox",
@@ -132,30 +156,30 @@
 	},
 	{
 		"type": "separator",
-		"label": "nug Media"
+		"label": "Media"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-media-disabled",
-		"label": "Disable nug Media features, if disabled, the media controls will be hidden in collapsed mode."
+		"label": "Disable Media features, if disabled, the media controls will be hidden in collapsed mode."
 	},
 	{
 		"type": "separator",
-		"label": "nug Split Groups"
+		"label": "Split Groups"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-split-groups-disabled",
-		"label": "Disable nug Split Groups feature"
+		"label": "Disable Split Groups feature"
 	},
 	{
 		"type": "separator",
-		"label": "nug Tab Groups"
+		"label": "Tab Groups"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-tab-groups-disabled",
-		"label": "Disable nug Tab Groups feature without disabling styling."
+		"label": "Disable Tab Groups feature without disabling styling."
 	},
 	{
 		"type": "checkbox",
@@ -164,12 +188,12 @@
 	},
 	{
 		"type": "separator",
-		"label": "nug Findbar"
+		"label": "Findbar"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-findbar-disabled",
-		"label": "Disable nug Findbar feature."
+		"label": "Disable Findbar feature."
 	},
 	{
 		"type": "checkbox",
@@ -178,12 +202,12 @@
 	},
 	{
 		"type": "separator",
-		"label": "nug Search"
+		"label": "Search"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-features-search-disabled",
-		"label": "Disable nug Search feature."
+		"label": "Disable Search feature."
 	},
 	{
 		"type": "text",
@@ -198,7 +222,7 @@
 	{
 		"type": "checkbox",
 		"property": "nug-theme-disabled",
-		"label": "Disable nug theme without disabling features."
+		"label": "Disable theme without disabling features."
 	},
 	{
 		"type": "checkbox",
