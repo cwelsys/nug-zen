@@ -24,11 +24,6 @@
 		"label": "Disable sidebar, this will also disable the sidebar background and align features."
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-pinned-extensions-mod",
-		"label": "Enable pinned extensions mod (super jank but cool)."
-	},
-	{
 		"type": "separator",
 		"label": "Workspace"
 	},
@@ -253,14 +248,44 @@
 	},
 	{
 		"type": "separator",
-		"label": "Nebula Tab Animations"
+		"label": "Nebula"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-pinned-extensions-mod",
+		"label": "Enable pinned extensions mod"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-external-nebula-animations-tabs-disabled",
-		"label": "Disable tab animations from Nebula."
+		"label": "Disable Nebula tab animations"
 	},
-
+	{
+		"type": "dropdown",
+		"value": "number",
+		"property": "nug-glow-gradient",
+		"label": "Hover glow animation.",
+		"default": 1,
+		"placeholder": false,
+		"options": [
+			{
+				"label": "No Animation",
+				"value": 0
+			},
+			{
+				"label": "Default",
+				"value": 1
+			},
+			{
+				"label": "Monochrome",
+				"value": 2
+			},
+			{
+				"label": "RGB",
+				"value": 3
+			}
+		]
+	},
 	{
 		"type": "separator",
 		"label": "Media Controls"
