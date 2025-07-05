@@ -5,6 +5,7 @@
 @import 'CustomizationScreen.css';
 @import 'Icons.css';
 @import 'Font.css';
+@import 'FontSize.css';
 
 @media not (-moz-pref('nug-theme-disabled')) {
 	@media not (-moz-pref('nug-theme-scrollbar-enabled')) {

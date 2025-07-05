@@ -46,6 +46,30 @@
 		"label": "Use monospace font for URL bar."
 	},
 	{
+		"property": "nug.font.size.workspace.title",
+		"label": "Workspace font size \"1.5em\" or \"24px\"",
+		"type": "string",
+		"defaultValue": "22px"
+	},
+	{
+		"property": "nug.font.size.tabbar.tabs",
+		"label": "Tabbar font size \"1.3em\" or \"20px\"",
+		"type": "string",
+		"defaultValue": "20px"
+	},
+	{
+		"property": "nug.font.size.searchbar",
+		"label": "Findbar font size \"1.4em\" or \"22px\"",
+		"type": "string",
+		"defaultValue": "20px"
+	},
+	{
+		"property": "nug.font.size.url",
+		"label": "Urlbar font size \"1.1em\" or \"15px\"",
+		"type": "string",
+		"defaultValue": "15px"
+	},
+	{
 		"type": "separator",
 		"label": "Sidebar"
 	},
