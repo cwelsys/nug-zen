@@ -94,9 +94,9 @@
 
 		#zoom-in-button,
 		#tabs-newtab-button,
-		/* #TabsToolbar #new-tab-button {
+		#TabsToolbar #new-tab-button {
 			list-style-image: url('plus.svg') !important;
-		} */
+		}
 
 		#cut-button {
 			list-style-image: url('edit-cut.svg') !important;
