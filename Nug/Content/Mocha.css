@@ -74,12 +74,6 @@
 			background: #1e1e2e !important;
 		}
 
-		button,
-		groupbox menulist {
-			/* background: #313244 !important; why? */
-			color: #cdd6f4 !important;
-		}
-
 		.main-content {
 			background-color: #11111b !important;
 		}
