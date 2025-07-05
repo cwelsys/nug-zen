@@ -23,7 +23,7 @@
 	}
 
 	#identity-box[pageproxystate='valid'].chromeUI #identity-icon {
-		list-style-image: url('firefox.svg') !important;
+		list-style-image: url('icons/fox.svg') !important;
 	}
 
 	#forward-button image {
