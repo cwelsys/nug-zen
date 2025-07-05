@@ -37,19 +37,8 @@
 		"type": "string",
 		"property": "nug-font-family",
 		"label": "Font Family",
-		"placeholder": "Enter font name (e.g., Inter, JetBrains Mono, Georgia)"
-	},
-	{
-		"type": "string",
-		"property": "nug-font-size",
-		"label": "Font Size",
-		"placeholder": "Enter size in px (e.g., 14px, 16px)"
-	},
-	{
-		"type": "string",
-		"property": "nug-font-weight",
-		"label": "Font Weight",
-		"placeholder": "Enter weight (e.g., 400, 500, bold, normal)"
+		"placeholder": "Enter font name (e.g., Inter, JetBrains Mono, Georgia)",
+		"defaultValue": "sans-serif"
 	},
 	{
 		"type": "checkbox",
