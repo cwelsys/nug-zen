@@ -22,7 +22,7 @@
 					max-height: 45px !important;
 					background: var(--nug-Blur-Color) !important;
 					backdrop-filter: var(--nug-Blur) !important;
-					border-radius: var(--nug-Border-Radius) !important;
+					border-radius: var(--nug-border-radius) !important;
 					width: 80% !important;
 				}
 			}

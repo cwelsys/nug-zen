@@ -18,7 +18,7 @@
 			right: auto !important;
 			bottom: 0px;
 
-			border-radius: var(--nug-Border-Radius) !important;
+			border-radius: var(--nug-border-radius) !important;
 			visibility: visible !important;
 			transition: bottom 0.3s ease 100ms, height 0.2s ease, opacity 0.1s ease;
 		}

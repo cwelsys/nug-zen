@@ -17,7 +17,7 @@
 		.tabbrowser-tab[usercontextid]:not([zen-essential]) .tab-background {
 			position: relative !important;
 			justify-content: left !important;
-			border-radius: var(--nug-Border-Radius) !important;
+			border-radius: var(--nug-border-radius) !important;
 		}
 
 		/* Tab gradient color container */

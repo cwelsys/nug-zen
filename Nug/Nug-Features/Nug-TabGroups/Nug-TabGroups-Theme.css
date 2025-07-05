@@ -2,7 +2,7 @@
 	@media not (-moz-pref('nug-theme-tab-groups-disabled')) {
 		tab-group:not([split-view-group]) {
 			background: transparent !important;
-			border-radius: var(--nug-Border-Radius);
+			border-radius: var(--nug-border-radius);
 			border: 1px solid transparent !important;
 
 			filter: drop-shadow(0px 0px 10px color-mix(in srgb, var(--tab-group-color) 60%, white 50%)) brightness(1) !important;

@@ -10,7 +10,7 @@
 			right: 10px;
 			height: 80%;
 			width: 70%;
-			border-radius: var(--nug-Border-Radius) !important;
+			border-radius: var(--nug-border-radius) !important;
 
 			padding: 10px;
 			background: var(--nug-Black-1) !important;
@@ -43,7 +43,7 @@
 			background: var(--nug-Black-1) !important;
 			border: none !important;
 			margin: 0px !important;
-			border-radius: var(--nug-Border-Radius) !important;
+			border-radius: var(--nug-border-radius) !important;
 		}
 
 		/* Check when the width is low */

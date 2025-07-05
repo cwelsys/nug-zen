@@ -3,7 +3,7 @@
 		@media not (-moz-pref('nug-theme-tabs-normals-disabled')) {
 			.tabbrowser-tab:not([pinned]):not([zen-essential]) {
 				& .tab-background {
-					border-radius: var(--nug-Border-Radius) !important;
+					border-radius: var(--nug-border-radius) !important;
 					border: 1px solid transparent;
 					transition: background 1.6s ease, box-shadow 0.2s ease, border 0.6s ease;
 				}

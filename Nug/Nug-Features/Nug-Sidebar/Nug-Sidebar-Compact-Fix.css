@@ -166,10 +166,10 @@
 
 							width: 100% !important;
 
-							border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
+							border-radius: calc(var(--nug-border-radius) + 2px) !important;
 
 							@media -moz-pref('zen.view.compact.color-sidebar') {
-								border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
+								border-radius: calc(var(--nug-border-radius) + 2px) !important;
 								background: var(--zen-main-browser-background) !important;
 								background-attachment: unset !important;
 								background-size: unset !important;
@@ -190,7 +190,7 @@
 							mix-blend-mode: overlay;
 							width: 100% !important;
 
-							border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
+							border-radius: calc(var(--nug-border-radius) + 2px) !important;
 
 							transition: opacity 0.4s ease !important;
 						}

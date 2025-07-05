@@ -21,7 +21,7 @@
 			#urlbar[open] #urlbar-background {
 				background: var(--nug-Blur-Color) !important;
 				backdrop-filter: var(--nug-Blur) !important;
-				border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
+				border-radius: calc(var(--nug-border-radius) + 2px) !important;
 			}
 
 			#urlbar[open] {
