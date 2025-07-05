@@ -432,13 +432,13 @@
 	{
 		"type": "checkbox",
 		"property": "nug-color-icons-disabled",
-		"label": "Disable color icons."
+		"label": "Disable icons."
 	},
 	{
 		"type": "string",
 		"property": "nug-icon-color",
 		"label": "Icon Color",
 		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
-		"default": ""
+		"default": "#cba6f7"
 	}
 ]
