@@ -22,9 +22,9 @@
 		fill: var(--nug-icon-color) !important;
 	}
 
-	#identity-box[pageproxystate='valid'].chromeUI #identity-icon {
+	/* #identity-box[pageproxystate='valid'].chromeUI #identity-icon {
 		list-style-image: url('fox.svg') !important;
-	}
+	} */
 
 	#forward-button image {
 		list-style-image: url('chrome://global/skin/icons/arrow-right.svg') !important;
