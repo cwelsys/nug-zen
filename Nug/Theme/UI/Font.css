@@ -1,0 +1,285 @@
+/* Font Family Variables */
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 0) {
+	:root {
+		--nug-font-family: 'Segoe UI', 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 1) {
+	:root {
+		--nug-font-family: 'San Francisco', 'Segoe UI', sans-serif;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 2) {
+	:root {
+		--nug-font-family: 'Inter', 'Segoe UI', sans-serif;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 3) {
+	:root {
+		--nug-font-family: 'Roboto', 'Segoe UI', sans-serif;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 4) {
+	:root {
+		--nug-font-family: 'JetBrains Mono', 'Consolas', monospace;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 5) {
+	:root {
+		--nug-font-family: 'Fira Code', 'Consolas', monospace;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 6) {
+	:root {
+		--nug-font-family: 'Consolas', monospace;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 7) {
+	:root {
+		--nug-font-family: 'Georgia', 'Times New Roman', serif;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-family') and (-moz-bool-pref: 'nug-font-family' = 8) {
+	:root {
+		--nug-font-family: 'Times New Roman', serif;
+	}
+}
+
+/* Font Size Variables */
+@media (-moz-bool-pref: 'nug-font-size') and (-moz-bool-pref: 'nug-font-size' = 0) {
+	:root {
+		--nug-font-size: 10px;
+		--nug-font-size-toolbar: 9px;
+		--nug-font-size-tab: 10px;
+		--nug-font-size-urlbar: 11px;
+		--nug-font-size-sidebar: 9px;
+		--nug-font-size-menu: 9px;
+		--nug-font-size-bookmark: 9px;
+		--nug-font-size-devtools: 9px;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-size') and (-moz-bool-pref: 'nug-font-size' = 1) {
+	:root {
+		--nug-font-size: 11px;
+		--nug-font-size-toolbar: 10px;
+		--nug-font-size-tab: 11px;
+		--nug-font-size-urlbar: 12px;
+		--nug-font-size-sidebar: 10px;
+		--nug-font-size-menu: 10px;
+		--nug-font-size-bookmark: 10px;
+		--nug-font-size-devtools: 10px;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-size') and (-moz-bool-pref: 'nug-font-size' = 2) {
+	:root {
+		--nug-font-size: 13px;
+		--nug-font-size-toolbar: 12px;
+		--nug-font-size-tab: 13px;
+		--nug-font-size-urlbar: 14px;
+		--nug-font-size-sidebar: 12px;
+		--nug-font-size-menu: 12px;
+		--nug-font-size-bookmark: 12px;
+		--nug-font-size-devtools: 11px;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-size') and (-moz-bool-pref: 'nug-font-size' = 3) {
+	:root {
+		--nug-font-size: 14px;
+		--nug-font-size-toolbar: 13px;
+		--nug-font-size-tab: 14px;
+		--nug-font-size-urlbar: 15px;
+		--nug-font-size-sidebar: 13px;
+		--nug-font-size-menu: 13px;
+		--nug-font-size-bookmark: 13px;
+		--nug-font-size-devtools: 12px;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-size') and (-moz-bool-pref: 'nug-font-size' = 4) {
+	:root {
+		--nug-font-size: 15px;
+		--nug-font-size-toolbar: 14px;
+		--nug-font-size-tab: 15px;
+		--nug-font-size-urlbar: 16px;
+		--nug-font-size-sidebar: 14px;
+		--nug-font-size-menu: 14px;
+		--nug-font-size-bookmark: 14px;
+		--nug-font-size-devtools: 13px;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-size') and (-moz-bool-pref: 'nug-font-size' = 5) {
+	:root {
+		--nug-font-size: 16px;
+		--nug-font-size-toolbar: 15px;
+		--nug-font-size-tab: 16px;
+		--nug-font-size-urlbar: 17px;
+		--nug-font-size-sidebar: 15px;
+		--nug-font-size-menu: 15px;
+		--nug-font-size-bookmark: 15px;
+		--nug-font-size-devtools: 14px;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-size') and (-moz-bool-pref: 'nug-font-size' = 6) {
+	:root {
+		--nug-font-size: 18px;
+		--nug-font-size-toolbar: 17px;
+		--nug-font-size-tab: 18px;
+		--nug-font-size-urlbar: 19px;
+		--nug-font-size-sidebar: 17px;
+		--nug-font-size-menu: 17px;
+		--nug-font-size-bookmark: 17px;
+		--nug-font-size-devtools: 16px;
+	}
+}
+
+/* Font Weight Variables */
+@media (-moz-bool-pref: 'nug-font-weight') and (-moz-bool-pref: 'nug-font-weight' = 0) {
+	:root {
+		--nug-font-weight: 300;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-weight') and (-moz-bool-pref: 'nug-font-weight' = 1) {
+	:root {
+		--nug-font-weight: 400;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-weight') and (-moz-bool-pref: 'nug-font-weight' = 2) {
+	:root {
+		--nug-font-weight: 500;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-weight') and (-moz-bool-pref: 'nug-font-weight' = 3) {
+	:root {
+		--nug-font-weight: 600;
+	}
+}
+@media (-moz-bool-pref: 'nug-font-weight') and (-moz-bool-pref: 'nug-font-weight' = 4) {
+	:root {
+		--nug-font-weight: 700;
+	}
+}
+
+/* Default values when no preferences are set */
+:root {
+	--nug-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--nug-font-size: 13px;
+	--nug-font-size-toolbar: 12px;
+	--nug-font-size-tab: 13px;
+	--nug-font-size-urlbar: 14px;
+	--nug-font-size-sidebar: 12px;
+	--nug-font-size-menu: 12px;
+	--nug-font-size-bookmark: 12px;
+	--nug-font-size-devtools: 11px;
+	--nug-font-weight: 400;
+}
+
+/* Custom font family from text input */
+@media (-moz-string-pref: 'nug-font-family') {
+	:root {
+		--nug-font-family: var(--nug-font-family-custom, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+	}
+}
+
+/* Custom font size from text input */
+@media (-moz-string-pref: 'nug-font-size') {
+	:root {
+		--nug-font-size: var(--nug-font-size-custom, 13px);
+		--nug-font-size-toolbar: var(--nug-font-size-custom, 12px);
+		--nug-font-size-tab: var(--nug-font-size-custom, 13px);
+		--nug-font-size-urlbar: var(--nug-font-size-custom, 14px);
+		--nug-font-size-sidebar: var(--nug-font-size-custom, 12px);
+		--nug-font-size-menu: var(--nug-font-size-custom, 12px);
+		--nug-font-size-bookmark: var(--nug-font-size-custom, 12px);
+		--nug-font-size-devtools: var(--nug-font-size-custom, 11px);
+	}
+}
+
+/* Custom font weight from text input */
+@media (-moz-string-pref: 'nug-font-weight') {
+	:root {
+		--nug-font-weight: var(--nug-font-weight-custom, 400);
+	}
+}
+
+@media not (-moz-bool-pref: 'nug-fonts-disabled') {
+	/* Main UI Font */
+	* {
+		font-family: var(--nug-font-family) !important;
+		font-size: var(--nug-font-size) !important;
+		font-weight: var(--nug-font-weight) !important;
+	}
+
+	/* Toolbar and Navigation */
+	#navigator-toolbox,
+	#nav-bar,
+	#PersonalToolbar,
+	.toolbar-items,
+	.toolbarbutton-text {
+		font-family: var(--nug-font-family) !important;
+		font-weight: var(--nug-font-weight) !important;
+		font-size: var(--nug-font-size-toolbar) !important;
+	}
+
+	/* Tabs */
+	.tab-text,
+	.tab-label {
+		font-family: var(--nug-font-family) !important;
+		font-weight: var(--nug-font-weight) !important;
+		font-size: var(--nug-font-size-tab) !important;
+	}
+
+	/* URL Bar */
+	#urlbar,
+	#urlbar-input,
+	.urlbar-input-box {
+		font-weight: var(--nug-font-weight) !important;
+		font-size: var(--nug-font-size-urlbar) !important;
+	}
+
+	/* URL Bar - Default to same font unless monospace is enabled */
+	@media not (-moz-bool-pref: 'nug-font-urlbar-monospace') {
+		#urlbar,
+		#urlbar-input,
+		.urlbar-input-box {
+			font-family: var(--nug-font-family) !important;
+		}
+	}
+
+	/* URL Bar - Monospace when enabled */
+	@media (-moz-bool-pref: 'nug-font-urlbar-monospace') {
+		#urlbar,
+		#urlbar-input,
+		.urlbar-input-box {
+			font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+		}
+	}
+
+	/* Sidebar */
+	#sidebar,
+	#sidebar-box,
+	.sidebar-panel {
+		font-family: var(--nug-font-family) !important;
+		font-size: var(--nug-font-size-sidebar) !important;
+	}
+
+	/* Context Menus */
+	menupopup,
+	menuitem,
+	menu {
+		font-family: var(--nug-font-family) !important;
+		font-size: var(--nug-font-size-menu) !important;
+	}
+
+	/* Bookmarks */
+	.bookmark-item,
+	.placesTree {
+		font-family: var(--nug-font-family) !important;
+		font-size: var(--nug-font-size-bookmark) !important;
+	}
+
+	/* Developer Tools */
+	#developer-toolbar,
+	.devtools-toolbox {
+		font-family: monospace !important;
+		font-size: var(--nug-font-size-devtools) !important;
+	}
+}

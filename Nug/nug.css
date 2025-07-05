@@ -1,5 +1,5 @@
 @import 'Variables/Variables.css';
-@import 'Nug-Features/Nug-Features.css';
+@import 'Modules/Modules.css';
 @import 'Theme/Theme.css';
 @import 'Animations/Animations.css';
 
@@ -17,7 +17,7 @@ browser {
 	}
 }
 
-@media (prefers-color-scheme: dark) {
+@media not (-moz-bool-pref: 'catppuccin-colors-disabled') {
 	:root {
 		--zen-colors-primary: #313244 !important;
 		--zen-primary-color: #94e2d5 !important;

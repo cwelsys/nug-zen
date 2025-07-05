@@ -3,6 +3,8 @@
 @import 'Findbar.css';
 @import 'Sidebar-Panel.css';
 @import 'CustomizationScreen.css';
+@import 'Icons.css';
+@import 'Font.css';
 
 @media not (-moz-pref('nug-theme-disabled')) {
 	@media not (-moz-pref('nug-theme-scrollbar-enabled')) {
