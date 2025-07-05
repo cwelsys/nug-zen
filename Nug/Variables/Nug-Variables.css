@@ -50,9 +50,9 @@
 	--nug-Shadow-Color-3: light-dark(rgba(205, 214, 244, 0.4), rgba(17, 17, 27, 1));
 
 	/*Glow Colors*/
-	--nug-Glow-Color-1: color-mix(in srgb, var(--catppuccin-mauve) 90%, var(--catppuccin-text));
-	--nug-Glow-Color-2: color-mix(in srgb, var(--catppuccin-mauve) 80%, var(--catppuccin-text));
-	--nug-Glow-Color-3: color-mix(in srgb, var(--catppuccin-mauve) 70%, var(--catppuccin-text));
+	--nug-Glow-Color-1: color-mix(in srgb, var(--zen-primary-color) 90%, var(--catppuccin-text));
+	--nug-Glow-Color-2: color-mix(in srgb, var(--zen-primary-color) 80%, var(--catppuccin-text));
+	--nug-Glow-Color-3: color-mix(in srgb, var(--zen-primary-color) 70%, var(--catppuccin-text));
 
 	/* Border radius */
 	--nug-border-radius: 4px;
@@ -62,7 +62,7 @@
 	--nug-Blur-Simple: blur(15px) brightness(110%) saturate(260%);
 
 	/* Blur colors */
-	--nug-Blur-Color: color-mix(in srgb, var(--catppuccin-mauve) 1%, var(--catppuccin-base));
+	--nug-Blur-Color: color-mix(in srgb, var(--zen-primary-color) 1%, var(--catppuccin-base));
 
 	/* Width Compact Mode */
 	--nug-Width-Compact-Expanded: 21em;
