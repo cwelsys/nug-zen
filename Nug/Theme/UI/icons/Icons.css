@@ -1,6 +1,7 @@
 @media not (-moz-bool-pref: 'nug-color-icons-disabled') {
 	:root {
 		--nug-icon-color: #cba6f7; /* Default fallback */
+		@import 'context.css';
 	}
 
 	/* Custom icon color from preferences */
