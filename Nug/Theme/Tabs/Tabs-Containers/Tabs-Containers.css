@@ -21,7 +21,7 @@
 		}
 
 		/* Tab gradient color container */
-		.tabbrowser-tab:not([zen-essential]) .tab-background::after {
+		/* .tabbrowser-tab:not([zen-essential]) .tab-background::after {
 			z-index: -1 !important;
 			content: '';
 			top: 0;
@@ -36,6 +36,6 @@
 				color-mix(in srgb, var(--identity-tab-color) 70%, white) 100%
 			) !important;
 			transition: opacity 0.9s ease;
-		}
+		} */
 	}
 }
