@@ -2,10 +2,6 @@
 	font-size: var(--nug-font-size-tabbar-tabs) !important;
 }
 
-#zen-current-workspace-indicator-name {
-	font-size: var(--nug-font-size-workspace-title) !important;
-}
-
 .findbar-container {
 	font-size: var(--nug-font-size-searchbar) !important;
 }
