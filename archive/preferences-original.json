@@ -1,0 +1,515 @@
+[
+	{
+		"type": "text",
+		"label": "**nug Features**",
+		"margin": "10px 0 15px 0",
+		"size": "20px"
+	},
+	{
+		"type": "separator",
+		"label": "General"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-disabled",
+		"label": "Disable all features."
+	},
+	{
+		"type": "checkbox",
+		"property": "catppuccin-colors-disabled",
+		"label": "Use zen (theme) base colors."
+	},
+	{
+		"type": "separator",
+		"label": "Fonts"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-fonts-disabled",
+		"label": "Disable custom fonts."
+	},
+	{
+		"type": "string",
+		"property": "nug-font-family",
+		"label": "Font Family",
+		"placeholder": "Enter font name (e.g., Inter, JetBrains Mono, Georgia)",
+		"defaultValue": "sans-serif"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-font-urlbar-monospace",
+		"label": "Use monospace font for URL bar."
+	},
+	{
+		"property": "nug.font.size.tabbar.tabs",
+		"label": "Tabbar font size \"1.3em\" or \"20px\"",
+		"type": "string",
+		"defaultValue": "13px"
+	},
+	{
+		"property": "nug.font.size.searchbar",
+		"label": "Findbar font size \"1.4em\" or \"22px\"",
+		"type": "string",
+		"defaultValue": "14px"
+	},
+	{
+		"property": "nug.font.size.url",
+		"label": "Urlbar font size \"1.1em\" or \"15px\"",
+		"type": "string",
+		"defaultValue": "15px"
+	},
+	{
+		"type": "separator",
+		"label": "Sidebar"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-sidebar-disabled",
+		"label": "Disable sidebar, this will also disable the sidebar background and align features."
+	},
+	{
+		"type": "separator",
+		"label": "Workspace"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-workspace-disabled",
+		"label": "Disable workspace features."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-workspace-halo-mode-disabled",
+		"label": "Disable workspace halo mode, if disabled all the subbuttons will be displayed in both modes (expanded and collapsed)."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-workspace-halo-mode-collapsed-disabled",
+		"label": "Disable workspace halo mode in collapsed mode, if disabled it will enable automatically the scrollable mode for collapsed mode."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-workspace-halo-mode-expanded-disabled",
+		"label": "Disable workspace halo mode in expanded mode, if disabled it will display all the subbuttons in expanded mode."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-workspace-button-hidden",
+		"label": "Hide the workspace button, This will expand the bottom section automatically in expanded mode, and display all the subbuttons for both modes."
+	},
+	{
+		"type": "separator",
+		"label": "Bottom V2"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-bottom-disabled",
+		"label": "Disable better bottom section."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-bottom-keep-expanded",
+		"label": "Keep better bottom section expanded in expanded mode."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-bottom-at-bottom",
+		"label": "Move the bottom section to the bottom."
+	},
+	{
+		"type": "dropdown",
+		"property": "nug-features-bottom-height",
+		"label": "Change the height of the bottom section in collapsed mode. Default: 220px",
+		"value": "number",
+		"default": 5,
+		"options": [
+			{ "value": 0, "label": "120px" },
+			{ "value": 1, "label": "140px" },
+			{ "value": 2, "label": "160px" },
+			{ "value": 3, "label": "180px" },
+			{ "value": 4, "label": "200px" },
+			{ "value": 5, "label": "220px" },
+			{ "value": 6, "label": "240px" },
+			{ "value": 7, "label": "260px" },
+			{ "value": 8, "label": "280px" },
+			{ "value": 9, "label": "300px" },
+			{ "value": 10, "label": "320px" },
+			{ "value": 11, "label": "340px" },
+			{ "value": 12, "label": "360px" },
+			{ "value": 13, "label": "380px" },
+			{ "value": 14, "label": "400px" },
+			{ "value": 15, "label": "420px" },
+			{ "value": 16, "label": "440px" },
+			{ "value": 17, "label": "460px" },
+			{ "value": 18, "label": "480px" },
+			{ "value": 19, "label": "500px" },
+			{ "value": 20, "label": "520px" }
+		]
+	},
+	{
+		"type": "separator",
+		"label": "Essentials"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-essentials-disabled",
+		"label": "Disable Essentials feature."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-essentials-keep-expanded",
+		"label": "Keep better essentials area expanded."
+	},
+	{
+		"type": "separator",
+		"label": "Media"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-media-disabled",
+		"label": "Disable Media features, if disabled, the media controls will be hidden in collapsed mode."
+	},
+	{
+		"type": "separator",
+		"label": "Split Groups"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-split-groups-disabled",
+		"label": "Disable Split Groups feature"
+	},
+	{
+		"type": "separator",
+		"label": "Tab Groups"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-tab-groups-disabled",
+		"label": "Disable Tab Groups feature without disabling styling."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tab-groups-disabled",
+		"label": "Disable tab groups styling, but keep feature functionality."
+	},
+	{
+		"type": "separator",
+		"label": "Findbar"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-findbar-disabled",
+		"label": "Disable Findbar feature."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-findbar-hover-enabled",
+		"label": "Enable show on hover for the better findbar."
+	},
+	{
+		"type": "separator",
+		"label": "Search"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-search-disabled",
+		"label": "Disable Search feature."
+	},
+	{
+		"type": "text",
+		"label": "**Theme &  UI**",
+		"margin": "10px 0 15px 0",
+		"size": "20px"
+	},
+	{
+		"type": "separator",
+		"label": "General"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-disabled",
+		"label": "Disable theme without disabling features."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-background-enabled",
+		"label": "Enable tab background"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-shadow-enabled",
+		"label": "Enable shadow around the tab background area."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-scrollbar-enabled",
+		"label": "Enable sidebar scrollbar."
+	},
+	{
+		"type": "separator",
+		"label": "Customization Screen"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-customization-toolbar-disabled",
+		"label": "Disable theme styling for the customization screen when the browser is in customization mode."
+	},
+	{
+		"type": "separator",
+		"label": "Window Buttons"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-window-buttons-disabled",
+		"label": "Disable window button styling."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-window-buttons-colorful-enabled",
+		"label": "Keep window buttons colorful while unhovered."
+	},
+	{
+		"type": "separator",
+		"label": "Workspace Button"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-workspace-button-disabled",
+		"label": "Disable workspace button styling."
+	},
+	{
+		"type": "separator",
+		"label": "Workspace Indicator"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-indicator",
+		"label": "Hide the workspace indicator."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-workspace-indicator-disabled",
+		"label": "Disable workspace indicator styling."
+	},
+	{
+		"type": "separator",
+		"label": "Nebula"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-pinned-extensions-mod",
+		"label": "Enable pinned extensions mod"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-external-nebula-animations-tabs-disabled",
+		"label": "Disable Nebula tab animations"
+	},
+	{
+		"type": "dropdown",
+		"value": "number",
+		"property": "nug-glow-gradient",
+		"label": "Hover glow animation.",
+		"default": 1,
+		"placeholder": false,
+		"options": [
+			{
+				"label": "No Animation",
+				"value": 0
+			},
+			{
+				"label": "Default",
+				"value": 1
+			},
+			{
+				"label": "Monochrome",
+				"value": 2
+			},
+			{
+				"label": "RGB",
+				"value": 3
+			}
+		]
+	},
+	{
+		"type": "separator",
+		"label": "Media Controls"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-media-disabled",
+		"label": "Disable styling for media controls / disable glow effects and hover effects."
+	},
+	{
+		"type": "separator",
+		"label": "Tab Customization"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-disabled",
+		"label": "Disable styling for all tab styles."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-close-button-disabled",
+		"label": "Disable tab close button styling."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-essentials-disabled",
+		"label": "Disable styling for essentials."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-pinned-disabled",
+		"label": "Disable styling for pinned tabs."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-newtab-button-disabled",
+		"label": "Disable styling for new tab buttons."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-normals-disabled",
+		"label": "Disable styling for normal tabs."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-containers-disabled",
+		"label": "Disable styling for container tabs."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-containers-essentials-disabled",
+		"label": "Disable styling for container-specific essentials."
+	},
+	{
+		"type": "separator",
+		"label": "Overflow Indicators"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-tabs-overflow-indicators-disabled",
+		"label": "Disable styling for overflow indicators."
+	},
+	{
+		"type": "separator",
+		"label": "Findbar"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-findbar-disabled",
+		"label": "Disable findbar styling."
+	},
+	{
+		"type": "separator",
+		"label": "URL Bar"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-urlbar-disabled",
+		"label": "Disable urlbar styling."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-urlbar-glow-border-disabled",
+		"label": "Disable glow border around the floating urlbar."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-urlbar-glow-disabled",
+		"label": "Disable glow effect around the floating urlbar without disabling the border."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-urlbar-border-disabled",
+		"label": "Disable border around the floating urlbar without disabling the glow."
+	},
+	{
+		"type": "separator",
+		"label": "Icons"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-color-icons-disabled",
+		"label": "Disable icons."
+	},
+	{
+		"type": "string",
+		"property": "nug-icon-color",
+		"label": "Icon Color",
+		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
+		"default": "#cba6f7"
+	},
+	{
+		"type": "checkbox",
+		"property": "svg.context-properties.content.enabled",
+		"label": "[Main] Enable the configuration items for critical dependencies(Please make sure it is turned on.)",
+		"defaultValue": true
+	},
+
+	{
+		"type": "dropdown",
+		"value": "number",
+		"property": "cmi-main__context-menu-icons-option",
+		"label": "📚 Switch Icon package.",
+		"default": 1,
+		"placeholder": false,
+		"options": [
+			{
+				"label": "No changes with icons",
+				"value": 0
+			},
+			{
+				"label": "Default(FluentUI)",
+				"value": 1
+			},
+			{
+				"label": "ZenUI",
+				"value": 2
+			}
+		]
+	},
+
+	{
+		"type": "checkbox",
+		"property": "cmi-main__ContextMenu--better",
+		"label": "[👍 Contex Menu style] Enable better context menu (Default: Off. Recommended to enable to obtain a more concise context menu.)",
+		"defaultValue": false
+	},
+
+	{
+		"type": "checkbox",
+		"property": "cmi-extensions__icon--grayscale",
+		"label": "[icons style] Add grayscale filter to extensions icons of context-menu",
+		"defaultValue": false
+	},
+
+	{
+		"type": "checkbox",
+		"property": "cmi-extensions__icon--align",
+		"label": "[👍 icons style] Align the icons of the extension with those of CMI(Default: Off. Recommended to enable to make the context menu more orderly.)",
+		"defaultValue": false
+	},
+
+	{
+		"type": "checkbox",
+		"property": "cmi-extensions__text--align",
+		"label": "[text style] Align the text of the extension with those of CMI(Default: Off. Recommended to enable to make the context menu more orderly. ⚠️ This function has been temporarily delete.)",
+		"defaultValue": false
+	},
+
+	{
+		"type": "checkbox",
+		"property": "cmi-bookmarks__item--centered",
+		"label": "[bookmarks] Centered Bookmark Toolbar Items",
+		"defaultValue": false
+	},
+
+	{
+		"type": "checkbox",
+		"property": "cmi-bookmarks__icon--hide",
+		"label": "[bookmarks] Hide the redundant icons in the bookmark toolbar (Recommended to enable, which can make the bookmark bar more concise)",
+		"defaultValue": false
+	}
+]

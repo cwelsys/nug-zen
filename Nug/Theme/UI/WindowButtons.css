@@ -14,6 +14,19 @@
 				margin: 0px 3px !important;
 				background-color: rgba(200, 200, 200, 0.3) !important;
 				transition: all 200ms ease-in-out;
+
+				/* Ensure visibility on Windows */
+				opacity: 1 !important;
+				visibility: visible !important;
+			}
+
+			/* Platform-specific improvements for Windows */
+			@media (-moz-platform: windows) {
+				.titlebar-button {
+					/* Better visibility on Windows */
+					background-color: rgba(203, 166, 247, 0.4) !important;
+					border: 1px solid rgba(203, 166, 247, 0.2) !important;
+				}
 			}
 
 			.titlebar-button > image {
