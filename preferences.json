@@ -164,12 +164,14 @@
 	{
 		"type": "checkbox",
 		"property": "nug-pinned-extensions-mod",
-		"label": "Enable pinned extensions mod"
+		"label": "Enable pinned extensions mod",
+		"defaultValue": true
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-external-nebula-animations-tabs-disabled",
-		"label": "Disable Nebula tab animations"
+		"label": "Disable Nebula tab animations",
+		"defaultValue": true
 	},
 	{
 		"type": "dropdown",
