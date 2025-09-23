@@ -26,22 +26,6 @@
 			color: #94e2d5 !important;
 		}
 
-		/* .search-wrapper .logo-and-wordmark .logo {
-			background: url('zen-logo-mocha.svg') no-repeat center !important;
-			display: inline-block !important;
-			height: 82px !important;
-			width: 82px !important;
-			background-size: 82px !important;
-		}
-
-		@media (max-width: 609px) {
-			.search-wrapper .logo-and-wordmark .logo {
-				background-size: 64px !important;
-				height: 64px !important;
-				width: 64px !important;
-			}
-		} */
-
 		.card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
 			color: #94e2d5 !important;
 		}
