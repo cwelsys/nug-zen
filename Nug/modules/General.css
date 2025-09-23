@@ -1,0 +1,160 @@
+@media not (-moz-pref('nug-theme-disabled')) {
+	@media not (-moz-pref('nug-theme-background-enabled')) {
+		/* Remove new tab background color*/
+		.browserStack browser {
+			background-color: transparent !important;
+		}
+	}
+
+	@media not (-moz-pref('nug-theme-shadow-enabled')) {
+		/* Remove shadow */
+		hbox.browserSidebarContainer,
+		#zen-tabbox-wrapper {
+			box-shadow: none !important;
+		}
+	}
+}
+
+@media not (-moz-pref('nug-theme-disabled')) {
+	@media not (-moz-pref('nug-theme-findbar-disabled')) {
+		findbar {
+			box-shadow: 0px 0px 12px var(--nug-Glow-Color-3) !important;
+			border: 1px solid var(--nug-Glow-Color-1) !important;
+
+			& .findbar-textbox {
+				background: transparent !important;
+				outline: none !important;
+				border: 1px solid var(--nug-Glow-Color-1) !important;
+			}
+
+			& .findbar-find-status {
+				display: none !important;
+			}
+		}
+	}
+}
+
+@media not (-moz-pref('nug-theme-disabled')) {
+	@media not (-moz-pref('nug-theme-sidebar-panel-disabled')) {
+		#sidebar-box {
+			background-color: light-dark(rgba(255, 255, 255, 0.11), rgba(0, 0, 0, 0.2)) !important;
+			border: 1px solid color-mix(in srgb, var(--zen-primary-color) 90%, #000000ff) !important;
+			box-shadow: 0px 0px 3px var(--nug-Glow-Color-1) !important;
+
+			& #sidebar {
+				background: transparent !important;
+			}
+		}
+
+		.sidebar-panel {
+			background: transparent !important;
+		}
+
+		#sidebar-box #sidebar-header {
+			border-bottom: none !important;
+		}
+
+		/* Transparent Sidebar Search Box & View Button */
+		#sidebar-search-container > #search-box,
+		#viewButton {
+			padding: 4px 8px !important;
+			appearance: none !important;
+			background-color: transparent !important;
+			border-radius: var(--nug-Border-Radius) !important;
+			border: none !important;
+		}
+
+		#sidebar-search-container > #search-box,
+		#viewButton,
+		#sidebar-search-container > #search-box:active,
+		#viewButton:active {
+			background-color: transparent !important;
+			border-radius: var(--nug-Border-Radius) !important;
+			transition: background-color 0.5s ease !important;
+		}
+
+		#sidebar-search-container > #search-box:hover,
+		#viewButton:hover,
+		#sidebar-search-container > #search-box:active,
+		#viewButton:active {
+			border-radius: var(--nug-Border-Radius) !important;
+			background-color: light-dark(rgba(255, 255, 255, 0.11), rgba(0, 0, 0, 0.2)) !important;
+			transition: background-color 0.5s ease !important;
+		}
+
+		body[role='application'] {
+			--lwt-sidebar-background-color: transparent !important;
+
+			& .content-container {
+				background: transparent !important;
+			}
+		}
+	}
+}
+
+/* === BETTER CUSTOMIZE TOOLBAR === */
+/* Based on code by https://github.com/Tanay-Kar */
+
+@media not (-moz-pref('nug-theme-disabled')) {
+	@media not (-moz-pref('nug-theme-customization-toolbar-disabled')) {
+		#customization-container {
+			position: absolute;
+			z-index: 1;
+			bottom: 10px;
+			right: 10px;
+			height: 80%;
+			width: 70%;
+			border-radius: var(--nug-Border-Radius) !important;
+
+			padding: 10px;
+			background: var(--nug-Black-1) !important;
+		}
+
+		@media (-moz-bool-pref: 'zen.tabs.vertical.right-side') {
+			#customization-container {
+				left: 10px;
+			}
+
+			#customization-container #customization-content-container {
+				flex-direction: row-reverse;
+			}
+		}
+
+		#customization-container #customization-panel-container {
+			padding: 10px !important;
+		}
+
+		#customization-container #customization-panelWrapper {
+			--panel-arrow-offset: 0px;
+		}
+
+		#customization-container .panel-arrowbox {
+			display: none !important;
+		}
+
+		#customization-container .panel-arrowcontent {
+			height: 100% !important;
+			background: var(--nug-Black-1) !important;
+			border: none !important;
+			margin: 0px !important;
+			border-radius: var(--nug-Border-Radius) !important;
+		}
+
+		/* Check when the width is low */
+		@media (max-width: 700px) {
+			/* Adjust the threshold as needed */
+			#customization-container {
+				/* Temporary visual indicator */
+				border: 2px solid red;
+			}
+		}
+	}
+}
+
+@media not (-moz-pref('nug-theme-disabled')) {
+	@media not (-moz-pref('nug-theme-scrollbar-enabled')) {
+		scrollbox {
+			scrollbar-width: none !important;
+		}
+	}
+}

@@ -1,6 +1,3 @@
-/* ===== URL-Bar-Input.css ===== */
-/* Set the background container to transparent when url bar open */
-
 /* Firefox-specific: Only apply if nug-theme-urlbar-disabled is NOT set */
 :root:not([nug-theme-urlbar-disabled]) #urlbar-container {
 	#nav-bar:is([downloadsbuttonshown], [unifiedextensionsbuttonshown]) & {
@@ -74,7 +71,6 @@
 	border-radius: var(--nug-Border-Radius) !important;
 }
 
-/* ===== URL-Bar-Floating.css ===== */
 :root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]) #urlbar[open] #urlbar-label-box {
 	display: none !important;
 }
@@ -116,9 +112,6 @@
 	border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
 }
 
-/* ===== URL-Bar-Rows.css ===== */
-
-/* ===== URL-Bar-Gradient.css ===== */
 #urlbar {
 	.urlbar-input-container::before {
 		content: '';
@@ -164,7 +157,6 @@
 	}
 }
 
-/* ===== Original URLbar.css content ===== */
 @-moz-document url-prefix('chrome://')
 {
 	#urlbar-container #page-action-buttons #userContext-icons {
