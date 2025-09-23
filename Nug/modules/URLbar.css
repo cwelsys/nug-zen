@@ -1,0 +1,183 @@
+/* ===== URL-Bar-Input.css ===== */
+/* Set the background container to transparent when url bar open */
+
+/* Firefox-specific: Only apply if nug-theme-urlbar-disabled is NOT set */
+:root:not([nug-theme-urlbar-disabled]) #urlbar-container {
+	#nav-bar:is([downloadsbuttonshown], [unifiedextensionsbuttonshown]) & {
+		border-radius: var(--nug-Border-Radius) !important;
+		background: #00000000 !important;
+		transition: background 0.5s ease !important;
+	}
+}
+
+/* Limit the width of the url bar when it's not open */
+:root:not([zen-single-toolbar='true']):not([nug-theme-urlbar-disabled]) #urlbar-container:has(#urlbar:not([open])) {
+	display: flex !important;
+	justify-content: center !important;
+}
+
+:root:not([zen-single-toolbar='true']):not([nug-theme-urlbar-disabled])
+	#urlbar-container:has(#urlbar:not([open]))
+	#urlbar:not([open]) {
+	max-width: 50% !important;
+}
+
+:root:not([nug-theme-urlbar-disabled]) #urlbar:not([breakout-extend='true']) {
+	:root:not([supress-primary-adjustment]) & #urlbar-background {
+		border-radius: var(--nug-Border-Radius) !important;
+		background: var(--nug-Black-1) !important;
+		filter: blur(20px), brightness (1.2) !important;
+		transition: background 0.55s ease !important;
+		color: var(--zen-primary-color) !important;
+		outline: none !important;
+	}
+}
+
+:root:not([nug-theme-urlbar-disabled]) #urlbar:not([open]) .urlbar-input-container {
+	border-radius: var(--nug-Border-Radius) !important;
+	border: 1px solid color-mix(in srgb, var(--zen-primary-color) 40%, transparent) !important;
+	transition: border 0.5s ease, color 0.5s ease, box-shadow 0.5s ease !important;
+	box-shadow: 0 0px 6px transparent !important;
+}
+
+:root:not([nug-theme-urlbar-disabled]) #urlbar-container #urlbar:not([open]):hover .urlbar-input-container {
+	box-shadow: 0 0px 6px color-mix(in srgb, var(--zen-primary-color) 80%, transparent) !important;
+	border: 1px solid color-mix(in srgb, var(--zen-primary-color) 80%, transparent) !important;
+	color: var(--zen-primary-color) !important;
+	opacity: 1 !important;
+}
+
+:root:not([nug-theme-urlbar-disabled]) .urlbar-input {
+	text-align: center !important;
+}
+
+:root[zen-single-toolbar='true']:not([nug-theme-urlbar-disabled]) #urlbar:not([open]):not(:hover) #userContext-icons,
+:root[zen-single-toolbar='true']:not([nug-theme-urlbar-disabled])
+	#urlbar:not([open]):not(:hover)
+	#identity-permission-box,
+:root[zen-single-toolbar='true']:not([nug-theme-urlbar-disabled]) #urlbar:not([open]):not(:hover) #identity-icon-box {
+	margin-inline-start: calc(-9px - 2 * var(--urlbar-icon-padding)) !important;
+	transform: translateX(100%);
+	opacity: 0;
+	width: auto !important;
+	transition: all 0.3s ease;
+}
+
+:root[zen-single-toolbar='true']:not([nug-theme-urlbar-disabled]) #urlbar:not([open]):hover #userContext-icons,
+:root[zen-single-toolbar='true']:not([nug-theme-urlbar-disabled]) #urlbar:not([open]):hover #identity-permission-box,
+:root[zen-single-toolbar='true']:not([nug-theme-urlbar-disabled]) #urlbar:not([open]):hover #identity-icon-box {
+	transform: none !important;
+	opacity: 1 !important;
+}
+
+:root:not([nug-theme-urlbar-disabled]) #urlbar:not([open]) #urlbar-background {
+	border-radius: var(--nug-Border-Radius) !important;
+}
+
+/* ===== URL-Bar-Floating.css ===== */
+:root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]) #urlbar[open] #urlbar-label-box {
+	display: none !important;
+}
+
+:root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]) #urlbar[open] #urlbar-background {
+	box-shadow: 0px 0px 10px #000000 !important;
+	border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
+
+	border: none !important;
+
+	outline-style: none !important;
+	outline-color: transparent !important;
+}
+
+:root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]):not([nug-theme-urlbar-glow-border-disabled]):not(
+		[nug-theme-urlbar-glow-disabled]
+	)
+	#urlbar[open]
+	#urlbar-background {
+	box-shadow: 0px 0px 3px var(--nug-Glow-Color-1) !important;
+	filter: drop-shadow(0px 0px 8px var(--nug-Glow-Color-1)) !important;
+}
+
+:root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]):not([nug-theme-urlbar-glow-border-disabled]):not(
+		[nug-theme-urlbar-border-disabled]
+	)
+	#urlbar[open]
+	#urlbar-background {
+	border: 2px solid var(--nug-Glow-Color-1) !important;
+}
+
+:root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]) .urlbarView-body-inner {
+	#urlbar[open] > .urlbarView > .urlbarView-body-outer > & {
+		border-top: 1px solid color-mix(in srgb, var(--zen-primary-color) 0%, transparent 100%) !important;
+	}
+}
+
+:root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]) #zen-main-app-wrapper::after {
+	border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
+}
+
+/* ===== URL-Bar-Rows.css ===== */
+
+/* ===== URL-Bar-Gradient.css ===== */
+#urlbar {
+	.urlbar-input-container::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(90deg, var(--w-urlbar-bg_color));
+		background-size: 300% 100%; /* Much smaller size for slower movement */
+		animation: urlbar-loading-gradient 16s cubic-bezier(0.4, 0, 0.2, 1) infinite; /* Smoother easing */
+		animation-play-state: paused;
+		opacity: 0;
+		transition: opacity 0.5s ease;
+		z-index: 0 !important;
+		border-radius: 8px;
+		pointer-events: none !important; /* Allow clicks to pass through */
+	}
+}
+
+#main-window:has(.tabbrowser-tab[selected][busy]) .urlbar-input-container::before {
+	animation-play-state: running;
+	opacity: 1;
+}
+
+@keyframes urlbar-loading-gradient {
+	0% {
+		background-position: 0% 50%;
+		transform: translateY(0px);
+	}
+	25% {
+		background-position: 50% 50%;
+		transform: translateY(-1px);
+	}
+	50% {
+		background-position: 100% 50%;
+		transform: translateY(0px);
+	}
+	75% {
+		background-position: 150% 50%;
+		transform: translateY(1px);
+	}
+	100% {
+		background-position: 200% 50%;
+		transform: translateY(0px);
+	}
+}
+
+/* ===== Original URLbar.css content ===== */
+@-moz-document url-prefix('chrome://')
+{
+	#urlbar-container #page-action-buttons #userContext-icons {
+		position: relative;
+		order: 2;
+		height: 8px;
+		width: 8px;
+		background-color: var(--identity-icon-color);
+		border-radius: 32px;
+		margin-left: 12px !important;
+		& image,
+		& label {
+			display: none;
+		}
+	}
+}
