@@ -5,7 +5,6 @@
 @import 'modules/Findbar.css';
 @import 'modules/Fonts.css';
 @import 'modules/General.css';
-@import 'modules/Icons.css';
 @import 'modules/Media.css';
 @import 'modules/Pinned.css';
 @import 'modules/Search.css';
@@ -14,6 +13,7 @@
 @import 'modules/Toolbar.css';
 @import 'modules/URLbar.css';
 @import 'modules/Window-buttons.css';
+@import 'icons/Icons.css';
 
 /* config import */
 @import 'Nug-config.css';
