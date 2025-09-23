@@ -1,0 +1,21 @@
+@import 'URL-Bar-Input.css';
+@import 'URL-Bar-Floating.css';
+@import 'URL-Bar-Rows.css';
+@import 'URL-Bar-Gradient.css';
+
+@-moz-document url-prefix('chrome://')
+{
+	#urlbar-container #page-action-buttons #userContext-icons {
+		position: relative;
+		order: 2;
+		height: 8px;
+		width: 8px;
+		background-color: var(--identity-icon-color);
+		border-radius: 32px;
+		margin-left: 12px !important;
+		& image,
+		& label {
+			display: none;
+		}
+	}
+}

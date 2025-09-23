@@ -1,0 +1,71 @@
+@media (-moz-string-pref: 'nug-font-family') {
+	:root {
+		--nug-font-family: var(--nug-font-family-custom, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+	}
+}
+
+@media not (-moz-bool-pref: 'nug-fonts-disabled') {
+	/* Main UI Font */
+	* {
+		font-family: var(--nug-font-family) !important;
+	}
+
+	/* Toolbar and Navigation */
+	#navigator-toolbox,
+	#nav-bar,
+	#PersonalToolbar,
+	.toolbar-items,
+	.toolbarbutton-text {
+		font-family: var(--nug-font-family) !important;
+	}
+
+	/* Tabs */
+	.tab-text,
+	.tab-label {
+		font-family: var(--nug-font-family) !important;
+	}
+
+	@media not (-moz-bool-pref: 'nug-font-urlbar-monospace') {
+		#urlbar,
+		#urlbar-input,
+		.urlbar-input-box {
+			font-family: var(--nug-font-family) !important;
+		}
+	}
+
+	/* URL Bar - Monospace when enabled */
+	@media (-moz-bool-pref: 'nug-font-urlbar-monospace') {
+		#urlbar,
+		#urlbar-input,
+		.urlbar-input-box {
+			font-family: monospace !important;
+			font-size: 15px !important;
+		}
+	}
+
+	/* Sidebar */
+	#sidebar,
+	#sidebar-box,
+	.sidebar-panel {
+		font-family: var(--nug-font-family) !important;
+	}
+
+	/* Context Menus */
+	menupopup,
+	menuitem,
+	menu {
+		font-family: var(--nug-font-family) !important;
+	}
+
+	/* Bookmarks */
+	.bookmark-item,
+	.placesTree {
+		font-family: var(--nug-font-family) !important;
+	}
+
+	/* Developer Tools */
+	#developer-toolbar,
+	.devtools-toolbox {
+		font-family: monospace !important;
+	}
+}

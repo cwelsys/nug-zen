@@ -1,0 +1,44 @@
+#urlbar {
+	.urlbar-input-container::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(90deg, var(--w-urlbar-bg_color));
+		background-size: 300% 100%; /* Much smaller size for slower movement */
+		animation: urlbar-loading-gradient 16s cubic-bezier(0.4, 0, 0.2, 1) infinite; /* Smoother easing */
+		animation-play-state: paused;
+		opacity: 0;
+		transition: opacity 0.5s ease;
+		z-index: 0 !important;
+		border-radius: 8px;
+		pointer-events: none !important; /* Allow clicks to pass through */
+	}
+}
+
+#main-window:has(.tabbrowser-tab[selected][busy]) .urlbar-input-container::before {
+	animation-play-state: running;
+	opacity: 1;
+}
+
+@keyframes urlbar-loading-gradient {
+	0% {
+		background-position: 0% 50%;
+		transform: translateY(0px);
+	}
+	25% {
+		background-position: 50% 50%;
+		transform: translateY(-1px);
+	}
+	50% {
+		background-position: 100% 50%;
+		transform: translateY(0px);
+	}
+	75% {
+		background-position: 150% 50%;
+		transform: translateY(1px);
+	}
+	100% {
+		background-position: 200% 50%;
+		transform: translateY(0px);
+	}
+}

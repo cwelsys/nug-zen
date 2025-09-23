@@ -1,0 +1,13 @@
+#tabbrowser-tabs {
+	font-size: var(--nug-font-size-tabbar-tabs) !important;
+}
+
+.findbar-container {
+	font-size: var(--nug-font-size-searchbar) !important;
+}
+
+#urlbar,
+#urlbar-input,
+.urlbar-input-box {
+	font-size: var(--nug-font-size-url) !important;
+}
