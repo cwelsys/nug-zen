@@ -1,116 +1,5 @@
 [
 	{
-		"type": "text",
-		"label": "**Nug's Theme**",
-		"margin": "10px 0 15px 0",
-		"size": "20px"
-	},
-	{
-		"type": "separator",
-		"label": "General"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-disabled",
-		"label": "Disable all features."
-	},
-	{
-		"type": "checkbox",
-		"property": "catppuccin-colors-disabled",
-		"label": "Use zen (theme) base colors instead of Catppuccin Mocha."
-	},
-	{
-		"type": "separator",
-		"label": "Fonts"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-fonts-disabled",
-		"label": "Disable custom fonts."
-	},
-	{
-		"type": "string",
-		"property": "nug-font-family",
-		"label": "Font Family",
-		"placeholder": "Enter font name (e.g., Inter, JetBrains Mono, Georgia)",
-		"defaultValue": "sans-serif"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-font-urlbar-monospace",
-		"label": "Use monospace font for URL bar."
-	},
-	{
-		"property": "nug.font.size.tabbar.tabs",
-		"label": "Tabbar font size \"1.3em\" or \"20px\"",
-		"type": "string",
-		"defaultValue": "13px"
-	},
-	{
-		"property": "nug.font.size.searchbar",
-		"label": "Findbar font size \"1.4em\" or \"22px\"",
-		"type": "string",
-		"defaultValue": "14px"
-	},
-	{
-		"property": "nug.font.size.url",
-		"label": "Urlbar font size \"1.1em\" or \"15px\"",
-		"type": "string",
-		"defaultValue": "15px"
-	},
-	{
-		"type": "separator",
-		"label": "Bottom Section"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-bottom-at-bottom",
-		"label": "Move the bottom section to the bottom."
-	},
-	{
-		"type": "separator",
-		"label": "Media & Controls"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-media-disabled",
-		"label": "Disable Media features, if disabled, the media controls will be hidden in collapsed mode."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-media-disabled",
-		"label": "Disable styling for media controls / disable glow effects and hover effects."
-	},
-	{
-		"type": "separator",
-		"label": "Findbar"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-findbar-disabled",
-		"label": "Disable Findbar feature."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-findbar-hover-enabled",
-		"label": "Enable show on hover for the better findbar."
-	},
-	{
-		"type": "separator",
-		"label": "Search"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-search-disabled",
-		"label": "Disable Search feature."
-	},
-	{
-		"type": "text",
-		"label": "**Theme & UI**",
-		"margin": "10px 0 15px 0",
-		"size": "20px"
-	},
-	{
 		"type": "separator",
 		"label": "General"
 	},
@@ -135,13 +24,101 @@
 		"label": "Enable sidebar scrollbar."
 	},
 	{
-		"type": "separator",
-		"label": "Customization Screen"
+		"type": "checkbox",
+		"property": "catppuccin-colors-disabled",
+		"label": "Use zen (theme) base colors instead of Catppuccin Mocha."
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-theme-customization-toolbar-disabled",
-		"label": "Disable theme styling for the customization screen when the browser is in customization mode."
+		"label": "Disable theme styling for the customization screen when the browser is in customization mode.",
+		"defaultValue": true
+	},
+	{
+		"type": "separator",
+		"label": "Font"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-fonts-disabled",
+		"label": "Disable custom fonts."
+	},
+	{
+		"type": "string",
+		"property": "nug-font-family",
+		"label": "Font Family",
+		"placeholder": "Enter font name (e.g., Inter, JetBrains Mono, Georgia)",
+		"defaultValue": "sans-serif"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-font-urlbar-monospace",
+		"label": "Use monospace font for URL bar."
+	},
+	{
+		"property": "nug-font-size-tabbar-tabs",
+		"label": "Tabbar font size \"1.3em\" or \"20px\"",
+		"type": "string",
+		"defaultValue": "13px"
+	},
+	{
+		"property": "nug-font-size-searchbar",
+		"label": "Findbar font size \"1.4em\" or \"22px\"",
+		"type": "string",
+		"defaultValue": "14px"
+	},
+	{
+		"property": "nug-font-size-url",
+		"label": "Urlbar font size \"1.1em\" or \"15px\"",
+		"type": "string",
+		"defaultValue": "15px"
+	},
+	{
+		"type": "separator",
+		"label": "Bottom Section"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-bottom-at-bottom",
+		"label": "Move the bottom section to the bottom.",
+		"defaultValue": true
+	},
+	{
+		"type": "separator",
+		"label": "Media & Controls"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-media-disabled",
+		"label": "Disable Media features (media controls will be hidden in collapsed mode)"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-theme-media-disabled",
+		"label": "Disable styling for media controls / disable glow effects and hover effects."
+	},
+	{
+		"type": "separator",
+		"label": "Findbar"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-findbar-disabled",
+		"label": "Disable Findbar."
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-findbar-hover-enabled",
+		"label": "Enable show on hover."
+	},
+	{
+		"type": "separator",
+		"label": "Search"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-features-search-disabled",
+		"label": "Disable Search feature."
 	},
 	{
 		"type": "separator",
@@ -231,7 +208,8 @@
 	{
 		"type": "checkbox",
 		"property": "nug-theme-tabs-containers-disabled",
-		"label": "Disable styling for container tabs."
+		"label": "Disable styling for container tabs.",
+		"defaultValue": true
 	},
 	{
 		"type": "separator",
