@@ -245,6 +245,55 @@
 		"label": "Disable border around the floating urlbar without disabling the glow."
 	},
 	{
+		"type": "text",
+		"label": "🎯 Arcline URL Bar Features",
+		"margin": "20px 0 15px 0",
+		"size": "18px"
+	},
+	{
+		"property": "zen.urlbar.behavior",
+		"label": "URL bar behavior",
+		"type": "dropdown",
+		"placeholder": false,
+		"defaultValue": "float",
+		"options": [
+			{ "value": "float", "label": "Float (Default)" },
+			{ "value": "floating-on-type", "label": "Floating on Type" }
+		],
+		"force": true
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-urlbar-minimal-enabled",
+		"label": "Hide search suggestions until query is typed (minimal mode)"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-urlbar-animations-enabled",
+		"label": "Enable URL bar opening and bounce animations",
+		"defaultValue": true
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-urlbar-magnification-enabled",
+		"label": "Enable dock-like magnification for search results",
+		"defaultValue": true
+	},
+	{
+		"property": "nug-urlbar-border-radius",
+		"label": "URL bar border radius",
+		"type": "string",
+		"defaultValue": "1.4rem",
+		"placeholder": "1.4rem"
+	},
+	{
+		"property": "nug-urlbar-blur-amount",
+		"label": "URL bar background blur amount",
+		"type": "string",
+		"defaultValue": "15px",
+		"placeholder": "15px"
+	},
+	{
 		"type": "separator",
 		"label": "Icons"
 	},

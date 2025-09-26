@@ -7,6 +7,128 @@
 	}
 }
 
+/* =================================================================================== */
+/*  Arcline URL Bar Features - Floating and Animation System                          */
+/* =================================================================================== */
+
+/* URL Bar Results Animation */
+#urlbar-results {
+  transition: height 180ms ease-in-out !important;
+  overflow-y: auto !important;
+}
+
+/* Floating URL Bar Animations */
+@media (-moz-pref("zen.urlbar.behavior", "float")) {
+  #urlbar[breakout-extend="true"] {
+    transition: top 0.5s ease, width 0.3s ease;
+  }
+
+  #urlbar[open][zen-floating-urlbar="true"] {
+    --urlbar-container-height: 4.5rem !important;
+    min-width: min(60%, 10rem) !important;
+    width: min(70%, 57rem) !important;
+
+    & #urlbar-background {
+      transition: border-radius 0.4s ease !important;
+    }
+
+    & .urlbarView {
+      transition: opacity 0.1s ease !important;
+    }
+  }
+
+  /* Minimal Mode - Only apply if enabled */
+  @media (-moz-bool-pref("nug-urlbar-minimal-enabled")) {
+    /* Hidden State */
+    #urlbar[open]:not([usertyping=""]) > .urlbarView {
+      max-height: 0 !important;
+      overflow: hidden !important;
+      transition: max-height 0.4s ease !important;
+    }
+
+    /* Visible State */
+    #urlbar[open][usertyping=""] > .urlbarView {
+      max-height: 500px !important;
+      transition: max-height 0.3s ease !important;
+    }
+  }
+}
+
+/* URL Bar Appear Animations */
+@keyframes urlbar-appear {
+  0% {
+    margin-top: -25vh;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes urlbar-appear-sideways {
+  0% {
+    margin-bottom: calc(-50% + calc(min(90%, 60rem) / 2));
+    opacity: 0;
+  }
+  100% {
+    margin-bottom: 0;
+    opacity: 1;
+  }
+}
+
+/* Apply appear animations - Only if enabled */
+@media (-moz-bool-pref("nug-urlbar-animations-enabled")) {
+  #urlbar[breakout-extend] {
+    animation-name: urlbar-appear;
+    animation-duration: 0.25s;
+    animation-fill-mode: forwards;
+
+    @media (-moz-pref("zen.view.use-single-toolbar")) {
+      animation-name: urlbar-appear-sideways;
+    }
+  }
+}
+
+/* Bounce and Glow Animation */
+@keyframes urlbar-bounce-and-shadow-pulse {
+  0% {
+    scale: 1;
+    box-shadow: 0 0 20px 5px transparent;
+  }
+
+  25% {
+    box-shadow: 0 0 20px 5px color-mix(in srgb, var(--zen-primary-color) 60%, transparent);
+  }
+
+  50% {
+    scale: 0.93;
+    box-shadow: 0 0 80px 8px color-mix(in srgb, var(--zen-primary-color) 80%, transparent);
+  }
+
+  80% {
+    scale: 0.95;
+    box-shadow: 0 0 120px 8px color-mix(in srgb, var(--zen-primary-color) 80%, transparent);
+  }
+
+  100% {
+    scale: 0.98;
+    box-shadow: 0 0 120px 8px transparent;
+  }
+}
+
+#urlbar {
+  transform-origin: left !important;
+}
+
+/* Apply bounce animation - Only if enabled */
+@media (-moz-bool-pref("nug-urlbar-animations-enabled")) {
+  #urlbar[searchmode] {
+    animation: urlbar-bounce-and-shadow-pulse 450ms ease-out forwards;
+    border-radius: var(--nug-Border-Radius, 1.7rem) !important;
+  }
+}
+
 /* Limit the width of the url bar when it's not open */
 :root:not([zen-single-toolbar='true']):not([nug-theme-urlbar-disabled]) #urlbar-container:has(#urlbar:not([open])) {
 	display: flex !important;
@@ -23,7 +145,7 @@
 	:root:not([supress-primary-adjustment]) & #urlbar-background {
 		border-radius: var(--nug-Border-Radius) !important;
 		background: var(--nug-Black-1) !important;
-		filter: blur(20px), brightness (1.2) !important;
+		filter: blur(20px) brightness(1.2) !important;
 		transition: background 0.55s ease !important;
 		color: var(--zen-primary-color) !important;
 		outline: none !important;
@@ -78,11 +200,13 @@
 :root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]) #urlbar[open] #urlbar-background {
 	box-shadow: 0px 0px 10px #000000 !important;
 	border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
-
 	border: none !important;
-
 	outline-style: none !important;
 	outline-color: transparent !important;
+
+	/* Arcline Glass/Acrylic Effects */
+	backdrop-filter: blur(var(--nug-urlbar-blur-amount, 15px)) brightness(1) saturate(1.1) contrast(1.1) !important;
+	background: color-mix(in srgb, var(--zen-primary-color) 10%, rgba(255, 255, 255, 0.1)) !important;
 }
 
 :root:not([nug-theme-disabled]):not([nug-theme-urlbar-disabled]):not([nug-theme-urlbar-glow-border-disabled]):not(
@@ -155,6 +279,64 @@
 		background-position: 200% 50%;
 		transform: translateY(0px);
 	}
+}
+
+/* =================================================================================== */
+/*  Arcline Search Results - Dock-like Magnification Effects                          */
+/* =================================================================================== */
+
+/* Dock-like Magnification Effects - Only if enabled */
+@media (-moz-bool-pref("nug-urlbar-magnification-enabled")) {
+  /* Base styling for search results */
+  #urlbar-results .urlbarView-row {
+    margin: 0px !important;
+    transition: all 0.44s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    transform-origin: center bottom !important;
+    border: none !important;
+    backdrop-filter: blur(2px) !important;
+    border-radius: 10px !important;
+  }
+
+  /* Remove default highlight */
+  #urlbar-results .urlbarView-row:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-radius: 8px;
+    transition: background 0.55s ease;
+  }
+
+  #urlbar-results .urlbarView-row-inner {
+    background-color: transparent !important;
+  }
+
+  /* Dock-like Magnification Effect */
+  #urlbar-results .urlbarView-row:hover {
+    transform: scale(1.12) translateY(-11.5px) !important;
+    z-index: 100 !important;
+    transform-origin: center !important;
+    border: none !important;
+    backdrop-filter: blur(25px) contrast(95%) saturate(115%) !important;
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.1),
+      0 6px 10px rgba(0, 0, 0, 0.08) !important;
+    width: 98.97% !important;
+  }
+}
+
+/* Custom scrollbar styling */
+#urlbar-results::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+#urlbar-results::-webkit-scrollbar-thumb {
+  background: transparent !important;
+  border-radius: 25px !important;
+  backdrop-filter: blur(10px) !important;
+  border-top: 1px solid color-mix(in srgb, var(--zen-primary-color) 20%, transparent) !important;
+}
+
+/* Smooth text rendering */
+#urlbar-results .urlbarView-row-inner {
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
 }
 
 @-moz-document url-prefix('chrome://')
