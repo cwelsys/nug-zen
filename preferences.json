@@ -87,40 +87,6 @@
 	},
 	{
 		"type": "separator",
-		"label": "Tabs"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-tabs-disabled",
-		"label": "Disable styling for all tab styles."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-tabs-pinned-disabled",
-		"label": "Disable styling for pinned tabs."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-tabs-newtab-button-disabled",
-		"label": "Disable styling for new tab buttons."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-tabs-normals-disabled",
-		"label": "Disable styling for normal tabs."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-tabs-containers-disabled",
-		"label": "Disable styling for container tabs."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-close-button-disabled",
-		"label": "Disable tab close button styling."
-	},
-	{
-		"type": "separator",
 		"label": "URL Bar"
 	},
 	{
@@ -253,6 +219,18 @@
 		"placeholder": false,
 		"value": "number",
 		"default": 0,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Enabled" }
+		]
+	},
+	{
+		"property": "nug.url.border.glow.gradient",
+		"label": "Enable URL bar border glow effect",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 1,
 		"options": [
 			{ "value": 0, "label": "Disabled" },
 			{ "value": 1, "label": "Enabled" }
