@@ -10,19 +10,19 @@
 @import 'modules/Workspace.css';
 
 /* Font */
-@media (-moz-pref('nug-font', 'sans-serif')) {
+@media (-moz-pref('nug-font', 0)) {
 	:root {
 		--nug-font: sans-serif;
 	}
 }
 
-@media (-moz-pref('nug-font', 'serif')) {
+@media (-moz-pref('nug-font', 1)) {
 	:root {
 		--nug-font: serif;
 	}
 }
 
-@media (-moz-pref('nug-font', 'monospace')) {
+@media (-moz-pref('nug-font', 2)) {
 	:root {
 		--nug-font: monospace;
 	}
