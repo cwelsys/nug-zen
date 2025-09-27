@@ -1,0 +1,9 @@
+{
+  "id": "nug-scripts",
+  "name": "Nug Scripts",
+  "description": "JavaScript enhancements for Nug theme",
+  "version": "1.0.0",
+  "author": "cwelsys",
+  "js": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/JS/nug.uc.js",
+  "homepage": "https://github.com/cwelsys/nug-zen"
+}
