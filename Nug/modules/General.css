@@ -195,6 +195,7 @@ body[role='application'] {
     width: calc(var(--menu-panel-width) - 30px) !important;
   }
 
+
   /* Hide header/description/texts and settings icon for each extension */
   #unified-extensions-description,
   #unified-extensions-view .panel-header,
@@ -220,9 +221,11 @@ body[role='application'] {
   }
 
 
+
   #unified-extensions-area {
     padding-block-end: 10px !important;
   }
+
 
   /* Center buttons and tidy margins */
   .unified-extensions-item {
@@ -237,8 +240,30 @@ body[role='application'] {
     margin: 0px !important;
   }
 
+  /* Properly center and size extension icons */
+  .unified-extensions-item-action-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .unified-extensions-item-icon {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 0 !important;
+  }
+
+  .webextension-browser-action .toolbarbutton-icon {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 0 !important;
+  }
+
   panelview .unified-extensions-item-action-button {
-    padding: 10px 10px !important;
+    padding: 12px 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   #unified-extensions-view toolbarseparator {
@@ -285,19 +310,24 @@ panel toolbarseparator {
 
 .unified-extensions-item-icon,
 .unified-extensions-item .webextension-browser-action.subviewbutton > .toolbarbutton-badge-stack > .toolbarbutton-icon {
-  margin-left: 5px !important;
+  margin-left: 0px !important;
 }
 
 .subviewbutton-iconic {
   & > .toolbarbutton-icon {
-    margin-left: 6px !important;
+    margin-left: 0px !important;
   }
 }
 
 #unified-extensions-area {
   .unified-extensions-item-action-button {
     background-color: color-mix(in srgb, currentcolor 6%, transparent) !important;
-    width: 48px;
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px !important;
   }
 }
 

@@ -4,58 +4,17 @@
 		"label": "General"
 	},
 	{
-		"type": "separator",
-		"label": "Font"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-fonts-disabled",
-		"label": "Disable custom fonts."
-	},
-	{
 		"type": "string",
-		"property": "nug-font-family",
-		"label": "Font Family",
-		"placeholder": "Enter font name (e.g., Inter, JetBrains Mono, Georgia)",
-		"defaultValue": "sans-serif"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-font-urlbar-monospace",
-		"label": "Use monospace font for URL bar."
-	},
-	{
-		"property": "nug-font-size-tabbar-tabs",
-		"label": "Tabbar font size \"1.3em\" or \"20px\"",
-		"type": "string",
-		"defaultValue": "13px"
-	},
-	{
-		"property": "nug-font-size-searchbar",
-		"label": "Findbar font size \"1.4em\" or \"22px\"",
-		"type": "string",
-		"defaultValue": "14px"
-	},
-	{
-		"property": "nug-font-size-url",
-		"label": "Urlbar font size \"1.1em\" or \"15px\"",
-		"type": "string",
-		"defaultValue": "15px"
-	},
-	{
-		"type": "separator",
-		"label": "Bottom Section"
+		"property": "nug-icon-color",
+		"label": "Icon Color",
+		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
+		"default": "#cba6f7"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-bottom-at-bottom",
 		"label": "Move the bottom section to the bottom.",
 		"defaultValue": true
-	},
-
-	{
-		"type": "separator",
-		"label": "Findbar"
 	},
 	{
 		"type": "checkbox",
@@ -68,26 +27,10 @@
 		"label": "Enable show on hover."
 	},
 	{
-		"type": "separator",
-		"label": "Extensions & Animations"
-	},
-	{
 		"type": "checkbox",
 		"property": "nug-pinned-extensions-mod",
 		"label": "Enable pinned extensions mod",
 		"defaultValue": true
-	},
-	{
-		"property": "nug.pinned.extensions",
-		"label": "Enable Pinned Extensions mod support (disable if none are pinned)",
-		"type": "dropdown",
-		"placeholder": true,
-		"value": "number",
-		"default": 1,
-		"options": [
-			{ "value": 0, "label": "Disabled" },
-			{ "value": 1, "label": "Enabled" }
-		]
 	},
 	{
 		"type": "dropdown",
@@ -126,11 +69,6 @@
 	},
 	{
 		"type": "checkbox",
-		"property": "nug-theme-close-button-disabled",
-		"label": "Disable tab close button styling."
-	},
-	{
-		"type": "checkbox",
 		"property": "nug-theme-tabs-pinned-disabled",
 		"label": "Disable styling for pinned tabs."
 	},
@@ -147,39 +85,16 @@
 	{
 		"type": "checkbox",
 		"property": "nug-theme-tabs-containers-disabled",
-		"label": "Disable styling for container tabs.",
-		"defaultValue": true
-	},
-	{
-		"type": "separator",
-		"label": "Icons"
+		"label": "Disable styling for container tabs."
 	},
 	{
 		"type": "checkbox",
-		"property": "nug-color-icons-disabled",
-		"label": "Disable icons."
+		"property": "nug-theme-close-button-disabled",
+		"label": "Disable tab close button styling."
 	},
 	{
-		"type": "string",
-		"property": "nug-icon-color",
-		"label": "Icon Color",
-		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
-		"default": "#cba6f7"
-	},
-	{
-		"type": "text",
-		"label": "🌐 URL Bar",
-		"margin": "32px 0 32px 0",
-		"size": "25px"
-	},
-	{
-		"type": "text",
-		"label": " ⚠️ For icons to align, url link copy addon :ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ https://addons.mozilla.org/en-US/firefox/addon/arc-like-copy-link/   ",
-		"size": "18px",
-		"margin": "0 0 15px 0"
-	},
-	{
-		"type": "separator"
+		"type": "separator",
+		"label": "URL Bar"
 	},
 	{
 		"property": "zen.urlbar.behavior",
@@ -194,17 +109,11 @@
 		"force": true
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "url.bar.border_radius",
 		"label": "url bar roundness",
 		"type": "string",
 		"defaultValue": "1.4rem",
 		"placeholder": "1.4rem"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "url.bar.filter_bg",
@@ -214,17 +123,11 @@
 		"placeholder": "rgba(25, 25, 25, 0.69)"
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "url.bar.filter_blur",
 		"label": "url bar background blur value",
 		"type": "string",
 		"defaultValue": "64px",
 		"placeholder": "64px"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "url.bar.position_top",
@@ -234,17 +137,11 @@
 		"placeholder": "50px"
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "url.psuedo.position_top",
 		"label": "position of url bar psuedo layer from top",
 		"type": "string",
 		"defaultValue": "52px",
 		"placeholder": "50px"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "nug.url.bar.minimal",
@@ -259,9 +156,6 @@
 		]
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "nug.url.bar.animation",
 		"label": "Enable url bar opening animation",
 		"type": "dropdown",
@@ -272,9 +166,6 @@
 			{ "value": 0, "label": "Disabled" },
 			{ "value": 1, "label": "Enabled" }
 		]
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "nug.url.bar.border",
@@ -289,17 +180,11 @@
 		]
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "url.bar.in.border_width",
 		"label": "inner border width",
 		"type": "string",
 		"defaultValue": "1px",
 		"placeholder": "1px"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "url.bar.in.border_opacity",
@@ -309,9 +194,6 @@
 		"placeholder": "rgba(255, 255, 255, 0.25)"
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "url.bar.out.border_width",
 		"label": "outer border width",
 		"type": "string",
@@ -319,17 +201,11 @@
 		"placeholder": "0.8px"
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "url.bar.out.border_opacity",
 		"label": "outer border appearance",
 		"type": "string",
 		"defaultValue": "rgba(0, 0, 0, 1)",
 		"placeholder": "rgba(0, 0, 0, 1)"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "nug.url.bar",
@@ -344,9 +220,6 @@
 		]
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "nug.url.bar.scale",
 		"label": "Enable scale effect for original Arc-line URL bar",
 		"type": "dropdown",
@@ -359,15 +232,13 @@
 		]
 	},
 	{
-		"type": "text",
-		"label": "🔤 Fonts",
-		"margin": "32px 0 32px 0",
-		"size": "25px"
+		"type": "separator",
+		"label": "Fonts"
 	},
 	{
 		"type": "dropdown",
-		"property": "arcline-font",
-		"label": "Select the font for Arcline.",
+		"property": "nug-font",
+		"label": "Select a font",
 		"defaultValue": "Nunito",
 		"options": [
 			{
@@ -397,17 +268,11 @@
 		]
 	},
 	{
-		"type": "separator"
-	},
-	{
-		"property": "arcline.font_weight",
+		"property": "nug.font_weight",
 		"label": "global font weight",
 		"type": "string",
 		"defaultValue": "400",
 		"placeholder": "400"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "tab.font_size",
@@ -427,17 +292,11 @@
 		"placeholder": "500"
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "ws.font_size",
 		"label": " workspace text font size",
 		"type": "string",
 		"defaultValue": "13.9px",
 		"placeholder": "13.9px"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "ws.font_weight",
@@ -447,17 +306,11 @@
 		"placeholder": "550"
 	},
 	{
-		"type": "separator"
-	},
-	{
 		"property": "url.font_size",
 		"label": " url bar (in the side bar) text font size",
 		"type": "string",
 		"defaultValue": "13px",
 		"placeholder": "13px"
-	},
-	{
-		"type": "separator"
 	},
 	{
 		"property": "url.font_weight",
