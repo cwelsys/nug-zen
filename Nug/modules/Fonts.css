@@ -1,85 +1,80 @@
-@media (-moz-string-pref: 'nug-font-family') {
+@media (-moz-pref('nug-font', 'SF-Pro')) {
 	:root {
-		--nug-font-family: var(--nug-font-family-custom, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+		--nug-font: 'SF-Pro';
 	}
 }
 
-@media not (-moz-bool-pref: 'nug-fonts-disabled') {
-	/* Main UI Font */
-	* {
-		font-family: var(--nug-font-family) !important;
-	}
-
-	/* Toolbar and Navigation */
-	#navigator-toolbox,
-	#nav-bar,
-	#PersonalToolbar,
-	.toolbar-items,
-	.toolbarbutton-text {
-		font-family: var(--nug-font-family) !important;
-	}
-
-	/* Tabs */
-	.tab-text,
-	.tab-label {
-		font-family: var(--nug-font-family) !important;
-	}
-
-	@media not (-moz-bool-pref: 'nug-font-urlbar-monospace') {
-		#urlbar,
-		#urlbar-input,
-		.urlbar-input-box {
-			font-family: var(--nug-font-family) !important;
-		}
-	}
-
-	/* URL Bar - Monospace when enabled */
-	@media (-moz-bool-pref: 'nug-font-urlbar-monospace') {
-		#urlbar,
-		#urlbar-input,
-		.urlbar-input-box {
-			font-family: monospace !important;
-			font-size: 15px !important;
-		}
-	}
-
-	/* Sidebar */
-	#sidebar,
-	#sidebar-box,
-	.sidebar-panel {
-		font-family: var(--nug-font-family) !important;
-	}
-
-	/* Context Menus */
-	menupopup,
-	menuitem,
-	menu {
-		font-family: var(--nug-font-family) !important;
-	}
-
-	/* Bookmarks */
-	.bookmark-item,
-	.placesTree {
-		font-family: var(--nug-font-family) !important;
-	}
-
-	/* Developer Tools */
-	#developer-toolbar,
-	.devtools-toolbox {
-		font-family: monospace !important;
+@media (-moz-pref('nug-font', 'SF-Symbols')) {
+	:root {
+		--nug-font: 'SF-Symbols';
 	}
 }
 
-#tabbrowser-tabs {
-	font-size: var(--nug-font-size-tabbar-tabs) !important;
+@media (-moz-pref('nug-font', 'Nunito')) {
+	:root {
+		--nug-font: 'Nunito';
+	}
 }
 
-.findbar-container {
-	font-size: var(--nug-font-size-searchbar) !important;
+@media (-moz-pref('nug-font', 'Suse')) {
+	:root {
+		--nug-font: 'Suse';
+	}
 }
 
-#urlbar,
-#urlbar-input,
-.urlbar-input-box {
-	font-size: var(--nug-font-size-url) !important;
+@media (-moz-pref('nug-font', 'Roboto')) {
+	:root {
+		--nug-font: 'Roboto';
+	}
+}
+
+@media (-moz-pref('nug-font', 'Bricolage')) {
+	:root {
+		--nug-font: 'Bricolage';
+	}
+}
+
+@font-face {
+	font-family: 'SF-Pro';
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/SF-Pro.ttf');
+	font-weight: var(--nug-font_weight) !important;
+}
+
+@font-face {
+	font-family: 'SF-Symbols';
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/SF-Symbols.ttf');
+	font-weight: var(--nug-font_weight) !important;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/Nunito-VariableFont_wght.ttf');
+	font-weight: var(--nug-font_weight) !important;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Suse';
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/SUSE-VariableFont_wght.ttf');
+	font-weight: var(--nug-font_weight) !important;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/Roboto-VariableFont_wdth,wght.ttf');
+	font-weight: var(--nug-font_weight) !important;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Bricolage';
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/BricolageGrotesque-Regular.ttf');
+	font-weight: var(--nug-font_weight) !important;
+	font-style: normal;
+}
+
+* {
+	font-weight: var(--nug-font_weight) !important;
+	font-family: var(--nug-font), sans-serif;
 }

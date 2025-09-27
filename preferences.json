@@ -4,37 +4,6 @@
 		"label": "General"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-theme-disabled",
-		"label": "Disable theme without disabling features."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-background-enabled",
-		"label": "Enable tab background"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-shadow-enabled",
-		"label": "Enable shadow around the tab background area."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-scrollbar-enabled",
-		"label": "Enable sidebar scrollbar."
-	},
-	{
-		"type": "checkbox",
-		"property": "catppuccin-colors-disabled",
-		"label": "Use zen (theme) base colors instead of Catppuccin Mocha."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-customization-toolbar-disabled",
-		"label": "Disable theme styling for the customization screen when the browser is in customization mode.",
-		"defaultValue": true
-	},
-	{
 		"type": "separator",
 		"label": "Font"
 	},
@@ -83,20 +52,7 @@
 		"label": "Move the bottom section to the bottom.",
 		"defaultValue": true
 	},
-	{
-		"type": "separator",
-		"label": "Media & Controls"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-media-disabled",
-		"label": "Disable Media features (media controls will be hidden in collapsed mode)"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-media-disabled",
-		"label": "Disable styling for media controls / disable glow effects and hover effects."
-	},
+
 	{
 		"type": "separator",
 		"label": "Findbar"
@@ -113,29 +69,6 @@
 	},
 	{
 		"type": "separator",
-		"label": "Search"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-search-disabled",
-		"label": "Disable Search feature."
-	},
-	{
-		"type": "separator",
-		"label": "Window Buttons"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-window-buttons-disabled",
-		"label": "Disable window button styling."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-window-buttons-colorful-enabled",
-		"label": "Keep window buttons colorful while unhovered."
-	},
-	{
-		"type": "separator",
 		"label": "Extensions & Animations"
 	},
 	{
@@ -145,10 +78,16 @@
 		"defaultValue": true
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-external-nebula-animations-tabs-disabled",
-		"label": "Disable Nebula tab animations",
-		"defaultValue": true
+		"property": "nug.pinned.extensions",
+		"label": "Enable Pinned Extensions mod support (disable if none are pinned)",
+		"type": "dropdown",
+		"placeholder": true,
+		"value": "number",
+		"default": 1,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Enabled" }
+		]
 	},
 	{
 		"type": "dropdown",
@@ -178,7 +117,7 @@
 	},
 	{
 		"type": "separator",
-		"label": "Tab Customization"
+		"label": "Tabs"
 	},
 	{
 		"type": "checkbox",
@@ -213,42 +152,34 @@
 	},
 	{
 		"type": "separator",
-		"label": "Overflow Indicators"
+		"label": "Icons"
 	},
 	{
 		"type": "checkbox",
-		"property": "nug-theme-tabs-overflow-indicators-disabled",
-		"label": "Disable styling for overflow indicators."
+		"property": "nug-color-icons-disabled",
+		"label": "Disable icons."
 	},
 	{
-		"type": "separator",
-		"label": "URL Bar"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-urlbar-disabled",
-		"label": "Disable urlbar styling."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-urlbar-glow-border-disabled",
-		"label": "Disable glow border around the floating urlbar."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-urlbar-glow-disabled",
-		"label": "Disable glow effect around the floating urlbar without disabling the border."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-theme-urlbar-border-disabled",
-		"label": "Disable border around the floating urlbar without disabling the glow."
+		"type": "string",
+		"property": "nug-icon-color",
+		"label": "Icon Color",
+		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
+		"default": "#cba6f7"
 	},
 	{
 		"type": "text",
-		"label": "🎯 Arcline URL Bar Features",
-		"margin": "20px 0 15px 0",
-		"size": "18px"
+		"label": "🌐 URL Bar",
+		"margin": "32px 0 32px 0",
+		"size": "25px"
+	},
+	{
+		"type": "text",
+		"label": " ⚠️ For icons to align, url link copy addon :ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ https://addons.mozilla.org/en-US/firefox/addon/arc-like-copy-link/   ",
+		"size": "18px",
+		"margin": "0 0 15px 0"
+	},
+	{
+		"type": "separator"
 	},
 	{
 		"property": "zen.urlbar.behavior",
@@ -263,50 +194,276 @@
 		"force": true
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-urlbar-minimal-enabled",
-		"label": "Hide search suggestions until query is typed (minimal mode)"
+		"type": "separator"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-urlbar-animations-enabled",
-		"label": "Enable URL bar opening and bounce animations",
-		"defaultValue": true
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-urlbar-magnification-enabled",
-		"label": "Enable dock-like magnification for search results",
-		"defaultValue": true
-	},
-	{
-		"property": "nug-urlbar-border-radius",
-		"label": "URL bar border radius",
+		"property": "url.bar.border_radius",
+		"label": "url bar roundness",
 		"type": "string",
 		"defaultValue": "1.4rem",
 		"placeholder": "1.4rem"
 	},
 	{
-		"property": "nug-urlbar-blur-amount",
-		"label": "URL bar background blur amount",
+		"type": "separator"
+	},
+	{
+		"property": "url.bar.filter_bg",
+		"label": "accent color of url bar",
 		"type": "string",
-		"defaultValue": "15px",
-		"placeholder": "15px"
+		"defaultValue": "rgba(25, 25, 25, 0.69)",
+		"placeholder": "rgba(25, 25, 25, 0.69)"
 	},
 	{
-		"type": "separator",
-		"label": "Icons"
+		"type": "separator"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-color-icons-disabled",
-		"label": "Disable icons."
-	},
-	{
+		"property": "url.bar.filter_blur",
+		"label": "url bar background blur value",
 		"type": "string",
-		"property": "nug-icon-color",
-		"label": "Icon Color",
-		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
-		"default": "#cba6f7"
+		"defaultValue": "64px",
+		"placeholder": "64px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.bar.position_top",
+		"label": " position of  url bar from top ",
+		"type": "string",
+		"defaultValue": "50px",
+		"placeholder": "50px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.psuedo.position_top",
+		"label": "position of url bar psuedo layer from top",
+		"type": "string",
+		"defaultValue": "52px",
+		"placeholder": "50px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "nug.url.bar.minimal",
+		"label": "Hides search suggesting untill query is typed",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 1,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Enabled" }
+		]
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "nug.url.bar.animation",
+		"label": "Enable url bar opening animation",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 1,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Enabled" }
+		]
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "nug.url.bar.border",
+		"label": "Enable nug url bar border",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 1,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Enabled" }
+		]
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.bar.in.border_width",
+		"label": "inner border width",
+		"type": "string",
+		"defaultValue": "1px",
+		"placeholder": "1px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.bar.in.border_opacity",
+		"label": "inner border appearance",
+		"type": "string",
+		"defaultValue": "rgba(255, 255, 255, 0.25)",
+		"placeholder": "rgba(255, 255, 255, 0.25)"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.bar.out.border_width",
+		"label": "outer border width",
+		"type": "string",
+		"defaultValue": "0.8px",
+		"placeholder": "0.8px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.bar.out.border_opacity",
+		"label": "outer border appearance",
+		"type": "string",
+		"defaultValue": "rgba(0, 0, 0, 1)",
+		"placeholder": "rgba(0, 0, 0, 1)"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "nug.url.bar",
+		"label": "Enable original Arc-line URL bar style",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 0,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Enabled" }
+		]
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "nug.url.bar.scale",
+		"label": "Enable scale effect for original Arc-line URL bar",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 0,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Enabled" }
+		]
+	},
+	{
+		"type": "text",
+		"label": "🔤 Fonts",
+		"margin": "32px 0 32px 0",
+		"size": "25px"
+	},
+	{
+		"type": "dropdown",
+		"property": "arcline-font",
+		"label": "Select the font for Arcline.",
+		"defaultValue": "Nunito",
+		"options": [
+			{
+				"label": "Nunito",
+				"value": "Nunito"
+			},
+			{
+				"label": "SF Pro",
+				"value": "SF-Pro"
+			},
+			{
+				"label": "SF Symbols",
+				"value": "SF-Symbols"
+			},
+			{
+				"label": "Suse",
+				"value": "Suse"
+			},
+			{
+				"label": "Roboto",
+				"value": "Roboto"
+			},
+			{
+				"label": "Bricolage Grotesque",
+				"value": "Bricolage"
+			}
+		]
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "arcline.font_weight",
+		"label": "global font weight",
+		"type": "string",
+		"defaultValue": "400",
+		"placeholder": "400"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "tab.font_size",
+		"label": "  tab text font size",
+		"type": "string",
+		"defaultValue": "13.7px",
+		"placeholder": "13.7px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "tab.font_weight",
+		"label": "tab text font weight",
+		"type": "string",
+		"defaultValue": "500",
+		"placeholder": "500"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "ws.font_size",
+		"label": " workspace text font size",
+		"type": "string",
+		"defaultValue": "13.9px",
+		"placeholder": "13.9px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "ws.font_weight",
+		"label": "workspace name text font weight",
+		"type": "string",
+		"defaultValue": "550",
+		"placeholder": "550"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.font_size",
+		"label": " url bar (in the side bar) text font size",
+		"type": "string",
+		"defaultValue": "13px",
+		"placeholder": "13px"
+	},
+	{
+		"type": "separator"
+	},
+	{
+		"property": "url.font_weight",
+		"label": "url bar (in the side bar) font weight",
+		"type": "string",
+		"defaultValue": "510",
+		"placeholder": "510"
 	}
 ]

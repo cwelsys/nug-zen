@@ -64,13 +64,10 @@
 
 }
 
-/*I don't know if this rule can lead to issues, is used to justify
-to the center the pseudo element for the nav-bar*/
 #browser {
     display: flex !important;
     justify-content: center !important;
 }
-
 
 :root:not([zen-single-toolbar='true']) {
 	--zen-toolbar-height: 50px !important;

@@ -1,24 +1,20 @@
 /* modules import */
 @import 'modules/Animations.css';
 @import 'modules/Bottom.css';
-@import 'modules/ExtensionMenu.css';
+@import 'modules/Context.css';
+/* @import 'modules/ExtensionMenu.css'; */
 @import 'modules/Findbar.css';
 @import 'modules/Fonts.css';
 @import 'modules/General.css';
+@import 'modules/Icons.css';
 @import 'modules/Loadbar.css';
 @import 'modules/Media.css';
-@import 'modules/Pinned.css';
-/* @import 'modules/Search.css'; */
+/* @import 'modules/Pinned.css'; */
 @import 'modules/Sidebar.css';
 @import 'modules/Tabs.css';
-@import 'modules/Toolbar.css';
-@import 'modules/URLbar.css';
-@import 'modules/Vars.css';
-@import 'modules/Window-buttons.css';
-@import 'icons/Icons.css';
-
-/* config import */
-@import 'Nug-config.css';
+@import 'modules/Tweaks.css';
+/* @import 'modules/Toolbar.css'; */
+@import 'modules/Urlbar.css';
 
 /* Core theme styles */
 browser {
@@ -36,35 +32,30 @@ browser {
 }
 
 /* Catppuccin Mocha Colors */
-@media not (-moz-bool-pref: 'catppuccin-colors-disabled') {
-	:root {
-		--zen-colors-primary: #313244 !important;
-		--zen-primary-color: #94e2d5 !important;
-		--zen-colors-secondary: #313244 !important;
-		--zen-colors-tertiary: #181825 !important;
-		--zen-colors-border: #94e2d5 !important;
-		--zen-colors-border: #313244 !important;
-		--toolbarbutton-icon-fill: #cba6f7 !important;
-		--lwt-text-color: #cdd6f4 !important;
-		--toolbar-field-color: #cdd6f4 !important;
-		--tab-selected-textcolor: rgb(176, 220, 229) !important;
-		--toolbar-field-focus-color: #cdd6f4 !important;
-		--toolbar-color: #cdd6f4 !important;
-		--newtab-text-primary-color: #cdd6f4 !important;
-		--arrowpanel-color: #cdd6f4 !important;
-		--arrowpanel-background: #1e1e2e !important;
-		--sidebar-text-color: #cdd6f4 !important;
-		--lwt-sidebar-text-color: #cdd6f4 !important;
-		--lwt-sidebar-background-color: #11111b !important;
-		--toolbar-bgcolor: #313244 !important;
-		--newtab-background-color: #1e1e2e !important;
-		--zen-themed-toolbar-bg: #181825 !important;
-		--zen-main-browser-background: #181825 !important;
-		--toolbox-bgcolor-inactive: #181825 !important;
-		--w-urlbar-bg_color: #f5c2e7aa, #cba6f7aa, #f38ba8aa, #eba0acaa, #fab387aa, #f9e2afaa, #a6e3a1aa, #94e2d5aa,
-			#89dcebaa, #74c7ecaa, #89b4faaa, #b4befeaa, #f5c2e7aa, #cba6f7aa, #f38ba8aa, #eba0acaa, #fab387aa, #f9e2afaa,
-			#a6e3a1aa, #94e2d5aa, #89dcebaa, #74c7ecaa, #89b4faaa, #b4befeaa;
-	}
+:root {
+	--zen-colors-primary: #313244 !important;
+	--zen-primary-color: #94e2d5 !important;
+	--zen-colors-secondary: #313244 !important;
+	--zen-colors-tertiary: #181825 !important;
+	--zen-colors-border: #94e2d5 !important;
+	--zen-colors-border: #313244 !important;
+	--toolbarbutton-icon-fill: #cba6f7 !important;
+	--lwt-text-color: #cdd6f4 !important;
+	--toolbar-field-color: #cdd6f4 !important;
+	--tab-selected-textcolor: rgb(176, 220, 229) !important;
+	--toolbar-field-focus-color: #cdd6f4 !important;
+	--toolbar-color: #cdd6f4 !important;
+	--newtab-text-primary-color: #cdd6f4 !important;
+	--arrowpanel-color: #cdd6f4 !important;
+	--arrowpanel-background: #1e1e2e !important;
+	--sidebar-text-color: #cdd6f4 !important;
+	--lwt-sidebar-text-color: #cdd6f4 !important;
+	--lwt-sidebar-background-color: #11111b !important;
+	--toolbar-bgcolor: #313244 !important;
+	--newtab-background-color: #1e1e2e !important;
+	--zen-themed-toolbar-bg: #181825 !important;
+	--zen-main-browser-background: #181825 !important;
+	--toolbox-bgcolor-inactive: #181825 !important;
 
 	.identity-color-blue {
 		--identity-tab-color: #89b4fa !important;
@@ -132,4 +123,45 @@ browser {
 /* hide extension name in url bar */
 #urlbar #identity-box.extensionPage #identity-icon-label {
 	display: none !important;
+}
+
+:root {
+	--nug-Color-Dark: color-mix(in srgb, var(--zen-primary-color) 10%, #000000c0);
+	--nug-Color-Light: color-mix(in srgb, var(--zen-primary-color) 25%, white);
+
+	/* Black colors*/
+	--nug-Black-1: light-dark(color-mix(in srgb, #ffffff 40%, transparent), color-mix(in srgb, #000000 35%, transparent));
+	--nug-Black-2: light-dark(
+		color-mix(in srgb, #ffffff 100%, transparent),
+		color-mix(in srgb, #000000 35%, transparent)
+	);
+	--nug-Black-3: light-dark(color-mix(in srgb, #ffffff 25%, transparent), color-mix(in srgb, #000000 60%, transparent));
+
+	/* Shadow */
+	--nug-Shadow-Color-1: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4));
+	--nug-Shadow-Color-2: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.8));
+	--nug-Shadow-Color-3: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 1));
+
+	/*Glow Colors*/
+	--nug-Glow-Color-1: color-mix(in srgb, var(--zen-primary-color) 90%, white);
+	--nug-Glow-Color-2: color-mix(in srgb, var(--zen-primary-color) 80%, white);
+	--nug-Glow-Color-3: color-mix(in srgb, var(--zen-primary-color) 70%, white);
+
+	/* Border radius */
+	--nug-Border-Radius: 4px;
+
+	/* Blur */
+	--nug-Blur: blur(52px) saturate(180%) brightness(110%);
+	--nug-Blur-Simple: blur(15px) brightness(110%) saturate(260%);
+
+	/* Blur colors */
+	--nug-Blur-Color: color-mix(in srgb, var(--zen-primary-color) 1%, #000000a0);
+
+	/* Width Compact Mode */
+	--nug-Width-Compact-Expanded: 21em;
+
+	/* Background color */
+	--nug-Background-Color: light-dark(rgba(215, 215, 215, 1), rgba(30, 30, 30, 1));
+
+	--nug-Bottom-Height: 220px;
 }
