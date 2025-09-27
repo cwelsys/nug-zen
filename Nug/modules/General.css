@@ -206,9 +206,9 @@ body[role='application'] {
 	}
 
 	/* Arrange extensions in a centered grid */
-	#overflowed-extensions-list,
-	#unified-extensions-area,
-	.unified-extensions-list {
+	#unified-extensions-view #overflowed-extensions-list,
+	#unified-extensions-view #unified-extensions-area,
+	#unified-extensions-view .unified-extensions-list {
 		display: grid !important;
 		grid-template-columns: repeat(4, 1fr) !important;
 		justify-content: left !important;
@@ -218,43 +218,46 @@ body[role='application'] {
 		gap: 8px !important; /* Add space between icons */
 	}
 
-	#unified-extensions-area {
+	#unified-extensions-view #unified-extensions-area {
 		padding-block-end: 10px !important;
 	}
 
 	/* Center buttons and tidy margins */
-	.unified-extensions-item {
+	#unified-extensions-view .unified-extensions-item {
 		display: flex !important;
 		align-items: center !important;
 		justify-content: center !important;
 		border-radius: 12px !important;
 	}
 
-	.unified-extensions-item-icon,
-	.unified-extensions-item .webextension-browser-action.subviewbutton > .toolbarbutton-badge-stack {
+	#unified-extensions-view .unified-extensions-item-icon,
+	#unified-extensions-view
+		.unified-extensions-item
+		.webextension-browser-action.subviewbutton
+		> .toolbarbutton-badge-stack {
 		margin: 0px !important;
 	}
 
 	/* Properly center and size extension icons */
-	.unified-extensions-item-action-button {
+	#unified-extensions-view .unified-extensions-item-action-button {
 		display: flex !important;
 		align-items: center !important;
 		justify-content: center !important;
 	}
 
-	.unified-extensions-item-icon {
+	#unified-extensions-view .unified-extensions-item-icon {
 		width: 20px !important;
 		height: 20px !important;
 		margin: 0 !important;
 	}
 
-	.webextension-browser-action .toolbarbutton-icon {
+	#unified-extensions-view .webextension-browser-action .toolbarbutton-icon {
 		width: 20px !important;
 		height: 20px !important;
 		margin: 0 !important;
 	}
 
-	panelview .unified-extensions-item-action-button {
+	#unified-extensions-view panelview .unified-extensions-item-action-button {
 		padding: 12px 12px !important;
 		display: flex !important;
 		align-items: center !important;
@@ -300,8 +303,12 @@ panel toolbarseparator {
 	margin: 0 !important;
 }
 
-.unified-extensions-item-icon,
-.unified-extensions-item .webextension-browser-action.subviewbutton > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+#unified-extensions-view .unified-extensions-item-icon,
+#unified-extensions-view
+	.unified-extensions-item
+	.webextension-browser-action.subviewbutton
+	> .toolbarbutton-badge-stack
+	> .toolbarbutton-icon {
 	margin-left: 0px !important;
 }
 
@@ -311,7 +318,7 @@ panel toolbarseparator {
 	}
 }
 
-#unified-extensions-area {
+#unified-extensions-view #unified-extensions-area {
 	.unified-extensions-item-action-button {
 		background-color: color-mix(in srgb, currentcolor 6%, transparent) !important;
 		width: 48px !important;
@@ -323,7 +330,7 @@ panel toolbarseparator {
 	}
 }
 
-#unified-extensions-area {
+#unified-extensions-view #unified-extensions-area {
 	.unified-extensions-item-action-button:hover {
 		background-color: color-mix(in srgb, currentcolor 10%, transparent) !important;
 		cursor: pointer !important;
@@ -351,6 +358,6 @@ panel toolbarseparator {
 	}
 }
 
-#unified-extensions-panel .unified-extensions-item {
+#unified-extensions-view #unified-extensions-panel .unified-extensions-item {
 	margin-block: 4.8px !important;
 }
