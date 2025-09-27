@@ -1,15 +1,10 @@
-@media not (-moz-bool-pref: 'nug-color-icons-disabled') {
+@media (-moz-string-pref: 'nug-icon-color') {
 	:root {
-		--nug-icon-color: #cba6f7; /* Default fallback */
+		--nug-icon-color: var(--nug-icon-color-custom, #cba6f7);
 	}
+}
 
-	/* Custom icon color from preferences */
-	@media (-moz-string-pref: 'nug-icon-color') {
-		:root {
-			--nug-icon-color: var(--nug-icon-color-custom, #cba6f7);
-		}
-	}
-
+@media (-moz-bool-pref: 'nug-icons-enabled') {
 	/* Apply icon color to all toolbar icons */
 	#navigator-toolbox .toolbarbutton-1 .toolbarbutton-icon,
 	#nav-bar .toolbarbutton-1 .toolbarbutton-icon,
@@ -23,19 +18,19 @@
 	}
 
 	#unified-extensions-button {
-		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/sidebars.svg') !important;
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/sidebars.svg') !important;
 		overflow: hidden !important;
 		background-position: center !important;
 		background-repeat: none !important;
 	}
 
-	#forward-button image {
-		list-style-image: url('chrome://global/skin/icons/arrow-right.svg') !important;
-	}
+	/* #forward-button image {
+	list-style-image: url('chrome://global/skin/icons/arrow-right.svg') !important;
+}
 
-	#back-button image {
-		list-style-image: url('chrome://global/skin/icons/arrow-left.svg') !important;
-	}
+#back-button image {
+	list-style-image: url('chrome://global/skin/icons/arrow-left.svg') !important;
+} */
 
 	#nav-bar-overflow-button {
 		list-style-image: url('chrome://global/skin/icons/more.svg') !important;
@@ -46,263 +41,257 @@
 	}
 
 	.bookmark-item[container='true'] {
-		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/bm.svg') !important;
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/bm.svg') !important;
 		fill: var(--nug-icon-color) !important;
 	}
 
-	/* ublock on */
+	/* uBlock on */
 	#ublock0_raymondhill_net-BAP image {
-		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/lock.svg') !important;
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/lock.svg') !important;
 		fill: var(--nug-icon-color) !important;
 	}
 
-	/* ublock off - keep red color for "off" state */
+	/* uBlock off  */
 	#ublock0_raymondhill_net-BAP[tooltiptext='uBlock Origin (off)'] image {
-		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/lock.svg') !important;
-		fill: #f38ba8 !important; /* Keep red for off state */
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/lock.svg') !important;
+		fill: #f38ba8 !important;
 	}
 
 	/* Dark Reader */
 	:is(.webextension-browser-action, .eom-addon-button)[data-extensionid='addon@darkreader.org'] .toolbarbutton-icon {
-		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/moon.svg') !important;
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/moon.svg') !important;
 		fill: var(--nug-icon-color) !important;
 	}
-}
 
-@media (-moz-pref('svg.context-properties.content.enabled')) {
-	/*FluentUI*/
+	.subviewbutton {
+		-moz-context-properties: fill, fill-opacity !important;
+		fill: currentColor !important;
+	}
 
-	@media (-moz-pref('cmi-main__context-menu-icons-option', 1)) {
-		.subviewbutton {
-			-moz-context-properties: fill, fill-opacity !important;
-			fill: currentColor !important;
-		}
+	:root[fxastatus='not_configured'] #fxa-avatar-image {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/account.svg') !important;
+	}
 
-		:root[fxastatus='not_configured'] #fxa-avatar-image {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/account.svg') !important;
-		}
+	.private-browsing-indicator-icon {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/account-private.svg') !important;
+		border-radius: 100% !important;
+	}
 
-		.private-browsing-indicator-icon {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/account-private.svg') !important;
-			border-radius: 100% !important;
-		}
+	#back-button {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/back.svg') !important;
+	}
 
-		#back-button {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/back.svg') !important;
-		}
+	#forward-button {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/forward.svg') !important;
+	}
 
-		#forward-button {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/forward.svg') !important;
-		}
+	#reload-button {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/reload.svg') !important;
+	}
 
-		#reload-button {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/reload.svg') !important;
-		}
+	#stop-button,
+	.close-icon {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/close.svg') !important;
+	}
 
-		#stop-button,
-		.close-icon {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/close.svg') !important;
-		}
+	#sidebar-button {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/sidebars-right.svg') !important;
+	}
 
-		#sidebar-button {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/sidebars-right.svg') !important;
-		}
+	#sidebar-button:-moz-locale-dir(ltr):not([positionend]),
+	#sidebar-button:-moz-locale-dir(rtl)[positionend] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/sidebars.svg') !important;
+	}
 
-		#sidebar-button:-moz-locale-dir(ltr):not([positionend]),
-		#sidebar-button:-moz-locale-dir(rtl)[positionend] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/sidebars.svg') !important;
-		}
+	#nav-bar-overflow-button {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/chevron.svg') !important;
+	}
 
-		#nav-bar-overflow-button {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/chevron.svg') !important;
-		}
+	#PanelUI-menu-button {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/menu.svg') !important;
+	}
 
-		#PanelUI-menu-button {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/menu.svg') !important;
-		}
+	/* Context Menu Icons */
+	menuitem[data-l10n-id='main-context-menu-back'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/back.svg') !important;
+	}
 
-		/* Context Menu Icons */
-		menuitem[data-l10n-id='main-context-menu-back'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/back.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-forward'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/forward.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-forward'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/forward.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-reload'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/reload.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-reload'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/reload.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-bookmark-page'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/bookmark.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-bookmark-page'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/bookmark.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-copy'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/edit-copy.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-copy'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/edit-copy.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-cut'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/edit-cut.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-cut'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/edit-cut.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-paste'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/edit-paste.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-paste'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/edit-paste.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-select-all'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/edit-select-all.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-select-all'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/edit-select-all.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-undo'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/edit-undo.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-undo'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/edit-undo.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-redo'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/edit-redo.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-redo'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/edit-redo.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-delete'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/edit-delete.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-delete'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/edit-delete.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-save-page'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/save.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-save-page'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/save.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-save-image'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/image-save.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-save-image'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/image-save.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-copy-image'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/image-copy.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-copy-image'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/image-copy.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-open-image'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/image-open.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-open-image'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/image-open.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-inspect'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/inspect.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-inspect'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/inspect.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-view-source'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/source-code.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-view-source'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/source-code.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-open-link'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/open.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-open-link'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/open.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-open-link-new-tab'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/new-tab.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-open-link-new-tab'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/new-tab.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-open-link-new-window'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/window.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-open-link-new-window'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/window.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-open-link-new-private-window'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/private-window.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-open-link-new-private-window'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/private-window.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-copy-link'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/link.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-copy-link'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/link.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-save-link'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/save-m.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-save-link'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/save-m.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-print'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/print.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-print'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/print.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-fullscreen'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/fullscreen.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-fullscreen'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/fullscreen.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-fullscreen-exit'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/fullscreen-exit.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-fullscreen-exit'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/fullscreen-exit.svg') !important;
-		}
+	/* Media controls */
+	menuitem[data-l10n-id='main-context-menu-media-play'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/media-play.svg') !important;
+	}
 
-		/* Media controls */
-		menuitem[data-l10n-id='main-context-menu-media-play'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/media-play.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-media-pause'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/media-pause.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-media-pause'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/media-pause.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-media-mute'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/media-mute.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-media-mute'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/media-mute.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-media-unmute'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/media-unmute.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-media-unmute'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/media-unmute.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-media-pip'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/media-pip.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-media-pip'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/media-pip.svg') !important;
-		}
+	/* Tab controls */
+	menuitem[data-l10n-id='tab-context-close-tab'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/close.svg') !important;
+	}
 
-		/* Tab controls */
-		menuitem[data-l10n-id='tab-context-close-tab'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/close.svg') !important;
-		}
+	menuitem[data-l10n-id='tab-context-new-tab'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/new-tab.svg') !important;
+	}
 
-		menuitem[data-l10n-id='tab-context-new-tab'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/new-tab.svg') !important;
-		}
+	menuitem[data-l10n-id='tab-context-duplicate-tab'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/duplicate-tab.svg') !important;
+	}
 
-		menuitem[data-l10n-id='tab-context-duplicate-tab'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/duplicate-tab.svg') !important;
-		}
+	menuitem[data-l10n-id='tab-context-pin-tab'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/pin.svg') !important;
+	}
 
-		menuitem[data-l10n-id='tab-context-pin-tab'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/pin.svg') !important;
-		}
+	menuitem[data-l10n-id='tab-context-unpin-tab'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/unpin.svg') !important;
+	}
 
-		menuitem[data-l10n-id='tab-context-unpin-tab'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/unpin.svg') !important;
-		}
+	menuitem[data-l10n-id='tab-context-move-tab'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/move-tab.svg') !important;
+	}
 
-		menuitem[data-l10n-id='tab-context-move-tab'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/move-tab.svg') !important;
-		}
+	/* Additional icons */
+	menuitem[data-l10n-id='main-context-menu-search'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/search-page.svg') !important;
+	}
 
-		/* Additional icons */
-		menuitem[data-l10n-id='main-context-menu-search'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/search-page.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-translate'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/translations.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-translate'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/translations.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-screenshot'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/screenshot.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-screenshot'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/screenshot.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-share'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/share.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-share'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/share.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-settings'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/settings.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-settings'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/settings.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-permissions'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/permissions.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-permissions'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/permissions.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-security'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/security.svg') !important;
+	}
 
-		menuitem[data-l10n-id='main-context-menu-security'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/security.svg') !important;
-		}
-
-		menuitem[data-l10n-id='main-context-menu-help'] {
-			list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/help.svg') !important;
-		}
+	menuitem[data-l10n-id='main-context-menu-help'] {
+		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Icons/help.svg') !important;
 	}
 }

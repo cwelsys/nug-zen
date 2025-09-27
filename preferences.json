@@ -4,6 +4,26 @@
 		"label": "General"
 	},
 	{
+		"type": "dropdown",
+		"property": "nug-font",
+		"label": "Font family",
+		"defaultValue": "sans-serif",
+		"options": [
+			{
+				"label": "sans",
+				"value": "sans-serif"
+			},
+			{
+				"label": "serif",
+				"value": "serif"
+			},
+			{
+				"label": "mono",
+				"value": "monospace"
+			}
+		]
+	},
+	{
 		"type": "string",
 		"property": "nug-icon-color",
 		"label": "Icon Color",
@@ -12,19 +32,9 @@
 	},
 	{
 		"type": "checkbox",
-		"property": "nug-bottom-at-bottom",
-		"label": "Move the bottom section to the bottom.",
+		"property": "nug-icons-enabled",
+		"label": "Enable custom icons",
 		"defaultValue": true
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-findbar-disabled",
-		"label": "Disable Findbar."
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-features-findbar-hover-enabled",
-		"label": "Enable show on hover."
 	},
 	{
 		"type": "checkbox",
@@ -59,6 +69,10 @@
 		]
 	},
 	{
+		"type": "separator",
+		"label": "JS"
+	},
+	{
 		"type": "checkbox",
 		"property": "nug.tab.explode",
 		"defaultValue": true,
@@ -80,6 +94,20 @@
 		"label": "Workspace icon animation script"
 	},
 	{
+		"property": "nug.media.player",
+		"label": "Media player style",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 0,
+		"options": [
+			{ "value": 0, "label": "Disabled" },
+			{ "value": 1, "label": "Normal" },
+			{ "value": 2, "label": "reversed-right" },
+			{ "value": 3, "label": "reversed-left" }
+		]
+	},
+	{
 		"type": "separator",
 		"label": "URL Bar"
 	},
@@ -96,55 +124,15 @@
 		"force": true
 	},
 	{
-		"property": "url.bar.border_radius",
-		"label": "url bar roundness",
+		"property": "nug.url.bar.placeholder.text",
+		"label": "URL bar placeholder text (requires restart)",
 		"type": "string",
-		"defaultValue": "1.4rem",
-		"placeholder": "1.4rem"
-	},
-	{
-		"property": "url.bar.filter_bg",
-		"label": "accent color of url bar",
-		"type": "string",
-		"defaultValue": "rgba(25, 25, 25, 0.69)",
-		"placeholder": "rgba(25, 25, 25, 0.69)"
-	},
-	{
-		"property": "url.bar.filter_blur",
-		"label": "url bar background blur value",
-		"type": "string",
-		"defaultValue": "64px",
-		"placeholder": "64px"
-	},
-	{
-		"property": "url.bar.position_top",
-		"label": " position of  url bar from top ",
-		"type": "string",
-		"defaultValue": "50px",
-		"placeholder": "50px"
-	},
-	{
-		"property": "url.psuedo.position_top",
-		"label": "position of url bar psuedo layer from top",
-		"type": "string",
-		"defaultValue": "52px",
-		"placeholder": "50px"
-	},
-	{
-		"property": "nug.url.bar.minimal",
-		"label": "Hides search suggesting untill query is typed",
-		"type": "dropdown",
-		"placeholder": false,
-		"value": "number",
-		"default": 1,
-		"options": [
-			{ "value": 0, "label": "Disabled" },
-			{ "value": 1, "label": "Enabled" }
-		]
+		"defaultValue": "Search or enter address",
+		"placeholder": "Enter custom URL bar placeholder text"
 	},
 	{
 		"property": "nug.url.bar.animation",
-		"label": "Enable url bar opening animation",
+		"label": "Opening animation",
 		"type": "dropdown",
 		"placeholder": false,
 		"value": "number",
@@ -156,63 +144,11 @@
 	},
 	{
 		"property": "nug.url.bar.border",
-		"label": "Enable nug url bar border",
+		"label": "Border",
 		"type": "dropdown",
 		"placeholder": false,
 		"value": "number",
 		"default": 1,
-		"options": [
-			{ "value": 0, "label": "Disabled" },
-			{ "value": 1, "label": "Enabled" }
-		]
-	},
-	{
-		"property": "url.bar.in.border_width",
-		"label": "inner border width",
-		"type": "string",
-		"defaultValue": "1px",
-		"placeholder": "1px"
-	},
-	{
-		"property": "url.bar.in.border_opacity",
-		"label": "inner border appearance",
-		"type": "string",
-		"defaultValue": "rgba(255, 255, 255, 0.25)",
-		"placeholder": "rgba(255, 255, 255, 0.25)"
-	},
-	{
-		"property": "url.bar.out.border_width",
-		"label": "outer border width",
-		"type": "string",
-		"defaultValue": "0.8px",
-		"placeholder": "0.8px"
-	},
-	{
-		"property": "url.bar.out.border_opacity",
-		"label": "outer border appearance",
-		"type": "string",
-		"defaultValue": "rgba(0, 0, 0, 1)",
-		"placeholder": "rgba(0, 0, 0, 1)"
-	},
-	{
-		"property": "nug.url.bar",
-		"label": "Enable original Arc-line URL bar style",
-		"type": "dropdown",
-		"placeholder": false,
-		"value": "number",
-		"default": 0,
-		"options": [
-			{ "value": 0, "label": "Disabled" },
-			{ "value": 1, "label": "Enabled" }
-		]
-	},
-	{
-		"property": "nug.url.bar.scale",
-		"label": "Enable scale effect for original Arc-line URL bar",
-		"type": "dropdown",
-		"placeholder": false,
-		"value": "number",
-		"default": 0,
 		"options": [
 			{ "value": 0, "label": "Disabled" },
 			{ "value": 1, "label": "Enabled" }
@@ -228,42 +164,6 @@
 		"options": [
 			{ "value": 0, "label": "Disabled" },
 			{ "value": 1, "label": "Enabled" }
-		]
-	},
-	{
-		"type": "separator",
-		"label": "Fonts"
-	},
-	{
-		"type": "dropdown",
-		"property": "nug-font",
-		"label": "Select a font",
-		"defaultValue": "Nunito",
-		"options": [
-			{
-				"label": "Nunito",
-				"value": "Nunito"
-			},
-			{
-				"label": "SF Pro",
-				"value": "SF-Pro"
-			},
-			{
-				"label": "SF Symbols",
-				"value": "SF-Symbols"
-			},
-			{
-				"label": "Suse",
-				"value": "Suse"
-			},
-			{
-				"label": "Roboto",
-				"value": "Roboto"
-			},
-			{
-				"label": "Bricolage Grotesque",
-				"value": "Bricolage"
-			}
 		]
 	}
 ]

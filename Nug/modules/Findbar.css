@@ -1,250 +1,128 @@
-@media not (-moz-pref('nug-features-disabled')) {
-	@media not (-moz-pref('nug-features-findbar-disabled')) {
-		:has(.browserSidebarContainer.deck-selected > .browserContainer > findbar:not([hidden='true'])) {
-			#zen-tabbox-wrapper::before {
-				position: absolute !important;
-				align-self: center !important;
-				z-index: 0 !important;
-				content: '' !important;
-				background-color: light-dark(rgba(255, 255, 255, 1), rgba(60, 60, 60, 1)) !important;
+findbar {
+	box-shadow: 0px 0px 12px var(--nug-Glow-Color-3) !important;
+	border: 1px solid var(--nug-Glow-Color-1) !important;
 
-				top: auto;
-				width: calc(70%);
-				opacity: 1 !important;
-				bottom: calc(var(--zen-element-separation) + 2px);
-				height: 75px;
-				left: auto;
-				right: auto;
-
-				margin-top: 0px !important;
-				margin-bottom: 0px !important;
-
-				border-radius: calc(var(--nug-Border-Radius) + 2px);
-				visibility: visible;
-
-				transition: opacity 0s ease, bottom 1s ease, width 1s ease, height 1s ease !important;
-			}
-		}
-
-		@media (-moz-pref('nug-features-findbar-hover-enabled')) {
-			#zen-tabbox-wrapper::before {
-				height: 26px !important;
-				width: 92px !important;
-
-				border-radius: 30px !important;
-			}
-
-			:has(.browserSidebarContainer.deck-selected > .browserContainer > findbar:not([hidden='true']):hover) {
-				#zen-tabbox-wrapper::before {
-					height: 75px !important;
-					border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
-					width: calc(70%) !important;
-				}
-			}
-		}
+	& .findbar-textbox {
+		background: transparent !important;
+		outline: none !important;
+		border: 1px solid var(--nug-Glow-Color-1) !important;
 	}
 
-	#zen-tabbox-wrapper {
+	& .findbar-find-status {
+		display: none !important;
+	}
+}
+
+:has(.browserSidebarContainer.deck-selected > .browserContainer > findbar:not([hidden='true'])) {
+	#zen-tabbox-wrapper::before {
+		position: absolute !important;
+		align-self: center !important;
+		z-index: 0 !important;
+		content: '' !important;
+		background-color: light-dark(rgba(255, 255, 255, 1), rgba(60, 60, 60, 1)) !important;
+
+		top: auto;
+		width: calc(70%);
+		opacity: 1 !important;
+		bottom: calc(var(--zen-element-separation) + 2px);
+		height: 75px;
+		left: auto;
+		right: auto;
+
+		margin-top: 0px !important;
+		margin-bottom: 0px !important;
+
+		border-radius: calc(var(--nug-Border-Radius) + 2px);
+		visibility: visible;
+
+		transition: opacity 0s ease, bottom 1s ease, width 1s ease, height 1s ease !important;
+	}
+}
+
+#zen-tabbox-wrapper {
+	position: relative !important;
+	justify-content: center !important;
+}
+
+findbar {
+	position: absolute !important;
+	align-self: center !important;
+
+	width: 70% !important;
+	height: 75px !important;
+	bottom: 10px !important;
+	opacity: 1 !important;
+
+	border-top: unset !important;
+	border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
+	background: var(--nug-Blur-Color) !important;
+	backdrop-filter: var(--nug-Blur-Simple);
+
+	top: auto !important;
+	padding-left: 5px !important;
+
+	transition: bottom 0.5s ease, opacity 0.5s ease, border-radius 0.5s ease, height 0.5s ease, width 0.5s ease !important;
+
+	font-size: 14px !important; /* Add this line */
+
+	& .findbar-container {
+		display: flex !important;
+		opacity: 1 !important;
 		position: relative !important;
+		flex-wrap: wrap;
+		justify-content: space-between !important;
+		align-items: center;
 		justify-content: center !important;
+		min-height: fit-content !important;
+		height: auto !important;
+		max-height: unset !important;
+		gap: 5px;
 	}
-}
 
-@media not (-moz-pref('nug-features-disabled')) {
-	@media not (-moz-pref('nug-features-findbar-disabled')) {
-		@media (-moz-pref('nug-features-findbar-hover-enabled')) {
-			findbar {
-				position: absolute !important;
-				align-self: center !important;
+	& .findbar-container > :first-child {
+		display: flex !important;
+		margin: 0px 0px !important;
+		overflow-x: hidden !important;
+		order: -2 !important;
+		padding: 5px 5px !important;
 
-				bottom: 10px !important;
-				top: auto !important;
-				border-radius: 40px !important;
+		& .findbar-textbox {
+			flex-grow: 1 !important;
+			width: auto !important;
+			max-width: 100% !important;
+			min-width: 0 !important;
+			margin-right: 10px !important;
+			font-size: 14px !important; /* Add this line */
+		}
 
-				width: 90px !important;
-				padding-left: 5px !important;
-				height: 25px !important;
+		& .findbar-find-previous {
+			order: -2 !important;
+		}
 
-				border-top: unset !important;
-				background: var(--nug-Blur-Color) !important;
-				backdrop-filter: var(--nug-Blur-Simple);
-
-				opacity: 1 !important;
-				transition: bottom 1s ease, opacity 1s ease, border-radius 1s ease, height 1s ease, width 1s ease !important;
-
-				font-size: 14px !important; /* Add this line */
-
-				& .findbar-container {
-					display: none !important;
-					position: relative !important;
-					opacity: 0 !important;
-					flex-wrap: wrap;
-					justify-content: space-between !important;
-					align-items: center;
-					justify-content: center !important;
-					min-height: fit-content !important;
-					height: auto !important;
-					max-height: unset !important;
-					gap: 5px;
-				}
-
-				& .findbar-container > :first-child {
-					display: flex !important;
-					margin: 0px 0px !important;
-					overflow-x: hidden !important;
-					order: -2 !important;
-					padding: 5px 5px !important;
-
-					& .findbar-textbox {
-						flex-grow: 1 !important;
-						width: auto !important;
-						max-width: 100% !important;
-						min-width: 0 !important;
-						margin-right: 10px !important;
-						font-size: 14px !important; /* Add this line */
-					}
-
-					& .findbar-find-previous {
-						order: -2 !important;
-					}
-
-					& .findbar-find-next {
-						order: -1 !important;
-						align-self: self-end !important;
-					}
-				}
-
-				/* Ensure first child and .found-matches stay in the first row */
-				& .findbar-container > :first-child {
-					/* Makes them span the full width */
-					flex-basis: 100% !important;
-					/* Forces them to stay at the top */
-					order: -2 !important;
-				}
-
-				& .findbar-closebutton {
-					display: none !important;
-				}
-
-				& .found-matches {
-					order: -1 !important;
-					justify-content: center !important;
-					text-align: center !important;
-				}
-			}
-
-			@media (-moz-pref('nug-features-findbar-hover-enabled')) {
-				findbar:hover {
-					width: 70% !important;
-					flex: 1 1 70% !important;
-					/* Allows them to grow/shrink evenly */
-					height: 75px !important;
-					bottom: 10px !important;
-					opacity: 1 !important;
-					border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
-
-					& .findbar-container {
-						display: flex !important;
-						opacity: 1 !important;
-					}
-
-					& .findbar-closebutton {
-						display: flex !important;
-						height: 25px !important;
-						justify-self: center !important;
-						align-self: center !important;
-					}
-				}
-			}
+		& .findbar-find-next {
+			order: -1 !important;
+			align-self: self-end !important;
 		}
 	}
-}
 
-@media not (-moz-pref('nug-features-disabled')) {
-	@media not (-moz-pref('nug-features-findbar-disabled')) {
-		@media not (-moz-pref('nug-features-findbar-hover-enabled')) {
-			findbar {
-				position: absolute !important;
-				align-self: center !important;
+	/* Ensure first child and .found-matches stay in the first row */
+	& .findbar-container > :first-child {
+		/* Makes them span the full width */
+		flex-basis: 100% !important;
+		/* Forces them to stay at the top */
+		order: -2 !important;
+	}
 
-				width: 70% !important;
-				height: 75px !important;
-				bottom: 10px !important;
-				opacity: 1 !important;
+	& .findbar-closebutton {
+		display: flex !important;
+		height: 25px !important;
+		justify-self: center !important;
+		align-self: center !important;
+	}
 
-				border-top: unset !important;
-				border-radius: calc(var(--nug-Border-Radius) + 2px) !important;
-				background: var(--nug-Blur-Color) !important;
-				backdrop-filter: var(--nug-Blur-Simple);
-
-				top: auto !important;
-				padding-left: 5px !important;
-
-				transition: bottom 0.5s ease, opacity 0.5s ease, border-radius 0.5s ease, height 0.5s ease, width 0.5s ease !important;
-
-				font-size: 14px !important; /* Add this line */
-
-				& .findbar-container {
-					display: flex !important;
-					opacity: 1 !important;
-					position: relative !important;
-					flex-wrap: wrap;
-					justify-content: space-between !important;
-					align-items: center;
-					justify-content: center !important;
-					min-height: fit-content !important;
-					height: auto !important;
-					max-height: unset !important;
-					gap: 5px;
-				}
-
-				& .findbar-container > :first-child {
-					display: flex !important;
-					margin: 0px 0px !important;
-					overflow-x: hidden !important;
-					order: -2 !important;
-					padding: 5px 5px !important;
-
-					& .findbar-textbox {
-						flex-grow: 1 !important;
-						width: auto !important;
-						max-width: 100% !important;
-						min-width: 0 !important;
-						margin-right: 10px !important;
-						font-size: 14px !important; /* Add this line */
-					}
-
-					& .findbar-find-previous {
-						order: -2 !important;
-					}
-
-					& .findbar-find-next {
-						order: -1 !important;
-						align-self: self-end !important;
-					}
-				}
-
-				/* Ensure first child and .found-matches stay in the first row */
-				& .findbar-container > :first-child {
-					/* Makes them span the full width */
-					flex-basis: 100% !important;
-					/* Forces them to stay at the top */
-					order: -2 !important;
-				}
-
-				& .findbar-closebutton {
-					display: flex !important;
-					height: 25px !important;
-					justify-self: center !important;
-					align-self: center !important;
-				}
-
-				& .found-matches {
-					order: -1 !important;
-					justify-content: center !important;
-					text-align: center !important;
-				}
-			}
-		}
+	& .found-matches {
+		order: -1 !important;
+		justify-content: center !important;
+		text-align: center !important;
 	}
 }

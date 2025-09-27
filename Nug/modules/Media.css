@@ -1,248 +1,563 @@
-#TabsToolbar::before {
-	align-self: center !important;
-	justify-self: center !important;
-	position: absolute !important;
-	z-index: -1 !important;
-	content: '' !important;
-	background: var(--nug-Background-Color);
-
-	width: calc(100%);
-	opacity: 0;
-
-	height: 34px;
-	top: auto;
-	left: auto;
-	right: auto !important;
-	bottom: 0px;
-
-	border-radius: var(--nug-Border-Radius) !important;
-	visibility: visible !important;
-	transition: bottom 0.3s ease 100ms, height 0.2s ease, opacity 0.1s ease;
+#zen-media-controls-toolbar > toolbaritem::before {
+	box-shadow: inset 0 0 0 var(--media-player-in-border_width, 1px) var(--media-player-in-border_opacity, 0.15),
+		0 0 0 var(--media-player-out-border_width, 0.5px) var(--media-player-out-border_opacity, 1) !important;
 }
 
-:root[zen-sidebar-expanded='true'] {
-	:has(#zen-media-controls-toolbar[media-sharing='']:hover) {
-		#TabsToolbar::before {
-			height: 69px !important;
-		}
-	}
-
-	:has(#zen-media-controls-toolbar:not([media-sharing=''])[media-position-hidden]:hover) {
-		#TabsToolbar::before {
-			height: 69px;
-		}
-	}
-
-	:has(#zen-media-controls-toolbar:not([media-sharing='']):not([media-position-hidden]):hover) {
-		#TabsToolbar::before {
-			height: 107px;
-		}
-
-		:has(#zen-media-controls-toolbar[media-position-hidden]) {
-			#TabsToolbar::before {
-				height: 69px;
-			}
-		}
-	}
-
-	:has(#zen-media-controls-toolbar:not([media-position-hidden])) {
-		:has(#zen-media-artist:empty) {
-			#TabsToolbar::before {
-				height: 93px;
-			}
-		}
-	}
-
-	@media not (-moz-pref('nug-features-bottom-disabled')) {
-		@media (-moz-bool-pref: 'nug-bottom-at-bottom') {
-			#TabsToolbar::before {
-				bottom: calc(var(--zen-toolbox-padding) * 2 + 50px);
-			}
-
-			&:has(#zen-sidebar-foot-buttons:hover) {
-				&:not(:has(#zen-workspaces-button:hover)) {
-					#TabsToolbar::before {
-						bottom: calc(var(--zen-toolbox-padding) + 115px) !important;
-					}
-				}
-			}
-		}
-	}
+#zen-media-controls-toolbar toolbaritem {
+	border-radius: 11px !important;
+	margin-bottom: -7px !important;
 }
 
-:root:not([zen-sidebar-expanded='true']) {
+@media (-moz-pref('nug.media.player', 1)) {
+	* {
+		--media-control-bg: light-dark(
+			rgba(255, 255, 255, var(--media-default-filter_opacity)),
+			rgba(0, 0, 0, var(--media-default-filter_opacity))
+		) !important;
+	}
+
+	#zen-media-controls-toolbar > toolbaritem {
+		isolation: isolate !important;
+	}
+
+	#zen-media-controls-toolbar > toolbaritem::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1; /* Sits behind the buttons, but on top of ::after */
+		border-radius: 12px !important;
+		/* The key: This clips the artwork, but does NOT affect the music notes */
+	}
+
+	#zen-media-controls-toolbar > toolbaritem::after {
+		content: '';
+		position: absolute;
+		z-index: -2; /* Sits behind everything, at the very back */
+
+		/* Make it larger than the frame to hide blur edges */
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+
+		background-image: var(--zen-cover-art-url);
+		background-size: cover;
+		background-position: center;
+		clip-path: inset(0 round 12px);
+		overflow: hidden;
+		border-radius: 12px !important;
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		filter: blur(var(--art-work-filter_blur)) brightness(var(--art-work-filter_brightness))
+			saturate(var(--art-work-filter_saturate)) contrast(var(--art-work-filter_contrast))
+			opacity(var(--art-work-filter_opacity));
+	}
+
+	/* This rule activates the artwork when the JS provides a URL */
+	#zen-media-controls-toolbar > toolbaritem[style*='--zen-cover-art-url']::after {
+		opacity: 1;
+	}
+
+	/* Base style: pseudo background under TabsToolbar */
 	#TabsToolbar::before {
-		width: calc(44px);
-		transition: height 1s ease, opacity 0.5s ease !important;
+		content: '';
+		position: absolute !important;
+		z-index: -1 !important;
+		align-self: center !important;
+		justify-self: center !important;
+
+		background: var(--media-player-psuedo_bg) !important;
+		width: 97%;
+		border-radius: 12px;
+		visibility: visible !important;
+
+		/* --- Initial State --- */
+		height: 38px;
+		bottom: 36px;
+		opacity: 0;
+
+		transition-property: height, opacity;
+		transition-duration: 0.16s, 0.16s;
+		transition-timing-function: ease, ease;
+		transition-delay: 0s, 0s; /* No delay for a synchronized feel */
 	}
 
-	:has(#zen-media-controls-toolbar[media-position-hidden='true']:hover) {
-		#TabsToolbar::before {
-			height: 190px;
-		}
-	}
-
-	:has(#zen-media-controls-toolbar:not([media-position-hidden='true']):hover) {
-		#TabsToolbar::before {
-			height: 190px;
-		}
-	}
-}
-
-:has(#zen-media-controls-toolbar:hover) {
-	& #TabsToolbar::before {
+	#TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+		height: calc(var(--zen-media-player-peak-height, 111px) - 2px);
 		opacity: 1 !important;
 	}
 
-	:not(:has([zen-single-toolbar='true']))[zen-compact-mode='true'] {
-		@media not (-moz-pref('zen.view.compact.hide-tabbar')) {
-			#TabsToolbar::before {
+	/* Compact layout (two-toolbar mode active) */
+	:root[zen-compact-mode='true'] #TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+		opacity: 0 !important;
+		height: 0 !important;
+	}
+
+	:root:not([zen-compact-mode='true']) #TabsToolbar:has(#zen-media-controls-toolbar > toolbaritem:hover)::before {
+		/*
+      We just need this rule to exist to trigger the transition.
+      The mask will get its new value from the CSS variable automatically.
+    */
+	}
+
+	#zen-media-controls-toolbar toolbaritem {
+		border-radius: 12px !important;
+		margin-bottom: -7px !important;
+		background-color: var(--media-control-bg) !important;
+		backdrop-filter: saturate(1) contrast(1) blur(var(--media-player-filter_blur)) !important;
+	}
+	#zen-media-info-vbox {
+		&::before {
+			background: transparent !important;
+		}
+	}
+
+	#zen-media-controls-toolbar toolbaritem {
+		border-radius: 12px !important;
+		margin-bottom: -7px !important;
+	}
+}
+
+@media (-moz-pref('nug.media.player', 2)) {
+	* {
+		--media-control-bg: light-dark(
+			rgba(255, 255, 255, var(--media-default-filter_opacity)),
+			rgba(0, 0, 0, var(--media-default-filter_opacity))
+		) !important;
+	}
+
+	#zen-media-controls-toolbar > toolbaritem {
+		isolation: isolate !important;
+	}
+
+	#zen-media-controls-toolbar > toolbaritem::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1; /* Sits behind the buttons, but on top of ::after */
+		border-radius: 12px !important;
+		/* The key: This clips the artwork, but does NOT affect the music notes */
+	}
+
+	#zen-media-controls-toolbar > toolbaritem::after {
+		content: '';
+		position: absolute;
+		z-index: -2; /* Sits behind everything, at the very back */
+
+		/* Make it larger than the frame to hide blur edges */
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+
+		background-image: var(--zen-cover-art-url);
+		background-size: cover;
+		background-position: center;
+		clip-path: inset(0 round 12px);
+		overflow: hidden;
+		border-radius: 12px !important;
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+
+		/* --- YOUR CONFIGURATION --- */
+		filter: blur(var(--art-work-filter_blur)) brightness(var(--art-work-filter_brightness))
+			saturate(var(--art-work-filter_saturate)) contrast(var(--art-work-filter_contrast))
+			opacity(var(--art-work-filter_opacity));
+	}
+
+	/* This rule activates the artwork when the JS provides a URL */
+	#zen-media-controls-toolbar > toolbaritem[style*='--zen-cover-art-url']::after {
+		opacity: 1;
+	}
+
+	/* Base style: pseudo background under TabsToolbar */
+	#TabsToolbar::before {
+		content: '';
+		position: absolute !important;
+		z-index: -1 !important;
+		align-self: center !important;
+		justify-self: center !important;
+
+		background: var(--media-player-psuedo_bg) !important;
+		width: 97%;
+		border-radius: 12px;
+		visibility: visible !important;
+
+		/* --- Initial State --- */
+		height: 38px;
+		bottom: 36px;
+		opacity: 0;
+
+		transition-property: height, opacity;
+		transition-duration: 0.16s, 0.16s;
+		transition-timing-function: ease, ease;
+		transition-delay: 0s, 0s; /* No delay for a synchronized feel */
+	}
+
+	#TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+		height: calc(var(--zen-media-player-peak-height, 111px) + 1px);
+		opacity: 1 !important;
+	}
+
+	/* Compact layout (two-toolbar mode active) */
+	:root[zen-compact-mode='true'] #TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+		opacity: 0 !important;
+		height: 0 !important;
+	}
+
+	:root:not([zen-compact-mode='true']) #TabsToolbar:has(#zen-media-controls-toolbar > toolbaritem:hover)::before {
+		/*
+      We just need this rule to exist to trigger the transition.
+      The mask will get its new value from the CSS variable automatically.
+    */
+	}
+
+	#zen-media-controls-toolbar toolbaritem {
+		border-radius: 12px !important;
+		margin-bottom: -8px !important;
+		background-color: var(--media-control-bg) !important;
+		backdrop-filter: saturate(1) contrast(1) blur(var(--media-player-filter_blur)) !important;
+	}
+	#zen-media-info-vbox {
+		&::before {
+			background: transparent !important;
+		}
+	}
+
+	#zen-media-controls-toolbar toolbaritem {
+		border-radius: 12px !important;
+		margin-bottom: -8px !important;
+	}
+
+	/* Move the site (music note) button to close button position */
+	#zen-media-focus-button {
+		position: absolute !important;
+		top: -1px;
+		right: 2px;
+		z-index: 10;
+		transition: top 0.3s ease, right 0.3s ease, transform 0.3s ease;
+	}
+
+	/* When media player is hovered, move the button */
+	#zen-media-controls-toolbar:hover #zen-media-focus-button {
+		top: 4px; /* move down */
+		right: 4px; /* move inward */
+	}
+
+	#zen-media-artist {
+		margin-top: 2px !important;
+	}
+
+	#zen-media-buttons-hbox {
+		gap: 0px !important; /* general spacing */
+	}
+	#zen-media-playback-buttons {
+		display: flex !important;
+		order: 2 !important;
+
+		margin-right: 38.5px !important;
+		justify-content: space-between !important;
+		width: 9.5em !important; /* reduce this to bring buttons closer */
+	}
+
+	#zen-media-controls-toolbar {
+		& #zen-media-buttons-hbox {
+			align-items: start;
+			margin-top: -4px;
+			scale: 0.8 !important;
+			--toolbarbutton-outer-padding: 2px;
+			flex-direction: column !important;
+		}
+	}
+
+	#zen-media-buttons-hbox {
+		max-height: 0 !important;
+		overflow: hidden !important;
+		opacity: 0 !important;
+
+		pointer-events: none !important;
+		transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	#zen-media-controls-toolbar:hover #zen-media-buttons-hbox {
+		max-height: 32px !important; /* or whatever height you want */
+		opacity: 1 !important;
+		pointer-events: auto !important;
+		overflow: visible !important;
+	}
+
+	#zen-media-mute-button {
+		position: relative !important;
+
+		order: 0 !important;
+		margin-right: -4px !important; /* tighten only mute */
+	}
+
+	/* Media player expanded layout */
+	#zen-media-controls-toolbar {
+		& .show-on-hover {
+			max-height: unset !important;
+			opacity: 1 !important;
+			transform: translateY(0) !important;
+			padding-right: 6px;
+			pointer-events: none;
+			transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease, padding 0.2s ease;
+		}
+	}
+
+	/* Media buttons hover effect */
+	#zen-media-buttons-hbox > toolbarbutton {
+		opacity: 0 !important;
+		transition: all 0.3s ease-in-out !important;
+
+		&:hover {
+			opacity: 1 !important;
+		}
+	}
+
+	/* Media controls hover expansion */
+	#zen-media-controls-toolbar {
+		#zen-media-controls-hbox {
+			order: 0 !important;
+			height: 0px !important;
+			overflow: hidden !important;
+		}
+
+		&:hover {
+			#zen-media-controls-hbox {
+				height: fit-content !important;
 				opacity: 1 !important;
 			}
 		}
 	}
 
-	&[zen-compact-mode='true'] {
-		#TabsToolbar::before {
-			opacity: 0 !important;
-		}
+	#zen-media-main-vbox > vbox {
+		order: 1 !important;
 	}
 }
 
-:root:not([zen-sidebar-expanded='true']) {
-	#zen-media-controls-toolbar:not([hidden]),
-	#zen-media-controls-toolbar:not([hidden]) > toolbaritem {
-		display: flex !important;
-	}
-
-	#zen-media-controls-toolbar {
-		justify-content: center !important;
-		align-content: center !important;
-		padding-bottom: 5px !important;
-		order: 9999 !important;
-		z-index: 99999 !important;
-
-		&[media-sharing=''] {
-			& #media-device-buttons {
-				display: flex !important;
-				flex-direction: column !important;
-				position: relative !important;
-				/* Centering media sharing buttons */
-				justify-items: center !important;
-				align-items: stretch !important;
-				height: fit-content !important;
-			}
-		}
+@media (-moz-pref('nug.media.player', 3)) {
+	* {
+		--media-control-bg: light-dark(
+			rgba(255, 255, 255, var(--media-default-filter_opacity)),
+			rgba(0, 0, 0, var(--media-default-filter_opacity))
+		) !important;
 	}
 
 	#zen-media-controls-toolbar > toolbaritem {
-		flex-direction: column !important;
+		isolation: isolate !important;
+	}
+
+	#zen-media-controls-toolbar > toolbaritem::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1; /* Sits behind the buttons, but on top of ::after */
+		border-radius: 12px !important;
+		/* The key: This clips the artwork, but does NOT affect the music notes */
+	}
+
+	#zen-media-controls-toolbar > toolbaritem::after {
+		content: '';
+		position: absolute;
+		z-index: -2; /* Sits behind everything, at the very back */
+
+		/* Make it larger than the frame to hide blur edges */
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+
+		background-image: var(--zen-cover-art-url);
+		background-size: cover;
+		background-position: center;
+		clip-path: inset(0 round 12px);
+		overflow: hidden;
+		border-radius: 12px !important;
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		filter: blur(var(--art-work-filter_blur)) brightness(var(--art-work-filter_brightness))
+			saturate(var(--art-work-filter_saturate)) contrast(var(--art-work-filter_contrast))
+			opacity(var(--art-work-filter_opacity));
+	}
+
+	/* This rule activates the artwork when the JS provides a URL */
+	#zen-media-controls-toolbar > toolbaritem[style*='--zen-cover-art-url']::after {
+		opacity: 1;
+	}
+
+	/* Base style: pseudo background under TabsToolbar */
+	#TabsToolbar::before {
+		content: '';
 		position: absolute !important;
-		justify-items: center !important;
-		align-items: stretch !important;
-		justify-content: center !important;
-		align-content: center !important;
+		z-index: -1 !important;
+		align-self: center !important;
+		justify-self: center !important;
 
-		width: fit-content !important;
+		background: var(--media-player-psuedo_bg) !important;
+		width: 97%;
+		border-radius: 12px;
+		visibility: visible !important;
 
-		left: auto !important;
+		/* --- Initial State --- */
+		height: 38px;
+		bottom: 36px;
+		opacity: 0;
+		transition-property: height, opacity;
+		transition-duration: 0.16s, 0.16s;
+		transition-timing-function: ease, ease;
+		transition-delay: 0s, 0s; /* No delay for a synchronized feel */
+	}
 
-		min-height: unset !important;
-		height: 30px !important;
+	#TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+		height: calc(var(--zen-media-player-peak-height, 111px) + 1px);
+		opacity: 1 !important;
+	}
 
-		background: transparent !important;
-		box-shadow: 0px 0px 0px var(--nug-Shadow-Color-1) !important;
-		backdrop-filter: blur(0px) !important;
+	/* Compact layout (two-toolbar mode active) */
+	:root[zen-compact-mode='true'] #TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+		opacity: 0 !important;
+		height: 0 !important;
+	}
 
-		padding: 5px 7px !important;
+	:root:not([zen-compact-mode='true']) #TabsToolbar:has(#zen-media-controls-toolbar > toolbaritem:hover)::before {
+		/*
+      We just need this rule to exist to trigger the transition.
+      The mask will get its new value from the CSS variable automatically.
+    */
+	}
 
-		transition: height 1s ease, background 1s ease, backdrop-filter 0.3s ease, box-shadow 0.2s ease !important;
-
-		/* Hide media progress bar */
-		& #zen-media-progress-hbox {
-			display: none !important;
+	#zen-media-controls-toolbar toolbaritem {
+		border-radius: 12px !important;
+		margin-bottom: -8px !important;
+		background-color: var(--media-control-bg) !important;
+		backdrop-filter: saturate(1) contrast(1) blur(var(--media-player-filter_blur)) !important;
+	}
+	#zen-media-info-vbox {
+		&::before {
+			background: transparent !important;
 		}
+	}
 
-		/* Hide media info */
-		& #zen-media-info-vbox {
-			display: none !important;
-		}
+	#zen-media-controls-toolbar toolbaritem {
+		border-radius: 12px !important;
+		margin-bottom: -8px !important;
+	}
 
-		& #zen-media-controls-hbox {
-			display: flex !important;
-			flex-direction: column !important;
-			justify-items: center !important;
-			align-items: stretch !important;
-			order: -1 !important;
-		}
+	/* Move the site (music note) button to close button position */
+	#zen-media-focus-button {
+		position: absolute !important;
+		top: -1px;
 
+		z-index: 10;
+		transition: top 0.3s ease, right 0.3s ease, transform 0.3s ease;
+	}
+
+	/* When media player is hovered, move the button */
+	#zen-media-controls-toolbar:hover #zen-media-focus-button {
+		top: 4px; /* move down */
+		/* move inward */
+	}
+
+	#zen-media-artist {
+		margin-top: 2px !important;
+	}
+
+	#zen-media-buttons-hbox {
+		gap: 0px !important; /* general spacing */
+	}
+	#zen-media-playback-buttons {
+		display: flex !important;
+
+		margin-left: 38.5px !important;
+		justify-content: space-between !important;
+		width: 9.5em !important; /* reduce this to bring buttons closer */
+	}
+
+	#zen-media-controls-toolbar:hover #zen-media-buttons-hbox {
+		align-items: start;
+		margin-top: -4px;
+		order: 5 !important;
+		scale: 0.8 !important;
+		--toolbarbutton-outer-padding: 2px;
+		flex-direction: column !important;
+	}
+
+	#zen-media-controls-toolbar {
 		& #zen-media-buttons-hbox {
-			display: flex !important;
+			align-items: start;
+			margin-top: -4px;
+			order: -1 !important;
+			scale: 0.8 !important;
+			--toolbarbutton-outer-padding: 2px;
 			flex-direction: column !important;
-			position: relative !important;
-
-			justify-items: center !important;
-			align-items: stretch !important;
-			justify-self: center !important;
-			align-self: center !important;
-
-			margin: 0px 0px !important;
-			padding: 0px 0px !important;
-			transform: none !important;
 		}
+	}
 
+	#zen-media-buttons-hbox {
+		max-height: 0 !important;
+		overflow: hidden !important;
+		opacity: 0 !important;
+
+		pointer-events: none !important;
+		transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	#zen-media-controls-toolbar:hover #zen-media-buttons-hbox {
+		max-height: 32px !important; /* or whatever height you want */
+		opacity: 1 !important;
+		pointer-events: auto !important;
+		overflow: visible !important;
+	}
+
+	/* Media player expanded layout */
+	#zen-media-controls-toolbar {
 		& .show-on-hover {
-			display: flex !important;
-			position: relative !important;
-			padding: 0px 0px !important;
-			transform: none !important;
-			top: unset !important;
-			bottom: unset !important;
-
-			min-height: fit-content !important;
 			max-height: unset !important;
-			margin: 0px 0px !important;
+			opacity: 1 !important;
+			transform: translateY(0) !important;
+			padding-right: 6px;
+			pointer-events: none;
+			transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease, padding 0.2s ease;
+		}
+	}
 
+	/* Media buttons hover effect */
+	#zen-media-buttons-hbox > toolbarbutton {
+		opacity: 0 !important;
+		transition: all 0.3s ease-in-out !important;
+
+		&:hover {
 			opacity: 1 !important;
 		}
 	}
 
-	#zen-media-controls-toolbar:not([hidden]):hover {
-		& > toolbaritem {
-			height: 190px !important;
-			background: var(--nug-Blur-Color) !important;
-			backdrop-filter: var(--nug-Blur-Simple) !important;
-			box-shadow: 0px 0px 5px var(--nug-Shadow-Color-1) !important;
-		}
-	}
-}
-
-:root[zen-sidebar-expanded='true'] {
+	/* Media controls hover expansion */
 	#zen-media-controls-toolbar {
-		margin: 5px 0px !important;
-		height: 40px !important;
-		width: 100% !important;
-		padding: 0px 0px !important;
-	}
+		#zen-media-controls-hbox {
+			order: 0 !important;
+			height: 0px !important;
+			overflow: hidden !important;
+		}
 
-	#zen-media-controls-toolbar > toolbaritem {
-		width: 100% !important;
-
-		& #zen-media-buttons-hbox {
-			z-index: 9999 !important;
+		&:hover {
+			#zen-media-controls-hbox {
+				height: fit-content !important;
+				opacity: 1 !important;
+			}
 		}
 	}
-}
 
-#zen-media-controls-toolbar {
-	align-self: center !important;
-	background: none !important;
-	position: relative !important;
-	margin: 0px 0px !important;
-}
-
-#zen-media-controls-toolbar > toolbaritem {
-	background: var(--nug-Blur-Color) !important;
-	backdrop-filter: var(--nug-Blur-Simple) !important;
-	border-radius: var(--nug-Border-Radius) !important;
+	#zen-media-main-vbox > vbox {
+		order: 1 !important;
+	}
 }

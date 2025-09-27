@@ -1,21 +1,43 @@
-/* modules import */
 @import 'modules/Animations.css';
-@import 'modules/Bottom.css';
-/* @import 'modules/ExtensionMenu.css'; */
+@import 'modules/Ext.css';
 @import 'modules/Findbar.css';
-@import 'modules/Fonts.css';
 @import 'modules/General.css';
 @import 'modules/Icons.css';
-@import 'modules/Loadbar.css';
 @import 'modules/Media.css';
-@import 'modules/Pinned.css';
 @import 'modules/Sidebar.css';
 @import 'modules/Tabs.css';
-@import 'modules/Tweaks.css';
-/* @import 'modules/Toolbar.css'; */
 @import 'modules/URLbar.css';
+@import 'modules/Workspace.css';
 
-/* Core theme styles */
+/* Font */
+@media (-moz-pref('nug-font', 'sans-serif')) {
+	:root {
+		--nug-font: sans-serif;
+	}
+}
+
+@media (-moz-pref('nug-font', 'serif')) {
+	:root {
+		--nug-font: serif;
+	}
+}
+
+@media (-moz-pref('nug-font', 'monospace')) {
+	:root {
+		--nug-font: monospace;
+	}
+}
+
+/* always use monospace in url bar */
+.urlbar-input {
+	font-family: monospace !important;
+}
+
+* {
+	font-weight: var(--nug-font_weight) !important;
+	font-family: var(--nug-font), sans-serif;
+}
+
 browser {
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -30,7 +52,7 @@ browser {
 	}
 }
 
-/* Catppuccin Mocha Colors */
+/* Mocha */
 :root {
 	--zen-colors-primary: #313244 !important;
 	--zen-primary-color: #94e2d5 !important;
@@ -97,38 +119,12 @@ browser {
 	}
 }
 
-/* floating status bar */
-#statuspanel {
-	margin: 10px !important;
-}
-
-#statuspanel-label {
-	border-radius: 11px !important;
-	padding: 3px 10px !important;
-	border: 1px solid var(--zen-colors-border) !important;
-	background: var(--zen-colors-tertiary) !important;
-}
-
-/* download button background */
-#downloads-indicator-progress-outer::after {
-	content: '';
-	display: block;
-	position: absolute;
-	inset: 0;
-	z-index: -40;
-	background: var(--toolbar-field-background-color);
-}
-
-/* hide extension name in url bar */
-#urlbar #identity-box.extensionPage #identity-icon-label {
-	display: none !important;
-}
-
+/* Vars */
 :root {
 	--nug-Color-Dark: color-mix(in srgb, var(--zen-primary-color) 10%, #000000c0);
 	--nug-Color-Light: color-mix(in srgb, var(--zen-primary-color) 25%, white);
 
-	/* Black colors*/
+	/* Blacks*/
 	--nug-Black-1: light-dark(color-mix(in srgb, #ffffff 40%, transparent), color-mix(in srgb, #000000 35%, transparent));
 	--nug-Black-2: light-dark(
 		color-mix(in srgb, #ffffff 100%, transparent),
@@ -136,12 +132,12 @@ browser {
 	);
 	--nug-Black-3: light-dark(color-mix(in srgb, #ffffff 25%, transparent), color-mix(in srgb, #000000 60%, transparent));
 
-	/* Shadow */
+	/* Shadows */
 	--nug-Shadow-Color-1: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4));
 	--nug-Shadow-Color-2: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.8));
 	--nug-Shadow-Color-3: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 1));
 
-	/*Glow Colors*/
+	/* Glows */
 	--nug-Glow-Color-1: color-mix(in srgb, var(--zen-primary-color) 90%, white);
 	--nug-Glow-Color-2: color-mix(in srgb, var(--zen-primary-color) 80%, white);
 	--nug-Glow-Color-3: color-mix(in srgb, var(--zen-primary-color) 70%, white);
@@ -153,14 +149,12 @@ browser {
 	--nug-Blur: blur(52px) saturate(180%) brightness(110%);
 	--nug-Blur-Simple: blur(15px) brightness(110%) saturate(260%);
 
-	/* Blur colors */
+	/* Blur color */
 	--nug-Blur-Color: color-mix(in srgb, var(--zen-primary-color) 1%, #000000a0);
 
 	/* Width Compact Mode */
 	--nug-Width-Compact-Expanded: 21em;
 
-	/* Background color */
+	/* Background */
 	--nug-Background-Color: light-dark(rgba(215, 215, 215, 1), rgba(30, 30, 30, 1));
-
-	--nug-Bottom-Height: 220px;
 }

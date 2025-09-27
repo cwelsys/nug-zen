@@ -12,7 +12,7 @@
 		width: 20%;
 		height: 3px;
 		opacity: 0.8;
-	} /* Faster initial movement */
+	}
 	25% {
 		top: 10%;
 		left: 95.5%;
@@ -40,7 +40,7 @@
 		width: 10%;
 		height: 3px;
 		opacity: 1;
-	} /* More uniform pacing */
+	}
 	100% {
 		top: 76%;
 		left: 70%;
@@ -49,7 +49,6 @@
 		opacity: 0;
 	}
 }
-/* rotate jumpy icon */
 
 @keyframes iconAnimation-open {
 	0% {
@@ -58,7 +57,6 @@
 
 	50% {
 		transform: rotate(360deg) scale(1.2);
-		/* Jumpy scaling */
 	}
 
 	75% {
@@ -69,8 +67,6 @@
 		transform: rotate(360deg) scale(1);
 	}
 }
-
-/* rotate jumpy icon inverted */
 
 @keyframes iconAnimation-close {
 	0% {
@@ -103,7 +99,6 @@
 }
 
 #urlbar-results {
-	/* This is CRITICAL: It tells Firefox to animate any change to the 'height' property */
 	transition: height 180ms ease-in-out !important;
 	overflow-y: auto !important;
 }
@@ -129,81 +124,140 @@
 		}
 	}
 }
-/* =================================================================================== */
-/*  Zen Floating URL Bar - Initial Reveal Animation (Works with Animation Script)      */
-/* =================================================================================== */
 
-@media (-moz-pref('nug.url.bar.minimal', 1)) {
-	@media (-moz-pref('zen.urlbar.behavior', 'float')) {
-		/*
-   * STATE 1: HIDDEN
-   * When the urlbar is open but the user IS NOT typing.
-   */
-		#urlbar[open]:not([usertyping='']) > .urlbarView {
-			max-height: 0 !important; /* Collapse the height */
+@media (-moz-pref('zen.urlbar.behavior', 'float')) {
+	#urlbar[open]:not([usertyping='']) > .urlbarView {
+		max-height: 0 !important;
+		overflow: hidden !important;
+		transition: max-height 0.4s ease !important;
+	}
 
-			overflow: hidden !important; /* Crucial: hide the content inside */
-
-			/* Define the animation for when it closes */
-			transition: max-height 0.4s ease !important;
-		}
-
-		/*
-   * STATE 2: VISIBLE
-   * When the urlbar is open AND the user IS typing.
-   */
-		#urlbar[open][usertyping=''] > .urlbarView {
-			/*
-     * Use a max-height much larger than the panel will ever be.
-     * Our JavaScript's 'height' property will control the actual height,
-     * but this allows the panel to animate open from 0.
-     */
-			max-height: 500px !important; /* Allow it to grow */
-
-			/* Define the animation for when it opens */
-			transition: max-height 0.3s ease !important;
-		}
+	#urlbar[open][usertyping=''] > .urlbarView {
+		max-height: 500px !important;
+		transition: max-height 0.3s ease !important;
 	}
 }
 
 @keyframes urlbar-bounce-and-shadow-pulse {
-	/* --- TIMELINE START --- */
 	0% {
 		scale: 1;
 		box-shadow: 0 0 20px 5px transparent; /* Glow is OFF */
 	}
 
-	/* --- GLOW APPEARS --- */
 	25% {
-		/* The glow quickly fades in to full brightness */
-		box-shadow: 0 0 20px 5px color-mix(in srgb, var(--nug-search-gradient-start) 60%, transparent); /* Glow is ON */
+		box-shadow: 0 0 20px 5px color-mix(in srgb, var(--nug-search-gradient-start) 60%, transparent);
 	}
 
-	/* --- BOUNCE & GLOW HOLD --- */
 	50% {
 		scale: 0.93;
-		box-shadow: 0 0 80px 8px color-mix(in srgb, var(--nug-search-gradient-start) 80%, transparent); /* Glow STAYS ON */
+		box-shadow: 0 0 80px 8px color-mix(in srgb, var(--nug-search-gradient-start) 80%, transparent);
 	}
 	80% {
 		scale: 0.95;
-		box-shadow: 0 0 120px 8px color-mix(in srgb, var(--nug-search-gradient-start) 80%, transparent); /* Glow STAYS ON */
+		box-shadow: 0 0 120px 8px color-mix(in srgb, var(--nug-search-gradient-start) 80%, transparent);
 	}
 
-	/* --- GLOW FADES OUT & BOUNCE SETTLES --- */
 	100% {
 		scale: 0.98;
 		box-shadow: 0 0 120px 8px transparent; /* Glow is OFF */
 	}
 }
 
-/* Part 2: Prepare the URL bar (no changes here) */
 #urlbar {
 	transform-origin: left !important;
 }
 
-/* Part 3: Trigger the animation (no changes here) */
 #urlbar[searchmode] {
-	/* You can also adjust the master duration here. Try 500ms for a slower overall effect. */
 	animation: urlbar-bounce-and-shadow-pulse 450ms ease-out forwards;
 	border-radius: var(--url-bar-border_radius, 1.7rem) !important;
+}
+
+/* load bar */
+@-moz-document url-prefix("chrome:") {
+	/* Assume single-toolbar mode as the base use case */
+	.browserSidebarContainer.deck-selected::before {
+		content: '' !important;
+		position: absolute !important;
+		top: 0px !important; /* This will get overriden if the toolbar is showing */
+		left: 0px !important;
+		height: 4px !important; /* Height of the top background */
+		max-width: 100% !important;
+		width: var(--bar-pcent) !important; /* Ensure full width or customizable width */
+		background-color: var(--bar-colour) !important; /* Solid color for the bar */
+		filter: drop-shadow(0px 0px 10px black) !important;
+		border-radius: 0 2px 2px 0 !important;
+		@media (-moz-bool-pref: 'uc.loadbar.no-rounded-corner') {
+			border-radius: 0 !important; /* Adjust this value to control the roundness of the ends */
+		}
+		z-index: 1 !important;
+		/* Apply smooth transition on width, top and background */
+		transition: width 0.5s ease-in-out, top 0.1s ease-in-out, background 0.2s ease !important;
+	}
+
+	/* When the toolbar is permanently showing, we move the loading bar under it */
+	@media not (-moz-bool-pref: 'zen.view.compact.hide-toolbar') and not (-moz-bool-pref: 'zen.view.use-single-toolbar') {
+		.browserSidebarContainer.deck-selected::before {
+			top: 40px !important;
+		}
+	}
+
+	.browserSidebarContainer.deck-selected:has([zen-glance-selected])::before,
+	.browserSidebarContainer.deck-selected.zen-glance-overlay::before {
+		max-width: calc(85%) !important;
+		left: calc(15% / 2) !important;
+		border-radius: 6px !important;
+	}
+
+	.browserSidebarContainer.deck-selected.zen-glance-background::before {
+		background: transparent !important;
+		height: 0px !important;
+	}
+
+	:root {
+		&:has(.tabbrowser-tab[selected][busy]) {
+			--bar-colour: var(--zen-primary-color);
+			--bar-pcent: 15%;
+		}
+		&:has(.tabbrowser-tab[selected][busy][pendingicon]) {
+			--bar-colour: var(--zen-primary-color);
+			--bar-pcent: 45%;
+		}
+		&:has(.tabbrowser-tab[selected][busy][pendingicon][progress]) {
+			--bar-colour: var(--zen-primary-color);
+			--bar-pcent: 85%;
+		}
+		&:has(.tabbrowser-tab[selected][busy][progress]) {
+			--bar-colour: var(--zen-primary-color);
+			--bar-pcent: 95%;
+		}
+		&:has(.tabbrowser-tab[selected][muted]:not([busy])) {
+			--bar-colour: orangered;
+			--bar-pcent: 100%;
+
+			.browserSidebarContainer.deck-selected::before {
+				border-radius: 0;
+			}
+		}
+	}
+
+	@media (-moz-bool-pref: 'zen.view.compact.hide-toolbar') {
+		:root:not([zen-single-toolbar='true']):has([zen-compact-mode='true']) {
+			&:has(#zen-appcontent-navbar-wrapper[zen-has-hover]),
+			&:has(#zen-appcontent-navbar-wrapper[zen-user-show]),
+			&:has(#zen-appcontent-navbar-wrapper[has-popup-menu]),
+			&:has(
+					*:is(
+							#zen-appcontent-navbar-wrapper[panelopen='true'],
+							#zen-appcontent-navbar-wrapper[open='true'],
+							#urlbar:focus-within:not(#urlbar[zen-floating-urlbar='true']),
+							#zen-appcontent-navbar-wrapper[breakout-extend='true']
+						)
+						:not(.zen-compact-mode-ignore)
+				) {
+				.browserSidebarContainer.deck-selected::before {
+					top: 39px !important;
+				}
+			}
+		}
+	}
 }
