@@ -72,6 +72,8 @@
 				opacity: 1 !important;
 				transition: bottom 1s ease, opacity 1s ease, border-radius 1s ease, height 1s ease, width 1s ease !important;
 
+				font-size: 14px !important; /* Add this line */
+
 				& .findbar-container {
 					display: none !important;
 					position: relative !important;
@@ -95,12 +97,11 @@
 
 					& .findbar-textbox {
 						flex-grow: 1 !important;
-						/* Allows it to take all available space */
 						width: auto !important;
 						max-width: 100% !important;
 						min-width: 0 !important;
-						/* Ensures it doesn't overflow */
 						margin-right: 10px !important;
+						font-size: 14px !important; /* Add this line */
 					}
 
 					& .findbar-find-previous {
@@ -181,6 +182,8 @@
 
 				transition: bottom 0.5s ease, opacity 0.5s ease, border-radius 0.5s ease, height 0.5s ease, width 0.5s ease !important;
 
+				font-size: 14px !important; /* Add this line */
+
 				& .findbar-container {
 					display: flex !important;
 					opacity: 1 !important;
@@ -204,12 +207,11 @@
 
 					& .findbar-textbox {
 						flex-grow: 1 !important;
-						/* Allows it to take all available space */
 						width: auto !important;
 						max-width: 100% !important;
 						min-width: 0 !important;
-						/* Ensures it doesn't overflow */
 						margin-right: 10px !important;
+						font-size: 14px !important; /* Add this line */
 					}
 
 					& .findbar-find-previous {

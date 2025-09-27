@@ -3,21 +3,38 @@
 		#main-window #urlbar[breakout-extend='true'] .urlbar-background {
 			outline: none !important;
 			box-shadow:
+				/* Layer 2: The Inner Light Glow (TOP) */
+				inset 0 0 0 var(--url-bar-in-border_width, 1px) var(--url-bar-in-border_opacity, 0.2),
+				/* Layer 1: The Outer Dark Frame (MIDDLE) */
+				0 0 0 var(--url-bar-out-border_width, 0.5px) var(--url-bar-out-border_opacity, 1),
+				/* Layer 0: The Drop Shadow for Depth (BOTTOM) */
+				8px 5px 125px 0 rgba(0, 0, 0, 0.5),
+				0px 30px 50px #00000069 !important;
 
-      /* Layer 2: The Inner Light Glow (TOP) */ inset 0 0 0 var(--url-bar-in-border_width, 1px)
-					var(--url-bar-in-border_opacity, 0.2),
-				/* Layer 1: The Outer Dark Frame (MIDDLE) */ 0 0 0 var(--url-bar-out-border_width, 0.5px)
-					var(--url-bar-out-border_opacity, 1),
-				/* Layer 0: The Drop Shadow for Depth (BOTTOM) */ 8px 5px 125px 0 rgba(0, 0, 0, 0.5), 0px 30px 50px #00000069 !important;
+			@media (-moz-pref('nug.url.border.glow.gradient', 1)) {
+				box-shadow:
+					/* Matching tab glow pattern */
+					0 0 4px var(--nug-Glow-Color-3),
+					/* Layer 2: The Inner Light Glow (TOP) */
+					inset 0 0 0 var(--url-bar-in-border_width, 1px) var(--url-bar-in-border_opacity, 0.2),
+					/* Layer 1: The Outer Dark Frame (MIDDLE) */
+					0 0 0 var(--url-bar-out-border_width, 0.5px) var(--url-bar-out-border_opacity, 1),
+					/* Layer 0: The Drop Shadow for Depth (BOTTOM) */
+					8px 5px 125px 0 rgba(0, 0, 0, 0.5),
+					0px 30px 50px #00000069 !important;
+			}
 		}
 	}
 
 	/* Acrylic/Mica floating Urlbar */
 	#main-window #urlbar[breakout-extend='true'] .urlbar-background {
-		background: var(--url-bar-filter_bg) !important;
-		backdrop-filter: blur(var(--url-bar-filter_blur)) brightness(1) saturate(1.1) contrast(1.1) !important;
-
+		background: var(--nug-Blur-Color) !important;
+		backdrop-filter: var(--nug-Blur-Simple) !important;
 		border-radius: var(--url-bar-border_radius, 1.7rem) !important;
+
+		/* Match findbar glow exactly */
+		box-shadow: 0px 0px 12px var(--nug-Glow-Color-3) !important;
+		border: 1px solid var(--nug-Glow-Color-1) !important;
 	}
 
 	.urlbarView-row[has-action]:is([type='switchtab'], [type='remotetab'], [type='clipboard']) {
@@ -744,16 +761,17 @@
 				}
 			}
 
-			#urlbar-background {
-				background: rgba(105, 100, 110, 0.000000000000000000000000023) !important; /* Transparency fine-tuned */
+		#urlbar-background {
+			background: var(--nug-Blur-Color) !important;
+			backdrop-filter: var(--nug-Blur-Simple) !important;
+			padding: 0.5em 0em !important;
+			border-radius: 18px !important;
 
-				box-shadow: 8px 5px 125px 0 rgba(0, 0, 0, 0.5), 0px 30px 50px #00000069 !important;
-				backdrop-filter: blur(5rem) saturate(190%) contrast(95%) brightness(69%) !important;
+			/* Match findbar glow exactly */
+			box-shadow: 0px 0px 12px var(--nug-Glow-Color-3) !important;
+			border: 1px solid var(--nug-Glow-Color-1) !important;
 
-				padding: 0.5em 0em !important;
-				border-radius: 18px !important;
-
-				transition: backdrop-filter 0.5s ease, background 0.5s ease;
+				transition: backdrop-filter 0.5s ease, background 0.5s ease, box-shadow 0.3s ease;
 				border: 0px solid light-dark(rgba(255, 255, 255, 0.9), rgba(235, 235, 235, 0.25)) !important;
 			}
 		}
@@ -958,7 +976,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 0) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 0) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -968,7 +986,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 1) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 1) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -978,7 +996,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 2) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 2) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -988,7 +1006,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 3) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 3) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -998,7 +1016,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 4) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 4) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -1008,7 +1026,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 5) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 5) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -1018,7 +1036,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 6) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 6) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -1028,7 +1046,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 7) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 7) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -1038,7 +1056,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 8) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 8) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -1048,7 +1066,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 9) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 9) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
@@ -1058,7 +1076,7 @@
 
 						.urlbarView-type-icon {
 							animation-delay: calc(
-								(var(--animation-delay) * 10) + var(--animation-delay-offset) + var(--animation-duration)
+								(var(--animation-delay) * 10) + var(--animation-delay-offset) + var(--animation-duration
 							);
 						}
 					}
