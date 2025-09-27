@@ -1,0 +1,171 @@
+.zen-current-workspace-indicator::before {
+	width: var(--zen-indicator-bg-width) !important;
+	height: var(--zen-indicator-bg-height) !important;
+	background: transparent !important;
+	opacity: 0 !important;
+	transition: none !important;
+}
+
+.tab-label-container {
+	overflow: hidden;
+
+	#tabbrowser-tabs:not([secondarytext-unsupported], [orient='vertical']) & {
+		height: 2.7em;
+	}
+
+	&[pinned] {
+		width: 0;
+	}
+
+	&[textoverflow] {
+		&[labeldirection='ltr'],
+		&:not([labeldirection]):-moz-locale-dir(ltr),
+		&[labeldirection='rtl'],
+		&:not([labeldirection]):-moz-locale-dir(rtl) {
+			mask-image: none !important; /* Remove fade gradient */
+			text-overflow: ellipsis; /* Show ellipsis instead of fade */
+		}
+	}
+}
+
+:root {
+	/* --- Base Icon Appearance & Dock Effect Tuning --- */
+	--zen-dock-icon-base-width: 40px; /* Default width of icons */
+	--zen-dock-icon-base-height: 40px; /* Default height of icons */
+	--zen-dock-icon-margin: 0 3px; /* Horizontal margin between icons */
+	--zen-dock-icon-border-radius: 12px; /* Corner rounding for icons */
+	--zen-dock-inactive-icon-mode: 'dot'; /* or 'dot' */
+	/* --- Initial Icon State (Inactive & Non-Hovered) --- */
+	--zen-dock-icon-initial-opacity: 0.65; /* Slightly lower opacity for less emphasis */
+	--zen-dock-icon-initial-grayscale: 100%; /* Full grayscale for inactive icons */
+	--zen-dock-icon-active-opacity: 0.85; /* Opacity for the active (but not hovered) workspace */
+	--zen-dock-icon-active-grayscale: 20%; /* Slight grayscale for active (but not hovered) */
+
+	/* --- Inactive Indicator Dot --- */
+	--zen-dock-inactive-dot-size: 8px;
+	--zen-dock-inactive-dot-color: var(--toolbox-textcolor); /* Light grey dot, adjust as needed */
+	--zen-dock-inactive-dot-hover-color: var(--toolbox-textcolor);
+
+	/* --- Animation Transitions (Speed & Easing) --- */
+	--zen-dock-transition-duration: 0.1s;
+	--zen-dock-transition-easing-transform: cubic-bezier(0.215, 0.61, 0.355, 1);
+	--zen-dock-transition-easing-opacity: ease-out;
+	--zen-dock-transition-easing-filter: ease-out;
+
+	/* --- (Optional) Dock Container --- */
+	--zen-dock-container-padding: 5px 0;
+	/* --zen-dock-container-background: rgba(0,0,0,0.05); */ /* For debugging container area */
+}
+
+/* --- Icon Reveal on Hover for Inactive Buttons --- */
+#zen-workspaces-button .subviewbutton:not([active='true']):hover .zen-workspace-icon {
+	visibility: visible;
+	opacity: 1;
+	transform: scale(1); /* Icon appears at its normal defined size or slightly larger */
+	transition-delay: 0s !important; /* Ensure icon shows immediately on hover */
+}
+
+#zen-workspaces-button .subviewbutton:not([active='true']):hover::before {
+	/* Hide the grey dot when hovering over an inactive button */
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0.5); /* Optional shrink effect */
+	background-color: var(--zen-dock-inactive-dot-hover-color); /* Optional color change on hover */
+}
+
+/* --- Ensure active workspace icons are always visible and no dot --- */
+#zen-workspaces-button .subviewbutton[active='true'] .zen-workspace-icon {
+	visibility: visible !important;
+	margin-top: 0px !important;
+	opacity: 1 !important; /* Or use var(--zen-dock-icon-active-opacity) if you want JS to fully control hover */
+	transform: scale(1) !important; /* Reset any scaling from inactive state */
+}
+
+#zen-workspaces-button .subviewbutton[active='true']::before {
+	/* No dot for active buttons */
+	opacity: 0 !important;
+	transform: translate(-50%, -50%) scale(0) !important;
+}
+
+#zen-workspaces-button {
+	max-height: min-content;
+	margin-top: 0px !important;
+	margin-bottom: -2px !important;
+	margin-left: 4px !important;
+}
+
+tab-group[split-view-group] .tab-group-container {
+	margin-left: -1px !important;
+	width: 100% !important;
+	border-radius: 12px !important;
+}
+
+tab-group[split-view-group] {
+	display: flex;
+	flex-wrap: nowrap;
+	border-radius: 12px !important;
+	padding: 0 2px;
+	margin-inline: var(--tab-block-margin);
+	margin-block: var(--tab-block-margin);
+	min-height: var(--tab-min-height);
+	outline: var(--tab-outline);
+	outline-offset: var(--tab-outline-offset);
+	outline-color: var(--tab-selected-outline-color);
+	transition: scale 0.1s ease;
+	align-items: center;
+	--zen-split-view-active-tab-bg: color-mix(in srgb, var(--zen-toolbar-element-bg), transparent 40%);
+
+	:root:not([zen-sidebar-expanded='true']) & {
+		padding: 0 2px;
+		--tab-min-height: 30px;
+		--tab-collapsed-width: 38px;
+		margin: 0 auto;
+		--tab-min-width: 34px;
+	}
+
+	& > .tabbrowser-tab {
+		--tab-selected-bgcolor: var(--zen-split-view-active-tab-bg);
+		--tab-hover-background-color: transparent;
+		--tab-selected-shadow: none;
+		--border-radius-medium: var(--tab-border-radius);
+		--zen-active-tab-scale: 1;
+
+		:root[zen-sidebar-expanded='true'] & {
+			--tab-min-height: 28px;
+		}
+
+		container-type: inline-size;
+		container-name: browser-tab;
+
+		flex: 1 !important;
+		padding-inline: 2px !important;
+		overflow: clip;
+
+		&:not(:last-child)::after {
+			content: '';
+			width: 1px;
+			height: 16px;
+			background-color: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		:root:not([zen-sidebar-expanded='true']) &:not(:last-child)::after {
+			width: 16px;
+			height: 1px;
+			top: auto;
+			bottom: 0;
+			right: 50%;
+			transform: translateX(50%);
+		}
+
+		& .tab-content {
+			min-width: 62px !important;
+			margin-left: -6px !important;
+			:root[zen-sidebar-expanded='true'] & {
+				justify-content: unset !important;
+			}
+		}
+	}
+}
