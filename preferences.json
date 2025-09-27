@@ -59,6 +59,33 @@
 		]
 	},
 	{
+		"type": "checkbox",
+		"property": "nug.tab.explode",
+		"defaultValue": true,
+		"restart": true,
+		"label": "Tab closing poping animation"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug.cover.art.js",
+		"defaultValue": true,
+		"restart": true,
+		"label": "Media player cover art script"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug.workspace.wave.effect",
+		"defaultValue": true,
+		"restart": true,
+		"label": "Workspace icon animation script"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug.wswitch.animation",
+		"defaultValue": false,
+		"label": "increase easing of workspace switching aniamtion might"
+	},
+	{
 		"type": "separator",
 		"label": "Tabs"
 	},

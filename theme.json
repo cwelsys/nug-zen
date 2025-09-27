@@ -1,8 +1,9 @@
 {
 	"id": "Nug",
+	"js": true,
 	"homepage": "https://github.com/cwelsys/nug-zen",
 	"author": "cwelsys",
-	"name": "Nug",
+	"name": "nug-zen",
 	"description": "userChrome and more",
 	"version": "4.6.9",
 	"createdAt": "2025-07-04",
