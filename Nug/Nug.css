@@ -157,6 +157,4 @@ browser {
 
 	/* Background */
 	--nug-Background-Color: light-dark(rgba(215, 215, 215, 1), rgba(30, 30, 30, 1));
-
-	--nug-Bottom-Height: 220px;
 }
