@@ -7,7 +7,7 @@
 		"type": "dropdown",
 		"property": "nug-font",
 		"label": "Font family",
-		"defaultValue": "sans-serif",
+		"defaultValue": "sans",
 		"options": [
 			{
 				"label": "sans",
