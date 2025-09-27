@@ -22,10 +22,6 @@
 		fill: var(--nug-icon-color) !important;
 	}
 
-	/* #identity-box[pageproxystate='valid'].chromeUI #identity-icon {
-		list-style-image: url('fox.svg') !important;
-	} */
-
 	#unified-extensions-button {
 		list-style-image: url('https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/icons/sidebars.svg') !important;
 		overflow: hidden !important;
