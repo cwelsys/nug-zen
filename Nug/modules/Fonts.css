@@ -36,40 +36,40 @@
 
 @font-face {
 	font-family: 'SF-Pro';
-	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/SF-Pro.ttf');
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/Fonts/SF-Pro.ttf');
 	font-weight: var(--nug-font_weight) !important;
 }
 
 @font-face {
 	font-family: 'SF-Symbols';
-	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/SF-Symbols.ttf');
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/Fonts/SF-Symbols.ttf');
 	font-weight: var(--nug-font_weight) !important;
 }
 
 @font-face {
 	font-family: 'Nunito';
-	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/Nunito-VariableFont_wght.ttf');
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/Fonts/Nunito-VariableFont_wght.ttf');
 	font-weight: var(--nug-font_weight) !important;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Suse';
-	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/SUSE-VariableFont_wght.ttf');
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/Fonts/SUSE-VariableFont_wght.ttf');
 	font-weight: var(--nug-font_weight) !important;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/Roboto-VariableFont_wdth,wght.ttf');
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/Fonts/Roboto-VariableFont_wdth,wght.ttf');
 	font-weight: var(--nug-font_weight) !important;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Bricolage';
-	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/arcline/Fonts/BricolageGrotesque-Regular.ttf');
+	src: url('https://github.com/cwelsys/nug-zen/raw/refs/heads/main/Fonts/BricolageGrotesque-Regular.ttf');
 	font-weight: var(--nug-font_weight) !important;
 	font-style: normal;
 }

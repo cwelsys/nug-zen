@@ -40,12 +40,6 @@
 		}
 	}
 
-	@media not (-moz-pref('nug.pinned.extensions', 1)) {
-		#tabbrowser-tabs {
-			min-height: calc(100% + 4px) !important;
-		}
-	}
-
 	.tab-text {
 		width: 98% !important;
 		overflow: hidden;
