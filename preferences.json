@@ -293,57 +293,5 @@
 				"value": "Bricolage"
 			}
 		]
-	},
-	{
-		"property": "nug.font_weight",
-		"label": "global font weight",
-		"type": "string",
-		"defaultValue": "400",
-		"placeholder": "400"
-	},
-	{
-		"property": "tab.font_size",
-		"label": "  tab text font size",
-		"type": "string",
-		"defaultValue": "13.7px",
-		"placeholder": "13.7px"
-	},
-	{
-		"type": "separator"
-	},
-	{
-		"property": "tab.font_weight",
-		"label": "tab text font weight",
-		"type": "string",
-		"defaultValue": "500",
-		"placeholder": "500"
-	},
-	{
-		"property": "ws.font_size",
-		"label": " workspace text font size",
-		"type": "string",
-		"defaultValue": "13.9px",
-		"placeholder": "13.9px"
-	},
-	{
-		"property": "ws.font_weight",
-		"label": "workspace name text font weight",
-		"type": "string",
-		"defaultValue": "550",
-		"placeholder": "550"
-	},
-	{
-		"property": "url.font_size",
-		"label": " url bar (in the side bar) text font size",
-		"type": "string",
-		"defaultValue": "13px",
-		"placeholder": "13px"
-	},
-	{
-		"property": "url.font_weight",
-		"label": "url bar (in the side bar) font weight",
-		"type": "string",
-		"defaultValue": "510",
-		"placeholder": "510"
 	}
 ]

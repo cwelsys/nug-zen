@@ -1,9 +1,9 @@
 {
 	"id": "Nug",
-	"js": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/Nug/JS/nug.uc.js",
+	"js": "true",
 	"homepage": "https://github.com/cwelsys/nug-zen",
 	"author": "cwelsys",
-	"name": "nug-zen",
+	"name": "Nug",
 	"description": "userChrome and more",
 	"version": "4.6.9",
 	"createdAt": "2025-07-04",
