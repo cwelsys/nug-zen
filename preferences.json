@@ -5,21 +5,23 @@
 	},
 	{
 		"type": "dropdown",
+		"value": "number",
 		"property": "nug-font",
 		"label": "Font family",
-		"defaultValue": "sans",
+		"default": 0,
+		"placeholder": false,
 		"options": [
 			{
-				"label": "sans",
-				"value": "sans-serif"
+				"label": "Sans Serif",
+				"value": 0
 			},
 			{
-				"label": "serif",
-				"value": "serif"
+				"label": "Serif",
+				"value": 1
 			},
 			{
-				"label": "mono",
-				"value": "monospace"
+				"label": "Monospace",
+				"value": 2
 			}
 		]
 	},
@@ -77,21 +79,21 @@
 		"property": "nug.tab.explode",
 		"defaultValue": true,
 		"restart": true,
-		"label": "Tab closing poping animation"
+		"label": "Tab closing pop effect"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug.cover.art.js",
 		"defaultValue": true,
 		"restart": true,
-		"label": "Media player cover art script"
+		"label": "Media player cover art fetcher"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug.workspace.wave.effect",
 		"defaultValue": true,
 		"restart": true,
-		"label": "Workspace icon animation script"
+		"label": "Workspace icon animation"
 	},
 	{
 		"property": "nug.media.player",
@@ -133,30 +135,6 @@
 	{
 		"property": "nug.url.bar.animation",
 		"label": "Opening animation",
-		"type": "dropdown",
-		"placeholder": false,
-		"value": "number",
-		"default": 1,
-		"options": [
-			{ "value": 0, "label": "Disabled" },
-			{ "value": 1, "label": "Enabled" }
-		]
-	},
-	{
-		"property": "nug.url.bar.border",
-		"label": "Border",
-		"type": "dropdown",
-		"placeholder": false,
-		"value": "number",
-		"default": 1,
-		"options": [
-			{ "value": 0, "label": "Disabled" },
-			{ "value": 1, "label": "Enabled" }
-		]
-	},
-	{
-		"property": "nug.url.border.glow.gradient",
-		"label": "Enable URL bar border glow effect",
 		"type": "dropdown",
 		"placeholder": false,
 		"value": "number",
