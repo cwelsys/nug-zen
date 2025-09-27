@@ -80,12 +80,6 @@
 		"label": "Workspace icon animation script"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug.wswitch.animation",
-		"defaultValue": false,
-		"label": "increase easing of workspace switching aniamtion might"
-	},
-	{
 		"type": "separator",
 		"label": "URL Bar"
 	},
