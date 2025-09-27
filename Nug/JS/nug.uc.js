@@ -1,3 +1,16 @@
+// This file combines all the provided userChrome.js scripts into a single file for easier management.
+// The logic of each script has been preserved without modification as requested.
+// MODIFICATION: Replaced all instances of '.vertical-pinned-tabs-container-separator' with '.pinned-tabs-container-separator'.
+
+// ====================================================================================================
+// SCRIPT 1: Dynamic URLBar Background Height
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name          Dynamic URLBar Background Height
+// @description   Adjusts the height of #browser::before to match .urlbarView height.
+// ==/UserScript==
+// (Note: The above header is for userscript managers, may not be needed for autoconfig)
 if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 	;(function () {
 		// Only run in the main browser window
@@ -18,27 +31,44 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 		let resizeObserver = null
 		let mutationObserver = null
 
+		// --- Function to find the Urlbar View ---
+		// Needs to be robust as it might not be a direct child
 		function findUrlbarViewElement() {
 			if (!urlbarElement) return null
+			// First, try direct descendant of urlbar (most common)
 			let view = urlbarElement.querySelector(`:scope > ${URLBAR_VIEW_SELECTOR}`)
 			if (view) return view
+			// Fallback: search within the broader browser element (less specific)
 			if (browserElement) {
 				view = browserElement.querySelector(URLBAR_VIEW_SELECTOR)
 				if (view) return view
 			}
+			// Fallback: Search the whole document (least ideal)
 			view = document.querySelector(URLBAR_VIEW_SELECTOR)
+
+			// You might need to inspect the DOM in your specific FF version/theme
+			// if .urlbarView isn't the right container. .urlbarView-body-outer or
+			// .urlbarView-results might be needed in some cases.
+			// console.log("Searching for urlbar view, found:", view);
 			return view
 		}
 
+		// --- Function to measure and update the CSS variable ---
 		function updateHeightVariable() {
 			if (!browserElement) return
+
+			// Check if urlbar is open and view element exists
 			if (urlbarElement && urlbarElement.hasAttribute('open') && urlbarViewElement) {
 				try {
+					// getBoundingClientRect().height is often more accurate than offsetHeight
 					const height = urlbarViewElement.getBoundingClientRect().height
 
 					if (height > 0) {
+						// console.log(`Updating ${HEIGHT_VARIABLE_NAME} to: ${height}px`);
 						browserElement.style.setProperty(HEIGHT_VARIABLE_NAME, `${height}px`)
 					} else {
+						// If height is 0 (maybe transitioning out), remove the variable
+						// console.log("Urlbar view height is 0, removing variable.");
 						browserElement.style.removeProperty(HEIGHT_VARIABLE_NAME)
 					}
 				} catch (e) {
@@ -46,17 +76,25 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 					browserElement.style.removeProperty(HEIGHT_VARIABLE_NAME) // Reset on error
 				}
 			} else {
+				// Urlbar is closed or view not found, remove the variable
+				// console.log("Urlbar closed or view not found, removing variable.");
 				browserElement.style.removeProperty(HEIGHT_VARIABLE_NAME)
 			}
 		}
 
+		// --- Initialize ResizeObserver ---
+		// This watches the results view itself for size changes while it's open
 		function setupResizeObserver() {
 			if (resizeObserver) return // Already setup
 
 			resizeObserver = new ResizeObserver((entries) => {
+				// Only update if the urlbar is still open; debounce might be needed
+				// if updates are too frequent, but usually fine.
 				if (urlbarElement && urlbarElement.hasAttribute('open')) {
-					window.requestAnimationFrame(updateHeightVariable)
+					// console.log("ResizeObserver detected change on .urlbarView");
+					window.requestAnimationFrame(updateHeightVariable) // Update smoothly
 				} else {
+					// Stop observing if urlbar closed unexpectedly between resize and callback
 					console.log('ResizeObserver detected change, but urlbar closed. Stopping observation.')
 					if (urlbarViewElement) {
 						try {
@@ -68,6 +106,8 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 			console.log('ResizeObserver initialized.')
 		}
 
+		// --- Initialize MutationObserver ---
+		// This watches the #urlbar for the 'open' attribute
 		function setupMutationObserver() {
 			if (!urlbarElement || mutationObserver) return // Need urlbar, or already setup
 
@@ -85,6 +125,7 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 				if (urlbarElement.hasAttribute('open')) {
 					// --- URL Bar Opened ---
 					console.log('MutationObserver: URL Bar Opened')
+					// Try to find the view element *now*
 					urlbarViewElement = findUrlbarViewElement()
 
 					if (urlbarViewElement) {
@@ -180,6 +221,17 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 	})()
 }
 
+// ====================================================================================================
+// SCRIPT 2: Global URL Bar Scroller (FINAL VERSION 1.0.0) - Customizable via about:config
+//  - STRINGS in about:config - NO FALLBACK VALUES
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name          nug Global URL Bar Scroller
+// @description   Makes normal URL bar results scrollable. Customizable via about:config (Strings). NO FALLBACK VALUES - nug Theme
+// ==/UserScript==
+// nug_urlbar_global_scroll_final.js (Standalone, Polite Version) - about:config customization - nug Theme
+
 ;(function () {
 	if (location.href !== 'chrome://browser/content/browser.xhtml') {
 		return
@@ -212,6 +264,8 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 		clearTimeout(updateTimeout)
 
 		updateTimeout = setTimeout(() => {
+			// --- ZEN COMMAND PALETTE COMPATIBILITY CHECK ---
+			// This is the crucial logic from your original script.
 			const isCommandModeActive = window.ZenCommandPalette?.provider?._isInPrefixMode ?? false
 			if (isCommandModeActive) {
 				// If the command palette is active, our script must do nothing and clean up its styles.
@@ -368,7 +422,20 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 	}
 })()
 
+// ====================================================================================================
+// SCRIPT 3: Tab Explode Animation
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name           Tab Explode Animation
+// @version        1.0
+// @author         Your Name
+// @description    Adds a bubble explosion animation when a tab or tab group is closed.
+// @compatibility  Firefox 100+
+// ==/UserScript==
 if (Services.prefs.getBoolPref('nug.tab.explode')) {
+	// Run script
+
 	;(() => {
 		console.log('Tab Explode Animation: Script execution started.')
 
@@ -583,6 +650,17 @@ if (Services.prefs.getBoolPref('nug.tab.explode')) {
 		}
 	})()
 }
+
+// ====================================================================================================
+// SCRIPT 4: Fetching Search Engines Color
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name           store color of search engine
+// @namespace      colorofsearchengines
+// @description    helps in providing color of search engine favicon
+// @version        1.7b
+// ==/UserScript==
 
 ;(function () {
 	'use strict'
@@ -809,6 +887,17 @@ if (Services.prefs.getBoolPref('nug.tab.explode')) {
 	requestIdleCallback(() => window.NugSearchColor.init())
 })()
 
+// ====================================================================================================
+// SCRIPT 5: Zen Media Cover Art Provider
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name           zen-media-coverart-enhanced-bg-wrapper-hoverfix
+// @namespace      zenMediaCoverArtEnhancedBgWrapperHoverFix
+// @description    Set Zen media coverart via wrapper (v1.7b - Adjusts opacity on hover for consistent brightness). Affects background ONLY.
+// @version        1.7b
+// ==/UserScript==
+
 if (Services.prefs.getBoolPref('nug.cover.art.js')) {
 	const ZenCoverArtCSSProvider = {
 		lastArtworkUrl: null,
@@ -894,7 +983,16 @@ if (Services.prefs.getBoolPref('nug.cover.art.js')) {
 
 	ZenCoverArtCSSProvider.init()
 }
-
+// ====================================================================================================
+// SCRIPT 6: Zen Workspace Button Wave Animation
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name          zen-workspace-button-wave-animation
+// @namespace      zenWorkspaceButtonAnimation
+// @description    helps in adding mac os dock like aniamtion to zen worspace buttons
+// @version        1.7b
+// ==/UserScript==
 if (Services.prefs.getBoolPref('nug.workspace.wave.effect')) {
 	;(function () {
 		if (window.ZenBrowserCustomizableDockEffect) {
@@ -963,6 +1061,7 @@ if (Services.prefs.getBoolPref('nug.workspace.wave.effect')) {
 		let lastMouseXInDock = 0
 
 		// --- NEW: Function to get the current inactive icon mode ---
+		// This is where you'd integrate reading from `about:config` or similar browser settings
 		function getCurrentInactiveIconMode() {
 			// Example: Placeholder for reading a browser preference
 			// if (typeof browser !== 'undefined' && browser.prefs && browser.prefs.get) {
@@ -1110,6 +1209,7 @@ if (Services.prefs.getBoolPref('nug.workspace.wave.effect')) {
 				return
 			}
 
+			// --- MODIFIED to use getInitialButtonProperties ---
 			const { initialOpacity: currentInitialOpacity, initialGrayscale: currentInitialGrayscale } =
 				getInitialButtonProperties()
 
@@ -1334,6 +1434,16 @@ if (Services.prefs.getBoolPref('nug.workspace.wave.effect')) {
 	})()
 }
 
+// ====================================================================================================
+// SCRIPT 7: Compact Mode Sidebar Width Fix
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name           CompactmodeSidebarWidthFix
+// @namespace      psuedobgwidthfix
+// @description    it help in adjust dynamic width of psuedo background
+// @version        1.7b
+// ==/UserScript==
 if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 	;(function () {
 		const mainWindow = document.getElementById('main-window')
@@ -1369,6 +1479,17 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 		updateSidebarWidthIfCompact()
 	})()
 }
+
+// ====================================================================================================
+// SCRIPT 8: Gradient Opacity Adjuster
+// ====================================================================================================
+// ==UserScript==
+// @ignorecache
+// @name           GradientOpacitydjuster
+// @namespace      variableopacity
+// @description    it help in adjust dynamically opacity and contrast of icons and other elements
+// @version        1.7b
+// ==/UserScript==
 
 ;(function () {
 	console.log('[UserChromeScript] custom-input-to-dual-css-vars-persistent.uc.js starting...')
