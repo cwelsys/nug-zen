@@ -4,9 +4,9 @@
 	"homepage": "https://github.com/cwelsys/nug-zen",
 	"author": "cwelsys",
 	"name": "Nug",
-	"description": "css, javascript",
-	"version": "6.9.1g-f",
-	"createdAt": "2025-07-04",
+	"description": "userChrome and more",
+	"version": "6.9.4",
+	"createdAt": "2025-03-11",
 	"updatedAt": "2025-09-27",
 	"style": {
 		"chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
