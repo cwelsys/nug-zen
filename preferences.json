@@ -3,7 +3,7 @@
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-font",
-		"label": "Font family",
+		"label": "🔤 Font family",
 		"default": 0,
 		"placeholder": false,
 		"options": [
@@ -24,27 +24,29 @@
 	{
 		"type": "string",
 		"property": "nug-icon-color",
-		"label": "Icon Color",
+		"label": "🎨 Icon Color",
 		"placeholder": "Enter color (e.g., #cba6f7, blue, rgb(203, 166, 247))",
 		"default": "#cba6f7"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-icons-enabled",
-		"label": "Enable custom icons",
-		"defaultValue": true
+		"label": "✨ Enable custom icons",
+		"defaultValue": true,
+		"margin": "12px 0"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-pinned-extensions-mod",
-		"label": "Enable pinned extensions mod",
-		"defaultValue": true
+		"label": "📌 Enable pinning extensions above url bar",
+		"defaultValue": true,
+		"margin": "12px 0"
 	},
 	{
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-glow-gradient",
-		"label": "Hover glow animation.",
+		"label": "🌈 Hover glow animation",
 		"default": 1,
 		"placeholder": false,
 		"options": [
@@ -71,25 +73,20 @@
 		"property": "nug.tab.explode",
 		"defaultValue": true,
 		"restart": true,
-		"label": "Tab closing pop effect"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug.cover.art.js",
-		"defaultValue": true,
-		"restart": true,
-		"label": "Media player cover art fetcher"
+		"label": "💥 Tab closing pop effect",
+		"margin": "12px 0"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug.workspace.wave.effect",
 		"defaultValue": true,
 		"restart": true,
-		"label": "Workspace icon animation"
+		"label": "💫 Workspace icon animation",
+		"margin": "12px 0"
 	},
 	{
 		"property": "nug.media.player",
-		"label": "Media player style",
+		"label": "🎧 Media player style",
 		"type": "dropdown",
 		"placeholder": false,
 		"value": "number",
@@ -102,27 +99,23 @@
 		]
 	},
 	{
-		"property": "zen.urlbar.behavior",
-		"label": "URL bar behavior",
-		"type": "dropdown",
-		"placeholder": false,
-		"defaultValue": "float",
-		"options": [
-			{ "value": "float", "label": "Float (Default)" },
-			{ "value": "floating-on-type", "label": "Floating on Type" }
-		],
-		"force": true
+		"type": "checkbox",
+		"property": "nug.cover.art.js",
+		"defaultValue": true,
+		"restart": true,
+		"label": "🎧 Media player cover art fetcher",
+		"margin": "12px 0"
 	},
 	{
 		"property": "nug.url.bar.placeholder.text",
-		"label": "URL bar placeholder text (requires restart)",
+		"label": "🔍 URL bar placeholder text (requires restart)",
 		"type": "string",
 		"defaultValue": "Search or enter address",
 		"placeholder": "Enter custom URL bar placeholder text"
 	},
 	{
 		"property": "nug.url.bar.animation",
-		"label": "Opening animation",
+		"label": "🔍 URL bar opening animation",
 		"type": "dropdown",
 		"placeholder": false,
 		"value": "number",
@@ -130,6 +123,151 @@
 		"options": [
 			{ "value": 0, "label": "Disabled" },
 			{ "value": 1, "label": "Enabled" }
-		]
+		],
+		"margin": "12px 0"
+	},
+	{
+		"type": "separator",
+		"label": "📝 Context Menu"
+	},
+	{
+		"property": "nug.hidecontext.bookmark",
+		"label": "🔖 Hide 'Bookmark Tab/Link' options",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.mutetab",
+		"label": "🔇 Hide 'Mute Tab' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.closetab",
+		"label": "❌ Hide 'Close Tab' & 'Close Duplicate Tabs'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.duplicatetab",
+		"label": "📑 Hide 'Duplicate Tab'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.reloadtab",
+		"label": "🔄 Hide 'Reload Tab' options",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.pintab",
+		"label": "📌 Hide 'Pin Tab' & 'Add to Essentials' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.newcontainer",
+		"label": "🗂️ Hide 'Open in Container Tab' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.sendtodevice",
+		"label": "📱 Hide 'Send to Device' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.search",
+		"label": "🔍 Hide 'Search Web' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.searchinpriv",
+		"label": "️ Hide 'Search in Private Window'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.translate",
+		"label": "🌐 Hide 'Translate Selection' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.askchatbot",
+		"label": "🤖 Hide 'Ask AI Chatbot' options",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.printselection",
+		"label": "🖨️ Hide 'Print Selection'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.inspect",
+		"label": "🔍 Hide 'View Page Source' & 'Inspect' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.savelink",
+		"label": "💾 Hide 'Save Page/Link As' options",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.screenshot",
+		"label": "📸 Hide 'Take Screenshot'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.selectalltext",
+		"label": "📝 Hide 'Select All Text' option",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.navigation",
+		"label": "🧭 Hide navigation buttons (Back, Forward, Reload, Bookmark)",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.separators",
+		"label": "➖ Hide all separators",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.context.grayscale.extensions",
+		"label": "🎨 Apply Grayscale to extension icons",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
 	}
 ]
