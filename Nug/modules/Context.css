@@ -348,6 +348,41 @@
 		}
 	}
 
+	/* Hide "Move Tab" when preference is enabled */
+	@media -moz-pref('nug.hidecontext.movetab') {
+		#context_moveTabOptions {
+			display: none !important;
+		}
+	}
+
+	/* Hide "Move to Space" when preference is enabled */
+	@media -moz-pref('nug.hidecontext.movetospace') {
+		#context-zen-change-workspace-tab {
+			display: none !important;
+		}
+	}
+
+	/* Hide "Share" when preference is enabled */
+	@media -moz-pref('nug.hidecontext.share') {
+		.share-tab-url-item {
+			display: none !important;
+		}
+	}
+
+	/* Hide "Select All Tabs" when preference is enabled */
+	@media -moz-pref('nug.hidecontext.selectalltabs') {
+		#context_selectAllTabs {
+			display: none !important;
+		}
+	}
+
+	/* Hide "Close Multiple Tabs" when preference is enabled */
+	@media -moz-pref('nug.hidecontext.closemultiple') {
+		#context_closeTabOptions {
+			display: none !important;
+		}
+	}
+
 	/* Sidebar toolbar options */
 	#toggle_toolbar-menubar,
 	#toolbar-context-selectAllTabs,

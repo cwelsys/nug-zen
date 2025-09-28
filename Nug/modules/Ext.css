@@ -44,9 +44,9 @@
 			width: 32px !important;
 			flex-grow: 1 !important;
 			order: -1 !important;
-			background-color: var(--nug-color) !important;
+			background-color: var(--nug-color-bg) !important;
 			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0)) !important;
-			border-radius: calc(var(--nug-Border-Radius) - 0.5px) !important;
+			border-radius: calc(var(--nug-border-radius) - 0.5px) !important;
 			transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
 		}
 
@@ -79,9 +79,9 @@
 
 		> toolbarbutton:not([id='tabs-newtab-button']),
 		> toolbaritem {
-			background-color: var(--nug-color) !important;
+			background-color: var(--nug-color-bg) !important;
 			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.12)) !important;
-			border-radius: calc(var(--nug-Border-Radius) + 1px) !important;
+			border-radius: calc(var(--nug-border-radius) + 1px) !important;
 			margin: 0px !important;
 			order: -1 !important;
 			flex-grow: 1 !important;
@@ -108,7 +108,7 @@
 	/* -------- Hover animation gradient (matching tab style) -------- */
 	.unified-extensions-item {
 		position: relative !important;
-		border-radius: calc(var(--nug-Border-Radius) + 1px) !important;
+		border-radius: calc(var(--nug-border-radius) + 1px) !important;
 	}
 
 	.unified-extensions-item::before {
@@ -125,8 +125,8 @@
 			color-mix(in srgb, var(--zen-primary-color) 15%, black)
 		);
 		background-size: 200% 200%;
-		border-radius: calc(var(--nug-Border-Radius) - 2px) !important;
-		clip-path: inset(0 round calc(var(--nug-Border-Radius) - 2px));
+		border-radius: calc(var(--nug-border-radius) - 2px) !important;
+		clip-path: inset(0 round calc(var(--nug-border-radius) - 2px));
 		animation: tab-hover-gradient 3.5s linear infinite;
 		animation-play-state: paused;
 		opacity: 0;

@@ -131,6 +131,20 @@
 		"label": "📝 Context Menu"
 	},
 	{
+		"property": "widget.macos.native-context-menus",
+		"label": "\u203c\ufe0f Uncheck to override the native macOS context menu.",
+		"type": "checkbox",
+		"defaultValue": "false",
+		"disabledOn": ["windows", "linux"]
+	},
+	{
+		"property": "nug.context.menu.enabled",
+		"label": "🎯 Enable context menu modifications",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "12px 0"
+	},
+	{
 		"property": "nug.hidecontext.bookmark",
 		"label": "🔖 Hide 'Bookmark Tab/Link' options",
 		"type": "checkbox",
@@ -264,8 +278,89 @@
 		"margin": "8px 0"
 	},
 	{
+		"property": "nug.hidecontext.reopenclosedtab",
+		"label": "🔄 Hide 'Reopen Closed Tab'",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.compactmode",
+		"label": "📱 Hide 'Compact mode'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.tabsonright",
+		"label": "➡️ Hide 'Tabs on the right'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.movetab",
+		"label": "🔄 Hide 'Move Tab'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.movetospace",
+		"label": "🚀 Hide 'Move to Space'",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.share",
+		"label": "📤 Hide 'Share'",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.selectalltabs",
+		"label": "☑️ Hide 'Select All Tabs'",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "nug.hidecontext.closemultiple",
+		"label": "❌ Hide 'Close Multiple Tabs'",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
 		"property": "nug.context.grayscale.extensions",
 		"label": "🎨 Apply Grayscale to extension icons",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"type": "separator",
+		"label": "⚙️ Reopen Closed Tabs"
+	},
+	{
+		"property": "extensions.reopen-closed-tabs.shortcut-key",
+		"label": "⌨️ Keyboard shortcut",
+		"type": "string",
+		"defaultValue": "Alt+A",
+		"placeholder": "e.g., Ctrl+Shift+R, Alt+H"
+	},
+	{
+		"property": "extensions.reopen-closed-tabs.show-open-tabs",
+		"label": "👁️ Show currently open tabs in menu",
+		"type": "checkbox",
+		"defaultValue": false,
+		"margin": "8px 0"
+	},
+	{
+		"property": "extensions.reopen-closed-tabs.debug-mode",
+		"label": "🐛 Enable debug mode",
 		"type": "checkbox",
 		"defaultValue": false,
 		"margin": "8px 0"

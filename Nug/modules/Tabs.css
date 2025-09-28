@@ -1,17 +1,28 @@
+:root {
+	--nug-black-1: light-dark(color-mix(in srgb, #ffffff 40%, transparent), color-mix(in srgb, #000000 35%, transparent));
+	--nug-black-2: light-dark(color-mix(in srgb, #ffffff 25%, transparent), color-mix(in srgb, #000000 60%, transparent));
+}
+
 @media not (-moz-pref('nug-theme-tabs-disabled')) {
 	@media not (-moz-pref('nug-theme-tabs-essentials-disabled')) {
 		.zen-essentials-container .tabbrowser-tab {
 			.tab-background {
-				background: var(--nug-Black-1) !important;
-				box-shadow: 0px 0px 3px var(--nug-Shadow-Color-1) !important;
-				border-radius: calc(var(--nug-Border-Radius) + 1px) !important;
+				background: light-dark(
+					color-mix(in srgb, #ffffff 40%, transparent),
+					color-mix(in srgb, #000000 35%, transparent)
+				) !important;
+				box-shadow: 0px 0px 3px light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important;
+				border-radius: calc(var(--nug-border-radius) + 1px) !important;
 				backdrop-filter: blur(10px) !important;
 				transition: background 0.5s ease, box-shadow 0.5s ease, border 0.5s ease !important;
 			}
 
 			&:hover .tab-background {
-				background: var(--nug-Black-2) !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				background: light-dark(
+					color-mix(in srgb, #ffffff 100%, transparent),
+					color-mix(in srgb, #000000 35%, transparent)
+				) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 			}
 
 			&[visuallyselected] .tab-background {
@@ -19,8 +30,8 @@
 
 				&::before {
 					mask-image: none !important;
-					border-radius: var(--nug-Border-Radius) !important;
-					background-color: var(--nug-Black-3) !important;
+					border-radius: var(--nug-border-radius) !important;
+					background-color: var(--nug-black-2) !important;
 					box-shadow: 0px 0px 10px color-mix(in srgb, white 30%, transparent) !important;
 					transition: background 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
 				}
@@ -33,20 +44,23 @@
 	@media not (-moz-pref('nug-theme-tabs-normals-disabled')) {
 		.tabbrowser-tab:not([pinned]):not([zen-essential]) {
 			& .tab-background {
-				border-radius: var(--nug-Border-Radius) !important;
+				border-radius: var(--nug-border-radius) !important;
 				border: 1px solid transparent;
 				transition: background 1.6s ease, box-shadow 0.2s ease, border 0.6s ease;
 			}
 
 			@media not (-moz-pref('nug-theme-tabs-containers-disabled')) {
 				&[selected][usercontextid] .tab-background {
-					background: var(--nug-Black-3) !important;
+					background: light-dark(
+						color-mix(in srgb, #ffffff 25%, transparent),
+						color-mix(in srgb, #000000 60%, transparent)
+					) !important;
 					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
 					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
 				}
 
 				&[selected][usercontextid]:hover .tab-background {
-					background: var(--nug-Black-3) !important;
+					background: var(--nug-black-2) !important;
 					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
 					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
 				}
@@ -54,25 +68,25 @@
 
 			&[selected]:hover .tab-background,
 			:not([selected]):hover .tab-background {
-				background: var(--nug-Color-Dark) !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				background: color-mix(in srgb, var(--zen-primary-color) 10%, #000000c0) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 90%, transparent) !important;
 			}
 
 			&[selected='true'] .tab-background {
-				background: var(--nug-Black-3) !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				background: var(--nug-black-2) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 			}
 
 			&[multiselected='true'] .tab-background {
-				background: var(--nug-Black-3) !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				background: var(--nug-black-2) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 			}
 
 			&:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background {
-				background: var(--nug-Black-1) !important;
+				background: var(--nug-black-1) !important;
 				box-shadow: 0px 0px 3px #e61c56 !important;
 				border: 1px solid #e61c56 !important;
 			}
@@ -84,22 +98,22 @@
 	@media not (-moz-pref('nug-theme-tabs-pinned-disabled')) {
 		.tabbrowser-tab[pinned]:not([zen-essential]) {
 			& .tab-background {
-				border-radius: var(--nug-Border-Radius) !important;
+				border-radius: var(--nug-border-radius) !important;
 				border: 1px solid transparent;
-				box-shadow: 0px 0px 3px var(--nug-Shadow-Color-1) !important;
-				background: var(--nug-Black-1) !important;
+				box-shadow: 0px 0px 3px light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important;
+				background: var(--nug-black-1) !important;
 				transition: background 1.6s ease, box-shadow 0.2s ease, border 0.6s ease;
 			}
 
 			@media not (-moz-bool-pref: 'nug-theme-tabs-containers-disabled') {
 				&[selected][usercontextid] .tab-background {
-					background: var(--nug-Black-3) !important;
+					background: var(--nug-black-2) !important;
 					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
 					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
 				}
 
 				&[selected][usercontextid]:hover .tab-background {
-					background: var(--nug-Black-3) !important;
+					background: var(--nug-black-2) !important;
 					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
 					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
 				}
@@ -107,25 +121,25 @@
 
 			&[selected]:hover .tab-background,
 			:not([selected]):hover .tab-background {
-				background: var(--nug-Color-Dark) !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				background: color-mix(in srgb, var(--zen-primary-color) 10%, #000000c0) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 90%, transparent) !important;
 			}
 
 			&[selected='true'] .tab-background {
-				background: var(--nug-Black-3) !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				background: var(--nug-black-2) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 			}
 
 			&[multiselected='true'] .tab-background {
-				background: var(--nug-Black-3) !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				background: var(--nug-black-2) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 			}
 
 			&:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background {
-				background: var(--nug-Black-1) !important;
+				background: var(--nug-black-1) !important;
 				box-shadow: 0px 0px 3px #e61c56 !important;
 				border: 1px solid #e61c56 !important;
 			}
@@ -137,9 +151,9 @@
 	@media not (-moz-pref('nug-theme-tabs-newtab-button-disabled')) {
 		:root[zen-sidebar-expanded='true'] {
 			#tabs-newtab-button {
-				background: var(--nug-Black-1) !important;
-				border-radius: var(--nug-Border-Radius) !important;
-				box-shadow: 0px 0px 0px var(--nug-Glow-Color-3) !important;
+				background: var(--nug-black-1) !important;
+				border-radius: var(--nug-border-radius) !important;
+				box-shadow: 0px 0px 0px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 				transition: opacity 0.3s ease, box-shadow 0.3s ease !important;
 				margin: 10px 1px !important;
@@ -165,7 +179,7 @@
 
 			#tabs-newtab-button:hover {
 				opacity: 1 !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 
 				& .toolbarbutton-text::before {
 					margin-left: 8px !important;
@@ -181,9 +195,9 @@
 			#tabs-newtab-button {
 				margin: 10px auto !important;
 				justify-self: center !important;
-				background: var(--nug-Black-1) !important;
-				border-radius: var(--nug-Border-Radius) !important;
-				box-shadow: 0px 0px 0px var(--nug-Glow-Color-3) !important;
+				background: var(--nug-black-1) !important;
+				border-radius: var(--nug-border-radius) !important;
+				box-shadow: 0px 0px 0px var(--nug-glow-color-2) !important;
 				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
 				transition: opacity 0.3s ease, box-shadow 0.3s ease !important;
 				box-sizing: unset !important;
@@ -199,7 +213,7 @@
 
 			#tabs-newtab-button:hover {
 				opacity: 1 !important;
-				box-shadow: 0px 0px 4px var(--nug-Glow-Color-3) !important;
+				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
 
 				& .toolbarbutton-text::before {
 					margin-left: 8px !important;
@@ -420,7 +434,7 @@
 	.tabbrowser-tab[usercontextid]:not([zen-essential]) .tab-background {
 		position: relative !important;
 		justify-content: left !important;
-		border-radius: var(--nug-Border-Radius) !important;
+		border-radius: var(--nug-border-radius) !important;
 	}
 
 	/* Tab gradient color container */
