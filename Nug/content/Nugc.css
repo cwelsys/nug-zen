@@ -1,6 +1,5 @@
 @import 'modules/Preload.css';
 @import 'modules/PDFjs.css';
-@import 'modules/KBsearch.css';
 
 @media (prefers-color-scheme: dark) {
 	/* Common variables affecting all pages */
