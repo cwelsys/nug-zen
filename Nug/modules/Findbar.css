@@ -1,16 +1,61 @@
+:root {
+	--browser-primary-color: var(--zen-primary-color, #8ae3be);
+	--browser-themed-toolbar-bg: var(--zen-themed-toolbar-bg, #333333);
+	--acrylic-bg: light-dark(rgb(250, 250, 250), rgb(24, 24, 27));
+	--acrylic-background: rgba(36, 37, 39, 0.6) !important;
+	--acrylic-backdrop: saturate(2.5) !important;
+	--acrylic-border: 0.5px solid rgba(127, 127, 127, 0.3);
+	--acrylic-shadow: 0 8px 32px color-mix(in srgb, var(--browser-primary-color) 15%, transparent 85%);
+	--acrylic-radius: 8px;
+	--acrylic-glass-bg: color-mix(in srgb, var(--acrylic-bg) 40%, transparent 60%);
+	--acrylic-glass-blur: blur(50px);
+	--acrylic-glass-border: 1.5px solid color-mix(in srgb, var(--browser-primary-color) 20%, transparent 80%);
+}
+
+browser {
+	will-change: transform;
+}
+
+@keyframes glass-disappear {
+	0% {
+		backdrop-filter: blur(10px);
+		opacity: 1;
+	}
+
+	99% {
+		backdrop-filter: blur(10px);
+		opacity: 0.1;
+	}
+
+	100% {
+		backdrop-filter: none;
+		opacity: 0;
+	}
+}
+
 findbar {
+	padding-inline-start: 0px !important;
+	padding-inline-end: 5px !important;
+	padding-top: 1px !important;
+	padding-bottom: 2px !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	box-sizing: border-box;
 	box-shadow: 0px 0px 12px var(--nug-glow-color-2) !important;
 	border: 1px solid var(--nug-glow-color-1) !important;
 	position: fixed;
-	top: 20px;
-	width: min(550px, 90%);
-	right: 20px;
+	top: 35px;
+	right: 15px;
+	width: 500px;
+	max-width: 800px !important;
+	min-width: 300px !important;
 	min-height: 70px;
-	height: auto !important;
+	height: unset !important;
 	flex-wrap: wrap;
-	border-radius: var(--zen-border-radius);
-	background: rgba(0, 0, 0, 0.3) !important;
-	backdrop-filter: blur(10px) !important;
+	border-radius: var(--acrylic-radius) !important;
+	background: var(--acrylic-glass-bg) !important;
+	backdrop-filter: var(--acrylic-backdrop) var(--acrylic-glass-blur);
 	opacity: 1;
 	z-index: 9999;
 }
@@ -20,15 +65,49 @@ findbar {
 	pointer-events: none !important;
 	opacity: 0 !important;
 	top: 0 !important;
+	animation: glass-disappear 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+	animation-fill-mode: forwards !important;
+	filter: blur(5px);
+	transform: translateY(-10px);
 }
 
 .findbar-closebutton {
+	width: 28px !important;
+	height: 28px !important;
+	appearance: none !important;
 	outline: none !important;
-	order: 1;
+	border: none !important;
+	border-radius: 5px !important;
+	transition: all 0.2s ease !important;
+	display: inline-flex !important;
+	justify-content: center !important;
+	align-content: center !important;
+	background-color: transparent !important;
+	-moz-context-properties: fill !important;
+	position: absolute !important;
+	top: 7px !important;
+	right: 0 !important;
+	transition: background-color 0.2s ease !important;
+	z-index: 10 !important;
+
+	label {
+		display: none !important;
+	}
+
+	&:hover {
+		background: var(--tab-hover-background-color) !important;
+		border: none !important;
+	}
+
+	&:active {
+		scale: 0.9 !important;
+	}
 }
 
 .findbar-container {
-	margin-left: 10px !important;
+	display: flex !important;
+	flex-direction: row !important;
+	justify-content: center !important;
 	margin-bottom: 5px !important;
 	flex-wrap: wrap;
 	height: auto !important;
@@ -36,60 +115,113 @@ findbar {
 
 	& > :first-child {
 		width: 100% !important;
-		margin-top: 5px !important;
+		margin-top: 8px !important;
 		padding-bottom: 10px !important;
-		border-bottom: 1px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) !important;
+		position: relative;
+		padding-right: 30px !important;
 
 		&::before {
 			content: '';
-			width: 16px !important;
-			min-width: 16px !important;
-			background-image: url(chrome://global/skin/icons/search-glass.svg) !important;
+			width: 18px !important;
+			min-width: 18px !important;
+			background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23fff" d="M10.5 2c.58 0 1.15.058 1.699.17a1 1 0 1 1-.398 1.96a6.5 6.5 0 1 0 5.069 7.671a1 1 0 1 1 1.96.398a8.5 8.5 0 0 1-1.457 3.303l-.197.26l3.652 3.652a1 1 0 0 1-1.32 1.498l-.094-.084l-3.652-3.652A8.5 8.5 0 1 1 10.5 2M19 1a1 1 0 0 1 .898.56l.048.117l.13.378a3 3 0 0 0 1.684 1.8l.185.07l.378.129a1 1 0 0 1 .118 1.844l-.118.048l-.378.13a3 3 0 0 0-1.8 1.684l-.07.185l-.129.378a1 1 0 0 1-1.844.117l-.048-.117l-.13-.378a3 3 0 0 0-1.684-1.8l-.185-.07l-.378-.129a1 1 0 0 1-.118-1.844l.118-.048l.378-.13a3 3 0 0 0 1.8-1.684l.07-.185l.129-.378A1 1 0 0 1 19 1m0 3.196a5 5 0 0 1-.804.804q.448.355.804.804q.355-.448.804-.804A5 5 0 0 1 19 4.196" /></svg>') !important;
 			background-repeat: no-repeat;
-			margin-top: 4px;
+			margin-top: 6px;
 			margin-right: 15px;
-			margin-left: 5px;
-
-			@media (prefers-color-scheme: dark) {
-				filter: invert();
-			}
+			margin-left: 10px !important;
 		}
 
 		.findbar-textbox {
 			background: none !important;
-			padding: 0 4px 0 6px !important; /* top right bottom left */
-			font-size: 13px !important;
+			padding: 0 !important;
+			font-size: 14px !important;
+			font-weight: 500 !important;
 			box-shadow: none !important;
 			width: 100% !important;
 			border: none !important;
+
+			&:focus {
+				outline: none !important;
+			}
 		}
 
 		toolbarbutton {
-			width: 24px !important;
-			justify-content: space-between !important;
-			padding: 4px !important;
-			margin-left: 4px !important;
+			width: 28px !important;
+			height: 28px !important;
+			justify-content: center !important;
+			align-content: center !important;
+			margin-left: 6px !important;
+			border-radius: 4px !important;
+			font-weight: 600 !important;
+			transition: scale 0.2s ease !important;
+			opacity: 1 !important;
+
+			&[disabled='true'] {
+				opacity: 0 !important;
+			}
+
+			label {
+				display: none !important;
+			}
+
+			&:hover {
+				background: var(--tab-hover-background-color) !important;
+			}
+
+			&:active {
+				scale: 0.9 !important;
+			}
 		}
 	}
 
 	checkbox,
 	label,
 	description {
-		margin-left: 4px !important;
-		margin-right: 6px !important;
+		margin-left: 8px !important;
+		margin-right: 8px !important;
 	}
 
 	.findbar-label {
-		&:is([hidden='true']) {
-			display: none;
+		display: none !important;
+		flex-basis: 100% !important;
+
+		&[status='notfound'] {
+			display: block !important;
+			width: 30px !important;
+			max-width: 30px !important;
+			margin: auto !important;
 		}
 	}
 
-	.findbar-find-status {
-		display: none;
+	/* .findbar-label:before {
+		display: none !important;
+	} */
 
-		&:is([data-l10n-id]) {
-			display: flex;
+	.found-matches {
+		display: block !important;
+		font-size: 14px !important;
+		font-weight: 500 !important;
+		margin-top: 12px !important;
+		flex-basis: 0 !important;
+		margin: auto !important;
+		padding-right: 12px !important;
+
+		&[hidden='true'] {
+			display: none !important;
 		}
 	}
+
+	.findbar-find-status:is([data-l10n-id]) {
+		display: flex;
+	}
+
+	.checkbox-label {
+		font-size: 12px !important;
+		font-weight: 500 !important;
+	}
+}
+
+.findbar-container label:nth-of-type(3),
+.findbar-container checkbox:nth-of-type(3) {
+	display: none !important;
 }
