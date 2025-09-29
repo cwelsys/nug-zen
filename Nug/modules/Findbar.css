@@ -57,7 +57,7 @@ findbar {
 
 		.findbar-textbox {
 			background: none !important;
-			padding: 0 !important;
+			padding: 0 4px 0 6px !important; /* top right bottom left */
 			font-size: 13px !important;
 			box-shadow: none !important;
 			width: 100% !important;
