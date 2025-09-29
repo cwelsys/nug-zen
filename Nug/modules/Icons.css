@@ -4,6 +4,14 @@
 	}
 }
 
+#pageAction-urlbar-_testpilot-containers {
+	display: none !important;
+}
+
+#userContext-label {
+	display: none !important;
+}
+
 @media (-moz-bool-pref: 'nug-icons-enabled') {
 	/* Apply icon color to all toolbar icons */
 	#navigator-toolbox .toolbarbutton-1 .toolbarbutton-icon,
