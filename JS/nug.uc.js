@@ -4687,6 +4687,7 @@ if (!window.urlBarModifierInitialized) {
 
 	let findbar = null
 	let isDragging = false
+	let hasMoved = false
 	let startMouseX = 0
 	let startMouseY = 0
 	let currentTranslateX = 0
@@ -4708,13 +4709,13 @@ if (!window.urlBarModifierInitialized) {
 	}
 
 	function startDrag(e) {
-		// If clicking on an input or button, focus it and do not drag
+		// If clicking on an input or button, allow default behavior
 		if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') {
-			e.target.focus()
 			return
 		}
 
 		isDragging = true
+		hasMoved = false
 		startMouseX = e.clientX
 		startMouseY = e.clientY
 
@@ -4722,7 +4723,7 @@ if (!window.urlBarModifierInitialized) {
 		document.addEventListener('mouseup', stopDrag)
 
 		e.preventDefault()
-		console.log('Started dragging at:', startMouseX, startMouseY)
+		console.log('Started potential drag at:', startMouseX, startMouseY)
 	}
 
 	function drag(e) {
@@ -4731,6 +4732,14 @@ if (!window.urlBarModifierInitialized) {
 		// Calculate how far we've moved from start
 		const deltaX = e.clientX - startMouseX
 		const deltaY = e.clientY - startMouseY
+
+		// Only start actually dragging if we've moved at least 3 pixels
+		if (!hasMoved && (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3)) {
+			hasMoved = true
+			console.log('Actually dragging now')
+		}
+
+		if (!hasMoved) return
 
 		// Add to current translation
 		const newTranslateX = currentTranslateX + deltaX
@@ -4741,20 +4750,33 @@ if (!window.urlBarModifierInitialized) {
 	}
 
 	function stopDrag(e) {
-		if (!isDragging) return
+		if (isDragging) {
+			if (hasMoved) {
+				// Update current translation for next drag
+				const deltaX = e.clientX - startMouseX
+				const deltaY = e.clientY - startMouseY
+				currentTranslateX += deltaX
+				currentTranslateY += deltaY
+
+				console.log('Stopped dragging, final position:', currentTranslateX, currentTranslateY)
+			} else {
+				// It was a click, not a drag - focus the input
+				const input = findbar.querySelector('input[type="text"], .findbar-textbox, input')
+				console.log('Looking for input, found:', input)
+				if (input) {
+					input.focus()
+					console.log('Focused input after click')
+				} else {
+					console.log('No input found in findbar')
+				}
+			}
+		}
 
 		isDragging = false
-
-		// Update current translation for next drag
-		const deltaX = e.clientX - startMouseX
-		const deltaY = e.clientY - startMouseY
-		currentTranslateX += deltaX
-		currentTranslateY += deltaY
+		hasMoved = false
 
 		document.removeEventListener('mousemove', drag)
 		document.removeEventListener('mouseup', stopDrag)
-
-		console.log('Stopped dragging, final position:', currentTranslateX, currentTranslateY)
 	}
 
 	// Start looking for the findbar
