@@ -4,12 +4,11 @@
 	"author": "cwelsys",
 	"name": "Nug",
 	"description": "userChrome and more",
-	"version": "6.9.6",
+	"version": "6.9.7",
 	"createdAt": "2025-03-11",
-	"updatedAt": "2025-09-27",
+	"updatedAt": "2025-10-4",
 	"style": {
-		"chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
-		"content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
+		"chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css"
 	},
 	"preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
 	"readme": "https://en.wikipedia.org/wiki/A_drive_into_deep_left_field_by_Castellanos",
