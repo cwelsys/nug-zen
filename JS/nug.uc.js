@@ -4800,6 +4800,7 @@ if (!window.urlBarModifierInitialized) {
 // 	observer.observe(document.body, { childList: true, subtree: true })
 // })()
 
+
 // ==UserScript==
 // @ignorecache
 // @name           Nug :has() Polyfill
@@ -4807,7 +4808,7 @@ if (!window.urlBarModifierInitialized) {
 // @author         cwel
 // ==/UserScript==
 
-(function() {
+function NugHasPolyfillInit() {
     'use strict';
 
     // Only run in main browser window
@@ -4817,35 +4818,68 @@ if (!window.urlBarModifierInitialized) {
 
     console.log('[Nug :has() Polyfill] Script loading...');
 
-    function addHoverClass(selector, parentSelector, className) {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                const target = parentSelector ? el.closest(parentSelector) : el.parentElement;
-                if (target) {
-                    target.classList.add(className);
-                }
-            });
-            el.addEventListener('mouseleave', () => {
-                const target = parentSelector ? el.closest(parentSelector) : el.parentElement;
-                if (target) {
-                    target.classList.remove(className);
-                }
-            });
+    const attachedElements = new WeakSet();
+
+    function addHoverClass(element, parentSelector, className) {
+        if (attachedElements.has(element)) return;
+        attachedElements.add(element);
+
+        element.addEventListener('mouseenter', () => {
+            const target = parentSelector ? element.closest(parentSelector) : element.parentElement;
+            if (target) {
+                target.classList.add(className);
+                console.log(`[Nug :has() Polyfill] Added ${className} to`, target);
+            }
+        });
+        element.addEventListener('mouseleave', () => {
+            const target = parentSelector ? element.closest(parentSelector) : element.parentElement;
+            if (target) {
+                target.classList.remove(className);
+                console.log(`[Nug :has() Polyfill] Removed ${className} from`, target);
+            }
         });
     }
 
-    // Wait for DOM to be ready
+    function attachTabListeners() {
+        // Tabs - close/reset buttons
+        document.querySelectorAll('.tab-close-button, .tab-reset-button').forEach(btn => {
+            addHoverClass(btn, '.tabbrowser-tab', 'nug-child-hovered');
+        });
+        console.log('[Nug :has() Polyfill] Attached tab button listeners');
+    }
+
+    function attachExtensionListeners() {
+        // Extensions - close/reset buttons
+        document.querySelectorAll('.unified-extensions-item .close-button, .unified-extensions-item .reset-button').forEach(btn => {
+            addHoverClass(btn, '.unified-extensions-item', 'nug-child-hovered');
+        });
+    }
+
     function initPolyfills() {
         console.log('[Nug :has() Polyfill] Initializing...');
 
-        // Tabs.css - tab close/reset button hover
-        addHoverClass('.tab-close-button', '.tabbrowser-tab', 'nug-child-hovered');
-        addHoverClass('.tab-reset-button', '.tabbrowser-tab', 'nug-child-hovered');
+        // Initial attachment
+        attachTabListeners();
+        attachExtensionListeners();
 
-        // Extensions.css - unified extensions close/reset button
-        addHoverClass('.unified-extensions-item .close-button', '.unified-extensions-item', 'nug-child-hovered');
-        addHoverClass('.unified-extensions-item .reset-button', '.unified-extensions-item', 'nug-child-hovered');
+        // Watch for new tabs
+        const tabContainer = document.querySelector('#tabbrowser-arrowscrollbox, #tabbrowser-tabs');
+        if (tabContainer) {
+            const tabObserver = new MutationObserver((mutations) => {
+                attachTabListeners();
+            });
+            tabObserver.observe(tabContainer, { childList: true, subtree: true });
+            console.log('[Nug :has() Polyfill] Tab observer active');
+        }
+
+        // Watch for extension panel
+        const extensionPanel = document.querySelector('#unified-extensions-panel');
+        if (extensionPanel) {
+            const extObserver = new MutationObserver((mutations) => {
+                attachExtensionListeners();
+            });
+            extObserver.observe(extensionPanel, { childList: true, subtree: true });
+        }
 
         // Media.css - media controls hover
         const mediaToolbar = document.querySelector('#zen-media-controls-toolbar');
@@ -4901,4 +4935,7 @@ if (!window.urlBarModifierInitialized) {
             setTimeout(initPolyfills, 1000);
         }, { once: true });
     }
-})();
+}
+
+// Run the polyfill
+NugHasPolyfillInit();
