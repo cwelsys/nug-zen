@@ -3,7 +3,7 @@
 // @name          Dynamic URLBar Background Height
 // @description   Adjusts the height of #browser::before to match .urlbarView height.
 // ==/UserScript==
-if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
+if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser', false)) {
 	;(function () {
 		// Only run in the main browser window
 		if (window.location.href !== 'chrome://browser/content/browser.xhtml') {
@@ -1412,7 +1412,7 @@ if (Services.prefs.getBoolPref('nug.workspace.wave.effect')) {
 // @description    it help in adjust dynamic width of psuedo background
 // @version        1.7b
 // ==/UserScript==
-if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
+if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser', false)) {
 	;(function () {
 		const mainWindow = document.getElementById('main-window')
 		const toolbox = document.getElementById('navigator-toolbox')
@@ -1646,7 +1646,7 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
 // @namespace      globalizier
 // @version        1.7b
 // ==/UserScript==
-if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser')) {
+if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser', false)) {
 	;(function () {
 		console.log('[Zen Globalizer] Script has loaded. Waiting for window to be ready...')
 
