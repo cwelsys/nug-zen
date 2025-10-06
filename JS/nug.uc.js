@@ -4799,3 +4799,106 @@ if (!window.urlBarModifierInitialized) {
 
 // 	observer.observe(document.body, { childList: true, subtree: true })
 // })()
+
+// ==UserScript==
+// @ignorecache
+// @name           Nug :has() Polyfill
+// @description    Replaces :has(:hover) selectors with JS for Wayland/Hyprland compatibility
+// @author         cwel
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Only run in main browser window
+    if (window.location.href !== 'chrome://browser/content/browser.xhtml') {
+        return;
+    }
+
+    console.log('[Nug :has() Polyfill] Script loading...');
+
+    function addHoverClass(selector, parentSelector, className) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const target = parentSelector ? el.closest(parentSelector) : el.parentElement;
+                if (target) {
+                    target.classList.add(className);
+                }
+            });
+            el.addEventListener('mouseleave', () => {
+                const target = parentSelector ? el.closest(parentSelector) : el.parentElement;
+                if (target) {
+                    target.classList.remove(className);
+                }
+            });
+        });
+    }
+
+    // Wait for DOM to be ready
+    function initPolyfills() {
+        console.log('[Nug :has() Polyfill] Initializing...');
+
+        // Tabs.css - tab close/reset button hover
+        addHoverClass('.tab-close-button', '.tabbrowser-tab', 'nug-child-hovered');
+        addHoverClass('.tab-reset-button', '.tabbrowser-tab', 'nug-child-hovered');
+
+        // Extensions.css - unified extensions close/reset button
+        addHoverClass('.unified-extensions-item .close-button', '.unified-extensions-item', 'nug-child-hovered');
+        addHoverClass('.unified-extensions-item .reset-button', '.unified-extensions-item', 'nug-child-hovered');
+
+        // Media.css - media controls hover
+        const mediaToolbar = document.querySelector('#zen-media-controls-toolbar');
+        if (mediaToolbar) {
+            mediaToolbar.addEventListener('mouseenter', () => {
+                document.querySelector('#TabsToolbar')?.classList.add('nug-media-hovered');
+            });
+            mediaToolbar.addEventListener('mouseleave', () => {
+                document.querySelector('#TabsToolbar')?.classList.remove('nug-media-hovered');
+            });
+
+            // Media toolbaritems
+            const mediaItems = document.querySelectorAll('#zen-media-controls-toolbar > toolbaritem');
+            mediaItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    document.querySelector('#TabsToolbar')?.classList.add('nug-media-item-hovered');
+                });
+                item.addEventListener('mouseleave', () => {
+                    document.querySelector('#TabsToolbar')?.classList.remove('nug-media-item-hovered');
+                });
+            });
+        }
+
+        // Sidebar.css - urlbar hover (if floating)
+        const urlbar = document.querySelector('#urlbar[zen-floating-urlbar="true"]');
+        if (urlbar) {
+            urlbar.addEventListener('mouseenter', () => {
+                document.querySelector('#navigator-toolbox')?.classList.add('nug-urlbar-hovered');
+            });
+            urlbar.addEventListener('mouseleave', () => {
+                document.querySelector('#navigator-toolbox')?.classList.remove('nug-urlbar-hovered');
+            });
+        }
+
+        // Sidebar.css - tab active state
+        document.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.tabbrowser-tab')) {
+                document.querySelector('#navigator-toolbox')?.classList.add('nug-tab-active');
+            }
+        });
+        document.addEventListener('mouseup', () => {
+            document.querySelector('#navigator-toolbox')?.classList.remove('nug-tab-active');
+        });
+
+        console.log('[Nug :has() Polyfill] Initialized successfully');
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'complete') {
+        setTimeout(initPolyfills, 1000);
+    } else {
+        window.addEventListener('load', () => {
+            setTimeout(initPolyfills, 1000);
+        }, { once: true });
+    }
+})();
