@@ -86,17 +86,17 @@
 	}
 
 	/* REMOVED: :has() selectors cause browser crash
-	#TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+	#TabsToolbar.nug-media-hovered::before {
 		height: calc(var(--zen-media-player-peak-height, 111px) - 2px);
 		opacity: 1 !important;
 	}
 
-	:root[zen-compact-mode='true'] #TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+	:root[zen-compact-mode='true'] #TabsToolbar.nug-media-hovered::before {
 		opacity: 0 !important;
 		height: 0 !important;
 	}
 
-	:root:not([zen-compact-mode='true']) #TabsToolbar:has(#zen-media-controls-toolbar > toolbaritem:hover)::before {
+	:root:not([zen-compact-mode='true']) #TabsToolbar.nug-media-item-hovered::before {
 	}
 	*/
 
@@ -198,17 +198,17 @@
 	}
 
 	/* REMOVED: :has() selectors cause browser crash
-	#TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+	#TabsToolbar.nug-media-hovered::before {
 		height: calc(var(--zen-media-player-peak-height, 111px) + 1px);
 		opacity: 1 !important;
 	}
 
-	:root[zen-compact-mode='true'] #TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+	:root[zen-compact-mode='true'] #TabsToolbar.nug-media-hovered::before {
 		opacity: 0 !important;
 		height: 0 !important;
 	}
 
-	:root:not([zen-compact-mode='true']) #TabsToolbar:has(#zen-media-controls-toolbar > toolbaritem:hover)::before {
+	:root:not([zen-compact-mode='true']) #TabsToolbar.nug-media-item-hovered::before {
 	}
 	*/
 
@@ -413,17 +413,17 @@
 	}
 
 	/* REMOVED: :has() selectors cause browser crash
-	#TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+	#TabsToolbar.nug-media-hovered::before {
 		height: calc(var(--zen-media-player-peak-height, 111px) + 1px);
 		opacity: 1 !important;
 	}
 
-	:root[zen-compact-mode='true'] #TabsToolbar:has(#zen-media-controls-toolbar:hover)::before {
+	:root[zen-compact-mode='true'] #TabsToolbar.nug-media-hovered::before {
 		opacity: 0 !important;
 		height: 0 !important;
 	}
 
-	:root:not([zen-compact-mode='true']) #TabsToolbar:has(#zen-media-controls-toolbar > toolbaritem:hover)::before {
+	:root:not([zen-compact-mode='true']) #TabsToolbar.nug-media-item-hovered::before {
 	}
 	*/
 
