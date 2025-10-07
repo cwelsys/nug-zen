@@ -1,20 +1,25 @@
 {
-	"id": "Nug",
-	"js": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/JS/nug-uc.js",
-	"homepage": "https://github.com/cwelsys/nug-zen",
-	"author": "cwelsys",
-	"name": "Nug",
-	"description": "userChrome and more",
-	"version": "0.0.5",
-	"createdAt": "2025-03-11",
-	"updatedAt": "2025-10-07T19:21:53Z",
-	"style": {
-		"chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
-		"content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
-	},
-	"preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
-	"readme": "https://en.wikipedia.org/wiki/A_drive_into_deep_left_field_by_Castellanos",
-	"image": "https://tiermaker.com/images/media/template_images/2024/16793215/on-cinema-characters-ranked-16793215/tim-heidecker.png",
-	"tags": ["content", "chrome"],
-	"fork": ["zen"]
+  "id": "Nug",
+  "js": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/JS/nug-uc.js",
+  "homepage": "https://github.com/cwelsys/nug-zen",
+  "author": "cwelsys",
+  "name": "Nug",
+  "description": "userChrome and more",
+  "version": "0.0.6",
+  "createdAt": "2025-03-11",
+  "updatedAt": "2025-10-07T19:44:47Z",
+  "style": {
+    "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
+    "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
+  },
+  "preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
+  "readme": "https://en.wikipedia.org/wiki/A_drive_into_deep_left_field_by_Castellanos",
+  "image": "https://tiermaker.com/images/media/template_images/2024/16793215/on-cinema-characters-ranked-16793215/tim-heidecker.png",
+  "tags": [
+    "content",
+    "chrome"
+  ],
+  "fork": [
+    "zen"
+  ]
 }
