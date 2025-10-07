@@ -42,8 +42,8 @@ jobs:
           new_version="${major}.${minor}.${new_patch}"
           echo "New version: $new_version"
 
-          # Get current date
-          current_date=$(date +%Y-%m-%d)
+          # Get current date with time (ISO 8601 format)
+          current_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           # Check if theme.json actually changed (not just the workflow or docs)
           if git diff HEAD~1 HEAD --name-only | grep -v "theme.json" | grep -v ".github/workflows" | grep -v "\.md$" > /dev/null; then
