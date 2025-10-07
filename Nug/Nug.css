@@ -8,6 +8,7 @@
 @import 'modules/Tabs.css';
 @import 'modules/URLbar.css';
 @import 'modules/Workspace.css';
+@import 'modules/Test.css';
 
 /* Font */
 @media (-moz-pref('nug-font', 0)) {
