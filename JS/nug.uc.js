@@ -2035,24 +2035,6 @@ class PanelManager {
 				return
 			}
 
-			// Load external CSS file
-			try {
-				const existing = document.getElementById('uev-mod-rules')
-				if (existing) existing.remove()
-
-				const link = document.createElementNS('http://www.w3.org/1999/xhtml', 'link')
-				link.id = 'uev-mod-rules'
-				link.rel = 'stylesheet'
-				link.type = 'text/css'
-				// Get the script's directory path
-				const scriptPath = Components.stack.filename
-				const scriptDir = scriptPath.substring(0, scriptPath.lastIndexOf('/'))
-				link.href = scriptDir + '/urlbarmodifier.css'
-				document.documentElement.appendChild(link)
-			} catch (e) {
-				console.warn('Failed to inject mod.viewgrid rules', e)
-			}
-
 			console.log('Modifying unified extensions panel')
 
 			// Helper to build section labels
@@ -4800,7 +4782,6 @@ if (!window.urlBarModifierInitialized) {
 // 	observer.observe(document.body, { childList: true, subtree: true })
 // })()
 
-
 // ==UserScript==
 // @ignorecache
 // @name           Nug :has() Polyfill
@@ -4809,133 +4790,139 @@ if (!window.urlBarModifierInitialized) {
 // ==/UserScript==
 
 function NugHasPolyfillInit() {
-    'use strict';
+	'use strict'
 
-    // Only run in main browser window
-    if (window.location.href !== 'chrome://browser/content/browser.xhtml') {
-        return;
-    }
+	// Only run in main browser window
+	if (window.location.href !== 'chrome://browser/content/browser.xhtml') {
+		return
+	}
 
-    console.log('[Nug :has() Polyfill] Script loading...');
+	console.log('[Nug :has() Polyfill] Script loading...')
 
-    const attachedElements = new WeakSet();
+	const attachedElements = new WeakSet()
 
-    function addHoverClass(element, parentSelector, className) {
-        if (attachedElements.has(element)) return;
-        attachedElements.add(element);
+	function addHoverClass(element, parentSelector, className) {
+		if (attachedElements.has(element)) return
+		attachedElements.add(element)
 
-        element.addEventListener('mouseenter', () => {
-            const target = parentSelector ? element.closest(parentSelector) : element.parentElement;
-            if (target) {
-                target.classList.add(className);
-                console.log(`[Nug :has() Polyfill] Added ${className} to`, target);
-            }
-        });
-        element.addEventListener('mouseleave', () => {
-            const target = parentSelector ? element.closest(parentSelector) : element.parentElement;
-            if (target) {
-                target.classList.remove(className);
-                console.log(`[Nug :has() Polyfill] Removed ${className} from`, target);
-            }
-        });
-    }
+		element.addEventListener('mouseenter', () => {
+			const target = parentSelector ? element.closest(parentSelector) : element.parentElement
+			if (target) {
+				target.classList.add(className)
+				console.log(`[Nug :has() Polyfill] Added ${className} to`, target)
+			}
+		})
+		element.addEventListener('mouseleave', () => {
+			const target = parentSelector ? element.closest(parentSelector) : element.parentElement
+			if (target) {
+				target.classList.remove(className)
+				console.log(`[Nug :has() Polyfill] Removed ${className} from`, target)
+			}
+		})
+	}
 
-    function attachTabListeners() {
-        // Tabs - close/reset buttons
-        document.querySelectorAll('.tab-close-button, .tab-reset-button').forEach(btn => {
-            addHoverClass(btn, '.tabbrowser-tab', 'nug-child-hovered');
-        });
-        console.log('[Nug :has() Polyfill] Attached tab button listeners');
-    }
+	function attachTabListeners() {
+		// Tabs - close/reset buttons
+		document.querySelectorAll('.tab-close-button, .tab-reset-button').forEach((btn) => {
+			addHoverClass(btn, '.tabbrowser-tab', 'nug-child-hovered')
+		})
+		console.log('[Nug :has() Polyfill] Attached tab button listeners')
+	}
 
-    function attachExtensionListeners() {
-        // Extensions - close/reset buttons
-        document.querySelectorAll('.unified-extensions-item .close-button, .unified-extensions-item .reset-button').forEach(btn => {
-            addHoverClass(btn, '.unified-extensions-item', 'nug-child-hovered');
-        });
-    }
+	function attachExtensionListeners() {
+		// Extensions - close/reset buttons
+		document
+			.querySelectorAll('.unified-extensions-item .close-button, .unified-extensions-item .reset-button')
+			.forEach((btn) => {
+				addHoverClass(btn, '.unified-extensions-item', 'nug-child-hovered')
+			})
+	}
 
-    function initPolyfills() {
-        console.log('[Nug :has() Polyfill] Initializing...');
+	function initPolyfills() {
+		console.log('[Nug :has() Polyfill] Initializing...')
 
-        // Initial attachment
-        attachTabListeners();
-        attachExtensionListeners();
+		// Initial attachment
+		attachTabListeners()
+		attachExtensionListeners()
 
-        // Watch for new tabs
-        const tabContainer = document.querySelector('#tabbrowser-arrowscrollbox, #tabbrowser-tabs');
-        if (tabContainer) {
-            const tabObserver = new MutationObserver((mutations) => {
-                attachTabListeners();
-            });
-            tabObserver.observe(tabContainer, { childList: true, subtree: true });
-            console.log('[Nug :has() Polyfill] Tab observer active');
-        }
+		// Watch for new tabs
+		const tabContainer = document.querySelector('#tabbrowser-arrowscrollbox, #tabbrowser-tabs')
+		if (tabContainer) {
+			const tabObserver = new MutationObserver((mutations) => {
+				attachTabListeners()
+			})
+			tabObserver.observe(tabContainer, { childList: true, subtree: true })
+			console.log('[Nug :has() Polyfill] Tab observer active')
+		}
 
-        // Watch for extension panel
-        const extensionPanel = document.querySelector('#unified-extensions-panel');
-        if (extensionPanel) {
-            const extObserver = new MutationObserver((mutations) => {
-                attachExtensionListeners();
-            });
-            extObserver.observe(extensionPanel, { childList: true, subtree: true });
-        }
+		// Watch for extension panel
+		const extensionPanel = document.querySelector('#unified-extensions-panel')
+		if (extensionPanel) {
+			const extObserver = new MutationObserver((mutations) => {
+				attachExtensionListeners()
+			})
+			extObserver.observe(extensionPanel, { childList: true, subtree: true })
+		}
 
-        // Media.css - media controls hover
-        const mediaToolbar = document.querySelector('#zen-media-controls-toolbar');
-        if (mediaToolbar) {
-            mediaToolbar.addEventListener('mouseenter', () => {
-                document.querySelector('#TabsToolbar')?.classList.add('nug-media-hovered');
-            });
-            mediaToolbar.addEventListener('mouseleave', () => {
-                document.querySelector('#TabsToolbar')?.classList.remove('nug-media-hovered');
-            });
+		// Media.css - media controls hover
+		const mediaToolbar = document.querySelector('#zen-media-controls-toolbar')
+		if (mediaToolbar) {
+			mediaToolbar.addEventListener('mouseenter', () => {
+				document.querySelector('#TabsToolbar')?.classList.add('nug-media-hovered')
+			})
+			mediaToolbar.addEventListener('mouseleave', () => {
+				document.querySelector('#TabsToolbar')?.classList.remove('nug-media-hovered')
+			})
 
-            // Media toolbaritems
-            const mediaItems = document.querySelectorAll('#zen-media-controls-toolbar > toolbaritem');
-            mediaItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    document.querySelector('#TabsToolbar')?.classList.add('nug-media-item-hovered');
-                });
-                item.addEventListener('mouseleave', () => {
-                    document.querySelector('#TabsToolbar')?.classList.remove('nug-media-item-hovered');
-                });
-            });
-        }
+			// Media toolbaritems
+			const mediaItems = document.querySelectorAll('#zen-media-controls-toolbar > toolbaritem')
+			mediaItems.forEach((item) => {
+				item.addEventListener('mouseenter', () => {
+					document.querySelector('#TabsToolbar')?.classList.add('nug-media-item-hovered')
+				})
+				item.addEventListener('mouseleave', () => {
+					document.querySelector('#TabsToolbar')?.classList.remove('nug-media-item-hovered')
+				})
+			})
+		}
 
-        // Sidebar.css - urlbar hover (if floating)
-        const urlbar = document.querySelector('#urlbar[zen-floating-urlbar="true"]');
-        if (urlbar) {
-            urlbar.addEventListener('mouseenter', () => {
-                document.querySelector('#navigator-toolbox')?.classList.add('nug-urlbar-hovered');
-            });
-            urlbar.addEventListener('mouseleave', () => {
-                document.querySelector('#navigator-toolbox')?.classList.remove('nug-urlbar-hovered');
-            });
-        }
+		// Sidebar.css - urlbar hover (if floating)
+		const urlbar = document.querySelector('#urlbar[zen-floating-urlbar="true"]')
+		if (urlbar) {
+			urlbar.addEventListener('mouseenter', () => {
+				document.querySelector('#navigator-toolbox')?.classList.add('nug-urlbar-hovered')
+			})
+			urlbar.addEventListener('mouseleave', () => {
+				document.querySelector('#navigator-toolbox')?.classList.remove('nug-urlbar-hovered')
+			})
+		}
 
-        // Sidebar.css - tab active state
-        document.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.tabbrowser-tab')) {
-                document.querySelector('#navigator-toolbox')?.classList.add('nug-tab-active');
-            }
-        });
-        document.addEventListener('mouseup', () => {
-            document.querySelector('#navigator-toolbox')?.classList.remove('nug-tab-active');
-        });
+		// Sidebar.css - tab active state
+		document.addEventListener('mousedown', (e) => {
+			if (e.target.closest('.tabbrowser-tab')) {
+				document.querySelector('#navigator-toolbox')?.classList.add('nug-tab-active')
+			}
+		})
+		document.addEventListener('mouseup', () => {
+			document.querySelector('#navigator-toolbox')?.classList.remove('nug-tab-active')
+		})
 
-        console.log('[Nug :has() Polyfill] Initialized successfully');
-    }
+		console.log('[Nug :has() Polyfill] Initialized successfully')
+	}
 
-    // Initialize when DOM is ready
-    if (document.readyState === 'complete') {
-        setTimeout(initPolyfills, 1000);
-    } else {
-        window.addEventListener('load', () => {
-            setTimeout(initPolyfills, 1000);
-        }, { once: true });
-    }
+	// Initialize when DOM is ready
+	if (document.readyState === 'complete') {
+		setTimeout(initPolyfills, 1000)
+	} else {
+		window.addEventListener(
+			'load',
+			() => {
+				setTimeout(initPolyfills, 1000)
+			},
+			{ once: true }
+		)
+	}
 }
 
 // Run the polyfill
-NugHasPolyfillInit();
+NugHasPolyfillInit()
