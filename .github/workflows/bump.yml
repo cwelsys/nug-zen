@@ -1,0 +1,69 @@
+name: Auto Version Bump
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/workflows/**'
+      - 'README.md'
+      - '*.md'
+  workflow_dispatch:
+
+jobs:
+  bump_version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Update version and date
+        id: update
+        run: |
+          # Install jq
+          sudo apt-get update && sudo apt-get install -y jq
+
+          # Read current version
+          current_version=$(jq -r '.version' theme.json)
+          echo "Current version: $current_version"
+
+          # Parse and increment patch version
+          IFS='.' read -r major minor patch <<< "$current_version"
+          new_patch=$((patch + 1))
+          new_version="${major}.${minor}.${new_patch}"
+          echo "New version: $new_version"
+
+          # Get current date
+          current_date=$(date +%Y-%m-%d)
+
+          # Check if theme.json actually changed (not just the workflow or docs)
+          if git diff HEAD~1 HEAD --name-only | grep -v "theme.json" | grep -v ".github/workflows" | grep -v "\.md$" > /dev/null; then
+            # Update theme.json
+            jq --arg version "$new_version" --arg date "$current_date" \
+              '.version = $version | .updatedAt = $date' \
+              theme.json > theme.json.tmp
+            mv theme.json.tmp theme.json
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "new_version=$new_version" >> $GITHUB_OUTPUT
+          else
+            echo "No code changes detected, skipping version bump"
+            echo "updated=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.update.outputs.updated == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: bump version to ${{ steps.update.outputs.new_version }} [skip ci]"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          file_pattern: 'theme.json'
