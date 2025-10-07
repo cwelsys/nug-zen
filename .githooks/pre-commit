@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Pre-commit hook to auto-bump version and update date in theme.json
+
+THEME_FILE="theme.json"
+
+# Check if theme.json is being committed
+if ! git diff --cached --name-only | grep -q "$THEME_FILE"; then
+    # Check if any non-doc files are being committed
+    if git diff --cached --name-only | grep -v "\.md$" | grep -v ".github/workflows" > /dev/null; then
+        # theme.json not staged, but other code changes exist - stage it
+        if [ -f "$THEME_FILE" ]; then
+            git add "$THEME_FILE"
+        fi
+    else
+        # Only doc/workflow changes, skip version bump
+        exit 0
+    fi
+fi
+
+# Only bump if there are actual code changes (not just docs/workflows)
+if ! git diff --cached --name-only | grep -v "$THEME_FILE" | grep -v "\.md$" | grep -v ".github/workflows" > /dev/null; then
+    # No code changes, skip version bump
+    exit 0
+fi
+
+# Read current version
+current_version=$(jq -r '.version' "$THEME_FILE")
+
+# Parse and increment patch version
+IFS='.' read -r major minor patch <<< "$current_version"
+new_patch=$((patch + 1))
+new_version="${major}.${minor}.${new_patch}"
+
+# Get current date
+current_date=$(date +%Y-%m-%d)
+
+# Update theme.json
+jq --arg version "$new_version" --arg date "$current_date" \
+    '.version = $version | .updatedAt = $date' \
+    "$THEME_FILE" > "${THEME_FILE}.tmp"
+
+mv "${THEME_FILE}.tmp" "$THEME_FILE"
+
+# Stage the updated theme.json
+git add "$THEME_FILE"
+
+echo "✓ Bumped version: $current_version → $new_version (updated: $current_date)"
+
+exit 0
