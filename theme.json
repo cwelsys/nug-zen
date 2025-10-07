@@ -7,7 +7,7 @@
   "description": "userChrome and more",
   "version": "0.0.7",
   "createdAt": "2025-03-11",
-  "updatedAt": "2025-10-07T20:04:37Z",
+  "updatedAt": "2025-10-07",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
