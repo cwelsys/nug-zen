@@ -1,3 +1,3 @@
-```git config core.hooksPath .githooks
-
+```bash
+git config core.hooksPath .githooks
 ```
