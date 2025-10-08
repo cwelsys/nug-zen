@@ -128,6 +128,17 @@
 	},
 	{
 		"type": "separator",
+		"label": "🔎 Findbar"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug.findbar.compact.indicator",
+		"label": "📏 Use compact match indicator (1/27 instead of 1 of 27 matches)",
+		"defaultValue": true,
+		"margin": "12px 0"
+	},
+	{
+		"type": "separator",
 		"label": "📝 Context Menu"
 	},
 	{
