@@ -375,5 +375,11 @@
 		"type": "checkbox",
 		"defaultValue": false,
 		"margin": "8px 0"
+	},
+	{
+		"property": "nglayout.initialpaint.delay",
+		"label": "⏱️ Initial paint delay in ms (removes flashbangs)",
+		"type": "number",
+		"defaultValue": 250
 	}
 ]
