@@ -4941,14 +4941,6 @@ class FindbarMods {
 		}
 	}
 
-	get findbarPosition() {
-		try {
-			return Services.prefs.getIntPref('nug.findbar.position', 0)
-		} catch (e) {
-			return 0
-		}
-	}
-
 	// firefox has no localization strings for these phrases, since they can only
 	// be configured in about:config. change the label and accesskey values for
 	// your language. keep the quotes.
@@ -5319,9 +5311,6 @@ class FindbarMods {
 		} else {
 			findbar.removeAttribute('compact-indicator')
 		}
-		// Set position attribute based on user preference
-		const position = this.findbarPosition
-		findbar.setAttribute('position', position.toString())
 	}
 	miniaturize(findbar) {
 		// 1/N instead of 1 of N matches.
