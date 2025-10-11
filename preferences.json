@@ -133,7 +133,7 @@
 	{
 		"type": "checkbox",
 		"property": "nug.findbar.compact.indicator",
-		"label": "📏 Use compact match indicator (1/27 instead of 1 of 27 matches)",
+		"label": "📏 Use compact match indicator",
 		"defaultValue": true,
 		"margin": "12px 0"
 	},
@@ -181,40 +181,60 @@
 		"label": "📐 Custom position: top",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 35px, 10%, auto (leave empty for auto)",
-		"visibleWhen": {
-			"nug.findbar.position": 6
-		}
+		"placeholder": "e.g., 35px, 10%, auto",
+		"conditions": [
+			{
+				"if": {
+					"property": "nug.findbar.position",
+					"value": 6
+				}
+			}
+		]
 	},
 	{
 		"property": "nug.findbar.custom.right",
 		"label": "📐 Custom position: right",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)",
-		"visibleWhen": {
-			"nug.findbar.position": 6
-		}
+		"placeholder": "e.g., 15px, 5%, auto",
+		"conditions": [
+			{
+				"if": {
+					"property": "nug.findbar.position",
+					"value": 6
+				}
+			}
+		]
 	},
 	{
 		"property": "nug.findbar.custom.bottom",
 		"label": "📐 Custom position: bottom",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)",
-		"visibleWhen": {
-			"nug.findbar.position": 6
-		}
+		"placeholder": "e.g., 15px, 5%, auto",
+		"conditions": [
+			{
+				"if": {
+					"property": "nug.findbar.position",
+					"value": 6
+				}
+			}
+		]
 	},
 	{
 		"property": "nug.findbar.custom.left",
 		"label": "📐 Custom position: left",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)",
-		"visibleWhen": {
-			"nug.findbar.position": 6
-		}
+		"placeholder": "e.g., 15px, 5%, auto",
+		"conditions": [
+			{
+				"if": {
+					"property": "nug.findbar.position",
+					"value": 6
+				}
+			}
+		]
 	},
 	{
 		"type": "separator",
