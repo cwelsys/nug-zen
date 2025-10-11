@@ -82,6 +82,7 @@ browser {
 		--nug-glow-color-1: color-mix(in srgb, var(--zen-primary-color) 90%, white);
 		--nug-glow-color-2: color-mix(in srgb, var(--zen-primary-color) 70%, white);
 		--nug-border-radius: 4px;
+		--url-bar-border_radius: 1.7rem;
 		--nug-blur: blur(52px) saturate(180%) brightness(110%);
 		--nug-blur-simple: blur(15px) brightness(110%) saturate(260%);
 		--nug-blur-color: color-mix(in srgb, var(--zen-primary-color) 1%, #000000a0);
