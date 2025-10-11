@@ -1,8 +1,3 @@
-:root {
-	--nug-black-1: light-dark(color-mix(in srgb, #ffffff 40%, transparent), color-mix(in srgb, #000000 35%, transparent));
-	--nug-black-2: light-dark(color-mix(in srgb, #ffffff 25%, transparent), color-mix(in srgb, #000000 60%, transparent));
-}
-
 @keyframes half-borderTrail {
 	0% {
 		top: 10%;
@@ -55,510 +50,163 @@
 	}
 }
 
-@media not (-moz-pref('nug-theme-tabs-disabled')) {
-	@media not (-moz-pref('nug-theme-tabs-essentials-disabled')) {
-		.zen-essentials-container .tabbrowser-tab {
-			.tab-background {
-				background: light-dark(
-					color-mix(in srgb, #ffffff 40%, transparent),
-					color-mix(in srgb, #000000 35%, transparent)
-				) !important;
-				box-shadow: 0px 0px 3px light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important;
-				border-radius: calc(var(--nug-border-radius) + 1px) !important;
-				backdrop-filter: blur(10px) !important;
-				transition: background 0.5s ease, box-shadow 0.5s ease, border 0.5s ease !important;
-			}
+/* essentials */
+.zen-essentials-container .tabbrowser-tab {
+	.tab-background {
+		background: var(--base) !important;
+	}
 
-			&:hover .tab-background {
-				background: light-dark(
-					color-mix(in srgb, #ffffff 100%, transparent),
-					color-mix(in srgb, #000000 35%, transparent)
-				) !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-			}
+	&:hover .tab-background {
+		background: var(--surface0) !important;
+	}
 
-			&[visuallyselected] .tab-background {
-				box-shadow: 0px 0px 6px color-mix(in srgb, white 20%, transparent) !important;
-
-				&::before {
-					mask-image: none !important;
-					border-radius: var(--nug-border-radius) !important;
-					background-color: var(--nug-black-2) !important;
-					box-shadow: 0px 0px 10px color-mix(in srgb, white 30%, transparent) !important;
-					transition: background 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
-				}
-			}
+	&[visuallyselected] .tab-background {
+		&::before {
+			background-color: var(--base) !important;
 		}
 	}
 }
 
-@media not (-moz-pref('nug-theme-tabs-disabled')) {
-	@media not (-moz-pref('nug-theme-tabs-normals-disabled')) {
-		.tabbrowser-tab:not([pinned]):not([zen-essential]) {
-			& .tab-background {
-				border-radius: var(--nug-border-radius) !important;
-				border: 1px solid transparent;
-				transition: background 1.6s ease, box-shadow 0.2s ease, border 0.6s ease;
-			}
+/* tabs */
+.tabbrowser-tab:not([zen-essential]) {
+	& .tab-background {
+		border-radius: 8px !important;
+		background: none !important;
+	}
 
-			@media not (-moz-pref('nug-theme-tabs-containers-disabled')) {
-				&[selected][usercontextid] .tab-background {
-					background: light-dark(
-						color-mix(in srgb, #ffffff 25%, transparent),
-						color-mix(in srgb, #000000 60%, transparent)
-					) !important;
-					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
-					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
-				}
+	&[selected]:hover .tab-background,
+	:not([selected]):hover .tab-background {
+		background: var(--base) !important;
+		border: 1px solid var(--nug-glow-color-1) !important;
+	}
 
-				&[selected][usercontextid]:hover .tab-background {
-					background: var(--nug-black-2) !important;
-					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
-					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
-				}
-			}
+	&[selected='true'] .tab-background {
+		background: var(--base) !important;
+		border: 1px solid var(--nug-glow-color-1) !important;
+	}
 
-			&[selected]:hover .tab-background,
-			:not([selected]):hover .tab-background {
-				background: color-mix(in srgb, var(--zen-primary-color) 10%, #000000c0) !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 90%, transparent) !important;
-			}
+	&[multiselected='true'] .tab-background {
+		background: var(--base) !important;
+		border: 1px solid var(--nug-glow-color-2) !important;
+	}
+}
 
-			&[selected='true'] .tab-background {
-				background: var(--nug-black-2) !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
-			}
+/* new tab button */
+:root[zen-sidebar-expanded='true'] {
+	#tabs-newtab-button {
+		background: var(--mantle) !important;
+		border-radius: 8px !important;
+		margin: 10px 1px !important;
+		justify-content: center !important;
 
-			&[multiselected='true'] .tab-background {
-				background: var(--nug-black-2) !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
-			}
+		& .toolbarbutton-text {
+			padding: 0px 10px 0px 10px !important;
+		}
 
-			/* Uses JS polyfill for Wayland compatibility */
-			&.nug-child-hovered .tab-background {
-				background: var(--nug-black-1) !important;
-				box-shadow: 0px 0px 3px #e61c56 !important;
-				border: 1px solid #e61c56 !important;
-			}
+		& .toolbarbutton-text::before {
+			justify-self: center !important;
+			align-self: center !important;
+			display: flex !important;
+			left: auto !important;
+			right: auto !important;
+			transition: margin-left 0.3s !important;
+		}
+
+		& .toolbarbutton-icon {
+			transition: scale 0.3s ease !important;
+		}
+	}
+
+	#tabs-newtab-button:hover {
+		opacity: 1 !important;
+		box-shadow: 0px 0px 3px var(--mauve) !important;
+
+		& .toolbarbutton-text::before {
+			margin-left: 8px !important;
+		}
+
+		& .toolbarbutton-icon {
+			scale: 1.2 !important;
 		}
 	}
 }
 
-@media not (-moz-pref('nug-theme-tabs-disabled')) {
-	@media not (-moz-pref('nug-theme-tabs-pinned-disabled')) {
-		.tabbrowser-tab[pinned]:not([zen-essential]) {
-			& .tab-background {
-				border-radius: var(--nug-border-radius) !important;
-				border: 1px solid transparent;
-				box-shadow: 0px 0px 3px light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important;
-				background: var(--nug-black-1) !important;
-				transition: background 1.6s ease, box-shadow 0.2s ease, border 0.6s ease;
-			}
+:root:not([zen-sidebar-expanded='true']) {
+	#tabs-newtab-button {
+		margin: 10px auto !important;
+		justify-self: center !important;
+		background: var(--mantle) !important;
+		border-radius: 8px !important;
+		box-sizing: unset !important;
+		width: calc(var(--tab-min-height) - 0.5px) !important;
+		min-height: calc(var(--tab-min-height) - 2px) !important;
+		max-height: calc(var(--tab-min-height) - 2px) !important;
 
-			@media not (-moz-bool-pref: 'nug-theme-tabs-containers-disabled') {
-				&[selected][usercontextid] .tab-background {
-					background: var(--nug-black-2) !important;
-					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
-					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
-				}
-
-				&[selected][usercontextid]:hover .tab-background {
-					background: var(--nug-black-2) !important;
-					border: 1px solid color-mix(in srgb, var(--identity-tab-color) 40%, white) !important;
-					box-shadow: 0px 0px 4px color-mix(in srgb, var(--identity-tab-color) 70%, transparent) !important;
-				}
-			}
-
-			&[selected]:hover .tab-background,
-			:not([selected]):hover .tab-background {
-				background: color-mix(in srgb, var(--zen-primary-color) 10%, #000000c0) !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 90%, transparent) !important;
-			}
-
-			&[selected='true'] .tab-background {
-				background: var(--nug-black-2) !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
-			}
-
-			&[multiselected='true'] .tab-background {
-				background: var(--nug-black-2) !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
-			}
-
-			/* Uses JS polyfill for Wayland compatibility */
-			&.nug-child-hovered .tab-background {
-				background: var(--nug-black-1) !important;
-				box-shadow: 0px 0px 3px #e61c56 !important;
-				border: 1px solid #e61c56 !important;
-			}
+		& .toolbarbutton-icon {
+			background: none !important;
+			transition: scale 0.4s ease !important;
 		}
 	}
-}
 
-@media not (-moz-pref('nug-theme-tabs-disabled')) {
-	@media not (-moz-pref('nug-theme-tabs-newtab-button-disabled')) {
-		:root[zen-sidebar-expanded='true'] {
-			#tabs-newtab-button {
-				background: var(--nug-black-1) !important;
-				border-radius: var(--nug-border-radius) !important;
-				box-shadow: 0px 0px 0px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
-				transition: opacity 0.3s ease, box-shadow 0.3s ease !important;
-				margin: 10px 1px !important;
-				justify-content: center !important;
+	#tabs-newtab-button:hover {
+		opacity: 1 !important;
+		box-shadow: 0px 0px 3px var(--mauve) !important;
 
-				& .toolbarbutton-text {
-					padding: 0px 10px 0px 10px !important;
-				}
-
-				& .toolbarbutton-text::before {
-					justify-self: center !important;
-					align-self: center !important;
-					display: flex !important;
-					left: auto !important;
-					right: auto !important;
-					transition: margin-left 0.3s !important;
-				}
-
-				& .toolbarbutton-icon {
-					transition: scale 0.3s ease !important;
-				}
-			}
-
-			#tabs-newtab-button:hover {
-				opacity: 1 !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-
-				& .toolbarbutton-text::before {
-					margin-left: 8px !important;
-				}
-
-				& .toolbarbutton-icon {
-					scale: 1.2 !important;
-				}
-			}
+		& .toolbarbutton-text::before {
+			margin-left: 8px !important;
 		}
 
-		:root:not([zen-sidebar-expanded='true']) {
-			#tabs-newtab-button {
-				margin: 10px auto !important;
-				justify-self: center !important;
-				background: var(--nug-black-1) !important;
-				border-radius: var(--nug-border-radius) !important;
-				box-shadow: 0px 0px 0px var(--nug-glow-color-2) !important;
-				border: 1px solid color-mix(in srgb, var(--zen-primary-color) 70%, transparent) !important;
-				transition: opacity 0.3s ease, box-shadow 0.3s ease !important;
-				box-sizing: unset !important;
-				width: calc(var(--tab-min-height) - 0.5px) !important;
-				min-height: calc(var(--tab-min-height) - 2px) !important;
-				max-height: calc(var(--tab-min-height) - 2px) !important;
-
-				& .toolbarbutton-icon {
-					background: none !important;
-					transition: scale 0.5s ease !important;
-				}
-			}
-
-			#tabs-newtab-button:hover {
-				opacity: 1 !important;
-				box-shadow: 0px 0px 4px var(--nug-glow-color-2) !important;
-
-				& .toolbarbutton-text::before {
-					margin-left: 8px !important;
-				}
-
-				& .toolbarbutton-icon {
-					scale: 1.5 !important;
-				}
-			}
+		& .toolbarbutton-icon {
+			scale: 1.5 !important;
 		}
 	}
-}
-
-@media not (-moz-pref('nug-theme-tabs-containers-disabled')) {
-	@media not (-moz-pref('nug-theme-tabs-containers-essentials-disabled')) {
-		:root[zen-sidebar-expanded='true'] {
-			/* Tab container indicator line adjustments for essentials in expanded mode */
-			.zen-essentials-container.zen-workspace-tabs-section {
-				& .tabbrowser-tab[usercontextid] {
-					& .tab-background {
-						justify-content: center !important;
-						align-content: center !important;
-
-						& .tab-context-line {
-							z-index: 9 !important;
-							margin: 25px 0px 0px 0px !important;
-							width: 18px !important;
-							height: 3px !important;
-							align-self: center !important;
-							transition: width 0.5s ease !important;
-						}
-					}
-				}
-			}
-		}
-
-		:root[zen-sidebar-expanded='true']:not([animating-background='true']) {
-			.zen-essentials-container.zen-workspace-tabs-section:not([hidden='true']) {
-				& .tabbrowser-tab[usercontextid] {
-					&:hover[usercontextid]:not([selected]) {
-						& .tab-context-line {
-							width: 50% !important;
-						}
-					}
-
-					&[selected][usercontextid] {
-						& .tab-context-line {
-							width: 60% !important;
-						}
-					}
-
-					&:hover[usercontextid][selected] {
-						& .tab-context-line {
-							width: 75% !important;
-						}
-					}
-				}
-			}
-		}
-
-		/* Tab container indicator line adjustments for essentials in collapsed mode */
-		:root:not([zen-sidebar-expanded='true']) {
-			.zen-essentials-container .tabbrowser-tab[usercontextid] {
-				& .tab-background {
-					justify-content: center !important;
-					align-content: center !important;
-
-					& .tab-context-line {
-						z-index: 999 !important;
-						margin: 20px 0px 0px 0px !important;
-						width: 3px !important;
-						height: 3px !important;
-						align-self: center !important;
-					}
-				}
-			}
-		}
-
-		:root:not([zen-sidebar-expanded='true']):not([animating-background='true']) {
-			.zen-essentials-container .tabbrowser-tab[usercontextid] {
-				&:hover[usercontextid]:not([selected]) {
-					.tab-context-line {
-						width: 30% !important;
-					}
-				}
-
-				&[selected][usercontextid] {
-					.tab-context-line {
-						width: 40% !important;
-					}
-				}
-
-				&:hover[usercontextid][selected] {
-					.tab-context-line {
-						width: 65% !important;
-					}
-				}
-			}
-		}
-
-		@media (-moz-pref('nug-theme-tabs-containers-essentials-disabled')) {
-			.zen-essentials-container .tabbrowser-tab[usercontextid] {
-				& .tab-background {
-					& .tab-context-line {
-						display: none !important;
-					}
-				}
-			}
-		}
-	}
-}
-
-/* Tab container indicator line adjustments for expanded mode */
-@media not (-moz-pref('nug-theme-tabs-containers-disabled')) {
-	:root[zen-sidebar-expanded='true'] {
-		.tabbrowser-tab[usercontextid]:not([zen-essential='true']) {
-			& .tab-background {
-				& .tab-context-line {
-					margin: 29px 2px 2px 7px !important;
-					width: 18px !important;
-					height: 3px !important;
-				}
-			}
-		}
-
-		&:not([animating-background='true']) .tabbrowser-tab[usercontextid]:not([zen-essential='true']) {
-			&:hover[usercontextid]:not([selected]) {
-				.tab-context-line {
-					width: 40% !important;
-				}
-			}
-
-			&[selected][usercontextid] {
-				.tab-context-line {
-					width: 60% !important;
-				}
-			}
-
-			&:hover[usercontextid][selected] {
-				.tab-context-line {
-					width: 75% !important;
-				}
-			}
-		}
-	}
-}
-
-/* Tab container indicator line adjustments for collapsed mode */
-@media not (-moz-pref('nug-theme-tabs-containers-disabled')) {
-	:root:not([zen-sidebar-expanded='true']) {
-		.tabbrowser-tab[usercontextid]:not([zen-essential='true']) {
-			& .tab-background {
-				align-content: center !important;
-				justify-content: center !important;
-				padding: 0px 0px 0px 0px !important;
-
-				& .tab-context-line {
-					margin: 27px 0px 2px 0px !important;
-					width: 3px !important;
-					height: 3px !important;
-					transition: width 0.3s ease;
-				}
-			}
-		}
-
-		&:not([animating-background='true']) {
-			.tabbrowser-tab[usercontextid]:not([zen-essential='true']) {
-				&:hover[usercontextid]:not([selected]) {
-					.tab-context-line {
-						width: 40% !important;
-					}
-				}
-
-				&[selected][usercontextid] {
-					.tab-context-line {
-						width: 60% !important;
-					}
-				}
-
-				&:hover[usercontextid][selected] {
-					.tab-context-line {
-						width: 75% !important;
-					}
-				}
-			}
-		}
-	}
-}
-
-@media not (-moz-pref('nug-theme-tabs-containers-disabled')) {
-	/* Tab gradient color container transition */
-	.tabbrowser-tab[usercontextid]:not([selected]):not([zen-essential='true']) .tab-background::after {
-		opacity: 0;
-		transition: opacity 0.9s ease;
-	}
-
-	.tabbrowser-tab[usercontextid][selected]:not([zen-essential='true']) .tab-background::after {
-		opacity: 0.25;
-		background: radial-gradient(
-			color-mix(in srgb, var(--identity-tab-color) 40%, white) 20%,
-			color-mix(in srgb, var(--identity-tab-color) 70%, white) 100%
-		) !important;
-		transition: opacity 0.9s ease;
-	}
-}
-
-@media not (-moz-pref('nug-theme-tabs-containers-disabled')) {
-	/* Tab container indicator line */
-	.tab-context-line {
-		display: flex !important;
-		border-radius: 10px !important;
-		background: color-mix(in srgb, var(--identity-tab-color) 50%, white) !important;
-		box-shadow: 0 0px 3px color-mix(in srgb, var(--identity-tab-color) 60%, white) !important;
-		transition: width 0.5s ease;
-	}
-
-	/* Ensure container tabs have a relative position */
-	.tabbrowser-tab[usercontextid]:not([zen-essential]) .tab-background {
-		position: relative !important;
-		justify-content: left !important;
-		border-radius: var(--nug-border-radius) !important;
-	}
-
-	/* Tab gradient color container */
-	/* .tabbrowser-tab:not([zen-essential]) .tab-background::after {
-			z-index: -1 !important;
-			content: '';
-			top: 0;
-			left: 0;
-			background-size: 100% 100% !important;
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			opacity: 0;
-			background: radial-gradient(
-				color-mix(in srgb, var(--identity-tab-color) 40%, white) 20%,
-				color-mix(in srgb, var(--identity-tab-color) 70%, white) 100%
-			) !important;
-			transition: opacity 0.9s ease;
-		} */
 }
 
 /* ------------------- Close and Reset Button Styling ------------------- */
 
-@media not (-moz-pref('nug-theme-tabs-disabled')) {
-	@media not (-moz-pref('nug-theme-close-button-disabled')) {
-		.zen-workspace-normal-tabs-section .tabbrowser-tab .tab-background::before,
-		.zen-workspace-pinned-tabs-section .tabbrowser-tab .tab-background::before {
-			display: flex !important;
-			opacity: 0;
-			content: '' !important;
-			width: 100%;
-			height: 100%;
-			position: absolute !important;
-			border-radius: 10px !important;
-			border: 1px solid #e61c56 !important;
-			background: #e61c56 !important;
-			box-shadow: 0px 0px 9px #e61c56 !important;
-			z-index: 3 !important;
-		}
+.zen-workspace-normal-tabs-section .tabbrowser-tab .tab-background::before,
+.zen-workspace-pinned-tabs-section .tabbrowser-tab .tab-background::before {
+	display: flex !important;
+	opacity: 0;
+	content: '' !important;
+	width: 100%;
+	height: 100%;
+	position: absolute !important;
+	border-radius: 10px !important;
+	border: 1px solid var(--nug-accent-off) !important;
+	background: var(--nug-accent-off) !important;
+	box-shadow: 0px 0px 9px var(--nug-accent-off) !important;
+	z-index: 3 !important;
+}
 
-		.tab-close-button,
-		.tab-reset-button {
-			margin-right: 2px !important;
-			padding: 3px 3px !important;
-			height: 18px !important;
-			width: 18px !important;
-			border-radius: 20px !important;
-		}
+.tab-close-button,
+.tab-reset-button {
+	margin-right: 2px !important;
+	padding: 3px 3px !important;
+	height: 18px !important;
+	width: 18px !important;
+	border-radius: 20px !important;
+}
 
-		.tab-close-button:hover,
-		.tab-reset-button:hover {
-			background: color-mix(in srgb, #e61c56 20%, transparent) !important;
-		}
+.tab-close-button:hover,
+.tab-reset-button:hover {
+	background: color-mix(in srgb, var(--overlay1) 20%, transparent) !important;
+}
 
-		:root:not([zen-sidebar-expanded='true']) {
-			.tab-close-button,
-			.tab-reset-button {
-				left: -2px !important;
-				right: auto !important;
-				padding: 3px 3px !important;
-				height: 18px !important;
-				width: 18px !important;
-				border-radius: 20px !important;
-			}
-		}
-
-		/* Uses JS polyfill for Wayland compatibility */
-		.tabbrowser-tab.nug-child-hovered .tab-background::before {
-			animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards !important;
-			clip-path: inset(0 0 0 0);
-		}
+:root:not([zen-sidebar-expanded='true']) {
+	.tab-close-button,
+	.tab-reset-button {
+		left: -2px !important;
+		right: auto !important;
+		padding: 3px 3px !important;
+		height: 18px !important;
+		width: 18px !important;
+		border-radius: 20px !important;
 	}
+}
+
+/* Uses JS polyfill for Wayland compatibility */
+.tabbrowser-tab.nug-child-hovered .tab-background::before {
+	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards !important;
+	clip-path: inset(0 0 0 0);
 }

@@ -3585,7 +3585,7 @@ class PanelManager {
 			try {
 				primary = getComputedStyle(document.documentElement).getPropertyValue('--zen-primary-color').trim()
 			} catch {}
-			if (!primary) primary = '#0a84ff'
+			if (!primary) primary = '#94e2d5'
 			// Use CSS light-dark() over a computed primary color string
 			const onColor = `light-dark(color-mix(in srgb, ${primary} 75%, gray), white)`
 

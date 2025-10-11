@@ -24,29 +24,23 @@ findbar {
 	padding-inline-end: 5px !important;
 	padding-top: 1px !important;
 	padding-bottom: 2px !important;
-	display: block !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
 	box-sizing: border-box;
-	box-shadow: 0px 0px 12px var(--nug-glow-color-2) !important;
-	border: 1px solid var(--nug-glow-color-1) !important;
 	position: fixed;
 	top: 35px;
 	right: 15px;
-	width: 320px;
-	height: 78px !important;
-	/* 	max-width: 800px !important;
-	min-width: 300px !important;
-	min-height: 95px !important;
-	max-height: 95px !important; */
-	border-radius: var(--url-bar-border_radius, 1.7rem) !important;
-	background: var(--nug-blur-color) !important;
-	backdrop-filter: var(--nug-blur-simple) !important;
+	width: 325px;
+	/* 	height: unset !important; */
+	height: 80px !important;
+	border-radius: 8px !important;
+	border: 1px solid var(--nug-glow-color-1) !important;
+	box-shadow: var(--acrylic-shadow) !important;
+	background: var(--acrylic-glass-bg) !important;
+	backdrop-filter: var(--acrylic-backdrop) blur(50px);
 	opacity: 1;
 	z-index: 9999;
-}
-
-findbar:has(.findbar-textbox[status='notfound']) {
-	border: 1px solid var(--red) !important;
-	box-shadow: 0px 0px 12px rgba(255, 68, 68, 0.5) !important;
 }
 
 &:is([hidden='true']) {
@@ -60,17 +54,29 @@ findbar:has(.findbar-textbox[status='notfound']) {
 	transform: translateY(-10px);
 }
 
-/* hiding */
+findbar:has(.findbar-textbox[status='notfound']) {
+	border: 1px solid var(--red) !important;
+	box-shadow: var(--acrylic-shadow-off) !important;
+}
+
 .findbar-closebutton {
-	display: none !important;
+	width: 22px !important;
+	height: 22px !important;
 	appearance: none !important;
 	outline: none !important;
 	border: none !important;
-	background-color: none !important;
+	border-radius: 5px !important;
+	transition: all 0.2s ease !important;
+	display: inline-flex !important;
+	justify-content: center !important;
+	align-content: center !important;
+	background-color: transparent !important;
 	-moz-context-properties: fill !important;
+	/* 	fill: light-dark(black, white) !important; */
 	position: absolute !important;
-	top: 3px !important;
-	right: -4px !important;
+	top: 4px !important;
+	right: -2px !important;
+	transition: background-color 0.2s ease !important;
 	z-index: 10 !important;
 
 	label {
@@ -78,7 +84,7 @@ findbar:has(.findbar-textbox[status='notfound']) {
 	}
 
 	&:hover {
-		background: none !important;
+		background: var(--tab-hover-background-color) !important;
 		border: none !important;
 	}
 
@@ -88,28 +94,22 @@ findbar:has(.findbar-textbox[status='notfound']) {
 }
 
 .findbar-container {
-	position: relative !important;
-	width: 100% !important;
-	height: 100% !important;
+	display: flex !important;
+	flex-direction: row !important;
+	justify-content: center !important;
+	margin-bottom: 5px !important;
+	flex-wrap: wrap;
+	height: auto !important;
+	row-gap: 10px;
 
 	& > :first-child {
 		position: absolute !important;
 		top: 8px !important;
+		right: 30px !important;
 		left: 8px !important;
 		width: 100% !important;
 		height: 40px !important;
 		display: block !important;
-
-		/* &::before {
-			content: '';
-			position: absolute !important;
-			left: 12px !important;
-			top: 5px !important;
-			width: 18px !important;
-			height: 18px !important;
-			background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23fff" d="M10.5 2c.58 0 1.15.058 1.699.17a1 1 0 1 1-.398 1.96a6.5 6.5 0 1 0 5.069 7.671a1 1 0 1 1 1.96.398a8.5 8.5 0 0 1-1.457 3.303l-.197.26l3.652 3.652a1 1 0 0 1-1.32 1.498l-.094-.084l-3.652-3.652A8.5 8.5 0 1 1 10.5 2M19 1a1 1 0 0 1 .898.56l.048.117l.13.378a3 3 0 0 0 1.684 1.8l.185.07l.378.129a1 1 0 0 1 .118 1.844l-.118.048l-.378.13a3 3 0 0 0-1.8 1.684l-.07.185l-.129.378a1 1 0 0 1-1.844.117l-.048-.117l-.13-.378a3 3 0 0 0-1.684-1.8l-.185-.07l-.378-.129a1 1 0 0 1-.118-1.844l.118-.048l.378-.13a3 3 0 0 0 1.8-1.684l.07-.185l.129-.378A1 1 0 0 1 19 1m0 3.196a5 5 0 0 1-.804.804q.448.355.804.804q.355-.448.804-.804A5 5 0 0 1 19 4.196" /></svg>') !important;
-			background-repeat: no-repeat;
-		} */
 
 		.findbar-textbox {
 			position: absolute !important;
@@ -121,8 +121,8 @@ findbar:has(.findbar-textbox[status='notfound']) {
 			padding: 0 !important;
 			font-size: 18px !important;
 			font-weight: 500 !important;
-			width: 204px !important;
-			/* 			height: 28px !important; */
+			box-shadow: none !important;
+			width: 86% !important;
 			border: none !important;
 
 			&:focus {
@@ -130,25 +130,41 @@ findbar:has(.findbar-textbox[status='notfound']) {
 			}
 		}
 
+		--toolbarbutton-base-left: -5px;
+		--toolbarbutton-spacing: 28px;
+		--toolbarbutton-base-top: 35px;
+
 		toolbarbutton {
+			width: 28px !important;
+			height: 28px !important;
+			transition: scale 0.2s ease !important;
+			font-weight: 600 !important;
+			margin-left: 6px !important;
+			border-radius: 4px !important;
+			justify-content: center !important;
+			align-content: center !important;
+			opacity: 1 !important;
+
 			&:nth-of-type(1) {
 				position: absolute !important;
-				top: 30px !important;
-				left: -4px !important;
+				top: var(--toolbarbutton-base-top) !important;
+				left: var(--toolbarbutton-base-left) !important;
 				margin: 2px !important;
 				padding: 0px !important;
 			}
 
 			&:nth-of-type(2) {
-				top: 30px !important;
-				left: 24px !important;
+				position: absolute !important;
+				top: var(--toolbarbutton-base-top) !important;
+				left: calc(var(--toolbarbutton-base-left) + var(--toolbarbutton-spacing)) !important;
 				margin: 2px !important;
 				padding: 0px !important;
 			}
 
-			/* 			&[disabled='true'] {
-				opacity: 0 !important;
-			} */
+			&[disabled='true'] {
+				opacity: 1 !important;
+				pointer-events: none !important;
+			}
 
 			label {
 				display: none !important;
@@ -164,33 +180,44 @@ findbar:has(.findbar-textbox[status='notfound']) {
 		}
 	}
 
-	/* Hide navigation arrows when no matches found */
-	/* findbar:has(.findbar-textbox[status='notfound']) [anonid='findbar-textbox-wrapper'] toolbarbutton {
-	opacity: 0 !important;
-	pointer-events: none !important;
-} */
-
 	checkbox,
 	label,
 	description {
 		position: absolute !important;
-		top: 10px !important;
 	}
 
+	--checkbox-base-offset: -84px;
+	--checkbox-spacing: 40px;
+	--checkbox-button-size: 21px;
+	--checkbox-button-font-size: calc(var(--checkbox-button-size) * 0.75);
+
 	checkbox:nth-of-type(1) {
-		right: 60px !important;
+		left: 50% !important;
+		transform: translateX(var(--checkbox-base-offset)) !important;
+		bottom: 6px !important;
+		top: auto !important;
 	}
 
 	checkbox:nth-of-type(2) {
-		right: 30px !important;
-	}
-
-	checkbox:nth-of-type(4) {
-		right: 0px !important;
+		left: 50% !important;
+		transform: translateX(calc(var(--checkbox-base-offset) + var(--checkbox-spacing))) !important;
+		bottom: 6px !important;
+		top: auto !important;
 	}
 
 	checkbox:nth-of-type(3) {
-		display: none !important;
+		/* 		display: none !important; */
+		left: 50% !important;
+		transform: translateX(calc(var(--checkbox-base-offset) + var(--checkbox-spacing) * 2)) !important;
+		bottom: 6px !important;
+		top: auto !important;
+	}
+
+	checkbox:nth-of-type(4) {
+		left: 50% !important;
+		transform: translateX(calc(var(--checkbox-base-offset) + var(--checkbox-spacing) * 3)) !important;
+		bottom: 6px !important;
+		top: auto !important;
 	}
 
 	.findbar-label {
@@ -202,33 +229,18 @@ findbar:has(.findbar-textbox[status='notfound']) {
 		}
 	}
 
-	.found-matches {
-		position: absolute !important;
-		bottom: 10px !important;
-		right: 0px !important;
-		display: block !important;
-		font-size: 14px !important;
-		font-weight: 500 !important;
-		white-space: nowrap !important;
-
-		&[hidden='true'] {
-			display: none !important;
-		}
-	}
-
-	/* Compact match indicator */
 	.matches-indicator {
 		font-family: monospace !important;
-		font-style: italic !important;
+		/* 		font-style: italic !important; */
 		position: absolute !important;
-		top: 47px !important;
-		bottom: 10px !important;
-		right: 6px !important;
+		bottom: 6px !important;
+		right: 7px !important;
+		top: auto !important;
 		font-size: 16px !important;
-		font-weight: 420 !important;
+		font-weight: 400 !important;
 		white-space: nowrap !important;
 		color: var(--text) !important;
-		/* 		display: block !important; */
+		display: block !important;
 
 		&[empty='true'] {
 			display: none !important;
@@ -236,15 +248,10 @@ findbar:has(.findbar-textbox[status='notfound']) {
 	}
 }
 
-/* When compact indicator is enabled, hide the verbose label */
 findbar[compact-indicator='true'] {
 	.found-matches {
 		display: none !important;
 	}
-}
-
-.findbar-find-status:is([data-l10n-id]) {
-	display: flex;
 }
 
 .checkbox-label {
@@ -252,19 +259,22 @@ findbar[compact-indicator='true'] {
 	font-weight: 500 !important;
 }
 
-/* change text to icons for smaller findbar */
 .findbar-container checkbox {
 	flex-shrink: 0 !important;
 	flex-grow: 0 !important;
+	width: var(--checkbox-button-size) !important;
+	height: var(--checkbox-button-size) !important;
 }
 
 .findbar-container checkbox::after {
-	height: 23px;
+	height: var(--checkbox-button-size);
+	width: var(--checkbox-button-size);
 	font-family: monospace;
-	font-size: 18px;
+	font-size: var(--checkbox-button-font-size);
 	background-size: cover;
 	display: flex;
 	align-items: center;
+	justify-content: center !important;
 	-moz-context-properties: fill;
 	fill: currentColor;
 	color: inherit;
@@ -274,22 +284,18 @@ findbar[compact-indicator='true'] {
 	content: '';
 	background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyMHB4IiBmaWxsPSJjb250ZXh0LWZpbGwiPjxwYXRoIGQ9Im01NDgtNDEwLTkwLTkxLTE5MyAxOTMgOTEgOTEgMTkyLTE5M1ptLTM4LTE0MyA5MCA5MSAxOTItMTkyLTkwLTkxLTE5MiAxOTJabS03Ny0yNCAxOTIgMTkyLTIxOCAyMThxLTIyIDIwLTUwLjUgMjEuNVQzMDgtMTY0bC0yMCAyMEg5NmwxMTYtMTE2cS0yMS0yMC0yMC00OS41dDIzLTQ5LjVsMjE4LTIxOFptMCAwIDIxOC0yMThxMjEtMjEgNTEtMjF0NTEgMjFsOTAgOTBxMjAgMjIgMjAgNTF0LTIwIDUxTDYyNS0zODUgNDMzLTU3N1oiLz48L3N2Zz4K')
 		no-repeat;
-	background-position-x: 1px;
-	background-position-y: -2px;
-	width: 24px;
+	background-position: center;
 }
 
 .findbar-case-sensitive::after {
 	content: 'Aa';
 	justify-content: center;
-	width: 24px;
 	font-weight: 600;
 }
 
 .findbar-match-diacritics::after {
 	content: 'ąâ';
 	justify-content: center;
-	width: 24px;
 	font-weight: 600;
 }
 
@@ -297,18 +303,11 @@ findbar[compact-indicator='true'] {
 	content: '';
 	background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSJjb250ZXh0LWZpbGwiPjxwYXRoIGQ9Ik00MC0xOTl2LTIwMGg4MHYxMjBoNzIwdi0xMjBoODB2MjAwSDQwWm0zNDItMTYxdi0zNGgtM3EtMTMgMjAtMzUgMzEuNVQyOTQtMzUxcS00OSAwLTc3LTI1LjVUMTg5LTQ0NnEwLTQyIDMyLjUtNjguNVQzMDUtNTQxcTIzIDAgNDIuNSAzLjVUMzgxLTUyNnYtMTRxMC0yNy0xOC41LTQzVDMxMi01OTlxLTIxIDAtMzkuNSA5VDI0MS01NjRsLTQzLTMycTE5LTI3IDQ4LTQxdDY3LTE0cTYyIDAgOTUgMjkuNXQzMyA4NS41djE3NmgtNTlabS02Ni0xMzRxLTMyIDAtNDkgMTIuNVQyNTAtNDQ2cTAgMjAgMTUgMzIuNXQzOSAxMi41cTMyIDAgNTQuNS0yMi41VDM4MS00NzhxLTE0LTgtMzItMTJ0LTMzLTRabTE4NSAxMzR2LTQwMWg2MnYxMTNsLTMgNDBoM3EzLTUgMjQtMjUuNXQ2Ni0yMC41cTY0IDAgMTAxIDQ2dDM3IDEwNnEwIDYwLTM2LjUgMTA1LjVUNjUzLTM1MXEtNDEgMC02Mi41LTE4VDU2My0zOTdoLTN2MzdoLTU5Wm0xNDMtMjM4cS00MCAwLTYyIDI5LjVUNTYwLTUwM3EwIDM3IDIyIDY2dDYyIDI5cTQwIDAgNjIuNS0yOXQyMi41LTY2cTAtMzctMjIuNS02NlQ2NDQtNTk4WiIvPjwvc3ZnPgo=')
 		no-repeat;
-	background-position-y: -2px;
-	width: 24px;
+	background-position: center;
 }
 
-/* hide all text for findbar checkboxes */
 .findbar-container checkbox > .checkbox-label-box {
 	display: none !important;
-}
-
-findbar [anonid='findbar-textbox-wrapper'] htmlNs|input:not(.minimal) {
-	border-top-right-radius: 0 !important;
-	border-bottom-right-radius: 0 !important;
 }
 
 findbar [anonid='findbar-textbox-wrapper'] toolbarbutton {
@@ -327,7 +326,7 @@ findbar [anonid='findbar-textbox-wrapper'] toolbarbutton {
 }
 
 findbar checkbox:hover {
-	background-color: var(--zen-colors-primary);
+	background-color: var(--tab-hover-background-color);
 }
 
 findbar checkbox[checked='true'] {
@@ -340,5 +339,5 @@ findbar checkbox .checkbox-check {
 }
 
 findbar checkbox {
-	border-radius: 5px !important;
+	border-radius: 4px !important;
 }
