@@ -76,8 +76,8 @@
 	background: var(--acrylic-glass-bg) !important;
 	backdrop-filter: var(--acrylic-backdrop) blur(50px) !important;
 	border-radius: var(--url-bar-border_radius, 1.7rem) !important;
-	box-shadow: var(--acrylic-shadow) !important;
-	border: 1px solid var(--nug-glow-color-1) !important;
+	box-shadow: var(--nug-glow-color-2) !important;
+	border: 2.2px solid var(--nug-glow-color-1) !important;
 	outline: none !important;
 }
 

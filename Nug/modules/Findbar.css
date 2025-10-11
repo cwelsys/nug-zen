@@ -29,8 +29,6 @@ findbar {
 	align-items: center !important;
 	box-sizing: border-box;
 	position: fixed;
-	top: 35px;
-	right: 15px;
 	width: 325px;
 	/* 	height: unset !important; */
 	height: 80px !important;
@@ -43,15 +41,91 @@ findbar {
 	z-index: 9999;
 }
 
+/* Top Right (default) - value 0 */
+findbar[position='0'],
+findbar:not([position]) {
+	top: 35px !important;
+	right: 15px !important;
+	left: auto !important;
+	bottom: auto !important;
+	transform: none !important;
+}
+
+/* Top Left - value 1 */
+findbar[position='1'] {
+	top: 35px !important;
+	left: 15px !important;
+	right: auto !important;
+	bottom: auto !important;
+	transform: none !important;
+}
+
+/* Top Center - value 2 */
+findbar[position='2'] {
+	top: 35px !important;
+	left: 50% !important;
+	right: auto !important;
+	bottom: auto !important;
+	transform: translateX(-50%) !important;
+}
+
+/* Bottom Right - value 3 */
+findbar[position='3'] {
+	bottom: 15px !important;
+	right: 15px !important;
+	top: auto !important;
+	left: auto !important;
+	transform: none !important;
+}
+
+/* Bottom Left - value 4 */
+findbar[position='4'] {
+	bottom: 15px !important;
+	left: 15px !important;
+	top: auto !important;
+	right: auto !important;
+	transform: none !important;
+}
+
+/* Bottom Center - value 5 */
+findbar[position='5'] {
+	bottom: 15px !important;
+	left: 50% !important;
+	top: auto !important;
+	right: auto !important;
+	transform: translateX(-50%) !important;
+}
+
 &:is([hidden='true']) {
 	visibility: inherit !important;
 	pointer-events: none !important;
 	opacity: 0 !important;
-	top: 0 !important;
 	animation: glass-disappear 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 	animation-fill-mode: forwards !important;
 	filter: blur(5px);
-	transform: translateY(-10px);
+}
+
+/* Adjust disappear animation direction based on position */
+findbar[position='0']:is([hidden='true']),
+findbar[position='1']:is([hidden='true']),
+findbar[position='2']:is([hidden='true']),
+findbar:not([position]):is([hidden='true']) {
+	transform: translateY(-10px) !important;
+}
+
+findbar[position='3']:is([hidden='true']),
+findbar[position='4']:is([hidden='true']),
+findbar[position='5']:is([hidden='true']) {
+	transform: translateY(10px) !important;
+}
+
+/* Center positions need to preserve the X translation */
+findbar[position='2']:is([hidden='true']) {
+	transform: translateX(-50%) translateY(-10px) !important;
+}
+
+findbar[position='5']:is([hidden='true']) {
+	transform: translateX(-50%) translateY(10px) !important;
 }
 
 findbar:has(.findbar-textbox[status='notfound']) {

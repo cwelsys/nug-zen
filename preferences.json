@@ -152,6 +152,41 @@
 		"margin": "12px 0"
 	},
 	{
+		"type": "dropdown",
+		"property": "nug.findbar.position",
+		"label": "📍 Findbar position",
+		"value": "number",
+		"default": 0,
+		"placeholder": false,
+		"options": [
+			{
+				"label": "Top Right",
+				"value": 0
+			},
+			{
+				"label": "Top Left",
+				"value": 1
+			},
+			{
+				"label": "Top Center",
+				"value": 2
+			},
+			{
+				"label": "Bottom Right",
+				"value": 3
+			},
+			{
+				"label": "Bottom Left",
+				"value": 4
+			},
+			{
+				"label": "Bottom Center",
+				"value": 5
+			}
+		],
+		"margin": "12px 0"
+	},
+	{
 		"type": "separator",
 		"label": "📝 Context Menu"
 	},
