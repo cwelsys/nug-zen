@@ -42,58 +42,77 @@ findbar {
 }
 
 /* Top Right (default) - value 0 */
-findbar[position='0'],
-findbar:not([position]) {
-	top: 35px !important;
-	right: 15px !important;
-	left: auto !important;
-	bottom: auto !important;
-	transform: none !important;
+@media (-moz-pref('nug.findbar.position', 0)) {
+	findbar {
+		top: 35px;
+		right: 15px;
+	}
+
+	findbar:is([hidden='true']) {
+		transform: translateY(-10px);
+	}
 }
 
 /* Top Left - value 1 */
-findbar[position='1'] {
-	top: 35px !important;
-	left: 15px !important;
-	right: auto !important;
-	bottom: auto !important;
-	transform: none !important;
+@media (-moz-pref('nug.findbar.position', 1)) {
+	findbar {
+		top: 35px;
+		left: 15px;
+	}
+
+	findbar:is([hidden='true']) {
+		transform: translateY(-10px);
+	}
 }
 
 /* Top Center - value 2 */
-findbar[position='2'] {
-	top: 35px !important;
-	left: 50% !important;
-	right: auto !important;
-	bottom: auto !important;
-	transform: translateX(-50%) !important;
+@media (-moz-pref('nug.findbar.position', 2)) {
+	findbar {
+		top: 35px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	findbar:is([hidden='true']) {
+		transform: translateX(-50%) translateY(-10px);
+	}
 }
 
 /* Bottom Right - value 3 */
-findbar[position='3'] {
-	bottom: 15px !important;
-	right: 15px !important;
-	top: auto !important;
-	left: auto !important;
-	transform: none !important;
+@media (-moz-pref('nug.findbar.position', 3)) {
+	findbar {
+		bottom: 15px;
+		right: 15px;
+	}
+
+	findbar:is([hidden='true']) {
+		transform: translateY(10px);
+	}
 }
 
 /* Bottom Left - value 4 */
-findbar[position='4'] {
-	bottom: 15px !important;
-	left: 15px !important;
-	top: auto !important;
-	right: auto !important;
-	transform: none !important;
+@media (-moz-pref('nug.findbar.position', 4)) {
+	findbar {
+		bottom: 15px;
+		left: 15px;
+	}
+
+	findbar:is([hidden='true']) {
+		transform: translateY(10px);
+	}
 }
 
 /* Bottom Center - value 5 */
-findbar[position='5'] {
-	bottom: 15px !important;
-	left: 50% !important;
-	top: auto !important;
-	right: auto !important;
-	transform: translateX(-50%) !important;
+@media (-moz-pref('nug.findbar.position', 5)) {
+	findbar {
+		bottom: 15px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	findbar:is([hidden='true']) {
+		transform: translateX(-50%) translateY(10px);
+	}
 }
 
 &:is([hidden='true']) {
@@ -103,29 +122,6 @@ findbar[position='5'] {
 	animation: glass-disappear 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 	animation-fill-mode: forwards !important;
 	filter: blur(5px);
-}
-
-/* Adjust disappear animation direction based on position */
-findbar[position='0']:is([hidden='true']),
-findbar[position='1']:is([hidden='true']),
-findbar[position='2']:is([hidden='true']),
-findbar:not([position]):is([hidden='true']) {
-	transform: translateY(-10px) !important;
-}
-
-findbar[position='3']:is([hidden='true']),
-findbar[position='4']:is([hidden='true']),
-findbar[position='5']:is([hidden='true']) {
-	transform: translateY(10px) !important;
-}
-
-/* Center positions need to preserve the X translation */
-findbar[position='2']:is([hidden='true']) {
-	transform: translateX(-50%) translateY(-10px) !important;
-}
-
-findbar[position='5']:is([hidden='true']) {
-	transform: translateX(-50%) translateY(10px) !important;
 }
 
 findbar:has(.findbar-textbox[status='notfound']) {
