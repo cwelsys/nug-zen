@@ -174,18 +174,6 @@
 	margin-right: 8px !important;
 }
 
-@media (-moz-string-pref: 'nug-url-font_size') {
-	:root {
-		--url-font_size: var(--nug-url-font_size, 13px);
-	}
-}
-
-@media (-moz-string-pref: 'nug-url-font_weight') {
-	:root {
-		--url-font_weight: var(--nug-url-font_weight, 400);
-	}
-}
-
 :root[zen-single-toolbar='true'] {
 	#urlbar-label-box {
 		background: color-mix(in srgb, var(--zen-primary-color) 50%, transparent 50%) !important;
@@ -200,8 +188,8 @@
 	}
 
 	.urlbar-input {
-		font-size: var(--url-font_size) !important;
-		font-weight: var(--url-font_weight) !important;
+		font-size: var(--nug-url-font_size, 13px) !important;
+		font-weight: var(--nug-url-font_weight, 400) !important;
 	}
 
 	#urlbar-searchmode-switcher {
