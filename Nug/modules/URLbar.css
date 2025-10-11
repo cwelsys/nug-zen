@@ -187,11 +187,6 @@
 		scale: 0.8 !important;
 	}
 
-	.urlbar-input {
-		font-size: var(--nug-url-font_size, 13px) !important;
-		font-weight: var(--nug-url-font_weight, 400) !important;
-	}
-
 	#urlbar-searchmode-switcher {
 		height: 2rem !important;
 		margin-right: -2px !important;

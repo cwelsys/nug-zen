@@ -127,20 +127,6 @@
 		"margin": "12px 0"
 	},
 	{
-		"property": "nug-url-font_size",
-		"label": "🔤 URL bar font size",
-		"type": "string",
-		"defaultValue": "13px",
-		"placeholder": "Enter font size (e.g., 13px, 1rem)"
-	},
-	{
-		"property": "nug-url-font_weight",
-		"label": "🔤 URL bar font weight",
-		"type": "number",
-		"defaultValue": 400,
-		"placeholder": "Enter font weight (e.g., 400, 500, 600)"
-	},
-	{
 		"type": "separator",
 		"label": "🔎 Findbar"
 	},
@@ -195,28 +181,40 @@
 		"label": "📐 Custom position: top",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 35px, 10%, auto (leave empty for auto)"
+		"placeholder": "e.g., 35px, 10%, auto (leave empty for auto)",
+		"visibleWhen": {
+			"nug.findbar.position": 6
+		}
 	},
 	{
 		"property": "nug.findbar.custom.right",
 		"label": "📐 Custom position: right",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)"
+		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)",
+		"visibleWhen": {
+			"nug.findbar.position": 6
+		}
 	},
 	{
 		"property": "nug.findbar.custom.bottom",
 		"label": "📐 Custom position: bottom",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)"
+		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)",
+		"visibleWhen": {
+			"nug.findbar.position": 6
+		}
 	},
 	{
 		"property": "nug.findbar.custom.left",
 		"label": "📐 Custom position: left",
 		"type": "string",
 		"defaultValue": "",
-		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)"
+		"placeholder": "e.g., 15px, 5%, auto (leave empty for auto)",
+		"visibleWhen": {
+			"nug.findbar.position": 6
+		}
 	},
 	{
 		"type": "separator",
