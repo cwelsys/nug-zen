@@ -128,6 +128,17 @@
 	},
 	{
 		"type": "separator",
+		"label": "📑 Tabs"
+	},
+	{
+		"type": "checkbox",
+		"property": "uc.pins.legacy-layout",
+		"label": "📌 Make pinned tabs look similar to Essentials (icon only in a grid)",
+		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
+		"type": "separator",
 		"label": "🔎 Findbar"
 	},
 	{
