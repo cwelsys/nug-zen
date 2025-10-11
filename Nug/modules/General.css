@@ -615,3 +615,13 @@ body[role='application'] {
 	padding: 4px;
 	color: var(--panel-disabled-text-color);
 }
+
+.zen-glance-sidebar-container {
+	& toolbarbutton {
+		background: var(--surface0) important;
+
+		&:hover {
+			background: var(--surface0) important;
+		}
+	}
+}
