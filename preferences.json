@@ -191,7 +191,6 @@
 		"property": "nug.findbar.custom.top",
 		"label": "📐 Custom position: top",
 		"type": "string",
-		"defaultValue": "",
 		"placeholder": "e.g., 35px, 10%, auto",
 		"conditions": [
 			{
@@ -206,7 +205,6 @@
 		"property": "nug.findbar.custom.right",
 		"label": "📐 Custom position: right",
 		"type": "string",
-		"defaultValue": "",
 		"placeholder": "e.g., 15px, 5%, auto",
 		"conditions": [
 			{
@@ -221,7 +219,6 @@
 		"property": "nug.findbar.custom.bottom",
 		"label": "📐 Custom position: bottom",
 		"type": "string",
-		"defaultValue": "",
 		"placeholder": "e.g., 15px, 5%, auto",
 		"conditions": [
 			{
@@ -236,7 +233,6 @@
 		"property": "nug.findbar.custom.left",
 		"label": "📐 Custom position: left",
 		"type": "string",
-		"defaultValue": "",
 		"placeholder": "e.g., 15px, 5%, auto",
 		"conditions": [
 			{
