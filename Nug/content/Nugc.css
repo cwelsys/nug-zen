@@ -1,5 +1,5 @@
-@import 'modules/Preload.css';
-@import 'modules/PDFjs.css';
+/* @import 'modules/Preload.css';
+@import 'modules/PDFjs.css'; */
 @import 'modules/Devtools.css';
 
 @media (prefers-color-scheme: dark) {
