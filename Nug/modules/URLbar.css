@@ -149,6 +149,12 @@
 	position: relative !important;
 }
 
+.urlbarView-row {
+	&[selected] {
+		background-color: var(--surface1) !important;
+	}
+}
+
 #urlbar[searchmode] #urlbar-results {
 	margin-top: 0px !important;
 	margin-bottom: 0px !important;

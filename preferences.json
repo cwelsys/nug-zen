@@ -127,6 +127,20 @@
 		"margin": "12px 0"
 	},
 	{
+		"property": "nug-url-font_size",
+		"label": "🔤 URL bar font size",
+		"type": "string",
+		"defaultValue": "13px",
+		"placeholder": "Enter font size (e.g., 13px, 1rem)"
+	},
+	{
+		"property": "nug-url-font_weight",
+		"label": "🔤 URL bar font weight",
+		"type": "number",
+		"defaultValue": 400,
+		"placeholder": "Enter font weight (e.g., 400, 500, 600)"
+	},
+	{
 		"type": "separator",
 		"label": "🔎 Findbar"
 	},
