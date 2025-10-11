@@ -4658,129 +4658,129 @@ if (!window.urlBarModifierInitialized) {
 // @name            Draggable Findbar
 // @description     Simple draggable findbar
 // ==/UserScript==
-;(function () {
-	'use strict'
+// ;(function () {
+// 	'use strict'
 
-	if (window.location.href !== 'chrome://browser/content/browser.xhtml') {
-		return
-	}
+// 	if (window.location.href !== 'chrome://browser/content/browser.xhtml') {
+// 		return
+// 	}
 
-	console.log('Draggable Findbar: Starting...')
+// 	console.log('Draggable Findbar: Starting...')
 
-	let findbar = null
-	let isDragging = false
-	let hasMoved = false
-	let startMouseX = 0
-	let startMouseY = 0
-	let currentTranslateX = 0
-	let currentTranslateY = 0
+// 	let findbar = null
+// 	let isDragging = false
+// 	let hasMoved = false
+// 	let startMouseX = 0
+// 	let startMouseY = 0
+// 	let currentTranslateX = 0
+// 	let currentTranslateY = 0
 
-	function findFindbar() {
-		findbar = document.querySelector('findbar')
-		if (findbar) {
-			console.log('Draggable Findbar: Found findbar element')
-			makeDraggable()
-		} else {
-			setTimeout(findFindbar, 500)
-		}
-	}
+// 	function findFindbar() {
+// 		findbar = document.querySelector('findbar')
+// 		if (findbar) {
+// 			console.log('Draggable Findbar: Found findbar element')
+// 			makeDraggable()
+// 		} else {
+// 			setTimeout(findFindbar, 500)
+// 		}
+// 	}
 
-	function makeDraggable() {
-		findbar.addEventListener('mousedown', startDrag)
-		console.log('Draggable Findbar: Made findbar draggable')
-	}
+// 	function makeDraggable() {
+// 		findbar.addEventListener('mousedown', startDrag)
+// 		console.log('Draggable Findbar: Made findbar draggable')
+// 	}
 
-	function startDrag(e) {
-		// If clicking on an input or button, allow default behavior
-		if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') {
-			return
-		}
+// 	function startDrag(e) {
+// 		// If clicking on an input or button, allow default behavior
+// 		if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') {
+// 			return
+// 		}
 
-		isDragging = true
-		hasMoved = false
-		startMouseX = e.clientX
-		startMouseY = e.clientY
+// 		isDragging = true
+// 		hasMoved = false
+// 		startMouseX = e.clientX
+// 		startMouseY = e.clientY
 
-		document.addEventListener('mousemove', drag)
-		document.addEventListener('mouseup', stopDrag)
+// 		document.addEventListener('mousemove', drag)
+// 		document.addEventListener('mouseup', stopDrag)
 
-		e.preventDefault()
-		console.log('Started potential drag at:', startMouseX, startMouseY)
-	}
+// 		e.preventDefault()
+// 		console.log('Started potential drag at:', startMouseX, startMouseY)
+// 	}
 
-	function drag(e) {
-		if (!isDragging) return
+// 	function drag(e) {
+// 		if (!isDragging) return
 
-		// Calculate how far we've moved from start
-		const deltaX = e.clientX - startMouseX
-		const deltaY = e.clientY - startMouseY
+// 		// Calculate how far we've moved from start
+// 		const deltaX = e.clientX - startMouseX
+// 		const deltaY = e.clientY - startMouseY
 
-		// Only start actually dragging if we've moved at least 3 pixels
-		if (!hasMoved && (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3)) {
-			hasMoved = true
-			console.log('Actually dragging now')
-		}
+// 		// Only start actually dragging if we've moved at least 3 pixels
+// 		if (!hasMoved && (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3)) {
+// 			hasMoved = true
+// 			console.log('Actually dragging now')
+// 		}
 
-		if (!hasMoved) return
+// 		if (!hasMoved) return
 
-		// Add to current translation
-		const newTranslateX = currentTranslateX + deltaX
-		const newTranslateY = currentTranslateY + deltaY
+// 		// Add to current translation
+// 		const newTranslateX = currentTranslateX + deltaX
+// 		const newTranslateY = currentTranslateY + deltaY
 
-		// Apply transform
-		findbar.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`
-	}
+// 		// Apply transform
+// 		findbar.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`
+// 	}
 
-	function stopDrag(e) {
-		if (isDragging) {
-			if (hasMoved) {
-				// Update current translation for next drag
-				const deltaX = e.clientX - startMouseX
-				const deltaY = e.clientY - startMouseY
-				currentTranslateX += deltaX
-				currentTranslateY += deltaY
+// 	function stopDrag(e) {
+// 		if (isDragging) {
+// 			if (hasMoved) {
+// 				// Update current translation for next drag
+// 				const deltaX = e.clientX - startMouseX
+// 				const deltaY = e.clientY - startMouseY
+// 				currentTranslateX += deltaX
+// 				currentTranslateY += deltaY
 
-				console.log('Stopped dragging, final position:', currentTranslateX, currentTranslateY)
-			} else {
-				// It was a click, not a drag - focus the input
-				const input = findbar.querySelector('input[type="text"], .findbar-textbox, input')
-				console.log('Looking for input, found:', input)
-				if (input) {
-					input.focus()
-					console.log('Focused input after click')
-				} else {
-					console.log('No input found in findbar')
-				}
-			}
-		}
+// 				console.log('Stopped dragging, final position:', currentTranslateX, currentTranslateY)
+// 			} else {
+// 				// It was a click, not a drag - focus the input
+// 				const input = findbar.querySelector('input[type="text"], .findbar-textbox, input')
+// 				console.log('Looking for input, found:', input)
+// 				if (input) {
+// 					input.focus()
+// 					console.log('Focused input after click')
+// 				} else {
+// 					console.log('No input found in findbar')
+// 				}
+// 			}
+// 		}
 
-		isDragging = false
-		hasMoved = false
+// 		isDragging = false
+// 		hasMoved = false
 
-		document.removeEventListener('mousemove', drag)
-		document.removeEventListener('mouseup', stopDrag)
-	}
+// 		document.removeEventListener('mousemove', drag)
+// 		document.removeEventListener('mouseup', stopDrag)
+// 	}
 
-	// Start looking for the findbar
-	findFindbar()
+// 	// Start looking for the findbar
+// 	findFindbar()
 
-	// Also watch for findbar creation
-	const observer = new MutationObserver((mutations) => {
-		mutations.forEach((mutation) => {
-			if (mutation.type === 'childList') {
-				mutation.addedNodes.forEach((node) => {
-					if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'findbar') {
-						findbar = node
-						makeDraggable()
-						console.log('Draggable Findbar: Detected new findbar')
-					}
-				})
-			}
-		})
-	})
+// 	// Also watch for findbar creation
+// 	const observer = new MutationObserver((mutations) => {
+// 		mutations.forEach((mutation) => {
+// 			if (mutation.type === 'childList') {
+// 				mutation.addedNodes.forEach((node) => {
+// 					if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'findbar') {
+// 						findbar = node
+// 						makeDraggable()
+// 						console.log('Draggable Findbar: Detected new findbar')
+// 					}
+// 				})
+// 			}
+// 		})
+// 	})
 
-	observer.observe(document.body, { childList: true, subtree: true })
-})()
+// 	observer.observe(document.body, { childList: true, subtree: true })
+// })()
 
 // ==UserScript==
 // @ignorecache
