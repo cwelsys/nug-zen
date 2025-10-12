@@ -54,6 +54,10 @@
 .zen-essentials-container .tabbrowser-tab {
 	.tab-background {
 		background: var(--base) !important;
+		box-shadow: 0px 0px 3px var(--mantle) !important;
+		border-radius: calc(var(--nug-border-radius) + 1px) !important;
+		backdrop-filter: blur(10px) !important;
+		transition: background 0.5s ease, box-shadow 0.5s ease, border 0.5s ease !important;
 	}
 
 	&:hover .tab-background {
@@ -61,8 +65,15 @@
 	}
 
 	&[visuallyselected] .tab-background {
+		box-shadow: 0px 0px 6px color-mix(in srgb, var(--text) 20%, transparent) !important;
+
 		&::before {
 			background-color: var(--base) !important;
+			mask-image: none !important;
+			border-radius: var(--nug-border-radius) !important;
+			background-color: var(--base) !important;
+			box-shadow: 0px 0px 10px color-mix(in srgb, var(--text) 30%, transparent) !important;
+			transition: background 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
 		}
 	}
 }

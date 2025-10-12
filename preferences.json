@@ -77,14 +77,6 @@
 		"margin": "12px 0"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug.workspace.wave.effect",
-		"defaultValue": true,
-		"restart": true,
-		"label": "💫 Workspace icon animation",
-		"margin": "12px 0"
-	},
-	{
 		"property": "nug.media.player",
 		"label": "🎧 Media player style",
 		"type": "dropdown",
@@ -129,6 +121,13 @@
 	{
 		"type": "separator",
 		"label": "📑 Tabs"
+	},
+	{
+		"type": "checkbox",
+		"property": "zen.theme.essentials-favicon-bg",
+		"label": "Enables a colorful border on Essential's based on the website's favicon.",
+		"defaultValue": true,
+		"margin": "12px 0"
 	},
 	{
 		"type": "checkbox",
