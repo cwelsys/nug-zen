@@ -347,7 +347,7 @@ browser {
 	}
 
 	#TabsToolbar {
-		background-color: var(--base) !important;
+		background-color: var(--mantle) !important;
 	}
 
 	.urlbar-background {
@@ -424,10 +424,10 @@ browser {
 	}
 
 	hbox#titlebar {
-		background-color: var(--base) !important;
+		background-color: var(--mantle) !important;
 	}
 
 	#zen-appcontent-navbar-container {
-		background-color: var(--base) !important;
+		background-color: var(--mantle) !important;
 	}
 }
