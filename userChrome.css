@@ -1,1 +1,349 @@
-@import 'Nug/Nug.css';
+@import 'Modules/Context.css';
+@import 'Modules/Extensions.css';
+@import 'Modules/Findbar.css';
+@import 'Modules/General.css';
+@import 'Modules/Icons.css';
+@import 'Modules/Media.css';
+@import 'Modules/Tabs.css';
+@import 'Modules/URLbar.css';
+@import 'Modules/Workspace.css';
+
+/* Font */
+@media (-moz-pref('nug-font', 0)) {
+	:root {
+		--nug-font: sans-serif;
+	}
+}
+
+@media (-moz-pref('nug-font', 1)) {
+	:root {
+		--nug-font: serif;
+	}
+}
+
+@media (-moz-pref('nug-font', 2)) {
+	:root {
+		--nug-font: monospace;
+	}
+}
+
+* {
+	font-weight: var(--nug-font_weight) !important;
+	font-family: var(--nug-font), sans-serif;
+}
+
+.urlbar-input {
+	font-family: monospace !important;
+}
+
+browser {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+:root {
+	--tab-collapsed-background-width: 40px !important;
+}
+
+@media not (-moz-bool-pref: 'zen.view.sidebar-expanded') {
+	:root {
+		--tab-min-height: 39px !important;
+	}
+}
+
+/* Acccent */
+@media (-moz-pref('nug-catppuccin-flavor', 0)) {
+	:root {
+		--base: #1e1e2e;
+		--mantle: #181825;
+		--crust: #11111b;
+		--surface0: #313244;
+		--surface1: #45475a;
+		--surface2: #585b70;
+		--overlay0: #6c7086;
+		--overlay1: #7f849c;
+		--overlay2: #9399b2;
+		--subtext0: #a6adc8;
+		--subtext1: #bac2de;
+		--text: #cdd6f4;
+		--lavender: #b4befe;
+		--blue: #89b4fa;
+		--sapphire: #74c7ec;
+		--sky: #89dceb;
+		--teal: #94e2d5;
+		--green: #a6e3a1;
+		--yellow: #f9e2af;
+		--peach: #fab387;
+		--maroon: #eba0ac;
+		--red: #f38ba8;
+		--mauve: #cba6f7;
+		--pink: #f5c2e7;
+		--flamingo: #f2cdcd;
+		--rosewater: #f5e0dc;
+	}
+}
+
+@media (-moz-pref('nug-catppuccin-flavor', 1)) {
+	:root {
+		--base: #24273a;
+		--mantle: #1e2030;
+		--crust: #181926;
+		--surface0: #363a4f;
+		--surface1: #494d64;
+		--surface2: #5b6078;
+		--overlay0: #6e738d;
+		--overlay1: #8087a2;
+		--overlay2: #939ab7;
+		--subtext0: #a5adcb;
+		--subtext1: #b8c0e0;
+		--text: #cad3f5;
+		--lavender: #b7bdf8;
+		--blue: #8aadf4;
+		--sapphire: #7dc4e4;
+		--sky: #91d7e3;
+		--teal: #8bd5ca;
+		--green: #a6da95;
+		--yellow: #eed49f;
+		--peach: #f5a97f;
+		--maroon: #ee99a0;
+		--red: #ed8796;
+		--mauve: #c6a0f6;
+		--pink: #f5bde6;
+		--flamingo: #f0c6c6;
+		--rosewater: #f4dbd6;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 0)) {
+	:root {
+		--nug-accent: var(--blue);
+		--tab-selected-textcolor: rgb(171, 197, 247) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 1)) {
+	:root {
+		--nug-accent: var(--lavender);
+		--tab-selected-textcolor: rgb(192, 202, 249) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 2)) {
+	:root {
+		--nug-accent: var(--sapphire);
+		--tab-selected-textcolor: rgb(160, 207, 240) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 3)) {
+	:root {
+		--nug-accent: var(--sky);
+		--tab-selected-textcolor: rgb(171, 217, 240) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 4)) {
+	:root {
+		--nug-accent: var(--teal);
+		--tab-selected-textcolor: rgb(176, 220, 229) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 5)) {
+	:root {
+		--nug-accent: var(--green);
+		--tab-selected-textcolor: rgb(185, 221, 203) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 6)) {
+	:root {
+		--nug-accent: var(--yellow);
+		--tab-selected-textcolor: rgb(227, 220, 210) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 7)) {
+	:root {
+		--nug-accent: var(--peach);
+		--tab-selected-textcolor: rgb(227, 197, 190) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 8)) {
+	:root {
+		--nug-accent: var(--maroon);
+		--tab-selected-textcolor: rgb(220, 187, 208) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 9)) {
+	:root {
+		--nug-accent: var(--red);
+		--tab-selected-textcolor: rgb(224, 177, 206) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 10)) {
+	:root {
+		--nug-accent: var(--mauve);
+		--tab-selected-textcolor: rgb(204, 190, 246) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 11)) {
+	:root {
+		--nug-accent: var(--pink);
+		--tab-selected-textcolor: rgb(225, 204, 238) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 12)) {
+	:root {
+		--nug-accent: var(--flamingo);
+		--tab-selected-textcolor: rgb(223, 210, 225) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 13)) {
+	:root {
+		--nug-accent: var(--rosewater);
+		--tab-selected-textcolor: rgb(225, 219, 232) !important;
+	}
+}
+
+/* Vars */
+:root {
+	--zen-colors-primary: var(--surface0) !important;
+	--zen-primary-color: var(--nug-accent) !important;
+	--zen-colors-secondary: var(--surface0) !important;
+	--zen-colors-tertiary: var(--mantle) !important;
+	--zen-colors-border: var(--surface0) !important;
+	--toolbarbutton-icon-fill: var(--nug-icon-color) !important;
+	--lwt-text-color: var(--text) !important;
+	--toolbar-field-color: var(--text) !important;
+	--toolbar-field-focus-color: var(--text) !important;
+	--toolbar-color: var(--text) !important;
+	--newtab-text-primary-color: var(--text) !important;
+	--arrowpanel-color: var(--text) !important;
+	--arrowpanel-background: var(--base) !important;
+	--sidebar-text-color: var(--text) !important;
+	--lwt-sidebar-text-color: var(--text) !important;
+	--lwt-sidebar-background-color: var(--crust) !important;
+	--toolbar-bgcolor: var(--surface0) !important;
+	--newtab-background-color: var(--base) !important;
+	--zen-themed-toolbar-bg: var(--mantle) !important;
+	--zen-main-browser-background: var(--mantle) !important;
+	--toolbox-bgcolor-inactive: var(--mantle) !important;
+	--nug-color-bg: var(--mantle);
+	--nug-color-hover: color-mix(in srgb, var(--nug-accent) 20%, #232336);
+	--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, white);
+	--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, white);
+	--nug-border-radius: 4px;
+	--url-bar-border-radius: 1.7rem;
+	--nug-blur: blur(52px) saturate(180%) brightness(110%);
+	--nug-blur-simple: blur(15px) brightness(110%) saturate(260%);
+	--nug-blur-color: color-mix(in srgb, var(--nug-accent) 1%, #000000a0);
+	--acrylic-bg: light-dark(rgb(250, 250, 250), rgb(24, 24, 27));
+	--acrylic-backdrop: saturate(2.5) !important;
+	--acrylic-shadow: 0 8px 32px color-mix(in srgb, var(--nug-accent) 15%, transparent 85%);
+	--nug-accent-off: var(--peach);
+	--acrylic-shadow-off: 0 8px 32px color-mix(in srgb, var(--nug-accent-off) 15%, transparent 85%);
+	--acrylic-glass-bg: color-mix(in srgb, var(--acrylic-bg) 40%, transparent 60%);
+}
+
+#permissions-granted-icon {
+	color: var(--mantle) !important;
+}
+
+.sidebar-placesTree {
+	background-color: var(--base) !important;
+}
+
+#zen-workspaces-button {
+	background-color: var(--base) !important;
+}
+
+#TabsToolbar {
+	background-color: var(--base) !important;
+}
+
+.urlbar-background {
+	background-color: var(--base) !important;
+}
+
+.content-shortcuts {
+	background-color: var(--base) !important;
+	border-color: var(--nug-accent) !important;
+}
+
+.urlbarView-url {
+	color: var(--nug-accent) !important;
+}
+
+#zenEditBookmarkPanelFaviconContainer {
+	background: var(--crust) !important;
+}
+
+#zen-media-controls-toolbar {
+	& #zen-media-progress-bar {
+		&::-moz-range-track {
+			background: var(--surface0) !important;
+		}
+	}
+}
+
+toolbar .toolbarbutton-1 {
+	&:not([disabled]) {
+		&:is([open], [checked]) > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
+			fill: var(--crust);
+		}
+	}
+}
+
+.identity-color-blue {
+	--identity-tab-color: var(--blue) !important;
+	--identity-icon-color: var(--blue) !important;
+}
+
+.identity-color-turquoise {
+	--identity-tab-color: var(--teal) !important;
+	--identity-icon-color: var(--teal) !important;
+}
+
+.identity-color-green {
+	--identity-tab-color: var(--green) !important;
+	--identity-icon-color: var(--green) !important;
+}
+
+.identity-color-yellow {
+	--identity-tab-color: var(--yellow) !important;
+	--identity-icon-color: var(--yellow) !important;
+}
+
+.identity-color-orange {
+	--identity-tab-color: var(--peach) !important;
+	--identity-icon-color: var(--peach) !important;
+}
+
+.identity-color-red {
+	--identity-tab-color: var(--red) !important;
+	--identity-icon-color: var(--red) !important;
+}
+
+.identity-color-pink {
+	--identity-tab-color: var(--pink) !important;
+	--identity-icon-color: var(--pink) !important;
+}
+
+.identity-color-purple {
+	--identity-tab-color: var(--mauve) !important;
+	--identity-icon-color: var(--mauve) !important;
+}
+
+hbox#titlebar {
+	background-color: var(--base) !important;
+}
+
+#zen-appcontent-navbar-container {
+	background-color: var(--base) !important;
+}

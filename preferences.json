@@ -2,6 +2,90 @@
 	{
 		"type": "dropdown",
 		"value": "number",
+		"property": "nug-catppuccin-flavor",
+		"label": "🎨 Catppuccin Flavor",
+		"default": 0,
+		"placeholder": false,
+		"options": [
+			{
+				"label": "Mocha",
+				"value": 0
+			},
+			{
+				"label": "Macchiato",
+				"value": 1
+			}
+		]
+	},
+	{
+		"type": "dropdown",
+		"value": "number",
+		"property": "nug-accent-color",
+		"label": "✨ Accent Color",
+		"default": 0,
+		"placeholder": false,
+		"options": [
+			{
+				"label": "Blue",
+				"value": 0
+			},
+			{
+				"label": "Lavender",
+				"value": 1
+			},
+			{
+				"label": "Sapphire",
+				"value": 2
+			},
+			{
+				"label": "Sky",
+				"value": 3
+			},
+			{
+				"label": "Teal",
+				"value": 4
+			},
+			{
+				"label": "Green",
+				"value": 5
+			},
+			{
+				"label": "Yellow",
+				"value": 6
+			},
+			{
+				"label": "Peach",
+				"value": 7
+			},
+			{
+				"label": "Maroon",
+				"value": 8
+			},
+			{
+				"label": "Red",
+				"value": 9
+			},
+			{
+				"label": "Mauve",
+				"value": 10
+			},
+			{
+				"label": "Pink",
+				"value": 11
+			},
+			{
+				"label": "Flamingo",
+				"value": 12
+			},
+			{
+				"label": "Rosewater",
+				"value": 13
+			}
+		]
+	},
+	{
+		"type": "dropdown",
+		"value": "number",
 		"property": "nug-font",
 		"label": "🔤 Font family",
 		"default": 0,
@@ -124,13 +208,6 @@
 	},
 	{
 		"type": "checkbox",
-		"property": "zen.theme.essentials-favicon-bg",
-		"label": "Enables a colorful border on Essential's based on the website's favicon.",
-		"defaultValue": true,
-		"margin": "12px 0"
-	},
-	{
-		"type": "checkbox",
 		"property": "uc.pins.legacy-layout",
 		"label": "📌 Make pinned tabs look similar to Essentials (icon only in a grid)",
 		"defaultValue": false,
@@ -145,6 +222,20 @@
 		"property": "nug.findbar.compact.indicator",
 		"label": "📏 Use compact match indicator",
 		"defaultValue": true,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-indicator",
+		"label": "👁️ Hide workspace indicator",
+		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-buttons",
+		"label": "🔘 Hide workspace buttons",
+		"defaultValue": false,
 		"margin": "12px 0"
 	},
 	{
@@ -480,29 +571,5 @@
 		"type": "checkbox",
 		"defaultValue": false,
 		"margin": "8px 0"
-	},
-	{
-		"type": "separator",
-		"label": "🗂️ Workspaces"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-hide-workspace-indicator",
-		"label": "👁️ Hide workspace indicator",
-		"defaultValue": false,
-		"margin": "12px 0"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-hide-workspace-button-",
-		"label": "🔘 Hide workspace button",
-		"defaultValue": false,
-		"margin": "12px 0"
-	},
-	{
-		"property": "nglayout.initialpaint.delay",
-		"label": "⏱️ Initial paint delay in ms (removes flashbangs)",
-		"type": "number",
-		"defaultValue": 250
 	}
 ]

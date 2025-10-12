@@ -1,1 +1,346 @@
-@import 'Nug/content/Nugc.css';
+@media (-moz-pref('nug-catppuccin-flavor', 0)) {
+	:root {
+		--base: #1e1e2e;
+		--mantle: #181825;
+		--crust: #11111b;
+		--surface0: #313244;
+		--surface1: #45475a;
+		--surface2: #585b70;
+		--overlay0: #6c7086;
+		--overlay1: #7f849c;
+		--overlay2: #9399b2;
+		--subtext0: #a6adc8;
+		--subtext1: #bac2de;
+		--text: #cdd6f4;
+		--lavender: #b4befe;
+		--blue: #89b4fa;
+		--sapphire: #74c7ec;
+		--sky: #89dceb;
+		--teal: #94e2d5;
+		--green: #a6e3a1;
+		--yellow: #f9e2af;
+		--peach: #fab387;
+		--maroon: #eba0ac;
+		--red: #f38ba8;
+		--mauve: #cba6f7;
+		--pink: #f5c2e7;
+		--flamingo: #f2cdcd;
+		--rosewater: #f5e0dc;
+	}
+}
+
+@media (-moz-pref('nug-catppuccin-flavor', 1)) {
+	:root {
+		--base: #24273a;
+		--mantle: #1e2030;
+		--crust: #181926;
+		--surface0: #363a4f;
+		--surface1: #494d64;
+		--surface2: #5b6078;
+		--overlay0: #6e738d;
+		--overlay1: #8087a2;
+		--overlay2: #939ab7;
+		--subtext0: #a5adcb;
+		--subtext1: #b8c0e0;
+		--text: #cad3f5;
+		--lavender: #b7bdf8;
+		--blue: #8aadf4;
+		--sapphire: #7dc4e4;
+		--sky: #91d7e3;
+		--teal: #8bd5ca;
+		--green: #a6da95;
+		--yellow: #eed49f;
+		--peach: #f5a97f;
+		--maroon: #ee99a0;
+		--red: #ed8796;
+		--mauve: #c6a0f6;
+		--pink: #f5bde6;
+		--flamingo: #f0c6c6;
+		--rosewater: #f4dbd6;
+	}
+}
+
+/* Accent */
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 0)) {
+		:root {
+			--color-accent-primary-hover: rgb(163, 197, 251) !important;
+			--color-accent-primary-active: rgb(138, 153, 250) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 1)) {
+		:root {
+			--color-accent-primary-hover: rgb(206, 212, 254) !important;
+			--color-accent-primary-active: rgb(189, 180, 254) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 2)) {
+		:root {
+			--color-accent-primary-hover: rgb(139, 207, 239) !important;
+			--color-accent-primary-active: rgb(116, 168, 236) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 3)) {
+		:root {
+			--color-accent-primary-hover: rgb(159, 227, 239) !important;
+			--color-accent-primary-active: rgb(137, 196, 235) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 4)) {
+		:root {
+			--color-accent-primary-hover: rgb(169, 231, 221) !important;
+			--color-accent-primary-active: rgb(148, 219, 226) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 5)) {
+		:root {
+			--color-accent-primary-hover: rgb(185, 233, 181) !important;
+			--color-accent-primary-active: rgb(161, 227, 172) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 6)) {
+		:root {
+			--color-accent-primary-hover: rgb(251, 234, 199) !important;
+			--color-accent-primary-active: rgb(249, 244, 175) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 7)) {
+		:root {
+			--color-accent-primary-hover: rgb(251, 195, 161) !important;
+			--color-accent-primary-active: rgb(250, 208, 136) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 8)) {
+		:root {
+			--color-accent-primary-hover: rgb(240, 182, 192) !important;
+			--color-accent-primary-active: rgb(235, 167, 161) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 9)) {
+		:root {
+			--color-accent-primary-hover: rgb(245, 163, 186) !important;
+			--color-accent-primary-active: rgb(243, 139, 143) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 10)) {
+		:root {
+			--color-accent-primary-hover: rgb(217, 191, 249) !important;
+			--color-accent-primary-active: rgb(223, 167, 247) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 11)) {
+		:root {
+			--color-accent-primary-hover: rgb(249, 217, 240) !important;
+			--color-accent-primary-active: rgb(245, 195, 219) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 12)) {
+		:root {
+			--color-accent-primary-hover: rgb(248, 226, 226) !important;
+			--color-accent-primary-active: rgb(242, 215, 206) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	@media (-moz-pref('nug-accent-color', 13)) {
+		:root {
+			--color-accent-primary-hover: rgb(251, 243, 241) !important;
+			--color-accent-primary-active: rgb(245, 231, 221) !important;
+			--link-color-hover: var(--color-accent-primary-hover) !important;
+		}
+	}
+}
+
+/* Common variables affecting all pages */
+@-moz-document url-prefix("about:") {
+	:root {
+		--in-content-page-color: var(--text) !important;
+		--color-accent-primary: var(--nug-accent) !important;
+		background-color: var(--base) !important;
+		--in-content-page-background: var(--base) !important;
+	}
+}
+
+/* Variables and styles specific to about:newtab and about:home */
+@-moz-document url-prefix("about:newtab"), url-prefix("about:home") {
+	:root {
+		--newtab-background-color: var(--base) !important;
+		--newtab-background-color-secondary: var(--surface0) !important;
+		--newtab-element-hover-color: var(--surface0) !important;
+		--newtab-text-primary-color: var(--text) !important;
+		--newtab-wordmark-color: var(--text) !important;
+		--newtab-primary-action-background: var(--nug-accent) !important;
+	}
+
+	.icon {
+		color: var(--nug-accent) !important;
+	}
+
+	.search-wrapper .logo-and-wordmark .logo {
+		background: url('https://raw.githubusercontent.com/IAmJafeth/zen-browser/main/themes/Mocha/Teal/zen-logo-mocha.svg')
+			no-repeat center !important;
+		display: inline-block !important;
+		height: 82px !important;
+		width: 82px !important;
+		background-size: 82px !important;
+	}
+
+	@media (max-width: 609px) {
+		.search-wrapper .logo-and-wordmark .logo {
+			background-size: 64px !important;
+			height: 64px !important;
+			width: 64px !important;
+		}
+	}
+
+	.card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
+		color: var(--nug-accent) !important;
+	}
+
+	.top-site-outer .search-topsite {
+		background-color: var(--nug-accent) !important;
+	}
+
+	.compact-cards .card-outer .card-context .card-context-icon.icon-download {
+		fill: var(--green) !important;
+	}
+}
+
+/* Variables and styles specific to about:preferences */
+@-moz-document url-prefix("about:preferences") {
+	:root {
+		--zen-colors-tertiary: var(--mantle) !important;
+		--in-content-text-color: var(--text) !important;
+		--link-color: var(--nug-accent) !important;
+		--zen-colors-primary: var(--surface0) !important;
+		--in-content-box-background: var(--surface0) !important;
+		--zen-primary-color: var(--nug-accent) !important;
+	}
+
+	groupbox,
+	moz-card {
+		background: var(--base) !important;
+	}
+
+	.main-content {
+		background-color: var(--crust) !important;
+	}
+
+	.identity-color-blue {
+		--identity-tab-color: var(--blue) !important;
+		--identity-icon-color: var(--blue) !important;
+	}
+
+	.identity-color-turquoise {
+		--identity-tab-color: var(--teal) !important;
+		--identity-icon-color: var(--teal) !important;
+	}
+
+	.identity-color-green {
+		--identity-tab-color: var(--green) !important;
+		--identity-icon-color: var(--green) !important;
+	}
+
+	.identity-color-yellow {
+		--identity-tab-color: var(--yellow) !important;
+		--identity-icon-color: var(--yellow) !important;
+	}
+
+	.identity-color-orange {
+		--identity-tab-color: var(--peach) !important;
+		--identity-icon-color: var(--peach) !important;
+	}
+
+	.identity-color-red {
+		--identity-tab-color: var(--red) !important;
+		--identity-icon-color: var(--red) !important;
+	}
+
+	.identity-color-pink {
+		--identity-tab-color: var(--pink) !important;
+		--identity-icon-color: var(--pink) !important;
+	}
+
+	.identity-color-purple {
+		--identity-tab-color: var(--mauve) !important;
+		--identity-icon-color: var(--mauve) !important;
+	}
+}
+
+/* Variables and styles specific to about:addons */
+@-moz-document url-prefix("about:addons") {
+	:root {
+		--zen-dark-color-mix-base: var(--mantle) !important;
+		--background-color-box: var(--base) !important;
+	}
+}
+
+/* Variables and styles specific to about:protections */
+@-moz-document url-prefix("about:protections") {
+	:root {
+		--zen-primary-color: var(--base) !important;
+		--social-color: var(--mauve) !important;
+		--coockie-color: var(--sky) !important;
+		--fingerprinter-color: var(--yellow) !important;
+		--cryptominer-color: var(--lavender) !important;
+		--tracker-color: var(--green) !important;
+		--in-content-primary-button-background-hover: rgb(81, 83, 105) !important;
+		--in-content-primary-button-text-color-hover: var(--text) !important;
+		--in-content-primary-button-background: var(--surface1) !important;
+		--in-content-primary-button-text-color: var(--text) !important;
+	}
+
+	.card {
+		background-color: var(--surface0) !important;
+	}
+}
