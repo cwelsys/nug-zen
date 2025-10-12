@@ -28,7 +28,6 @@
 }
 
 * {
-	font-weight: var(--nug-font_weight) !important;
 	font-family: var(--nug-font), sans-serif;
 }
 
