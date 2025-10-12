@@ -34,9 +34,9 @@ findbar {
 	height: 80px !important;
 	border-radius: 8px !important;
 	border: 1px solid var(--nug-glow-color-1) !important;
-	box-shadow: var(--acrylic-shadow) !important;
-	background: var(--acrylic-glass-bg) !important;
-	backdrop-filter: var(--acrylic-backdrop) blur(50px);
+	box-shadow: 0 8px 32px color-mix(in srgb, var(--zen-primary-color) 15%, transparent 85%);
+	background: var(--nug-glass-bg) !important;
+	backdrop-filter: saturate(2.5) blur(50px);
 	opacity: 1;
 	z-index: 9999;
 }
@@ -160,7 +160,7 @@ findbar {
 
 findbar:has(.findbar-textbox[status='notfound']) {
 	border: 1px solid var(--red) !important;
-	box-shadow: var(--acrylic-shadow-off) !important;
+	box-shadow: 0 8px 32px color-mix(in srgb, var(--red) 15%, transparent 85%) !important;
 }
 
 .findbar-closebutton {

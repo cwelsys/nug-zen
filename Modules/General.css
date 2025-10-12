@@ -159,7 +159,7 @@ body[role='application'] {
 
 	#urlbar-background {
 		margin: 4px;
-		border-radius: var(--url-bar-border-radius, 1.7rem) !important;
+		border-radius: 1.7rem !important;
 	}
 
 	#vertical-pinned-tabs-container {
