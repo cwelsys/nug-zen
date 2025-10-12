@@ -962,683 +962,195 @@ if (Services.prefs.getBoolPref('nug.cover.art.js')) {
 
 // ==UserScript==
 // @ignorecache
-// @name          zen-workspace-button-wave-animation
-// @namespace      zenWorkspaceButtonAnimation
-// @description    helps in adding mac os dock like aniamtion to zen worspace buttons
-// @version        1.7b
-// ==/UserScript==
-if (Services.prefs.getBoolPref('nug.workspace.wave.effect')) {
-	;(function () {
-		if (window.ZenBrowserCustomizableDockEffect) {
-			return
-		}
-		window.ZenBrowserCustomizableDockEffect = true
-		let isEffectInitialized = false
-
-		// --- DOM Selectors ---
-		const DOCK_CONTAINER_ID = 'zen-workspaces-button'
-		const BUTTON_SELECTOR = '.subviewbutton'
-
-		// --- Inactive Icon Display Mode --- NEW ---
-		// 'dot': Inactive icons are heavily dimmed/grayscaled (like dots).
-		// 'visible': Inactive icons are more visible, just less prominent.
-		// This can be overridden by a browser preference/setting if implemented.
-		const INACTIVE_ICON_MODE_DEFAULT = 'dot' // or 'visible'
-
-		// --- Base Appearance (Initial state derived from CSS, with JS fallbacks) ---
-		const BASE_SCALE = 1
-
-		// -- For 'dot' mode (current behavior) --
-		const JS_FALLBACK_INITIAL_OPACITY_DOT_MODE = 0.75 // Or lower for more "dot-like"
-		const JS_FALLBACK_INITIAL_GRAYSCALE_DOT_MODE = 100 // In %
-
-		// -- For 'visible' mode (new behavior) --
-		const JS_FALLBACK_INITIAL_OPACITY_VISIBLE_MODE = 0.85 // More visible
-		const JS_FALLBACK_INITIAL_GRAYSCALE_VISIBLE_MODE = 50 // Less grayscale, more color
-
-		// --- Magnification & Wave Effect ---
-		const MAX_MAGNIFICATION_SCALE = 1.3
-		const NEIGHBOR_INFLUENCE_WIDTH_FACTOR = 3
-		const SCALE_FALLOFF_POWER = 5.7
-
-		// --- Opacity Transition ---
-		const MAX_OPACITY = 1.0
-		const OPACITY_FALLOFF_POWER = 1.5
-
-		// --- Grayscale Transition ---
-		const MAX_GRAYSCALE = 0 // Grayscale (%) for icon closest to mouse (0 = full color)
-		const GRAYSCALE_FALLOFF_POWER = 1.5
-
-		// --- Stacking Order ---
-		const BASE_Z_INDEX = 1
-		const Z_INDEX_BOOST = 10
-
-		// --- Performance Tuning ---
-		const MOUSE_MOVE_THROTTLE_MS = 10
-		const RESIZE_DEBOUNCE_MS = 150
-
-		// --- Dynamic Gapping ---
-		const DYNAMIC_GAP_CSS_VARIABLE = '--zen-dock-dynamic-gap'
-		const JS_FALLBACK_DEFAULT_GAP = '0.1em'
-		// ========================================================
-		// --- End Configuration ---
-
-		let dockContainerElement = null
-		let currentButtons = []
-		let buttonCachedProperties = []
-		let lastMouseMoveTime = 0
-		let resizeDebounceTimeout
-		let isMouseOverDock = false
-		let lastMouseXInDock = 0
-
-		// --- NEW: Function to get the current inactive icon mode ---
-		// This is where you'd integrate reading from `about:config` or similar browser settings
-		function getCurrentInactiveIconMode() {
-			// Example: Placeholder for reading a browser preference
-			// if (typeof browser !== 'undefined' && browser.prefs && browser.prefs.get) {
-			// try {
-			//   const prefValue = await browser.prefs.get('extensions.zenBrowser.dock.inactiveIconMode');
-			//   if (prefValue === 'visible' || prefValue === 'dot') {
-			//     return prefValue;
-			//   }
-			// } catch (e) { console.warn("Zen Dock: Could not read preference", e); }
-			// }
-			// For now, we'll use a CSS custom property or the JS default
-			const modeFromCSS = getCssVariableOrDefault('--zen-dock-inactive-icon-mode', INACTIVE_ICON_MODE_DEFAULT, false)
-			if (modeFromCSS === 'visible' || modeFromCSS === 'dot') {
-				return modeFromCSS
-			}
-			return INACTIVE_ICON_MODE_DEFAULT
-		}
-
-		function getCssVariableOrDefault(varName, fallbackValue, isInteger = false, treatAsString = false) {
-			try {
-				const rootStyle = getComputedStyle(document.documentElement)
-				let value = rootStyle.getPropertyValue(varName).trim()
-				if (value) {
-					if (treatAsString) return value // Return as string if requested
-					return isInteger ? parseInt(value, 10) : parseFloat(value)
-				}
-			} catch (e) {
-				/* CSS variable might not be defined yet or invalid */
-			}
-			return fallbackValue
-		}
-
-		// --- MODIFIED: Function to get initial properties based on mode ---
-		function getInitialButtonProperties() {
-			const mode = getCurrentInactiveIconMode()
-			let initialOpacity, initialGrayscale
-
-			if (mode === 'visible') {
-				initialOpacity = getCssVariableOrDefault(
-					'--zen-dock-icon-initial-opacity-visible',
-					JS_FALLBACK_INITIAL_OPACITY_VISIBLE_MODE
-				)
-				initialGrayscale = getCssVariableOrDefault(
-					'--zen-dock-icon-initial-grayscale-visible',
-					JS_FALLBACK_INITIAL_GRAYSCALE_VISIBLE_MODE,
-					true
-				)
-			} else {
-				// Default to 'dot' mode
-				initialOpacity = getCssVariableOrDefault(
-					'--zen-dock-icon-initial-opacity-dot',
-					JS_FALLBACK_INITIAL_OPACITY_DOT_MODE
-				)
-				initialGrayscale = getCssVariableOrDefault(
-					'--zen-dock-icon-initial-grayscale-dot',
-					JS_FALLBACK_INITIAL_GRAYSCALE_DOT_MODE,
-					true
-				)
-			}
-			return { initialOpacity, initialGrayscale }
-		}
-
-		function getDynamicGapValue(buttonCount) {
-			// ... (same as before)
-			let gapValue = JS_FALLBACK_DEFAULT_GAP
-			if (buttonCount <= 1) gapValue = '0em'
-			else if (buttonCount === 2) gapValue = '1em'
-			else if (buttonCount === 3) gapValue = '0em'
-			else if (buttonCount <= 5) gapValue = '0.5em'
-			else if (buttonCount <= 7) gapValue = '0.3em'
-			else if (buttonCount === 8) gapValue = '0.2em'
-			else if (buttonCount >= 9) gapValue = '0.1em'
-			return gapValue
-		}
-
-		function updateDockGapping() {
-			// ... (same as before)
-			if (!dockContainerElement) return
-			const buttonCount = currentButtons.length
-			const gapValue = getDynamicGapValue(buttonCount)
-			dockContainerElement.style.setProperty(DYNAMIC_GAP_CSS_VARIABLE, gapValue)
-		}
-
-		function cacheButtonProperties() {
-			// ... (same as before)
-			if (!dockContainerElement) return []
-			const newButtons = Array.from(dockContainerElement.querySelectorAll(BUTTON_SELECTOR))
-			const newButtonProperties = newButtons.map((btn) => {
-				const rect = btn.getBoundingClientRect()
-				return {
-					element: btn,
-					center: rect.left + rect.width / 2,
-					width: rect.width,
-				}
-			})
-			let buttonsChangedStructurally = newButtons.length !== currentButtons.length
-			if (!buttonsChangedStructurally) {
-				for (let i = 0; i < newButtons.length; i++) {
-					if (newButtons[i] !== currentButtons[i]) {
-						buttonsChangedStructurally = true
-						break
-					}
-				}
-			}
-			currentButtons = newButtons
-			buttonCachedProperties = newButtonProperties
-			updateDockGapping()
-			return buttonsChangedStructurally
-		}
-
-		function resetAllButtonsToDefault() {
-			// --- MODIFIED to use getInitialButtonProperties ---
-			const { initialOpacity, initialGrayscale } = getInitialButtonProperties()
-			const isActiveButton = (btn) => btn.matches('[active="true"]')
-
-			currentButtons.forEach((btn) => {
-				let targetOpacity = initialOpacity
-				let targetGrayscale = initialGrayscale
-
-				if (isActiveButton(btn)) {
-					// Active buttons should always be quite visible, regardless of inactive mode
-					targetOpacity = getCssVariableOrDefault('--zen-dock-icon-active-opacity', MAX_OPACITY)
-					// Potentially make active grayscale slightly less than full color if preferred
-					targetGrayscale = getCssVariableOrDefault('--zen-dock-icon-active-grayscale', MAX_GRAYSCALE + 10) // e.g., 10% grayscale for active
-				}
-
-				btn.style.transform = `scale(${BASE_SCALE})`
-				btn.style.opacity = targetOpacity
-				btn.style.filter = `grayscale(${targetGrayscale}%)`
-				btn.style.zIndex = BASE_Z_INDEX
-			})
-		}
-
-		function updateDockEffectStyles(mouseX) {
-			const now = performance.now()
-			if (MOUSE_MOVE_THROTTLE_MS > 0 && now - lastMouseMoveTime < MOUSE_MOVE_THROTTLE_MS) {
-				return
-			}
-			lastMouseMoveTime = now
-
-			if (buttonCachedProperties.length === 0 && currentButtons.length > 0) {
-				cacheButtonProperties()
-				if (buttonCachedProperties.length === 0) return
-			} else if (currentButtons.length === 0) {
-				return
-			}
-
-			// --- MODIFIED to use getInitialButtonProperties ---
-			const { initialOpacity: currentInitialOpacity, initialGrayscale: currentInitialGrayscale } =
-				getInitialButtonProperties()
-
-			// Active button properties remain separate
-			const currentActiveOpacity = getCssVariableOrDefault('--zen-dock-icon-active-opacity', MAX_OPACITY)
-			const currentActiveGrayscale = getCssVariableOrDefault('--zen-dock-icon-active-grayscale', MAX_GRAYSCALE + 10)
-
-			const isActiveButton = (btn) => btn.matches('[active="true"]')
-
-			buttonCachedProperties.forEach((props) => {
-				const iconElement = props.element
-				const iconCenter = props.center
-				const iconWidth = props.width
-
-				if (!iconElement || iconWidth === 0) return
-
-				const distanceToMouse = Math.abs(mouseX - iconCenter)
-				const maxEffectDistance = iconWidth * NEIGHBOR_INFLUENCE_WIDTH_FACTOR
-				let effectStrength = 0
-
-				if (distanceToMouse < maxEffectDistance) {
-					effectStrength = Math.cos((distanceToMouse / maxEffectDistance) * (Math.PI / 2))
-					effectStrength = Math.pow(effectStrength, SCALE_FALLOFF_POWER)
-				}
-
-				const scale = BASE_SCALE + (MAX_MAGNIFICATION_SCALE - BASE_SCALE) * effectStrength
-
-				let baseOpacityForCalc = currentInitialOpacity
-				let baseGrayscaleForCalc = currentInitialGrayscale
-
-				// If active and mouse is far, use active base properties
-				if (isActiveButton(iconElement) && effectStrength < 0.1) {
-					baseOpacityForCalc = currentActiveOpacity
-					baseGrayscaleForCalc = currentActiveGrayscale
-				}
-
-				let opacityEffectStrengthMod = effectStrength
-				if (OPACITY_FALLOFF_POWER !== SCALE_FALLOFF_POWER && distanceToMouse < maxEffectDistance) {
-					let tempStrength = Math.cos((distanceToMouse / maxEffectDistance) * (Math.PI / 2))
-					opacityEffectStrengthMod = Math.pow(tempStrength, OPACITY_FALLOFF_POWER)
-				}
-				// If icon is active, it should not become less opaque than its active base when mouse is far
-				// And it should not become less opaque than initial general opacity when mouse is near
-				let targetOpacity
-				if (isActiveButton(iconElement)) {
-					// Active buttons transition from their `currentActiveOpacity` towards `MAX_OPACITY`
-					targetOpacity = currentActiveOpacity + (MAX_OPACITY - currentActiveOpacity) * opacityEffectStrengthMod
-				} else {
-					// Inactive buttons transition from `currentInitialOpacity` towards `MAX_OPACITY`
-					targetOpacity = currentInitialOpacity + (MAX_OPACITY - currentInitialOpacity) * opacityEffectStrengthMod
-				}
-
-				let grayscaleEffectStrengthMod = effectStrength
-				if (GRAYSCALE_FALLOFF_POWER !== SCALE_FALLOFF_POWER && distanceToMouse < maxEffectDistance) {
-					let tempStrength = Math.cos((distanceToMouse / maxEffectDistance) * (Math.PI / 2))
-					grayscaleEffectStrengthMod = Math.pow(tempStrength, GRAYSCALE_FALLOFF_POWER)
-				}
-				// Similar logic for grayscale
-				let targetGrayscale
-				if (isActiveButton(iconElement)) {
-					// Active buttons transition from their `currentActiveGrayscale` towards `MAX_GRAYSCALE`
-					targetGrayscale =
-						currentActiveGrayscale - (currentActiveGrayscale - MAX_GRAYSCALE) * grayscaleEffectStrengthMod
-				} else {
-					// Inactive buttons transition from `currentInitialGrayscale` towards `MAX_GRAYSCALE`
-					targetGrayscale =
-						currentInitialGrayscale - (currentInitialGrayscale - MAX_GRAYSCALE) * grayscaleEffectStrengthMod
-				}
-
-				const zIndex = BASE_Z_INDEX + Math.ceil(Z_INDEX_BOOST * effectStrength)
-
-				iconElement.style.transform = `scale(${scale})`
-
-				// Determine the absolute minimum opacity (should not go below its non-hovered state)
-				let minOpacityForElement = isActiveButton(iconElement) ? currentActiveOpacity : currentInitialOpacity
-				// If under mouse influence, it could even go down to the general initial opacity if that's lower than active
-				if (isActiveButton(iconElement) && effectStrength > 0.1 && currentInitialOpacity < currentActiveOpacity) {
-					minOpacityForElement = currentInitialOpacity
-				}
-
-				iconElement.style.opacity = Math.min(MAX_OPACITY, Math.max(minOpacityForElement, targetOpacity))
-				iconElement.style.filter = `grayscale(${Math.max(0, Math.min(100, Math.round(targetGrayscale)))}%)`
-				iconElement.style.zIndex = zIndex
-			})
-		}
-
-		function initializeDockEffect() {
-			// ... (same as before)
-			dockContainerElement = document.getElementById(DOCK_CONTAINER_ID)
-			if (!dockContainerElement) return
-
-			cacheButtonProperties()
-			if (currentButtons.length === 0) {
-				// Observer will handle when buttons appear
-			} else {
-				resetAllButtonsToDefault() // This will now use the configured mode
-			}
-
-			dockContainerElement.addEventListener('mousemove', (event) => {
-				const dockRect = dockContainerElement.getBoundingClientRect()
-				if (
-					event.clientX >= dockRect.left &&
-					event.clientX <= dockRect.right &&
-					event.clientY >= dockRect.top &&
-					event.clientY <= dockRect.bottom
-				) {
-					isMouseOverDock = true
-					lastMouseXInDock = event.clientX
-					updateDockEffectStyles(event.clientX)
-				} else {
-					if (isMouseOverDock) {
-						isMouseOverDock = false
-						resetAllButtonsToDefault()
-					}
-				}
-			})
-
-			dockContainerElement.addEventListener('mouseleave', () => {
-				isMouseOverDock = false
-				resetAllButtonsToDefault()
-			})
-
-			window.addEventListener('resize', () => {
-				clearTimeout(resizeDebounceTimeout)
-				resizeDebounceTimeout = setTimeout(() => {
-					cacheButtonProperties()
-					if (isMouseOverDock && lastMouseXInDock !== 0 && currentButtons.length > 0) {
-						updateDockEffectStyles(lastMouseXInDock)
-					} else {
-						resetAllButtonsToDefault()
-					}
-				}, RESIZE_DEBOUNCE_MS)
-			})
-		}
-
-		const observer = new MutationObserver((mutationsList, obs) => {
-			// ... (logic largely the same, but resetAllButtonsToDefault and updateDockEffectStyles now use mode)
-			const dockNowExists = document.getElementById(DOCK_CONTAINER_ID)
-
-			if (!dockNowExists) {
-				if (isEffectInitialized) {
-					isEffectInitialized = false
-					isMouseOverDock = false
-					currentButtons = []
-					buttonCachedProperties = []
-				}
-				return
-			}
-			if (dockContainerElement !== dockNowExists) dockContainerElement = dockNowExists
-
-			const buttonsArePresent = dockNowExists.querySelector(BUTTON_SELECTOR)
-
-			if (buttonsArePresent) {
-				if (!isEffectInitialized) {
-					initializeDockEffect()
-					isEffectInitialized = true
-				} else {
-					const structuralChange = cacheButtonProperties()
-					if (isMouseOverDock && !structuralChange && currentButtons.length > 0) {
-						updateDockEffectStyles(lastMouseXInDock)
-					} else {
-						resetAllButtonsToDefault()
-						if (isMouseOverDock && currentButtons.length > 0) {
-							updateDockEffectStyles(lastMouseXInDock)
-						}
-					}
-				}
-			} else if (isEffectInitialized && currentButtons.length > 0) {
-				currentButtons = []
-				buttonCachedProperties = []
-				updateDockGapping()
-			}
-		})
-
-		function attemptInitialization() {
-			// ... (same as before)
-			const dock = document.getElementById(DOCK_CONTAINER_ID)
-			if (dock) {
-				dockContainerElement = dock
-				if (dock.querySelector(BUTTON_SELECTOR)) {
-					if (!isEffectInitialized) {
-						initializeDockEffect()
-						isEffectInitialized = true
-					}
-				} else {
-					if (!isEffectInitialized) {
-						updateDockGapping()
-						observer.observe(document.documentElement, { childList: true, subtree: true })
-					}
-				}
-			} else {
-				observer.observe(document.documentElement, { childList: true, subtree: true })
-			}
-		}
-
-		// --- NEW: Listen for preference changes (if applicable) ---
-		// This is a conceptual example. Actual implementation depends on your browser environment.
-		// For a typical WebExtension:
-		// if (typeof browser !== 'undefined' && browser.storage && browser.storage.onChanged) {
-		//   browser.storage.onChanged.addListener((changes, areaName) => {
-		//     if (areaName === 'local' || areaName === 'sync') { // Or wherever your preference is stored
-		//       if (changes['extensions.zenBrowser.dock.inactiveIconMode']) { // Or your actual preference key
-		//         console.log("Zen Dock: Inactive icon mode preference changed. Re-applying styles.");
-		//         // Re-apply styles based on the new preference
-		//         if (isMouseOverDock && lastMouseXInDock !== 0 && currentButtons.length > 0) {
-		//           updateDockEffectStyles(lastMouseXInDock);
-		//         } else {
-		//           resetAllButtonsToDefault();
-		//         }
-		//       }
-		//     }
-		//   });
-		// } else if (/* You have another way to detect preference changes, e.g., custom events */) {
-		//   // document.addEventListener('myCustomPreferenceChangeEvent', () => { ... });
-		// }
-
-		if (document.readyState === 'complete' || document.readyState === 'interactive') {
-			attemptInitialization()
-		} else {
-			document.addEventListener('DOMContentLoaded', attemptInitialization, { once: true })
-		}
-	})()
-}
-
-// ==UserScript==
-// @ignorecache
-// @name           CompactmodeSidebarWidthFix
-// @namespace      psuedobgwidthfix
-// @description    it help in adjust dynamic width of psuedo background
-// @version        1.7b
-// ==/UserScript==
-if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser', false)) {
-	;(function () {
-		const mainWindow = document.getElementById('main-window')
-		const toolbox = document.getElementById('navigator-toolbox')
-
-		function updateSidebarWidthIfCompact() {
-			const isCompact = mainWindow.getAttribute('zen-compact-mode') === 'true'
-			if (!isCompact) return
-
-			const value = getComputedStyle(toolbox).getPropertyValue('--zen-sidebar-width')
-			if (value) {
-				mainWindow.style.setProperty('--zen-sidebar-width', value.trim())
-				console.log('[userChrome] Synced --zen-sidebar-width to #main-window:', value.trim())
-			}
-		}
-
-		// Set up a MutationObserver to watch attribute changes on #main-window
-		const observer = new MutationObserver((mutationsList) => {
-			for (const mutation of mutationsList) {
-				if (mutation.type === 'attributes' && mutation.attributeName === 'zen-compact-mode') {
-					updateSidebarWidthIfCompact()
-				}
-			}
-		})
-
-		// Observe attribute changes
-		observer.observe(mainWindow, {
-			attributes: true,
-			attributeFilter: ['zen-compact-mode'],
-		})
-
-		// Optional: run it once in case the attribute is already set at load
-		updateSidebarWidthIfCompact()
-	})()
-}
-
-// ==UserScript==
-// @ignorecache
 // @name           GradientOpacityadjuster
 // @namespace      variableopacity
 // @description    it help in adjust dynamically opacity and contrast of icons and other elements
 // @version        1.7b
 // ==/UserScript==
 
-;(function () {
-	console.log('[UserChromeScript] custom-input-to-dual-css-vars-persistent.uc.js starting...')
+// ;(function () {
+// 	console.log('[UserChromeScript] custom-input-to-dual-css-vars-persistent.uc.js starting...')
 
-	// --- Configuration ---
-	const INPUT_ELEMENT_ID = 'PanelUI-zen-gradient-generator-opacity'
-	const CSS_VARIABLE_DIRECT_NAME = '--zen-gradient-opacity'
-	const CSS_VARIABLE_INVERTED_NAME = '--zen-gradient-opacity-inverted'
-	const TARGET_ELEMENT_FOR_CSS_VAR = document.documentElement // Apply globally to <html>
-	const PREF_NAME = `userchrome.custom.${INPUT_ELEMENT_ID}.value`
+// 	// --- Configuration ---
+// 	const INPUT_ELEMENT_ID = 'PanelUI-zen-gradient-generator-opacity'
+// 	const CSS_VARIABLE_DIRECT_NAME = '--zen-gradient-opacity'
+// 	const CSS_VARIABLE_INVERTED_NAME = '--zen-gradient-opacity-inverted'
+// 	const TARGET_ELEMENT_FOR_CSS_VAR = document.documentElement // Apply globally to <html>
+// 	const PREF_NAME = `userchrome.custom.${INPUT_ELEMENT_ID}.value`
 
-	// IMPORTANT: Define how to interpret the input's value for inversion
-	// If input.value is naturally 0-1 (e.g. for opacity):
-	const INPUT_VALUE_MIN = 0
-	const INPUT_VALUE_MAX = 1
-	// If input.value is 0-100 (e.g. a percentage slider):
-	// const INPUT_VALUE_MIN = 0;
-	// const INPUT_VALUE_MAX = 100;
-	// --- End Configuration ---
+// 	// IMPORTANT: Define how to interpret the input's value for inversion
+// 	// If input.value is naturally 0-1 (e.g. for opacity):
+// 	const INPUT_VALUE_MIN = 0
+// 	const INPUT_VALUE_MAX = 1
+// 	// If input.value is 0-100 (e.g. a percentage slider):
+// 	// const INPUT_VALUE_MIN = 0;
+// 	// const INPUT_VALUE_MAX = 100;
+// 	// --- End Configuration ---
 
-	let inputElement = null
-	let Services
+// 	let inputElement = null
+// 	let Services
 
-	try {
-		Services = globalThis.Services || ChromeUtils.import('resource://gre/modules/Services.jsm').Services
-		console.log('[UserChromeScript] Services module loaded.')
-	} catch (e) {
-		console.error('[UserChromeScript] CRITICAL: Failed to load Services module:', e)
-		Services = null // Ensure it's null if loading failed
-	}
+// 	try {
+// 		Services = globalThis.Services || ChromeUtils.import('resource://gre/modules/Services.jsm').Services
+// 		console.log('[UserChromeScript] Services module loaded.')
+// 	} catch (e) {
+// 		console.error('[UserChromeScript] CRITICAL: Failed to load Services module:', e)
+// 		Services = null // Ensure it's null if loading failed
+// 	}
 
-	function saveValueToPrefs(value) {
-		if (!Services || !Services.prefs) {
-			console.warn('[UserChromeScript] Services.prefs not available. Cannot save preference.')
-			return
-		}
-		try {
-			Services.prefs.setStringPref(PREF_NAME, String(value)) // Save as string
-			// console.log(`[UserChromeScript] Saved to prefs (${PREF_NAME}):`, value);
-		} catch (e) {
-			console.error(`[UserChromeScript] Error saving preference ${PREF_NAME}:`, e)
-		}
-	}
+// 	function saveValueToPrefs(value) {
+// 		if (!Services || !Services.prefs) {
+// 			console.warn('[UserChromeScript] Services.prefs not available. Cannot save preference.')
+// 			return
+// 		}
+// 		try {
+// 			Services.prefs.setStringPref(PREF_NAME, String(value)) // Save as string
+// 			// console.log(`[UserChromeScript] Saved to prefs (${PREF_NAME}):`, value);
+// 		} catch (e) {
+// 			console.error(`[UserChromeScript] Error saving preference ${PREF_NAME}:`, e)
+// 		}
+// 	}
 
-	function loadValueFromPrefs() {
-		if (!Services || !Services.prefs) {
-			console.warn('[UserChromeScript] Services.prefs not available. Cannot load preference.')
-			return null
-		}
-		if (Services.prefs.prefHasUserValue(PREF_NAME)) {
-			try {
-				const value = Services.prefs.getStringPref(PREF_NAME)
-				// console.log(`[UserChromeScript] Loaded from prefs (${PREF_NAME}):`, value);
-				return value // Return as string, will be parsed later
-			} catch (e) {
-				console.error(`[UserChromeScript] Error loading preference ${PREF_NAME}:`, e)
-				return null
-			}
-		}
-		// console.log(`[UserChromeScript] No user value found for preference ${PREF_NAME}.`);
-		return null
-	}
+// 	function loadValueFromPrefs() {
+// 		if (!Services || !Services.prefs) {
+// 			console.warn('[UserChromeScript] Services.prefs not available. Cannot load preference.')
+// 			return null
+// 		}
+// 		if (Services.prefs.prefHasUserValue(PREF_NAME)) {
+// 			try {
+// 				const value = Services.prefs.getStringPref(PREF_NAME)
+// 				// console.log(`[UserChromeScript] Loaded from prefs (${PREF_NAME}):`, value);
+// 				return value // Return as string, will be parsed later
+// 			} catch (e) {
+// 				console.error(`[UserChromeScript] Error loading preference ${PREF_NAME}:`, e)
+// 				return null
+// 			}
+// 		}
+// 		// console.log(`[UserChromeScript] No user value found for preference ${PREF_NAME}.`);
+// 		return null
+// 	}
 
-	function applyCssVariables(directValueStr) {
-		if (!TARGET_ELEMENT_FOR_CSS_VAR) {
-			console.warn(`[UserChromeScript] Target element for CSS variables not found.`)
-			return
-		}
+// 	function applyCssVariables(directValueStr) {
+// 		if (!TARGET_ELEMENT_FOR_CSS_VAR) {
+// 			console.warn(`[UserChromeScript] Target element for CSS variables not found.`)
+// 			return
+// 		}
 
-		let directValueNum = parseFloat(directValueStr)
+// 		let directValueNum = parseFloat(directValueStr)
 
-		// Validate and clamp the directValueNum based on defined min/max
-		if (isNaN(directValueNum)) {
-			console.warn(
-				`[UserChromeScript] Invalid number parsed from input: '${directValueStr}'. Using default of ${INPUT_VALUE_MIN}.`
-			)
-			directValueNum = INPUT_VALUE_MIN
-		}
-		directValueNum = Math.max(INPUT_VALUE_MIN, Math.min(INPUT_VALUE_MAX, directValueNum))
+// 		// Validate and clamp the directValueNum based on defined min/max
+// 		if (isNaN(directValueNum)) {
+// 			console.warn(
+// 				`[UserChromeScript] Invalid number parsed from input: '${directValueStr}'. Using default of ${INPUT_VALUE_MIN}.`
+// 			)
+// 			directValueNum = INPUT_VALUE_MIN
+// 		}
+// 		directValueNum = Math.max(INPUT_VALUE_MIN, Math.min(INPUT_VALUE_MAX, directValueNum))
 
-		// Calculate inverted value
-		// Formula for inversion: inverted = MAX - (value - MIN)
-		// Or simpler if MIN is 0: inverted = MAX - value
-		const invertedValueNum = INPUT_VALUE_MAX + INPUT_VALUE_MIN - directValueNum
+// 		// Calculate inverted value
+// 		// Formula for inversion: inverted = MAX - (value - MIN)
+// 		// Or simpler if MIN is 0: inverted = MAX - value
+// 		const invertedValueNum = INPUT_VALUE_MAX + INPUT_VALUE_MIN - directValueNum
 
-		TARGET_ELEMENT_FOR_CSS_VAR.style.setProperty(CSS_VARIABLE_DIRECT_NAME, directValueNum)
-		TARGET_ELEMENT_FOR_CSS_VAR.style.setProperty(CSS_VARIABLE_INVERTED_NAME, invertedValueNum)
+// 		TARGET_ELEMENT_FOR_CSS_VAR.style.setProperty(CSS_VARIABLE_DIRECT_NAME, directValueNum)
+// 		TARGET_ELEMENT_FOR_CSS_VAR.style.setProperty(CSS_VARIABLE_INVERTED_NAME, invertedValueNum)
 
-		console.log(
-			`[UserChromeScript] Synced CSS Vars: ${CSS_VARIABLE_DIRECT_NAME}=${directValueNum}, ${CSS_VARIABLE_INVERTED_NAME}=${invertedValueNum}`
-		)
-	}
+// 		console.log(
+// 			`[UserChromeScript] Synced CSS Vars: ${CSS_VARIABLE_DIRECT_NAME}=${directValueNum}, ${CSS_VARIABLE_INVERTED_NAME}=${invertedValueNum}`
+// 		)
+// 	}
 
-	function handleInputChange() {
-		if (!inputElement) {
-			console.warn('[UserChromeScript] handleInputChange called but inputElement is null.')
-			return
-		}
-		const valueStr = inputElement.value // Value from input is a string
-		console.log(`[UserChromeScript] Input changed. New string value: '${valueStr}'`)
-		applyCssVariables(valueStr)
-		saveValueToPrefs(valueStr) // Save the original string value
-	}
+// 	function handleInputChange() {
+// 		if (!inputElement) {
+// 			console.warn('[UserChromeScript] handleInputChange called but inputElement is null.')
+// 			return
+// 		}
+// 		const valueStr = inputElement.value // Value from input is a string
+// 		console.log(`[UserChromeScript] Input changed. New string value: '${valueStr}'`)
+// 		applyCssVariables(valueStr)
+// 		saveValueToPrefs(valueStr) // Save the original string value
+// 	}
 
-	function setupInputListener() {
-		inputElement = document.getElementById(INPUT_ELEMENT_ID)
+// 	function setupInputListener() {
+// 		inputElement = document.getElementById(INPUT_ELEMENT_ID)
 
-		if (inputElement) {
-			console.log(`[UserChromeScript] Found input element #${INPUT_ELEMENT_ID}.`)
+// 		if (inputElement) {
+// 			console.log(`[UserChromeScript] Found input element #${INPUT_ELEMENT_ID}.`)
 
-			const savedValueStr = loadValueFromPrefs()
-			let initialValueStr
+// 			const savedValueStr = loadValueFromPrefs()
+// 			let initialValueStr
 
-			if (savedValueStr !== null) {
-				inputElement.value = savedValueStr
-				initialValueStr = savedValueStr
-				console.log(`[UserChromeScript] Applied saved value '${savedValueStr}' to #${INPUT_ELEMENT_ID}.`)
-			} else {
-				initialValueStr = inputElement.value // Use current value of input if no pref
-				console.log(`[UserChromeScript] No saved value. Using current input value: '${initialValueStr}'.`)
-			}
+// 			if (savedValueStr !== null) {
+// 				inputElement.value = savedValueStr
+// 				initialValueStr = savedValueStr
+// 				console.log(`[UserChromeScript] Applied saved value '${savedValueStr}' to #${INPUT_ELEMENT_ID}.`)
+// 			} else {
+// 				initialValueStr = inputElement.value // Use current value of input if no pref
+// 				console.log(`[UserChromeScript] No saved value. Using current input value: '${initialValueStr}'.`)
+// 			}
 
-			applyCssVariables(initialValueStr) // Apply CSS vars based on initial/loaded value
+// 			applyCssVariables(initialValueStr) // Apply CSS vars based on initial/loaded value
 
-			inputElement.removeEventListener('input', handleInputChange)
-			inputElement.addEventListener('input', handleInputChange)
-			console.log(`[UserChromeScript] Attached 'input' event listener to #${INPUT_ELEMENT_ID}.`)
-		} else {
-			console.warn(
-				`[UserChromeScript] Element #${INPUT_ELEMENT_ID} not found during setup. Will retry if element appears.`
-			)
-			// If element not found, try to apply from prefs if available
-			const savedValueStr = loadValueFromPrefs()
-			if (savedValueStr !== null) {
-				console.log(
-					`[UserChromeScript] Element not found, but applying saved pref value '${savedValueStr}' to CSS vars.`
-				)
-				applyCssVariables(savedValueStr)
-			}
-		}
-	}
+// 			inputElement.removeEventListener('input', handleInputChange)
+// 			inputElement.addEventListener('input', handleInputChange)
+// 			console.log(`[UserChromeScript] Attached 'input' event listener to #${INPUT_ELEMENT_ID}.`)
+// 		} else {
+// 			console.warn(
+// 				`[UserChromeScript] Element #${INPUT_ELEMENT_ID} not found during setup. Will retry if element appears.`
+// 			)
+// 			// If element not found, try to apply from prefs if available
+// 			const savedValueStr = loadValueFromPrefs()
+// 			if (savedValueStr !== null) {
+// 				console.log(
+// 					`[UserChromeScript] Element not found, but applying saved pref value '${savedValueStr}' to CSS vars.`
+// 				)
+// 				applyCssVariables(savedValueStr)
+// 			}
+// 		}
+// 	}
 
-	function initializeScript() {
-		console.log('[UserChromeScript] initializeScript called.')
-		setupInputListener()
-	}
+// 	function initializeScript() {
+// 		console.log('[UserChromeScript] initializeScript called.')
+// 		setupInputListener()
+// 	}
 
-	let observer
-	function observeForElement() {
-		const targetNode = document.body || document.documentElement
-		if (!targetNode) {
-			console.warn('[UserChromeScript] Cannot find document.body or document.documentElement to observe.')
-			setTimeout(observeForElement, 1000)
-			return
-		}
+// 	let observer
+// 	function observeForElement() {
+// 		const targetNode = document.body || document.documentElement
+// 		if (!targetNode) {
+// 			console.warn('[UserChromeScript] Cannot find document.body or document.documentElement to observe.')
+// 			setTimeout(observeForElement, 1000)
+// 			return
+// 		}
 
-		initializeScript() // Try to init immediately
+// 		initializeScript() // Try to init immediately
 
-		if (!inputElement) {
-			console.log(`[UserChromeScript] Input element #${INPUT_ELEMENT_ID} not found yet. Setting up MutationObserver.`)
-			if (observer) observer.disconnect()
+// 		if (!inputElement) {
+// 			console.log(`[UserChromeScript] Input element #${INPUT_ELEMENT_ID} not found yet. Setting up MutationObserver.`)
+// 			if (observer) observer.disconnect()
 
-			observer = new MutationObserver((mutations) => {
-				if (document.getElementById(INPUT_ELEMENT_ID)) {
-					console.log(`[UserChromeScript] Element #${INPUT_ELEMENT_ID} detected by MutationObserver.`)
-					initializeScript()
-					obs.disconnect()
-					observer = null
-				}
-			})
-			observer.observe(targetNode, { childList: true, subtree: true })
-			console.log(`[UserChromeScript] MutationObserver started on ${targetNode.nodeName}.`)
-		}
-	}
+// 			observer = new MutationObserver((mutations) => {
+// 				if (document.getElementById(INPUT_ELEMENT_ID)) {
+// 					console.log(`[UserChromeScript] Element #${INPUT_ELEMENT_ID} detected by MutationObserver.`)
+// 					initializeScript()
+// 					obs.disconnect()
+// 					observer = null
+// 				}
+// 			})
+// 			observer.observe(targetNode, { childList: true, subtree: true })
+// 			console.log(`[UserChromeScript] MutationObserver started on ${targetNode.nodeName}.`)
+// 		}
+// 	}
 
-	if (document.readyState === 'loading') {
-		console.log('[UserChromeScript] DOM is loading, waiting for DOMContentLoaded.')
-		document.addEventListener('DOMContentLoaded', observeForElement, { once: true })
-	} else {
-		console.log('[UserChromeScript] DOM already loaded, running observeForElement immediately.')
-		observeForElement()
-	}
-	console.log('[UserChromeScript] custom-input-to-dual-css-vars-persistent.uc.js finished initial execution.')
-})()
+// 	if (document.readyState === 'loading') {
+// 		console.log('[UserChromeScript] DOM is loading, waiting for DOMContentLoaded.')
+// 		document.addEventListener('DOMContentLoaded', observeForElement, { once: true })
+// 	} else {
+// 		console.log('[UserChromeScript] DOM already loaded, running observeForElement immediately.')
+// 		observeForElement()
+// 	}
+// 	console.log('[UserChromeScript] custom-input-to-dual-css-vars-persistent.uc.js finished initial execution.')
+// })()
 
 // ==UserScript==
 // @ignorecache
