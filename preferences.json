@@ -106,11 +106,70 @@
 		]
 	},
 	{
-		"type": "string",
+		"type": "dropdown",
+		"value": "number",
 		"property": "nug-icon-color",
 		"label": "🎨 Icon Color",
-		"placeholder": "Enter color (ex. #cba6f7, blue, rgb(203, 166, 247))",
-		"default": "#cba6f7"
+		"default": 10,
+		"placeholder": false,
+		"options": [
+			{
+				"label": "Blue",
+				"value": 0
+			},
+			{
+				"label": "Lavender",
+				"value": 1
+			},
+			{
+				"label": "Sapphire",
+				"value": 2
+			},
+			{
+				"label": "Sky",
+				"value": 3
+			},
+			{
+				"label": "Teal",
+				"value": 4
+			},
+			{
+				"label": "Green",
+				"value": 5
+			},
+			{
+				"label": "Yellow",
+				"value": 6
+			},
+			{
+				"label": "Peach",
+				"value": 7
+			},
+			{
+				"label": "Maroon",
+				"value": 8
+			},
+			{
+				"label": "Red",
+				"value": 9
+			},
+			{
+				"label": "Mauve",
+				"value": 10
+			},
+			{
+				"label": "Pink",
+				"value": 11
+			},
+			{
+				"label": "Flamingo",
+				"value": 12
+			},
+			{
+				"label": "Rosewater",
+				"value": 13
+			}
+		]
 	},
 	{
 		"type": "checkbox",

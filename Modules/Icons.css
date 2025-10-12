@@ -1,9 +1,3 @@
-@media (-moz-string-pref: 'nug-icon-color') {
-	:root {
-		--nug-icon-color: var(--nug-icon-color-custom, #cba6f7);
-	}
-}
-
 #pageAction-urlbar-_testpilot-containers {
 	display: none !important;
 }
