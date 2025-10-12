@@ -1,0 +1,317 @@
+@keyframes half-borderTrail {
+	0% {
+		top: 10%;
+		left: 20%;
+		width: 20%;
+		height: 3px;
+		opacity: 1;
+	}
+	15% {
+		top: 10%;
+		left: 60%;
+		width: 20%;
+		height: 3px;
+		opacity: 0.8;
+	}
+	25% {
+		top: 10%;
+		left: 95.5%;
+		width: 3px;
+		height: 3px;
+		opacity: 0.6;
+	}
+	45% {
+		top: 50%;
+		left: 95.5%;
+		width: 3px;
+		height: 30%;
+		opacity: 0.7;
+	}
+	55% {
+		top: 76%;
+		left: 95.5%;
+		width: 3px;
+		height: 3px;
+		opacity: 0.9;
+	}
+	75% {
+		top: 76%;
+		left: 85%;
+		width: 10%;
+		height: 3px;
+		opacity: 1;
+	}
+	100% {
+		top: 76%;
+		left: 70%;
+		width: 20%;
+		height: 3px;
+		opacity: 0;
+	}
+}
+
+/* essentials */
+.zen-essentials-container .tabbrowser-tab {
+	.tab-background {
+		background: var(--base) !important;
+		border-radius: calc(var(--nug-border-radius) + 1px) !important;
+		backdrop-filter: blur(10px) !important;
+	}
+
+	&:hover .tab-background {
+		background: var(--surface0) !important;
+	}
+
+	&[visuallyselected] .tab-background {
+		border: 1px solid var(--blue) !important;
+	}
+}
+
+/* tabs */
+.tabbrowser-tab:not([zen-essential]) {
+	& .tab-background {
+		border-radius: var(--nug-border-radius) !important;
+		background: none !important;
+	}
+
+	&[selected]:hover .tab-background,
+	:not([selected]):hover .tab-background {
+		background: var(--base) !important;
+		/* border: 1px solid var(--nug-glow-color-1) !important; */
+		border: 1px solid var(--nug-accent) !important;
+	}
+
+	&[selected='true'] .tab-background {
+		background: var(--base) !important;
+		/* border: 1px solid var(--nug-glow-color-1) !important; */
+		border: 1px solid var(--nug-accent) !important;
+	}
+
+	&[multiselected='true'] .tab-background {
+		background: var(--base) !important;
+		/* border: 1px solid var(--nug-glow-color-2) !important; */
+		border: 1px solid var(--nug-accent) !important;
+	}
+}
+
+/* new tab button */
+:root[zen-sidebar-expanded='true'] {
+	#tabs-newtab-button {
+		background: var(--mantle) !important;
+		border-radius: 8px !important;
+		margin: 10px 1px !important;
+		justify-content: center !important;
+
+		& .toolbarbutton-text {
+			padding: 0px 10px 0px 10px !important;
+			color: var(--subtext0) !important;
+			font-family: monospace !important;
+			font-size: 14px !important;
+		}
+
+		& .toolbarbutton-text::before {
+			justify-self: center !important;
+			align-self: center !important;
+			display: flex !important;
+			left: auto !important;
+			right: auto !important;
+			transition: margin-left 0.3s !important;
+		}
+
+		& .toolbarbutton-icon {
+			transition: scale 0.3s ease !important;
+		}
+	}
+
+	#tabs-newtab-button:hover {
+		opacity: 1 !important;
+		/* box-shadow: 0px 0px 3px var(--mauve) !important; */
+
+		& .toolbarbutton-text::before {
+			margin-left: 8px !important;
+		}
+
+		& .toolbarbutton-icon {
+			scale: 1.2 !important;
+		}
+	}
+}
+
+:root:not([zen-sidebar-expanded='true']) {
+	#tabs-newtab-button {
+		margin: 10px auto !important;
+		justify-self: center !important;
+		background: var(--mantle) !important;
+		border-radius: var(--nug-border-radius) !important;
+		box-sizing: unset !important;
+		width: calc(var(--tab-min-height) - 0.5px) !important;
+		min-height: calc(var(--tab-min-height) - 2px) !important;
+		max-height: calc(var(--tab-min-height) - 2px) !important;
+
+		& .toolbarbutton-icon {
+			background: none !important;
+			transition: scale 0.4s ease !important;
+		}
+	}
+
+	#tabs-newtab-button:hover {
+		opacity: 1 !important;
+		box-shadow: 0px 0px 3px var(--nug-icon-color) !important;
+
+		& .toolbarbutton-text::before {
+			margin-left: 8px !important;
+		}
+
+		& .toolbarbutton-icon {
+			scale: 1.5 !important;
+		}
+	}
+}
+
+/* ------------------- Close and Reset Button Styling ------------------- */
+
+.zen-workspace-normal-tabs-section .tabbrowser-tab .tab-background::before,
+.zen-workspace-pinned-tabs-section .tabbrowser-tab .tab-background::before {
+	display: flex !important;
+	opacity: 0;
+	content: '' !important;
+	width: 100%;
+	height: 100%;
+	position: absolute !important;
+	border-radius: 10px !important;
+	border: 1px solid var(--nug-accent-off) !important;
+	background: var(--nug-accent-off) !important;
+	box-shadow: 0px 0px 9px var(--nug-accent-off) !important;
+	z-index: 3 !important;
+}
+
+.tab-close-button,
+.tab-reset-button {
+	margin-right: 2px !important;
+	padding: 3px 3px !important;
+	height: 18px !important;
+	width: 18px !important;
+	border-radius: 20px !important;
+}
+
+.tab-close-button:hover,
+.tab-reset-button:hover {
+	background: color-mix(in srgb, var(--overlay1) 20%, transparent) !important;
+}
+
+:root:not([zen-sidebar-expanded='true']) {
+	.tab-close-button,
+	.tab-reset-button {
+		left: -2px !important;
+		right: auto !important;
+		padding: 3px 3px !important;
+		height: 18px !important;
+		width: 18px !important;
+		border-radius: 20px !important;
+	}
+}
+
+/* Uses JS polyfill for Wayland compatibility */
+.tabbrowser-tab.nug-child-hovered .tab-background::before {
+	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards !important;
+	clip-path: inset(0 0 0 0);
+}
+
+/* pinned */
+@media (-moz-pref('uc.pins.legacy-layout')) {
+	#navigator-toolbox[zen-sidebar-expanded='true'] {
+		& #tabbrowser-tabs {
+			& .tabbrowser-tab {
+				&[zen-pinned-changed='true']:not([zen-essential]) > .tab-stack > .tab-content > .tab-icon-stack {
+					position: unset !important;
+					top: unset !important;
+				}
+			}
+		}
+	}
+
+	#vertical-pinned-tabs-container,
+	.zen-workspace-pinned-tabs-section:not(
+			:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+		) {
+		.tabbrowser-tab[pinned] {
+			.tab-close-button,
+			.tab-reset-button,
+			.tab-reset-pin-button,
+			.tab-label-container {
+				display: none !important;
+			}
+		}
+	}
+
+	/* Disable icon shift when tab was renamed */
+	#navigator-toolbox[zen-sidebar-expanded='true'] {
+		& #vertical-pinned-tabs-container > .zen-workspace-tabs-section,
+		& .zen-workspace-pinned-tabs-section {
+			& .tabbrowser-tab > .tab-stack > .tab-content > .tab-icon-stack {
+				left: unset !important;
+			}
+		}
+	}
+
+	/* The actual grid layout */
+	#vertical-pinned-tabs-container > .zen-workspace-tabs-section,
+	.zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])),
+	.zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget]))
+		zen-folder
+		> .tab-group-container {
+		grid-template-columns: repeat(auto-fit, minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
+		display: grid !important;
+
+		&:has(> :nth-child(2)) {
+			margin: 0 var(--zen-toolbox-padding) !important;
+			padding: 0 var(--zen-toolbox-padding) !important;
+			overflow: visible !important;
+			padding-bottom: 17px !important;
+			gap: 3px 3px !important;
+			max-width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
+		}
+
+		.tabbrowser-tab {
+			--toolbarbutton-inner-padding: 0;
+		}
+
+		& > *:not(tab-group) {
+			margin: 0 !important;
+		}
+
+		& > tab-group .tab-icon-stack {
+			margin: auto !important;
+		}
+	}
+
+	#vertical-pinned-tabs-container > .zen-workspace-tabs-section {
+		align-items: normal;
+	}
+
+	.zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget]))
+		zen-folder[collapsed]
+		.tab-group-container {
+		display: none !important;
+	}
+
+	.zen-workspace-pinned-tabs-section:not(
+			:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+		) {
+		position: relative !important;
+
+		.tab-icon-stack {
+			margin-left: 50% !important;
+			transform: translateX(-50%) !important;
+		}
+	}
+
+	.vertical-pinned-tabs-container-separator,
+	.pinned-tabs-container-separator {
+		position: absolute !important;
+		bottom: 7px !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+		width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
+	}
+}
