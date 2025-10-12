@@ -318,8 +318,6 @@ browser {
 	--zen-themed-toolbar-bg: var(--mantle) !important;
 	--zen-main-browser-background: var(--mantle) !important;
 	--toolbox-bgcolor-inactive: var(--mantle) !important;
-	--nug-color-bg: var(--mantle);
-	--nug-color-hover: color-mix(in srgb, var(--nug-accent) 20%, #232336);
 	--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, white);
 	--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, white);
 	--nug-border-radius: 4px;

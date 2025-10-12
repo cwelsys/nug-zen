@@ -23,7 +23,7 @@
 		"property": "nug-accent-color",
 		"label": "✨ Accent Color",
 		"default": 0,
-		"placeholder": false,
+		"placeholder": "Blue",
 		"options": [
 			{
 				"label": "Blue",
@@ -111,7 +111,7 @@
 		"property": "nug-icon-color",
 		"label": "🎨 Icon Color",
 		"default": 10,
-		"placeholder": false,
+		"placeholder": "Mauve",
 		"options": [
 			{
 				"label": "Blue",

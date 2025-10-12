@@ -1,7 +1,13 @@
-/* ------------------------- PINNED EXTENSIONS ------------------------- */
+@keyframes tab-hover-gradient {
+	from {
+		background-position: 0% 50%;
+	}
+	to {
+		background-position: 200% 50%;
+	}
+}
 
 @media (-moz-pref('nug-pinned-extensions-mod')) {
-	/* Zen 1.12.6b Fix */
 	:root[customizing] #TabsToolbar-customization-target {
 		visibility: visible !important;
 	}
@@ -12,7 +18,7 @@
 	}
 
 	:root[zen-single-toolbar='true'] #nav-bar {
-		margin-bottom: 8px !important; /* Adjust gap between urlbar and extensions */
+		margin-bottom: 8px !important;
 	}
 
 	/* Pinned extensions */
@@ -32,7 +38,7 @@
 		}
 
 		.unified-extensions-item-action-button {
-			padding: 0px !important;
+			padding: 0 !important;
 		}
 
 		/* Pinned Extensions */
@@ -44,14 +50,14 @@
 			width: 32px !important;
 			flex-grow: 1 !important;
 			order: -1 !important;
-			background-color: var(--nug-color-bg) !important;
-			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0)) !important;
-			border-radius: calc(var(--nug-border-radius) - 0.5px) !important;
+			background-color: var(--zen-colors-tertiary) !important;
+			box-shadow: 0 0 3px transparent !important;
+			border-radius: 12.5px !important;
 			transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
 		}
 
 		.unified-extensions-item:hover {
-			background-color: var(--nug-color-hover) !important;
+			background-color: color-mix(in srgb, var(--nug-accent) 20%, var(--mantle)) !important;
 			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.95)) !important;
 		}
 
@@ -79,9 +85,9 @@
 
 		> toolbarbutton:not([id='tabs-newtab-button']),
 		> toolbaritem {
-			background-color: var(--nug-color-bg) !important;
+			background-color: var(--zen-colors-tertiary) !important;
 			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.12)) !important;
-			border-radius: calc(var(--nug-border-radius) + 1px) !important;
+			border-radius: 14px !important;
 			margin: 0px !important;
 			order: -1 !important;
 			flex-grow: 1 !important;
@@ -90,7 +96,7 @@
 
 		> toolbarbutton:not([id='tabs-newtab-button']):hover,
 		> toolbaritem:hover {
-			background-color: var(--nug-color-hover) !important;
+			background-color: color-mix(in srgb, var(--nug-accent) 20%, var(--mantle)) !important;
 			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.95), rgba(0, 0, 0, 0.95)) !important;
 		}
 	}
@@ -105,28 +111,27 @@
 		margin-block: 2px !important; /* vertical spacing */
 	}
 
-	/* -------- Hover animation gradient (matching tab style) -------- */
 	.unified-extensions-item {
 		position: relative !important;
-		border-radius: calc(var(--nug-border-radius) + 1px) !important;
+		border-radius: 14px !important;
 	}
 
 	.unified-extensions-item::before {
 		content: '';
 		position: absolute;
-		inset: -0.1px; /* Shrinks the effect area like tab style */
+		inset: -0.1px;
 		background: linear-gradient(
 			45deg,
-			color-mix(in srgb, var(--zen-primary-color) 5%, black),
-			color-mix(in srgb, var(--zen-primary-color) 30%, black),
-			color-mix(in srgb, var(--zen-primary-color) 75%, black),
-			color-mix(in srgb, var(--zen-primary-color) 100%, black),
-			color-mix(in srgb, var(--zen-primary-color) 50%, black),
-			color-mix(in srgb, var(--zen-primary-color) 15%, black)
-		);
+			color-mix(in srgb, var(--nug-accent) 5%, black),
+			color-mix(in srgb, var(--nug-accent) 30%, black),
+			color-mix(in srgb, var(--nug-accent) 75%, black),
+			color-mix(in srgb, var(--nug-accent) 100%, black),
+			color-mix(in srgb, var(--nug-accent) 50%, black),
+			color-mix(in srgb, var(--nug-accent) 15%, black)
+		) !important;
 		background-size: 200% 200%;
-		border-radius: calc(var(--nug-border-radius) - 2px) !important;
-		clip-path: inset(0 round calc(var(--nug-border-radius) - 2px));
+		border-radius: 11px !important;
+		clip-path: inset(0 round 11px);
 		animation: tab-hover-gradient 3.5s linear infinite;
 		animation-play-state: paused;
 		opacity: 0;
@@ -175,20 +180,10 @@
 	/* Style 3 - RGB gradient */
 	@media (-moz-pref('nug-glow-gradient', 3)) {
 		.unified-extensions-item::before {
-			background: linear-gradient(45deg, #ff8a00, #e52e71, #7f00ff, #00c9ff, #ff8a00);
+			background: linear-gradient(45deg, var(--peach), var(--red), var(--mauve), var(--sapphire), var(--maroon));
 			background-size: 200% 200%;
 			animation: tab-hover-gradient 3.5s linear infinite;
 			animation-play-state: paused;
-		}
-	}
-
-	/* Gradient animation (same as tabs) */
-	@keyframes tab-hover-gradient {
-		from {
-			background-position: 0% 50%;
-		}
-		to {
-			background-position: 200% 50%;
 		}
 	}
 }
