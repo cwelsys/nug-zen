@@ -262,6 +262,13 @@
 		"margin": "12px 0"
 	},
 	{
+		"property": "mod.extension.viewgrid",
+		"label": "Extension Grid Styling ",
+		"type": "checkbox",
+		"defaultValue": true,
+		"margin": "8px 0"
+	},
+	{
 		"type": "separator",
 		"label": "📑 Tabs"
 	},
@@ -608,7 +615,7 @@
 	},
 	{
 		"type": "separator",
-		"label": "⚙️ Reopen Closed Tabs"
+		"label": "⚙️ Extensions"
 	},
 	{
 		"property": "extensions.reopen-closed-tabs.shortcut-key",
@@ -620,13 +627,6 @@
 	{
 		"property": "extensions.reopen-closed-tabs.show-open-tabs",
 		"label": "👁️ Show currently open tabs in menu",
-		"type": "checkbox",
-		"defaultValue": false,
-		"margin": "8px 0"
-	},
-	{
-		"property": "extensions.reopen-closed-tabs.debug-mode",
-		"label": "🐛 Enable debug mode",
 		"type": "checkbox",
 		"defaultValue": false,
 		"margin": "8px 0"

@@ -298,23 +298,13 @@ body[role='application'] {
 		}
 	}
 
-	@media (-moz-pref('nug.force.blur', 1)) {
-		/* Required for blur rendering */
-		browser {
-			clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-		}
-	}
-
-	@media (-moz-pref('change.logs.enabled', 1)) {
-	}
-
 	/* Rounded Tabs with Workspace Transitions */
-	.tab-background {
+	/* .tab-background {
 		border-radius: 12px !important;
 
 		z-index: 0 !important;
 		position: relative;
-	}
+	} */
 }
 
 /* pinned tabs seperator */
@@ -324,7 +314,7 @@ body[role='application'] {
 	border: none;
 	height: 1.5px !important;
 
-	width: 95% !important; /* Slightly less than full width */
+	width: 95% !important;
 	transition: margin 0.1s ease-in-out, background 0.1s ease-in-out, max-height 0.1s ease-in-out;
 	overflow: hidden;
 	position: relative;

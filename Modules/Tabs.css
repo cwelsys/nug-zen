@@ -78,19 +78,19 @@
 	:not([selected]):hover .tab-background {
 		background: var(--base) !important;
 		/* border: 1px solid var(--nug-glow-color-1) !important; */
-		border: 1px solid var(--nug-accent) !important;
+		border: 1px solid var(--zen-primary-color) !important;
 	}
 
 	&[selected='true'] .tab-background {
 		background: var(--base) !important;
 		/* border: 1px solid var(--nug-glow-color-1) !important; */
-		border: 1px solid var(--nug-accent) !important;
+		border: 1px solid var(--zen-primary-color) !important;
 	}
 
 	&[multiselected='true'] .tab-background {
 		background: var(--base) !important;
 		/* border: 1px solid var(--nug-glow-color-2) !important; */
-		border: 1px solid var(--nug-accent) !important;
+		border: 1px solid var(--zen-primary-color) !important;
 	}
 }
 

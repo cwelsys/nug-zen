@@ -319,16 +319,16 @@ browser {
 		--zen-themed-toolbar-bg: var(--mantle) !important;
 		--zen-main-browser-background: var(--mantle) !important;
 		--toolbox-bgcolor-inactive: var(--mantle) !important;
-		--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, white);
-		--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, white);
+		--nug-glow-color-1: color-mix(in srgb, var(--zen-primary-color) 90%, white);
+		--nug-glow-color-2: color-mix(in srgb, var(--zen-primary-color) 70%, white);
 		--nug-border-radius: 4px;
 		--url-bar-border-radius: 1.7rem;
 		--nug-blur: blur(52px) saturate(180%) brightness(110%);
 		--nug-blur-simple: blur(15px) brightness(110%) saturate(260%);
-		--nug-blur-color: color-mix(in srgb, var(--nug-accent) 1%, #000000a0);
+		--nug-blur-color: color-mix(in srgb, var(--zen-primary-color) 1%, #000000a0);
 		--acrylic-bg: light-dark(rgb(250, 250, 250), rgb(24, 24, 27));
 		--acrylic-backdrop: saturate(2.5) !important;
-		--acrylic-shadow: 0 8px 32px color-mix(in srgb, var(--nug-accent) 15%, transparent 85%);
+		--acrylic-shadow: 0 8px 32px color-mix(in srgb, var(--zen-primary-color) 15%, transparent 85%);
 		--nug-accent-off: var(--peach);
 		--acrylic-shadow-off: 0 8px 32px color-mix(in srgb, var(--nug-accent-off) 15%, transparent 85%);
 		--acrylic-glass-bg: color-mix(in srgb, var(--acrylic-bg) 40%, transparent 60%);
@@ -356,11 +356,11 @@ browser {
 
 	.content-shortcuts {
 		background-color: var(--base) !important;
-		border-color: var(--nug-accent) !important;
+		border-color: var(--zen-primary-color) !important;
 	}
 
 	.urlbarView-url {
-		color: var(--nug-accent) !important;
+		color: var(--zen-primary-color) !important;
 	}
 
 	#zenEditBookmarkPanelFaviconContainer {

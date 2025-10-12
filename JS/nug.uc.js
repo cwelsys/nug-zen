@@ -4398,27 +4398,6 @@ function NugHasPolyfillInit() {
 			})
 		}
 
-		// Sidebar.css - urlbar hover (if floating)
-		const urlbar = document.querySelector('#urlbar[zen-floating-urlbar="true"]')
-		if (urlbar) {
-			urlbar.addEventListener('mouseenter', () => {
-				document.querySelector('#navigator-toolbox')?.classList.add('nug-urlbar-hovered')
-			})
-			urlbar.addEventListener('mouseleave', () => {
-				document.querySelector('#navigator-toolbox')?.classList.remove('nug-urlbar-hovered')
-			})
-		}
-
-		// Sidebar.css - tab active state
-		document.addEventListener('mousedown', (e) => {
-			if (e.target.closest('.tabbrowser-tab')) {
-				document.querySelector('#navigator-toolbox')?.classList.add('nug-tab-active')
-			}
-		})
-		document.addEventListener('mouseup', () => {
-			document.querySelector('#navigator-toolbox')?.classList.remove('nug-tab-active')
-		})
-
 		console.log('[Nug :has() Polyfill] Initialized successfully')
 	}
 

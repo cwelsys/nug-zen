@@ -57,7 +57,7 @@
 		}
 
 		.unified-extensions-item:hover {
-			background-color: color-mix(in srgb, var(--nug-accent) 20%, var(--mantle)) !important;
+			background-color: color-mix(in srgb, var(--zen-primary-color) 20%, var(--mantle)) !important;
 			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.95)) !important;
 		}
 
@@ -96,7 +96,7 @@
 
 		> toolbarbutton:not([id='tabs-newtab-button']):hover,
 		> toolbaritem:hover {
-			background-color: color-mix(in srgb, var(--nug-accent) 20%, var(--mantle)) !important;
+			background-color: color-mix(in srgb, var(--zen-primary-color) 20%, var(--mantle)) !important;
 			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.95), rgba(0, 0, 0, 0.95)) !important;
 		}
 	}
@@ -122,13 +122,13 @@
 		inset: -0.1px;
 		background: linear-gradient(
 			45deg,
-			color-mix(in srgb, var(--nug-accent) 5%, black),
-			color-mix(in srgb, var(--nug-accent) 30%, black),
-			color-mix(in srgb, var(--nug-accent) 75%, black),
-			color-mix(in srgb, var(--nug-accent) 100%, black),
-			color-mix(in srgb, var(--nug-accent) 50%, black),
-			color-mix(in srgb, var(--nug-accent) 15%, black)
-		) !important;
+			color-mix(in srgb, var(--zen-primary-color) 5%, black),
+			color-mix(in srgb, var(--zen-primary-color) 30%, black),
+			color-mix(in srgb, var(--zen-primary-color) 75%, black),
+			color-mix(in srgb, var(--zen-primary-color) 100%, black),
+			color-mix(in srgb, var(--zen-primary-color) 50%, black),
+			color-mix(in srgb, var(--zen-primary-color) 15%, black)
+		);
 		background-size: 200% 200%;
 		border-radius: 11px !important;
 		clip-path: inset(0 round 11px);
