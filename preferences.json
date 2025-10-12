@@ -483,6 +483,24 @@
 		"margin": "8px 0"
 	},
 	{
+		"type": "separator",
+		"label": "🗂️ Workspaces"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-indicator",
+		"label": "👁️ Hide workspace indicator",
+		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-button-",
+		"label": "🔘 Hide workspace button",
+		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
 		"property": "nglayout.initialpaint.delay",
 		"label": "⏱️ Initial paint delay in ms (removes flashbangs)",
 		"type": "number",

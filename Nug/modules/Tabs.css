@@ -70,24 +70,27 @@
 /* tabs */
 .tabbrowser-tab:not([zen-essential]) {
 	& .tab-background {
-		border-radius: 8px !important;
+		border-radius: var(--nug-border-radius) !important;
 		background: none !important;
 	}
 
 	&[selected]:hover .tab-background,
 	:not([selected]):hover .tab-background {
 		background: var(--base) !important;
-		border: 1px solid var(--nug-glow-color-1) !important;
+		/* border: 1px solid var(--nug-glow-color-1) !important; */
+		border: 1px solid var(--blue) !important;
 	}
 
 	&[selected='true'] .tab-background {
 		background: var(--base) !important;
-		border: 1px solid var(--nug-glow-color-1) !important;
+		/* border: 1px solid var(--nug-glow-color-1) !important; */
+		border: 1px solid var(--blue) !important;
 	}
 
 	&[multiselected='true'] .tab-background {
 		background: var(--base) !important;
-		border: 1px solid var(--nug-glow-color-2) !important;
+		/* border: 1px solid var(--nug-glow-color-2) !important; */
+		border: 1px solid var(--blue) !important;
 	}
 }
 
@@ -101,6 +104,9 @@
 
 		& .toolbarbutton-text {
 			padding: 0px 10px 0px 10px !important;
+			color: var(--subtext0) !important;
+			font-family: monospace !important;
+			font-size: 14px !important;
 		}
 
 		& .toolbarbutton-text::before {
@@ -119,7 +125,7 @@
 
 	#tabs-newtab-button:hover {
 		opacity: 1 !important;
-		box-shadow: 0px 0px 3px var(--mauve) !important;
+		/* box-shadow: 0px 0px 3px var(--mauve) !important; */
 
 		& .toolbarbutton-text::before {
 			margin-left: 8px !important;
@@ -136,7 +142,7 @@
 		margin: 10px auto !important;
 		justify-self: center !important;
 		background: var(--mantle) !important;
-		border-radius: 8px !important;
+		border-radius: var(--nug-border-radius) !important;
 		box-sizing: unset !important;
 		width: calc(var(--tab-min-height) - 0.5px) !important;
 		min-height: calc(var(--tab-min-height) - 2px) !important;
