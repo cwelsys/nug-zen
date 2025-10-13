@@ -49,6 +49,10 @@ browser {
 	}
 }
 
+.zen-glance-sidebar-container toolbarbutton {
+	background: var(--surface0) !important;
+}
+
 @media (prefers-color-scheme: dark) {
 	/* Acccent */
 	@media (-moz-pref('nug-catppuccin-flavor', 0)) {
