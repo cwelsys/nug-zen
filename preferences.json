@@ -3,7 +3,7 @@
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-catppuccin-flavor",
-		"label": "🎨 Catppuccin Flavor",
+		"label": "🎨 Flavor",
 		"default": 0,
 		"placeholder": false,
 		"options": [
@@ -21,9 +21,75 @@
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-accent-color",
-		"label": "✨ Accent Color",
+		"label": "✨ Accent",
 		"default": 0,
 		"placeholder": "Blue",
+		"options": [
+			{
+				"label": "Blue",
+				"value": 0
+			},
+			{
+				"label": "Lavender",
+				"value": 1
+			},
+			{
+				"label": "Sapphire",
+				"value": 2
+			},
+			{
+				"label": "Sky",
+				"value": 3
+			},
+			{
+				"label": "Teal",
+				"value": 4
+			},
+			{
+				"label": "Green",
+				"value": 5
+			},
+			{
+				"label": "Yellow",
+				"value": 6
+			},
+			{
+				"label": "Peach",
+				"value": 7
+			},
+			{
+				"label": "Maroon",
+				"value": 8
+			},
+			{
+				"label": "Red",
+				"value": 9
+			},
+			{
+				"label": "Mauve",
+				"value": 10
+			},
+			{
+				"label": "Pink",
+				"value": 11
+			},
+			{
+				"label": "Flamingo",
+				"value": 12
+			},
+			{
+				"label": "Rosewater",
+				"value": 13
+			}
+		]
+	},
+	{
+		"type": "dropdown",
+		"value": "number",
+		"property": "nug-icon-color",
+		"label": "🎨 Icon Color",
+		"default": 10,
+		"placeholder": "Mauve",
 		"options": [
 			{
 				"label": "Blue",
@@ -106,72 +172,6 @@
 		]
 	},
 	{
-		"type": "dropdown",
-		"value": "number",
-		"property": "nug-icon-color",
-		"label": "🎨 Icon Color",
-		"default": 10,
-		"placeholder": "Mauve",
-		"options": [
-			{
-				"label": "Blue",
-				"value": 0
-			},
-			{
-				"label": "Lavender",
-				"value": 1
-			},
-			{
-				"label": "Sapphire",
-				"value": 2
-			},
-			{
-				"label": "Sky",
-				"value": 3
-			},
-			{
-				"label": "Teal",
-				"value": 4
-			},
-			{
-				"label": "Green",
-				"value": 5
-			},
-			{
-				"label": "Yellow",
-				"value": 6
-			},
-			{
-				"label": "Peach",
-				"value": 7
-			},
-			{
-				"label": "Maroon",
-				"value": 8
-			},
-			{
-				"label": "Red",
-				"value": 9
-			},
-			{
-				"label": "Mauve",
-				"value": 10
-			},
-			{
-				"label": "Pink",
-				"value": 11
-			},
-			{
-				"label": "Flamingo",
-				"value": 12
-			},
-			{
-				"label": "Rosewater",
-				"value": 13
-			}
-		]
-	},
-	{
 		"type": "checkbox",
 		"property": "nug-icons-enabled",
 		"label": "✨ Enable custom icons",
@@ -181,7 +181,7 @@
 	{
 		"type": "checkbox",
 		"property": "nug-pinned-extensions-mod",
-		"label": "📌 Enable pinning extensions above url bar",
+		"label": "📌 Enable pinnned extensions mod",
 		"defaultValue": true,
 		"margin": "12px 0"
 	},
@@ -210,14 +210,6 @@
 				"value": 3
 			}
 		]
-	},
-	{
-		"type": "checkbox",
-		"property": "nug.tab.explode",
-		"defaultValue": true,
-		"restart": true,
-		"label": "💥 Tab closing pop effect",
-		"margin": "12px 0"
 	},
 	{
 		"property": "nug.media.player",
@@ -262,13 +254,6 @@
 		"margin": "12px 0"
 	},
 	{
-		"property": "mod.extension.viewgrid",
-		"label": "Extension Grid Styling ",
-		"type": "checkbox",
-		"defaultValue": true,
-		"margin": "8px 0"
-	},
-	{
 		"type": "separator",
 		"label": "📑 Tabs"
 	},
@@ -277,6 +262,14 @@
 		"property": "uc.pins.legacy-layout",
 		"label": "📌 Make pinned tabs look similar to Essentials (icon only in a grid)",
 		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug.tab.explode",
+		"defaultValue": true,
+		"restart": true,
+		"label": "💥 Tab closing pop effect",
 		"margin": "12px 0"
 	},
 	{
