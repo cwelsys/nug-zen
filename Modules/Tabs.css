@@ -50,6 +50,17 @@
 	}
 }
 
+/* tweaks */
+/* hide tab audio button */
+.tab-audio-button {
+	display: none !important;
+}
+
+/* make glance buttons dark */
+.zen-glance-sidebar-container toolbarbutton {
+	background: var(--surface0) !important;
+}
+
 /* essentials */
 .zen-essentials-container .tabbrowser-tab {
 	.tab-background {
@@ -166,8 +177,7 @@
 	}
 }
 
-/* ------------------- Close and Reset Button Styling ------------------- */
-
+/*  close/reset buttons */
 .zen-workspace-normal-tabs-section .tabbrowser-tab .tab-background::before,
 .zen-workspace-pinned-tabs-section .tabbrowser-tab .tab-background::before {
 	display: flex !important;
@@ -209,7 +219,6 @@
 	}
 }
 
-/* Uses JS polyfill for Wayland compatibility */
 .tabbrowser-tab.nug-child-hovered .tab-background::before {
 	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards !important;
 	clip-path: inset(0 0 0 0);

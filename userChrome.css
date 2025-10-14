@@ -1,10 +1,10 @@
 @import 'Modules/Context.css';
 @import 'Modules/Extensions.css';
 @import 'Modules/Findbar.css';
-@import 'Modules/General.css';
 @import 'Modules/Icons.css';
 @import 'Modules/Media.css';
 @import 'Modules/Tabs.css';
+@import 'Modules/Tweaks.css';
 @import 'Modules/URLbar.css';
 @import 'Modules/Workspace.css';
 
@@ -47,10 +47,6 @@ browser {
 	:root {
 		--tab-min-height: 39px !important;
 	}
-}
-
-.zen-glance-sidebar-container toolbarbutton {
-	background: var(--surface0) !important;
 }
 
 @media (prefers-color-scheme: dark) {
