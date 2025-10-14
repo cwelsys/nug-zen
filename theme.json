@@ -5,9 +5,9 @@
   "author": "cwelsys",
   "name": "Nug",
   "description": "userChrome and more",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "createdAt": "2025-03-11",
-  "updatedAt": "2025-10-13",
+  "updatedAt": "2025-10-14",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
