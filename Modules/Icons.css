@@ -26,14 +26,6 @@
 		background-repeat: none !important;
 	}
 
-	/* #forward-button image {
-	list-style-image: url('chrome://global/skin/icons/arrow-right.svg') !important;
-}
-
-#back-button image {
-	list-style-image: url('chrome://global/skin/icons/arrow-left.svg') !important;
-} */
-
 	#nav-bar-overflow-button {
 		list-style-image: url('chrome://global/skin/icons/more.svg') !important;
 	}
