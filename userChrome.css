@@ -211,6 +211,11 @@ browser {
 		}
 	}
 
+	/* Default icon color (mauve) - applied when preference hasn't been explicitly set */
+	:root {
+		--nug-icon-color: var(--mauve);
+	}
+
 	@media (-moz-pref('nug-icon-color', 0)) {
 		:root {
 			--nug-icon-color: var(--blue);
