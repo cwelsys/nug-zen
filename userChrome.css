@@ -324,10 +324,10 @@ browser {
 		--zen-themed-toolbar-bg: var(--mantle) !important;
 		--zen-main-browser-background: var(--mantle) !important;
 		--toolbox-bgcolor-inactive: var(--mantle) !important;
-		--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, white);
-		--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, white);
+		--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, var(--text));
+		--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, var(--text));
 		--nug-blur-color: color-mix(in srgb, var(--nug-accent) 1%, #000000a0);
-		--nug-glass-bg: color-mix(in srgb, light-dark(rgb(250, 250, 250), var(--base)) 50%, transparent 50%);
+		--nug-glass-bg: color-mix(in srgb, light-dark(rgb(var(--text), var(--base)) 80%, transparent 40%);
 	}
 
 	#permissions-granted-icon {
