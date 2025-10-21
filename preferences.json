@@ -180,6 +180,13 @@
 	},
 	{
 		"type": "checkbox",
+		"property": "nug.hide.window.controls",
+		"defaultValue": false,
+		"label": "Hide window controls (minimize, maximize, close)",
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
 		"property": "nug-pinned-extensions-mod",
 		"label": "📌 Enable pinnned extensions mod",
 		"defaultValue": true,

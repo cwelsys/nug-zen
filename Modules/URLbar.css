@@ -85,8 +85,8 @@
 }
 
 #main-window #urlbar[breakout-extend='true'] .urlbar-background {
-	background: var(--nug-glass-bg) !important;
-	backdrop-filter: saturate(2.5) blur(50px) !important;
+	background: var(--base) !important;
+	/* backdrop-filter: saturate(1) blur(69px) !important; */
 	border-radius: 1.7rem !important;
 	box-shadow: var(--nug-glow-color-2) !important;
 	border: 2.2px solid var(--nug-glow-color-1) !important;

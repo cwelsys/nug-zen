@@ -8,6 +8,12 @@
 @import 'Modules/URLbar.css';
 @import 'Modules/Workspace.css';
 
+@media (-moz-bool-pref: 'nug.hide.window.controls') {
+	.titlebar-buttonbox-container {
+		display: none !important;
+	}
+}
+
 /* Font */
 @media (-moz-pref('nug-font', 0)) {
 	:root {
@@ -327,7 +333,7 @@ browser {
 		--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, var(--text));
 		--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, var(--text));
 		--nug-blur-color: color-mix(in srgb, var(--nug-accent) 1%, #000000a0);
-		--nug-glass-bg: color-mix(in srgb, light-dark(rgb(var(--text), var(--base)) 80%, transparent 40%);
+		--nug-glass-bg: color-mix(in srgb, light-dark(rgb(var(--text), var(--base)) 50%, transparent 90%);
 	}
 
 	#permissions-granted-icon {
