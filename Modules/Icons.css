@@ -14,6 +14,14 @@
 		fill: var(--nug-icon-color) !important;
 	}
 
+	#zen-site-data-icon-button {
+		fill: var(--nug-icon-color) !important;
+	}
+
+	#zen-copy-url-button {
+		fill: var(--nug-icon-color) !important;
+	}
+
 	#downloads-button .toolbarbutton-icon,
 	#downloads-indicator-icon {
 		fill: var(--nug-icon-color) !important;
