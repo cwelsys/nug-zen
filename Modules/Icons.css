@@ -65,6 +65,12 @@
 		fill: var(--nug-icon-color) !important;
 	}
 
+	/* Cobalt */
+	#cobalt_dimden_dev-BAP .toolbarbutton-icon {
+		list-style-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBmaWxsPSJjb250ZXh0LWZpbGwiIGZpbGwtb3BhY2l0eT0iY29udGV4dC1maWxsLW9wYWNpdHkiIGQ9Ik0gMi41IDMgTCA3LjUgOCBMIDIuNSAxMyBMIDQgMTQuNSBMIDEwLjUgOCBMIDQgMS41IFogTSA4LjUgMyBMIDEzLjUgOCBMIDguNSAxMyBMIDEwIDE0LjUgTCAxNi41IDggTCAxMCAxLjUgWiIgLz4KPC9zdmc+Cg==') !important;
+		fill: var(--nug-icon-color) !important;
+	}
+
 	.subviewbutton {
 		-moz-context-properties: fill, fill-opacity !important;
 		fill: currentColor !important;

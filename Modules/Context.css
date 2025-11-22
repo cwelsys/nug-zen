@@ -921,6 +921,12 @@
 		--menu-image: url('chrome://browser/skin/zen-icons/arrow-up.svg');
 	}
 
+	#unified-extensions-context-menu-pin-to-toolbar {
+		padding-inline-start: calc(
+			var(--zen-contextmenu-menuitem-padding-inline) + var(--zen-contextmenu-menuicon-margin-inline) / 2
+		) !important;
+	}
+
 	:not(:not(menubar) > menu, #ContentSelectDropdown)
 		> menupopup
 		> menuitem:not(
