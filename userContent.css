@@ -2,15 +2,13 @@
 @-moz-document domain(komo.cwel.casa) {
 	html,
 	body {
-		background-color: #1e1e2e !important;
+		background-color: hsl(220.1, 27.9%, 6.1%);
 	}
 
 	#root,
 	#__next,
-	#app,
-	[data-theme],
-	[class*='app'] {
-		background-color: #1e1e2e !important;
+	#app {
+		background-color: hsl(220.1, 27.9%, 6.1%);
 	}
 }
 
