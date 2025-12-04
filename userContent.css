@@ -1,3 +1,19 @@
+/* Prevent a site from lobbing flashbangs at me all day */
+@-moz-document domain(komo.cwel.casa) {
+	html,
+	body {
+		background-color: #1e1e2e !important;
+	}
+
+	#root,
+	#__next,
+	#app,
+	[data-theme],
+	[class*='app'] {
+		background-color: #1e1e2e !important;
+	}
+}
+
 @media (prefers-color-scheme: dark) {
 	@media (-moz-pref('nug-catppuccin-flavor', 0)) {
 		:root {
