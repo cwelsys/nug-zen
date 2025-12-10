@@ -409,12 +409,40 @@
 	background: none !important;
 }
 
-/* folder text color */
-/* .tab-group-label {
-	color: var(--nug-accent) !important;
-	font-family: inherit !important;
-}
+zen-folder {
+	& > .tab-group-label-container {
+		&::before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 1px !important;
+			width: calc(100% - 3px) !important;
+			height: calc(100% - 4px) !important;
+			background-color: transparent;
+			border-radius: 12px !important;
+			z-index: -1;
+		}
 
-.tab-group-label-container:hover .tab-group-label {
-	color: var(--nug-accent-off) !important;
-} */
+		& > label {
+			width: 100% !important;
+
+			background: transparent !important;
+			border: none !important;
+			color: var(--text) !important;
+			margin: 0 !important;
+			font-weight: calc(var(--tab-font_weight) + 10) !important;
+			font-size: calc(var(--tab-font_size) + 0.5px) !important;
+			display: flex;
+			margin-top: 1px !important;
+			margin-left: 2px !important;
+			align-items: center;
+			height: 100% !important;
+			text-align: start;
+
+			:root:not([zen-sidebar-expanded]) & {
+				padding: 0 !important;
+				max-width: 100% !important;
+			}
+		}
+	}
+}

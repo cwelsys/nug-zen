@@ -197,7 +197,7 @@
 		"value": "number",
 		"property": "nug-glow-gradient",
 		"label": "🌈 Hover glow animation",
-		"default": 1,
+		"default": 0,
 		"placeholder": false,
 		"options": [
 			{
