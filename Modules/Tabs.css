@@ -71,6 +71,12 @@
 	border: .1px solid var(--nug-accent) !important;
 } */
 
+/* hide clear all unpinned tabs + seperator */
+.pinned-tabs-container-separator,
+.zen-workspace-close-unpinned-tabs-button {
+	display: none !important;
+}
+
 /* essentials */
 .zen-essentials-container .tabbrowser-tab {
 	.tab-background {
@@ -256,7 +262,7 @@
 	.zen-workspace-pinned-tabs-section:not(
 			:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
 		) {
-		.tabbrowser-tab[pinned] {
+		.tabbrowser-tab[pinned]:not(zen-folder .tabbrowser-tab) {
 			.tab-close-button,
 			.tab-reset-button,
 			.tab-reset-pin-button,
@@ -270,7 +276,7 @@
 	#navigator-toolbox[zen-sidebar-expanded='true'] {
 		& #vertical-pinned-tabs-container > .zen-workspace-tabs-section,
 		& .zen-workspace-pinned-tabs-section {
-			& .tabbrowser-tab > .tab-stack > .tab-content > .tab-icon-stack {
+			& .tabbrowser-tab:not(zen-folder .tabbrowser-tab) > .tab-stack > .tab-content > .tab-icon-stack {
 				left: unset !important;
 			}
 		}
@@ -278,12 +284,12 @@
 
 	/* The actual grid layout */
 	#vertical-pinned-tabs-container > .zen-workspace-tabs-section,
-	.zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])),
-	.zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget]))
-		zen-folder
-		> .tab-group-container {
-		grid-template-columns: repeat(auto-fit, minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
+	.zen-workspace-pinned-tabs-section:not(
+			:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+		) {
 		display: grid !important;
+		grid-template-columns: repeat(auto-fit, minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
+		grid-auto-flow: dense !important;
 
 		&:has(> :nth-child(2)) {
 			margin: 0 var(--zen-toolbox-padding) !important;
@@ -294,19 +300,78 @@
 			max-width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
 		}
 
-		.tabbrowser-tab {
+		.tabbrowser-tab:not(zen-folder .tabbrowser-tab) {
 			--toolbarbutton-inner-padding: 0;
 		}
 
-		& > *:not(tab-group) {
+		& > *:not(tab-group):not(zen-folder) {
 			margin: 0 !important;
 		}
 
 		& > tab-group .tab-icon-stack {
 			margin: auto !important;
 		}
+
+		/* Folders span full width and create new rows */
+		& > zen-folder {
+			grid-column: 1 / -1 !important;
+		}
 	}
 
+	/* Normal layout for folder tabs */
+	.zen-workspace-pinned-tabs-section zen-folder > .tab-group-container {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 2px !important;
+		margin: 0 !important;
+		padding: 0 0 0 12px !important;
+		width: 100% !important;
+		box-sizing: border-box !important;
+
+		.tabbrowser-tab {
+			min-height: var(--tab-min-height) !important;
+			width: 100% !important;
+			margin: 0 !important;
+
+			/* Hide reset pin button for folder tabs */
+			& .tab-reset-pin-button {
+				display: none !important;
+			}
+
+			/* Reset pinned tab styles for folder tabs */
+			& .tab-stack {
+				width: 100% !important;
+			}
+
+			/* Ensure proper content layout for folder tabs */
+			& .tab-content {
+				display: flex !important;
+				align-items: center !important;
+				width: 100% !important;
+				padding-inline: var(--inline-tab-padding) !important;
+			}
+
+			& .tab-icon-stack {
+				margin-left: 0 !important;
+				transform: none !important;
+				margin-inline-start: 0 !important;
+				position: relative !important;
+				left: 0 !important;
+				padding-left: 4px !important;
+			}
+
+			& .tab-label-container {
+				flex: 1 !important;
+				display: flex !important;
+				padding-right: 4px !important;
+			}
+
+			/* Add spacing so border doesn't touch edges */
+			& .tab-background {
+				margin: 1px 2px !important;
+			}
+		}
+	}
 	#vertical-pinned-tabs-container > .zen-workspace-tabs-section {
 		align-items: normal;
 	}
@@ -322,7 +387,7 @@
 		) {
 		position: relative !important;
 
-		.tab-icon-stack {
+		.tabbrowser-tab:not(zen-folder .tabbrowser-tab) .tab-icon-stack {
 			margin-left: 50% !important;
 			transform: translateX(-50%) !important;
 		}
@@ -337,3 +402,19 @@
 		width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
 	}
 }
+
+/* folder label container styling */
+.tab-group-label-container::before {
+	background-color: transparent !important;
+	background: none !important;
+}
+
+/* folder text color */
+/* .tab-group-label {
+	color: var(--nug-accent) !important;
+	font-family: inherit !important;
+}
+
+.tab-group-label-container:hover .tab-group-label {
+	color: var(--nug-accent-off) !important;
+} */
