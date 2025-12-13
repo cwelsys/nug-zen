@@ -1,15 +1,8 @@
-/* Prevent a site from lobbing flashbangs at me all day */
-@-moz-document domain(komo.cwel.casa) {
-	html,
-	body {
-		background-color: hsl(220.1, 27.9%, 6.1%);
-	}
-
-	#root,
-	#__next,
-	#app {
-		background-color: hsl(220.1, 27.9%, 6.1%);
-	}
+/* Prevent flashbangs during page load of these apps */
+@-moz-document domain(discord.com), domain(komo.cwel.casa) {
+    html, body {
+        background-color: hsl(220.1, 27.9%, 6.1%);
+    }
 }
 
 @media (prefers-color-scheme: dark) {
