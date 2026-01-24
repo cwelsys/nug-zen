@@ -6,20 +6,37 @@ zen-workspace-icons#zen-workspaces-button {
 	& .zen-current-workspace-indicator {
 		opacity: 1 !important;
 		padding: 4px !important;
-		justify-content: center !important;
 		margin-bottom: 10px !important;
+		position: relative !important;
+		justify-content: center !important;
 
-		& .zen-current-workspace-indicator-icon {
-			position: absolute !important;
-			left: 35% !important;
-			transform: translateX(-100%) !important;
-		}
 		& .zen-current-workspace-indicator-icon {
 			display: none !important;
 		}
 
+		& .zen-current-workspace-indicator-stack {
+			position: absolute !important;
+			left: 6px !important;
+			top: 50% !important;
+			transform: translateY(-50%) !important;
+			z-index: 1 !important;
+		}
+
+		& .zen-current-workspace-indicator-chevron {
+			width: 10px !important;
+			height: 10px !important;
+			opacity: 0.4 !important;
+			transition: opacity 0.3s ease !important;
+		}
+
+		&:hover .zen-current-workspace-indicator-chevron {
+			opacity: 0.85 !important;
+		}
+
 		& .zen-current-workspace-indicator-name {
 			justify-content: center !important;
+			text-align: center !important;
+			width: 100% !important;
 			opacity: 0.8 !important;
 			font-weight: 500 !important;
 			font-family: monospace !important;
@@ -44,8 +61,8 @@ zen-workspace-icons#zen-workspaces-button {
 			position: absolute !important;
 			border-radius: 20px !important;
 
-			left: auto !important;
-			right: auto !important;
+			left: 50% !important;
+			transform: translateX(-50%) !important;
 			height: 3px !important;
 			top: auto !important;
 			bottom: 1% !important;

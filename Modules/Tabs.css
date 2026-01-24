@@ -240,6 +240,7 @@
 	}
 }
 
+
 .tabbrowser-tab.nug-child-hovered .tab-background::before {
 	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards !important;
 	clip-path: inset(0 0 0 0);
@@ -291,7 +292,14 @@
 		grid-template-columns: repeat(auto-fit, minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
 		grid-auto-flow: dense !important;
 
-		&:has(> :nth-child(2)) {
+		/* Hide collapsible start from grid */
+		& > .zen-tab-group-start {
+			visibility: hidden !important;
+			position: absolute !important;
+			pointer-events: none !important;
+		}
+
+		&:has(> .tabbrowser-tab:nth-of-type(2)) {
 			margin: 0 var(--zen-toolbox-padding) !important;
 			padding: 0 var(--zen-toolbox-padding) !important;
 			overflow: visible !important;
@@ -348,7 +356,7 @@
 				display: flex !important;
 				align-items: center !important;
 				width: 100% !important;
-				padding-inline: var(--inline-tab-padding) !important;
+				padding-inline-start: var(--inline-tab-padding) !important;
 			}
 
 			& .tab-icon-stack {
@@ -401,7 +409,42 @@
 		transform: translateX(-50%) !important;
 		width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
 	}
+
+	/* Single pinned tab - display as regular tab with label */
+	#vertical-pinned-tabs-container .zen-workspace-pinned-tabs-section:not(:has(> .tabbrowser-tab:nth-of-type(2))),
+	.zen-workspace-pinned-tabs-section:not(
+			:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+		):not(:has(> .tabbrowser-tab:nth-of-type(2))) {
+		.tabbrowser-tab[pinned]:not(zen-folder .tabbrowser-tab) {
+			--toolbarbutton-inner-padding: 10px !important;
+
+			.tab-label-container {
+				display: flex !important;
+				flex: 1 !important;
+			}
+
+			.tab-icon-stack {
+				margin-left: 0 !important;
+				transform: none !important;
+			}
+		}
+	}
 }
+
+/* Collapse pinned tabs when chevron is toggled */
+zen-workspace[collapsedpinnedtabs] .zen-workspace-pinned-tabs-section {
+	& > .tabbrowser-tab,
+	& > zen-folder,
+	& > .pinned-tabs-container-separator {
+		display: none !important;
+	}
+
+	padding: 0 !important;
+	margin: 0 !important;
+	min-height: 0 !important;
+	gap: 0 !important;
+}
+
 
 /* folder label container styling */
 .tab-group-label-container::before {

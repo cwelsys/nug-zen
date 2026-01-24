@@ -268,22 +268,40 @@
 	@-moz-document url-prefix("about:preferences") {
 		:root {
 			--zen-colors-tertiary: var(--mantle) !important;
+			--in-content-page-background: var(--mantle) !important;
+			--in-content-box-background: var(--mantle) !important;
+			--in-content-box-border-color: var(--surface1) !important;
 			--in-content-text-color: var(--text) !important;
 			--link-color: var(--nug-accent) !important;
 			--zen-colors-primary: var(--surface0) !important;
-			--in-content-box-background: var(--surface0) !important;
 			--zen-primary-color: var(--nug-accent) !important;
+			--in-content-button-background: var(--surface0) !important;
+			--in-content-button-background-hover: var(--surface1) !important;
+			--in-content-button-background-active: var(--surface2) !important;
+			--in-content-primary-button-background: var(--nug-accent) !important;
+			--in-content-primary-button-background-hover: var(--nug-accent) !important;
+			--in-content-primary-button-text-color: var(--crust) !important;
 		}
 
-		groupbox,
-		moz-card {
-			background: var(--base) !important;
+		/* Dialog overlay and title bar */
+		.dialogBox {
+			background-color: var(--base) !important;
 		}
 
-		.main-content {
-			background-color: var(--crust) !important;
+		.dialogTitleBar {
+			background-color: var(--surface0) !important;
 		}
 
+		.dialogTitle {
+			color: var(--text) !important;
+		}
+
+		.dialogClose {
+			color: var(--subtext0) !important;
+		}
+	}
+
+	@-moz-document url-prefix("about:preferences") {
 		.identity-color-blue {
 			--identity-tab-color: var(--blue) !important;
 			--identity-icon-color: var(--blue) !important;
