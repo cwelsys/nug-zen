@@ -1,6 +1,10 @@
 {
   "id": "Nug",
-  "js": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/JS/nug.uc.js",
+  "scripts": {
+    "JS": {
+      "nug.uc.js": {}
+    }
+  },
   "homepage": "https://github.com/cwelsys/nug-zen",
   "author": "cwelsys",
   "name": "Nug",
