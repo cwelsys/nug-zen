@@ -2,7 +2,9 @@
   "id": "Nug",
   "scripts": {
     "JS": {
-      "nug.uc.js": {}
+      "nug.uc.js": {
+        "include": ["*browser.xhtml"]
+      }
     }
   },
   "homepage": "https://github.com/cwelsys/nug-zen",
