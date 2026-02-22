@@ -3,6 +3,161 @@
 // @name          Dynamic URLBar Background Height
 // @description   Adjusts the height of #browser::before to match .urlbarView height.
 // ==/UserScript==
+
+// Inject CSS into chrome subdialogs (preferences dialogs, commonDialog, etc.)
+// Uses document-element-inserted observer to catch subdialog documents as they load
+const NUG_SUBDIALOG_CSS = `
+@media (prefers-color-scheme: dark) {
+	/* Catppuccin Mocha */
+	@media (-moz-pref('nug-catppuccin-flavor', 0)) {
+		:root {
+			--base: #1e1e2e; --mantle: #181825; --crust: #11111b;
+			--surface0: #313244; --surface1: #45475a; --surface2: #585b70;
+			--text: #cdd6f4; --subtext1: #bac2de;
+			--blue: #89b4fa; --lavender: #b4befe; --sapphire: #74c7ec;
+			--sky: #89dceb; --teal: #94e2d5; --green: #a6e3a1;
+			--yellow: #f9e2af; --peach: #fab387; --maroon: #eba0ac;
+			--red: #f38ba8; --mauve: #cba6f7; --pink: #f5c2e7;
+			--flamingo: #f2cdcd; --rosewater: #f5e0dc;
+		}
+	}
+	/* Catppuccin Macchiato */
+	@media (-moz-pref('nug-catppuccin-flavor', 1)) {
+		:root {
+			--base: #24273a; --mantle: #1e2030; --crust: #181926;
+			--surface0: #363a4f; --surface1: #494d64; --surface2: #5b6078;
+			--text: #cad3f5; --subtext1: #b8c0e0;
+			--blue: #8aadf4; --lavender: #b7bdf8; --sapphire: #7dc4e4;
+			--sky: #91d7e3; --teal: #8bd5ca; --green: #a6da95;
+			--yellow: #eed49f; --peach: #f5a97f; --maroon: #ee99a0;
+			--red: #ed8796; --mauve: #c6a0f6; --pink: #f5bde6;
+			--flamingo: #f0c6c6; --rosewater: #f4dbd6;
+		}
+	}
+	/* Accent color */
+	@media (-moz-pref('nug-accent-color', 0)) { :root { --nug-accent: var(--blue); } }
+	@media (-moz-pref('nug-accent-color', 1)) { :root { --nug-accent: var(--lavender); } }
+	@media (-moz-pref('nug-accent-color', 2)) { :root { --nug-accent: var(--sapphire); } }
+	@media (-moz-pref('nug-accent-color', 3)) { :root { --nug-accent: var(--sky); } }
+	@media (-moz-pref('nug-accent-color', 4)) { :root { --nug-accent: var(--teal); } }
+	@media (-moz-pref('nug-accent-color', 5)) { :root { --nug-accent: var(--green); } }
+	@media (-moz-pref('nug-accent-color', 6)) { :root { --nug-accent: var(--yellow); } }
+	@media (-moz-pref('nug-accent-color', 7)) { :root { --nug-accent: var(--peach); } }
+	@media (-moz-pref('nug-accent-color', 8)) { :root { --nug-accent: var(--maroon); } }
+	@media (-moz-pref('nug-accent-color', 9)) { :root { --nug-accent: var(--red); } }
+	@media (-moz-pref('nug-accent-color', 10)) { :root { --nug-accent: var(--mauve); } }
+	@media (-moz-pref('nug-accent-color', 11)) { :root { --nug-accent: var(--pink); } }
+	@media (-moz-pref('nug-accent-color', 12)) { :root { --nug-accent: var(--flamingo); } }
+	@media (-moz-pref('nug-accent-color', 13)) { :root { --nug-accent: var(--rosewater); } }
+
+	/* Dialog buttons via shadow DOM parts */
+	dialog::part(dialog-button) {
+		--button-background-color: var(--surface0) !important;
+		--button-background-color-hover: var(--surface1) !important;
+		--button-background-color-active: var(--surface2) !important;
+		--button-background-color-primary: var(--nug-accent) !important;
+		--button-background-color-primary-hover: color-mix(in srgb, var(--nug-accent) 85%, var(--text)) !important;
+		--button-background-color-primary-active: color-mix(in srgb, var(--nug-accent) 70%, var(--text)) !important;
+		--button-text-color: var(--text) !important;
+		--button-text-color-primary: var(--crust) !important;
+	}
+
+	/* Groupbox buttons and menulists */
+	groupbox button, groupbox menulist {
+		background-color: var(--surface0) !important;
+		color: var(--text) !important;
+	}
+	groupbox button:hover, groupbox menulist:hover {
+		background-color: var(--surface1) !important;
+	}
+	groupbox button:active, groupbox menulist:active {
+		background-color: var(--surface2) !important;
+	}
+}
+`
+
+;(function () {
+	Services.obs.addObserver(
+		{
+			observe(subject) {
+				try {
+					const url = subject.documentURI || ''
+					if (
+						!url.startsWith('chrome://') ||
+						!url.endsWith('.xhtml') ||
+						url === 'chrome://extensions/content/dummy.xhtml'
+					)
+						return
+
+					subject.addEventListener(
+						'DOMContentLoaded',
+						() => {
+							try {
+								const style = subject.createElement('style')
+								style.textContent = NUG_SUBDIALOG_CSS
+								subject.documentElement.appendChild(style)
+								console.log('[Nug Subdialogs] Injected CSS into:', url)
+							} catch (e) {
+								console.error('[Nug Subdialogs] Failed to inject:', e)
+							}
+
+							// Fix dialog cut-off caused by theme CSS increasing
+							// subdialog content height after SubDialog.sys.mjs
+							// measures and sets min-height on .dialogBox. Wait for
+							// SubDialog to finish sizing, then expand if needed.
+							try {
+								const win = subject.defaultView
+								const frame = win?.frameElement
+								const box = frame?.closest('.dialogBox')
+								if (box) {
+									const pWin = win.parent
+									let ticks = 0
+									const waitForSizing = () => {
+										ticks++
+										if (box.getAttribute('style')) {
+											ticks = 0
+											pWin.requestAnimationFrame(checkOverflow)
+										} else if (ticks < 120) {
+											pWin.requestAnimationFrame(waitForSizing)
+										}
+									}
+									const checkOverflow = () => {
+										ticks++
+										try {
+											const contentH = subject.documentElement.scrollHeight
+											const frameH = frame.getBoundingClientRect().height
+											if (contentH > frameH + 5 && frameH > 0) {
+												const diff = Math.ceil(contentH - frameH) + 4
+												const curMinH = parseFloat(pWin.getComputedStyle(box).minHeight) || 0
+												let newMinH = curMinH + diff
+												const maxAllowed = Math.floor(pWin.innerHeight * 0.9)
+												if (newMinH > maxAllowed) {
+													newMinH = maxAllowed
+													subject.documentElement.style.setProperty('overflow', 'auto', 'important')
+												}
+												box.style.setProperty('min-height', newMinH + 'px', 'important')
+												return
+											}
+											if (ticks < 60) {
+												pWin.requestAnimationFrame(checkOverflow)
+											}
+										} catch (e) { /* measurement failed */ }
+									}
+									pWin.requestAnimationFrame(waitForSizing)
+								}
+							} catch (e) { /* parent access failed */ }
+						},
+						{ once: true }
+					)
+				} catch (e) {
+					/* non-document subject, ignore */
+				}
+			},
+		},
+		'document-element-inserted'
+	)
+	console.log('[Nug Subdialogs] Observer registered')
+})()
 if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser', false)) {
 	;(function () {
 		// Only run in the main browser window

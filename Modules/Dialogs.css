@@ -1,0 +1,64 @@
+/* ===== Chrome-Context Dialogs ===== */
+/* JS alert/prompt/confirm overlays within tabs.
+ * about:preferences subdialogs are styled via userContent.css.
+ * Standalone commonDialog windows are styled via userContent.css
+ * (@-moz-document matching chrome://global/content/commonDialog.xhtml). */
+
+/* --- Overlay backdrop --- */
+
+.dialogOverlay[topmost='true'] {
+	background: color-mix(in srgb, var(--crust) 70%, transparent) !important;
+}
+
+#window-modal-dialog::backdrop {
+	background: color-mix(in srgb, var(--crust) 70%, transparent) !important;
+}
+
+/* --- Dialog box container --- */
+
+.dialogBox:not(.spotlightBox) {
+	background-color: var(--base) !important;
+	border-radius: 12px !important;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+	border: 1px solid var(--surface0) !important;
+}
+
+.dialogFrame {
+	background-color: var(--base) !important;
+	border-radius: 0 0 12px 12px !important;
+}
+
+/* --- Title bar --- */
+
+.dialogTitleBar {
+	background-color: var(--surface0) !important;
+	border-radius: 12px 12px 0 0 !important;
+}
+
+.dialogTitle {
+	color: var(--text) !important;
+}
+
+.dialogClose {
+	color: var(--subtext0) !important;
+
+	&:hover {
+		color: var(--red) !important;
+	}
+}
+
+/* --- Dialog button parts (shadow DOM) --- */
+
+dialog::part(dialog-button) {
+	--button-background-color: var(--surface0, #313244) !important;
+	--button-background-color-hover: var(--surface1, #45475a) !important;
+	--button-background-color-active: var(--surface2, #585b70) !important;
+	--button-background-color-primary: var(--nug-accent, #89b4fa) !important;
+	--button-background-color-primary-hover: color-mix(in srgb, var(--nug-accent, #89b4fa) 90%, var(--text, #cdd6f4)) !important;
+	--button-background-color-primary-active: color-mix(in srgb, var(--nug-accent, #89b4fa) 80%, var(--text, #cdd6f4)) !important;
+	color: var(--text, #cdd6f4) !important;
+}
+
+dialog[defaultButton='accept']::part(dialog-button) {
+	color: var(--crust, #11111b) !important;
+}

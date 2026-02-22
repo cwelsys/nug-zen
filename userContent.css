@@ -68,6 +68,50 @@
 		}
 	}
 
+	/* Accent color mapping */
+	@media (-moz-pref('nug-accent-color', 0)) {
+		:root { --nug-accent: var(--blue); }
+	}
+	@media (-moz-pref('nug-accent-color', 1)) {
+		:root { --nug-accent: var(--lavender); }
+	}
+	@media (-moz-pref('nug-accent-color', 2)) {
+		:root { --nug-accent: var(--sapphire); }
+	}
+	@media (-moz-pref('nug-accent-color', 3)) {
+		:root { --nug-accent: var(--sky); }
+	}
+	@media (-moz-pref('nug-accent-color', 4)) {
+		:root { --nug-accent: var(--teal); }
+	}
+	@media (-moz-pref('nug-accent-color', 5)) {
+		:root { --nug-accent: var(--green); }
+	}
+	@media (-moz-pref('nug-accent-color', 6)) {
+		:root { --nug-accent: var(--yellow); }
+	}
+	@media (-moz-pref('nug-accent-color', 7)) {
+		:root { --nug-accent: var(--peach); }
+	}
+	@media (-moz-pref('nug-accent-color', 8)) {
+		:root { --nug-accent: var(--maroon); }
+	}
+	@media (-moz-pref('nug-accent-color', 9)) {
+		:root { --nug-accent: var(--red); }
+	}
+	@media (-moz-pref('nug-accent-color', 10)) {
+		:root { --nug-accent: var(--mauve); }
+	}
+	@media (-moz-pref('nug-accent-color', 11)) {
+		:root { --nug-accent: var(--pink); }
+	}
+	@media (-moz-pref('nug-accent-color', 12)) {
+		:root { --nug-accent: var(--flamingo); }
+	}
+	@media (-moz-pref('nug-accent-color', 13)) {
+		:root { --nug-accent: var(--rosewater); }
+	}
+
 	/* Accent */
 	@-moz-document url-prefix("about:") {
 		@media (-moz-pref('nug-accent-color', 0)) {
@@ -283,9 +327,26 @@
 			--in-content-primary-button-text-color: var(--crust) !important;
 		}
 
-		/* Dialog overlay and title bar */
+		/* Override hardcoded groupbox button colors from Firefox defaults */
+		groupbox button,
+		groupbox menulist {
+			background-color: var(--surface0) !important;
+			color: var(--text) !important;
+
+			&:hover {
+				background-color: var(--surface1) !important;
+			}
+
+			&:active {
+				background-color: var(--surface2) !important;
+			}
+		}
+
 		.dialogBox {
+			box-sizing: border-box !important;
 			background-color: var(--base) !important;
+			border: 1px solid var(--surface0) !important;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 		}
 
 		.dialogTitleBar {
@@ -340,6 +401,60 @@
 		.identity-color-purple {
 			--identity-tab-color: var(--mauve) !important;
 			--identity-icon-color: var(--mauve) !important;
+		}
+	}
+
+	/* commonDialog content (inside dialog iframe - buttons, text, inputs) */
+	@-moz-document url("chrome://global/content/commonDialog.xhtml") {
+		:root {
+			--in-content-page-background: var(--base) !important;
+			--in-content-page-color: var(--text) !important;
+			--in-content-text-color: var(--text) !important;
+			--in-content-primary-button-background: var(--nug-accent) !important;
+			--in-content-primary-button-background-hover: var(--nug-accent) !important;
+			--in-content-primary-button-background-active: var(--nug-accent) !important;
+			--in-content-primary-button-text-color: var(--crust) !important;
+			--in-content-button-background: var(--surface0) !important;
+			--in-content-button-background-hover: var(--surface1) !important;
+			--in-content-button-background-active: var(--surface2) !important;
+		}
+
+		#commonDialog {
+			background-color: var(--base) !important;
+			color: var(--text) !important;
+		}
+
+		#infoTitle {
+			color: var(--text) !important;
+		}
+
+		#infoBody {
+			color: var(--subtext1) !important;
+		}
+
+		/* Direct button targeting */
+		button[dlgtype='accept'] {
+			background-color: var(--nug-accent) !important;
+			color: var(--crust) !important;
+		}
+
+		button[dlgtype='cancel'],
+		button[dlgtype='extra1'],
+		button[dlgtype='extra2'] {
+			background-color: var(--surface0) !important;
+			color: var(--text) !important;
+		}
+
+		#loginTextbox,
+		#password1Textbox {
+			background-color: var(--surface0) !important;
+			color: var(--text) !important;
+			border-color: var(--surface2) !important;
+		}
+
+		#infoIcon {
+			-moz-context-properties: fill !important;
+			fill: var(--nug-accent) !important;
 		}
 	}
 
