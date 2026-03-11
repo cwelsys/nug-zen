@@ -34,7 +34,7 @@
 	}
 }
 
-* {
+#main-window * {
 	font-family: var(--nug-font), sans-serif;
 }
 
@@ -328,13 +328,16 @@ browser {
 		--lwt-sidebar-background-color: var(--crust) !important;
 		--toolbar-bgcolor: var(--surface0) !important;
 		--newtab-background-color: var(--base) !important;
-		--zen-themed-toolbar-bg: var(--mantle) !important;
+		--zen-themed-toolbar-bg-transparent: var(--mantle) !important;
 		--zen-main-browser-background: var(--mantle) !important;
+		--zen-main-browser-background-toolbar: var(--mantle) !important;
+		--zen-dialog-background: var(--base) !important;
+		--background-color-canvas: var(--base) !important;
 		--toolbox-bgcolor-inactive: var(--mantle) !important;
 		--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, var(--text));
 		--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, var(--text));
 		--nug-blur-color: color-mix(in srgb, var(--nug-accent) 1%, #000000a0);
-		--nug-glass-bg: color-mix(in srgb, light-dark(rgb(var(--text), var(--base)) 50%, transparent 90%);
+		--nug-glass-bg: color-mix(in srgb, light-dark(var(--text), var(--base)) 50%, transparent 90%);
 	}
 
 	#permissions-granted-icon {
@@ -432,5 +435,16 @@ browser {
 
 	#zen-appcontent-navbar-container {
 		background-color: var(--mantle) !important;
+	}
+
+	#zen-toolbar-background {
+		--zen-main-browser-background-toolbar: var(--mantle) !important;
+	}
+
+	#zen-browser-background {
+		--zen-main-browser-background: var(--mantle) !important;
+		/* Suppress macOS native -moz-sidebar vibrancy (light gray gradient) */
+		-moz-default-appearance: none !important;
+		appearance: none !important;
 	}
 }

@@ -50,6 +50,12 @@ const NUG_SUBDIALOG_CSS = `
 	@media (-moz-pref('nug-accent-color', 12)) { :root { --nug-accent: var(--flamingo); } }
 	@media (-moz-pref('nug-accent-color', 13)) { :root { --nug-accent: var(--rosewater); } }
 
+	/* Canvas/dialog background (overrides Zen's --zen-dialog-background → #161C31) */
+	:root {
+		--zen-dialog-background: var(--base) !important;
+		--background-color-canvas: var(--base) !important;
+	}
+
 	/* Dialog buttons via shadow DOM parts */
 	dialog::part(dialog-button) {
 		--button-background-color: var(--surface0) !important;
