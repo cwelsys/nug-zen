@@ -27,6 +27,14 @@
 	color: var(--zen-toast-text-color, #222) !important;
 }
 
+/* Sine toast — pastel Catppuccin accents are too light for default toolbar text */
+@media (prefers-color-scheme: dark) {
+	.sineToast,
+	.sineToast button {
+		color: var(--crust) !important;
+	}
+}
+
 /* reopen closed tabs menu style overrides */
 #reopen-closed-tabs-panel,
 .reopen-closed-tabs-group-header,
@@ -82,8 +90,8 @@
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	background-color: var(--zen-primary-color);
-	color: var(--zen-toast-text-color, #222) !important;
+	background-color: color-mix(in srgb, var(--nug-accent) 60%, var(--crust)) !important;
+	color: var(--text) !important;
 	border-radius: 12px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;

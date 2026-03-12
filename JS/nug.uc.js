@@ -54,6 +54,8 @@ const NUG_SUBDIALOG_CSS = `
 	:root {
 		--zen-dialog-background: var(--base) !important;
 		--background-color-canvas: var(--base) !important;
+		--zen-primary-color: var(--nug-accent) !important;
+		--color-accent-primary: var(--nug-accent) !important;
 	}
 
 	/* Dialog buttons via shadow DOM parts */
