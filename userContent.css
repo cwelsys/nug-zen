@@ -1,9 +1,9 @@
 /* Prevent flashbangs during page load of these apps */
-@-moz-document domain(discord.com), domain(komo.cwel.casa) {
-    html, body {
-        background-color: hsl(220.1, 27.9%, 6.1%);
-    }
-}
+/* @-moz-document domain(discord.com), domain(komo.cwel.casa) { */
+/*     html, body { */
+/*         background-color: hsl(220.1, 27.9%, 6.1%); */
+/*     } */
+/* } */
 
 @media (prefers-color-scheme: dark) {
 	@media (-moz-pref('nug-catppuccin-flavor', 0)) {
