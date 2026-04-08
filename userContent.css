@@ -5,6 +5,13 @@
 /*     } */
 /* } */
 
+:root {
+    --fontStack-monospace:
+        "JetBrainsMono Nerd Font Mono",
+        "Symbols Nerd Font",
+        ui-monospace, monospace !important;
+}
+
 @media (prefers-color-scheme: dark) {
 	@media (-moz-pref('nug-catppuccin-flavor', 0)) {
 		:root {
