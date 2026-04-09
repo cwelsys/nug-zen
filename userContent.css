@@ -1,15 +1,12 @@
-/* Prevent flashbangs during page load of these apps */
-/* @-moz-document domain(discord.com), domain(komo.cwel.casa) { */
-/*     html, body { */
-/*         background-color: hsl(220.1, 27.9%, 6.1%); */
-/*     } */
-/* } */
-
-:root {
-    --fontStack-monospace:
-        "JetBrainsMono Nerd Font Mono",
-        "Symbols Nerd Font",
-        ui-monospace, monospace !important;
+@font-face {
+    font-family: "Liberation Mono";
+    src: local("Symbols Nerd Font");
+    unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+}
+@font-face {
+    font-family: "Consolas";
+    src: local("Symbols Nerd Font");
+    unicode-range: U+E000-F8FF, U+F0000-10FFFD;
 }
 
 @media (prefers-color-scheme: dark) {
