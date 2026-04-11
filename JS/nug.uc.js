@@ -97,9 +97,7 @@ const NUG_SUBDIALOG_CSS = `
 								const style = subject.createElement('style')
 								style.textContent = NUG_SUBDIALOG_CSS
 								subject.documentElement.appendChild(style)
-								console.log('[Nug Subdialogs] Injected CSS into:', url)
 							} catch (e) {
-								console.error('[Nug Subdialogs] Failed to inject:', e)
 							}
 
 							// Fix dialog cut-off caused by theme CSS increasing
@@ -157,7 +155,6 @@ const NUG_SUBDIALOG_CSS = `
 	}
 
 	Services.obs.addObserver(subdialogObserver, 'document-element-inserted')
-	console.log('[Nug Subdialogs] Observer registered')
 
 	window.addEventListener(
 		'unload',
@@ -179,8 +176,6 @@ const NUG_SUBDIALOG_CSS = `
 		return
 	}
 
-	console.log('Zen URL Bar Animated Height (CSS-Controlled Easing) script loading...')
-
 	const CONFIG = {
 		URLBAR_ID: 'urlbar',
 		URLBAR_RESULTS_ID: 'urlbar-results',
@@ -196,21 +191,18 @@ const NUG_SUBDIALOG_CSS = `
 	let urlbarElement, resultsElement
 	let updateTimeout = null
 	let lastResultCount = -1
+	let mutationObserver = null
+	let urlbarAttributeObserver = null
 
-	/**
-	 * The core logic for animating and managing the results panel height.
-	 */
 	function updateViewState() {
 		if (!resultsElement || !urlbarElement) return
 
 		clearTimeout(updateTimeout)
 
 		updateTimeout = setTimeout(() => {
-			// --- ZEN COMMAND PALETTE COMPATIBILITY CHECK ---
-			// This is the crucial logic from your original script.
+			// Zen command palette active — bail out
 			const isCommandModeActive = window.ZenCommandPalette?.provider?._isInPrefixMode ?? false
 			if (isCommandModeActive) {
-				// If the command palette is active, our script must do nothing and clean up its styles.
 				resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS)
 				resultsElement.style.removeProperty('height')
 				resultsElement.style.removeProperty('max-height')
@@ -227,7 +219,6 @@ const NUG_SUBDIALOG_CSS = `
 				parseFloat(computedStyle.getPropertyValue('opacity')) > 0
 
 			if (!isUrlbarOpen && !isUserTyping) {
-				// If urlbar is completely closed and not typing, reset our state.
 				resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS)
 				resultsElement.style.removeProperty('height')
 				resultsElement.style.removeProperty('max-height')
@@ -238,8 +229,7 @@ const NUG_SUBDIALOG_CSS = `
 			}
 
 			if (isUrlbarOpen && !isUrlbarViewVisibleByCSS) {
-				// urlbar is open but your CSS is still animating its display/opacity, or it's not yet considered visible.
-				// Reinforce the initial cap if our script hasn't taken over height yet.
+				// Not visible yet (CSS animation pending)
 				if (!resultsElement.style.height) {
 					resultsElement.style.height = `${CONFIG.INITIAL_CAP_HEIGHT_PX}px`
 					resultsElement.style.overflowY = 'hidden'
@@ -247,8 +237,7 @@ const NUG_SUBDIALOG_CSS = `
 				return
 			}
 
-			// At this point, the URL bar view should be visible and ready for height calculation.
-			resultsElement.style.removeProperty('max-height') // Ensure we override any lingering max-height from Zen's CSS or our temp styles.
+			resultsElement.style.removeProperty('max-height') // clear Zen's max-height
 
 			const resultRows = resultsElement.querySelectorAll('.urlbarView-row:not([type="tip"], [type="dynamic"])')
 			const currentResultCount = resultRows.length
@@ -268,11 +257,10 @@ const NUG_SUBDIALOG_CSS = `
 				targetHeight = currentResultCount * CONFIG.MANUAL_ROW_HEIGHT_PX
 			}
 
-			// Apply the height, which will trigger the CSS transition
 			resultsElement.style.height = `${targetHeight}px`
 			resultsElement.style.overflowY = isScrollable ? 'auto' : 'hidden'
 
-			// Universal auto-scroll logic for arrow keys.
+			// Auto-scroll to selected row
 			for (const row of resultRows) {
 				if (row.hasAttribute('selected')) {
 					row.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
@@ -286,7 +274,7 @@ const NUG_SUBDIALOG_CSS = `
 	 * Sets up the necessary listeners.
 	 */
 	function setupListeners() {
-		const mutationObserver = new MutationObserver(() => {
+		mutationObserver = new MutationObserver(() => {
 			updateViewState()
 		})
 		mutationObserver.observe(resultsElement, {
@@ -296,7 +284,7 @@ const NUG_SUBDIALOG_CSS = `
 			attributeFilter: ['selected'],
 		})
 
-		const urlbarAttributeObserver = new MutationObserver((mutations) => {
+		urlbarAttributeObserver = new MutationObserver((mutations) => {
 			for (const mutation of mutations) {
 				if (mutation.attributeName === 'usertyping' || mutation.attributeName === 'open') {
 					updateViewState()
@@ -316,9 +304,6 @@ const NUG_SUBDIALOG_CSS = `
 		})
 	}
 
-	/**
-	 * Waits for all necessary UI elements to exist before initializing.
-	 */
 	function initialize() {
 		urlbarElement = document.getElementById(CONFIG.URLBAR_ID)
 		resultsElement = document.getElementById(CONFIG.URLBAR_RESULTS_ID)
@@ -328,15 +313,11 @@ const NUG_SUBDIALOG_CSS = `
 			return
 		}
 
-		// Inject the CSS. This CSS now uses custom properties for transition.
 		const styleId = 'zen-urlbar-animated-height-styles-css-controlled'
 		if (!document.getElementById(styleId)) {
 			const css = `
-        /* Default values for custom properties if not defined in userChrome.css */
-
-
         #${CONFIG.URLBAR_RESULTS_ID} {
-          /* Flicker-Free: Immediately cap height and hide overflow until JS takes over */
+          /* Cap initial height to prevent flicker */
           max-height: ${CONFIG.INITIAL_CAP_HEIGHT_PX}px !important;
           overflow-y: hidden !important;
 
@@ -349,12 +330,16 @@ const NUG_SUBDIALOG_CSS = `
 			style.id = styleId
 			style.textContent = css
 			document.head.appendChild(style)
-			console.log('Zen URL Bar Animated Height (CSS-Controlled Easing) styles injected.')
 		}
 
 		setupListeners()
 		updateViewState()
-		console.log('Zen URL Bar Animated Height (CSS-Controlled Easing) Initialized.')
+
+		window.addEventListener('unload', () => {
+			mutationObserver?.disconnect()
+			urlbarAttributeObserver?.disconnect()
+			clearTimeout(updateTimeout)
+		}, { once: true })
 	}
 
 	if (document.readyState === 'complete') {
@@ -372,8 +357,6 @@ const NUG_SUBDIALOG_CSS = `
 // @compatibility  Firefox 100+
 // ==/UserScript==
 ;(() => {
-	console.log('Tab Explode Animation: Script execution started.')
-
 	// Live-reactive pref: cache value and observe for changes so toggling
 	// the pref in the theme panel takes effect without a restart.
 	const TAB_EXPLODE_PREF = 'nug.tab.explode'
@@ -412,25 +395,24 @@ const NUG_SUBDIALOG_CSS = `
 			const css = `
             .tab-explosion-container {
                 position: absolute;
-                top: 0; /* Will be set by JS */
-                left: 0; /* Will be set by JS */
-                width: 0; /* Will be set by JS */
-                height: 0; /* Will be set by JS */
-                pointer-events: none; /* Don't interfere with mouse events */
-                z-index: 99999; /* Above other tab elements */
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 0;
+                pointer-events: none;
+                z-index: 99999;
             }
 
             .bubble-particle {
                 position: absolute;
-                /* background-color: var(--toolbarbutton-icon-fill-attention, dodgerblue); */ /* Use a theme-aware color or a fixed one */
                 background-color: light-dark( #cac2b6, #808080) !important;
                 border-radius: 50%;
                 opacity: 0.8;
                 animation-name: bubbleExplode;
                 animation-duration: ${ANIMATION_DURATION}ms;
                 animation-timing-function: ease-out;
-                animation-fill-mode: forwards; /* Stay at the end state (invisible) */
-                will-change: transform, opacity; /* Hint for browser optimization */
+                animation-fill-mode: forwards;
+                will-change: transform, opacity;
             }
 
             @keyframes bubbleExplode {
@@ -449,7 +431,6 @@ const NUG_SUBDIALOG_CSS = `
 			styleElement.id = TAB_EXPLODE_ANIMATION_ID
 			styleElement.textContent = css
 			document.head.appendChild(styleElement)
-			console.log('Tab Explode Animation: Styles injected.')
 		}
 
 		function animateElementClose(element) {
@@ -461,18 +442,15 @@ const NUG_SUBDIALOG_CSS = `
 			const explosionContainer = document.createElement('div')
 			explosionContainer.className = 'tab-explosion-container' // Has position: absolute
 
-			// Determine the parent for the animation.
-			// #browser is a high-level container for the browser content area.
+			// Find animation parent
 			let parentForAnimation = document.getElementById('browser')
 			if (!parentForAnimation || !parentForAnimation.isConnected) {
-				// Fallback to main-window or even documentElement if #browser is not suitable
 				parentForAnimation = document.getElementById('main-window') || document.documentElement
 			}
 
 			const parentRect = parentForAnimation.getBoundingClientRect()
 
-			// Calculate position of explosionContainer relative to parentForAnimation,
-			// such that it aligns with the element's viewport position.
+			// Position relative to parent
 			explosionContainer.style.left = `${elementRect.left - parentRect.left}px`
 			explosionContainer.style.top = `${elementRect.top - parentRect.top}px`
 			explosionContainer.style.width = `${elementRect.width}px`
@@ -487,10 +465,8 @@ const NUG_SUBDIALOG_CSS = `
 				let initialX, initialY
 				let edge
 				if (i < 4) {
-					// Assign the first four bubbles to distinct edges (0, 1, 2, 3)
 					edge = i
 				} else {
-					// For subsequent bubbles, assign to a random edge
 					edge = Math.floor(Math.random() * 4)
 				}
 
@@ -520,7 +496,6 @@ const NUG_SUBDIALOG_CSS = `
 				bubble.style.width = `${Math.random() * 4 + 4}px` // Random size (4px to 8px)
 				bubble.style.height = bubble.style.width
 
-				// Random final translation and scale for each bubble
 				const angle = Math.random() * Math.PI * 2
 				let distance = Math.random() * 1 + 1 // Explosion radius, even further reduced spread
 				let finalTranslateX = Math.cos(angle) * distance
@@ -539,17 +514,14 @@ const NUG_SUBDIALOG_CSS = `
 				bubble.style.setProperty('--ty', `${finalTranslateY}px`)
 				bubble.style.setProperty('--s', finalScale)
 
-				// Stagger animation start slightly
 				bubble.style.animationDelay = `${Math.random() * 120}ms`
 
 				explosionContainer.appendChild(bubble)
 			}
 
-			// Make the original element content invisible immediately
 			element.style.opacity = '0'
 			element.style.transition = 'opacity 0.1s linear'
 
-			// Remove the explosion container after the animation
 			setTimeout(() => {
 				if (explosionContainer.parentNode) {
 					explosionContainer.parentNode.removeChild(explosionContainer)
@@ -560,7 +532,7 @@ const NUG_SUBDIALOG_CSS = `
 		function onTabClose(event) {
 			if (!tabExplodeEnabled) return
 			const tab = event.target
-			// Ensure it's a normal tab and not something else
+			// Skip pinned/disconnected tabs
 			if (tab.localName === 'tab' && !tab.pinned && tab.isConnected) {
 				// Check if the tab is part of a group
 				const groupParent = tab.closest('tab-group')
@@ -579,35 +551,18 @@ const NUG_SUBDIALOG_CSS = `
 		}
 
 		function init() {
-			console.log('Tab Explode Animation: init() function called.')
 			injectStyles()
 			if (typeof gBrowser !== 'undefined' && gBrowser.tabContainer) {
-				console.log('Tab Explode Animation: gBrowser and gBrowser.tabContainer are available.')
 				gBrowser.tabContainer.addEventListener('TabClose', onTabClose, false)
-
-				// Add multiple event listeners to catch tab group removal
-				gBrowser.tabContainer.addEventListener('TabGroupRemove', onTabGroupRemove, false)
-				gBrowser.tabContainer.addEventListener('TabGroupClosed', onTabGroupRemove, false)
 				gBrowser.tabContainer.addEventListener('TabGroupRemoved', onTabGroupRemove, false)
-
-				// Also listen for the custom event that might be used
-				document.addEventListener('TabGroupRemoved', onTabGroupRemove, false)
-
-				console.log('Tab Explode Animation: Listeners attached to TabClose and TabGroup events.')
 			} else {
-				// Retry if gBrowser is not ready
-				console.log('Tab Explode Animation: gBrowser not ready, scheduling retry.')
 				setTimeout(init, 1000)
 			}
 		}
 
-		// Wait for the browser to be fully loaded
-		console.log('Tab Explode Animation: Setting up load event listener or calling init directly.')
 		if (document.readyState === 'complete') {
-			console.log('Tab Explode Animation: Document already complete, calling init().')
 			init()
 		} else {
-			console.log('Tab Explode Animation: Document not complete, adding load event listener for init().')
 			window.addEventListener('load', init, { once: true })
 		}
 })()
@@ -946,7 +901,7 @@ class FindbarMods {
 			}
 		}
 	}
-	// when the context menu opens, ensure the menuitems are checked/unchecked appropriately.
+	// sync checked state on popup open
 	onPopupShowing(e) {
 		let node = e.target.triggerNode
 		if (!node) return
@@ -988,9 +943,7 @@ class FindbarMods {
 		}
 	}
 	domSetup(findbar) {
-		// ensure that our new context menu is opened on right-click.
 		findbar.setAttribute('context', 'findbar-context-menu')
-		// Set attribute to control compact indicator visibility via CSS
 		if (this.isMini) {
 			findbar.setAttribute('compact-indicator', 'true')
 			this.miniaturize(findbar)
@@ -1054,7 +1007,10 @@ class FindbarMods {
 
 		this.domSetup(findbar)
 		// set up hotkey ctrl+F to close findbar when it's already open
-		findbar.addEventListener('keypress', exitFindBar, true)
+		if (!findbar._nugExitFindBarAttached) {
+			findbar.addEventListener('keypress', exitFindBar, true)
+			findbar._nugExitFindBarAttached = true
+		}
 	}
 	onFindbarOpen(e) {
 		if (e.target.findMode == e.target.FIND_NORMAL) {
