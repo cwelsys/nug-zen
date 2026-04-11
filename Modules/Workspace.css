@@ -26,7 +26,7 @@ zen-workspace-icons#zen-workspaces-button {
 			width: 10px !important;
 			height: 10px !important;
 			opacity: 0.4 !important;
-			transition: opacity 0.3s ease !important;
+			transition: opacity 0.3s ease;
 		}
 
 		&:hover .zen-current-workspace-indicator-chevron {
@@ -51,13 +51,13 @@ zen-workspace-icons#zen-workspaces-button {
 
 			& .toolbarbutton-icon {
 				background: transparent !important;
-				transition: background 0.5s ease !important;
+				transition: background 0.5s ease;
 				display: none !important;
 			}
 		}
 
 		&::before {
-			background: var(--blue) !important;
+			background: var(--nug-accent) !important;
 			position: absolute !important;
 			border-radius: 20px !important;
 
@@ -76,13 +76,13 @@ zen-workspace-icons#zen-workspaces-button {
 		& .zen-current-workspace-indicator {
 			&::before {
 				width: 65% !important;
-				transition: width 0.6s ease, opacity 0.5s ease !important;
+				transition: width 0.6s ease, opacity 0.5s ease;
 			}
 
 			&:hover {
 				&::before {
 					width: 80% !important;
-					transition: width 0.3s ease !important;
+					transition: width 0.3s ease;
 				}
 			}
 		}
@@ -141,12 +141,12 @@ zen-workspace-icons#zen-workspaces-button {
 	color: rgba(0, 0, 0, 0) !important;
 	font-size: 0px !important;
 
-	transition: opacity 0.5s ease, background-color 0.5s ease, box-shadow 0.7s ease, scale 0.5s ease, width 0.3s ease !important;
+	transition: opacity 0.5s ease, background-color 0.5s ease, box-shadow 0.7s ease, scale 0.5s ease, width 0.3s ease;
 }
 
 /* Transitions */
 #zen-workspaces-button toolbarbutton:not([active='true']) .zen-workspace-icon {
-	transition: opacity 0.5s ease, background-color 0.5s ease, box-shadow 0.7s ease, scale 0.5s ease, width 0.4s ease !important;
+	transition: opacity 0.5s ease, background-color 0.5s ease, box-shadow 0.7s ease, scale 0.5s ease, width 0.4s ease;
 }
 
 #zen-workspaces-button toolbarbutton[active='true'] .zen-workspace-icon {

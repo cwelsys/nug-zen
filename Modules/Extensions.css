@@ -53,7 +53,7 @@
 			background-color: var(--zen-colors-tertiary) !important;
 			box-shadow: 0 0 3px transparent !important;
 			border-radius: 12.5px !important;
-			transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+			transition: background-color 0.3s ease, box-shadow 0.3s ease;
 		}
 
 		.unified-extensions-item:hover {
@@ -91,7 +91,7 @@
 			margin: 0px !important;
 			order: -1 !important;
 			flex-grow: 1 !important;
-			transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+			transition: background-color 0.3s ease, box-shadow 0.3s ease;
 		}
 
 		> toolbarbutton:not([id='tabs-newtab-button']):hover,

@@ -145,11 +145,11 @@
 			display: flex !important;
 			left: auto !important;
 			right: auto !important;
-			transition: margin-left 0.3s !important;
+			transition: margin-left 0.3s;
 		}
 
 		& .toolbarbutton-icon {
-			transition: scale 0.3s ease !important;
+			transition: scale 0.3s ease;
 		}
 	}
 
@@ -180,7 +180,7 @@
 
 		& .toolbarbutton-icon {
 			background: none !important;
-			transition: scale 0.4s ease !important;
+			transition: scale 0.4s ease;
 		}
 	}
 
@@ -242,7 +242,7 @@
 
 
 .tabbrowser-tab:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background::before {
-	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards !important;
+	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards;
 	clip-path: inset(0 0 0 0);
 }
 

@@ -1,5 +1,5 @@
 #urlbar-results {
-	transition: height 180ms ease-in-out !important;
+	transition: height 180ms ease-in-out;
 	overflow-y: auto !important;
 }
 
@@ -27,11 +27,11 @@
 			width: min(70%, 57rem) !important;
 
 			& #urlbar-background {
-				transition: border-radius 0.4s ease !important;
+				transition: border-radius 0.4s ease;
 			}
 
 			& .urlbarView {
-				transition: opacity 0.1s ease !important;
+				transition: opacity 0.1s ease;
 			}
 		}
 	}
@@ -41,12 +41,12 @@
 	#urlbar[open]:not([usertyping='']) > .urlbarView {
 		max-height: 0 !important;
 		overflow: hidden !important;
-		transition: max-height 0.4s ease !important;
+		transition: max-height 0.4s ease;
 	}
 
 	#urlbar[open][usertyping=''] > .urlbarView {
 		max-height: 500px !important;
-		transition: max-height 0.3s ease !important;
+		transition: max-height 0.3s ease;
 	}
 }
 
@@ -109,7 +109,7 @@
 		opacity: 0 !important;
 		/* --- Animation --- */
 		/* Transition opacity. Height changes might be instant or you could transition height too */
-		transition: opacity 0.1s ease-out, width 0.3s ease !important;
+		transition: opacity 0.1s ease-out, width 0.3s ease;
 		/*    height 0.1s ease-out !important; /* Optional: animate height changes */
 	}
 
