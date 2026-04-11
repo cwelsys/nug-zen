@@ -7,6 +7,20 @@
 @import 'Modules/URLbar.css';
 @import 'Modules/Workspace.css';
 
+/* Honor OS-level reduced-motion preference. Kills every animation
+   and transition across all modules in one go — the Tab Explode JS
+   module has its own early-return. */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
 @media (-moz-bool-pref: 'nug.hide.window.controls') {
 	.titlebar-buttonbox-container {
 		display: none !important;

@@ -79,19 +79,18 @@ const NUG_SUBDIALOG_CSS = `
 `
 
 ;(function () {
-	Services.obs.addObserver(
-		{
-			observe(subject) {
-				try {
-					const url = subject.documentURI || ''
-					if (
-						!url.startsWith('chrome://') ||
-						!url.endsWith('.xhtml') ||
-						url === 'chrome://extensions/content/dummy.xhtml'
-					)
-						return
+	const subdialogObserver = {
+		observe(subject) {
+			try {
+				const url = subject.documentURI || ''
+				if (
+					!url.startsWith('chrome://') ||
+					!url.endsWith('.xhtml') ||
+					url === 'chrome://extensions/content/dummy.xhtml'
+				)
+					return
 
-					subject.addEventListener(
+				subject.addEventListener(
 						'DOMContentLoaded',
 						() => {
 							try {
@@ -151,14 +150,24 @@ const NUG_SUBDIALOG_CSS = `
 						},
 						{ once: true }
 					)
-				} catch (e) {
-					/* non-document subject, ignore */
-				}
-			},
+			} catch (e) {
+				/* non-document subject, ignore */
+			}
 		},
-		'document-element-inserted'
-	)
+	}
+
+	Services.obs.addObserver(subdialogObserver, 'document-element-inserted')
 	console.log('[Nug Subdialogs] Observer registered')
+
+	window.addEventListener(
+		'unload',
+		() => {
+			try {
+				Services.obs.removeObserver(subdialogObserver, 'document-element-inserted')
+			} catch (e) {}
+		},
+		{ once: true }
+	)
 })()
 if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser', false)) {
 	;(function () {
@@ -572,11 +581,34 @@ if (Services.prefs.getBoolPref('browser.tabs.allow_transparent_browser', false))
 // @description    Adds a bubble explosion animation when a tab or tab group is closed.
 // @compatibility  Firefox 100+
 // ==/UserScript==
-if (Services.prefs.getBoolPref('nug.tab.explode')) {
-	// Run script
+;(() => {
+	console.log('Tab Explode Animation: Script execution started.')
 
-	;(() => {
-		console.log('Tab Explode Animation: Script execution started.')
+	// Live-reactive pref: cache value and observe for changes so toggling
+	// the pref in the theme panel takes effect without a restart.
+	const TAB_EXPLODE_PREF = 'nug.tab.explode'
+	let tabExplodeEnabled = false
+	try {
+		tabExplodeEnabled = Services.prefs.getBoolPref(TAB_EXPLODE_PREF, true)
+	} catch (e) {}
+	const tabExplodePrefObserver = {
+		observe(_subject, _topic, data) {
+			if (data !== TAB_EXPLODE_PREF) return
+			try {
+				tabExplodeEnabled = Services.prefs.getBoolPref(TAB_EXPLODE_PREF, true)
+			} catch (e) {}
+		},
+	}
+	Services.prefs.addObserver(TAB_EXPLODE_PREF, tabExplodePrefObserver)
+	window.addEventListener(
+		'unload',
+		() => {
+			try {
+				Services.prefs.removeObserver(TAB_EXPLODE_PREF, tabExplodePrefObserver)
+			} catch (e) {}
+		},
+		{ once: true }
+	)
 
 		const TAB_EXPLODE_ANIMATION_ID = 'tab-explode-animation-styles'
 		const BUBBLE_COUNT = 25 // Number of bubbles
@@ -632,6 +664,8 @@ if (Services.prefs.getBoolPref('nug.tab.explode')) {
 
 		function animateElementClose(element) {
 			if (!element || !element.isConnected) return
+			// Honor OS-level reduced-motion preference
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
 			const elementRect = element.getBoundingClientRect() // Viewport-relative
 			const explosionContainer = document.createElement('div')
@@ -734,23 +768,22 @@ if (Services.prefs.getBoolPref('nug.tab.explode')) {
 		}
 
 		function onTabClose(event) {
+			if (!tabExplodeEnabled) return
 			const tab = event.target
 			// Ensure it's a normal tab and not something else
 			if (tab.localName === 'tab' && !tab.pinned && tab.isConnected) {
 				// Check if the tab is part of a group
 				const groupParent = tab.closest('tab-group')
 				if (!groupParent) {
-					console.log('Tab Explode Animation: TabClose event triggered for tab:', tab)
 					animateElementClose(tab)
 				}
 			}
 		}
 
 		function onTabGroupRemove(event) {
-			console.log('Tab Explode Animation: TabGroupRemove event received:', event)
+			if (!tabExplodeEnabled) return
 			const group = event.target
 			if (group && group.localName === 'tab-group' && group.isConnected) {
-				console.log('Tab Explode Animation: TabGroupRemove event triggered for group:', group)
 				animateElementClose(group)
 			}
 		}
@@ -787,8 +820,7 @@ if (Services.prefs.getBoolPref('nug.tab.explode')) {
 			console.log('Tab Explode Animation: Document not complete, adding load event listener for init().')
 			window.addEventListener('load', init, { once: true })
 		}
-	})()
-}
+})()
 
 // ==UserScript==
 // @ignorecache

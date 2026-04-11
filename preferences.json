@@ -257,8 +257,9 @@
 	{
 		"type": "checkbox",
 		"property": "nug.findbar.compact.indicator",
-		"label": "📏 Use compact match indicator",
+		"label": "📏 Use compact match indicator (requires restart)",
 		"defaultValue": true,
+		"restart": true,
 		"margin": "12px 0"
 	},
 	{
