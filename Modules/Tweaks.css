@@ -120,3 +120,100 @@
 		}
 	}
 }
+
+/* browser element tweaks */
+browser {
+	will-change: transform;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+@media (-moz-pref('nug.hide.window.controls')) {
+	.titlebar-buttonbox-container {
+		display: none !important;
+	}
+}
+
+#permissions-granted-icon {
+	color: var(--mantle) !important;
+}
+
+.sidebar-placesTree {
+	background-color: var(--base) !important;
+}
+
+.content-shortcuts {
+	background-color: var(--base) !important;
+	border-color: var(--zen-primary-color) !important;
+}
+
+#zenEditBookmarkPanelFaviconContainer {
+	background: var(--crust) !important;
+}
+
+toolbar .toolbarbutton-1 {
+	&:not([disabled]) {
+		&:is([open], [checked]) > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
+			fill: var(--crust);
+		}
+	}
+}
+
+/* Container tab colors */
+.identity-color-blue {
+	--identity-tab-color: var(--blue) !important;
+	--identity-icon-color: var(--blue) !important;
+}
+
+.identity-color-turquoise {
+	--identity-tab-color: var(--teal) !important;
+	--identity-icon-color: var(--teal) !important;
+}
+
+.identity-color-green {
+	--identity-tab-color: var(--green) !important;
+	--identity-icon-color: var(--green) !important;
+}
+
+.identity-color-yellow {
+	--identity-tab-color: var(--yellow) !important;
+	--identity-icon-color: var(--yellow) !important;
+}
+
+.identity-color-orange {
+	--identity-tab-color: var(--peach) !important;
+	--identity-icon-color: var(--peach) !important;
+}
+
+.identity-color-red {
+	--identity-tab-color: var(--red) !important;
+	--identity-icon-color: var(--red) !important;
+}
+
+.identity-color-pink {
+	--identity-tab-color: var(--pink) !important;
+	--identity-icon-color: var(--pink) !important;
+}
+
+.identity-color-purple {
+	--identity-tab-color: var(--mauve) !important;
+	--identity-icon-color: var(--mauve) !important;
+}
+
+hbox#titlebar {
+	background-color: var(--mantle) !important;
+}
+
+#zen-appcontent-navbar-container {
+	background-color: var(--mantle) !important;
+}
+
+#zen-toolbar-background {
+	--zen-main-browser-background-toolbar: var(--mantle) !important;
+}
+
+#zen-browser-background {
+	--zen-main-browser-background: var(--mantle) !important;
+	/* Suppress macOS native -moz-sidebar vibrancy (light gray gradient) */
+	-moz-default-appearance: none !important;
+	appearance: none !important;
+}

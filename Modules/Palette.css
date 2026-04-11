@@ -65,3 +65,78 @@
 		--rosewater: #f4dbd6;
 	}
 }
+
+/* Icon color mapping */
+@media (-moz-pref('nug-icon-color', 0)) {
+	:root { --nug-icon-color: var(--blue); }
+}
+@media (-moz-pref('nug-icon-color', 1)) {
+	:root { --nug-icon-color: var(--lavender); }
+}
+@media (-moz-pref('nug-icon-color', 2)) {
+	:root { --nug-icon-color: var(--sapphire); }
+}
+@media (-moz-pref('nug-icon-color', 3)) {
+	:root { --nug-icon-color: var(--sky); }
+}
+@media (-moz-pref('nug-icon-color', 4)) {
+	:root { --nug-icon-color: var(--teal); }
+}
+@media (-moz-pref('nug-icon-color', 5)) {
+	:root { --nug-icon-color: var(--green); }
+}
+@media (-moz-pref('nug-icon-color', 6)) {
+	:root { --nug-icon-color: var(--yellow); }
+}
+@media (-moz-pref('nug-icon-color', 7)) {
+	:root { --nug-icon-color: var(--peach); }
+}
+@media (-moz-pref('nug-icon-color', 8)) {
+	:root { --nug-icon-color: var(--maroon); }
+}
+@media (-moz-pref('nug-icon-color', 9)) {
+	:root { --nug-icon-color: var(--red); }
+}
+@media (-moz-pref('nug-icon-color', 10)) {
+	:root { --nug-icon-color: var(--mauve); }
+}
+@media (-moz-pref('nug-icon-color', 11)) {
+	:root { --nug-icon-color: var(--pink); }
+}
+@media (-moz-pref('nug-icon-color', 12)) {
+	:root { --nug-icon-color: var(--flamingo); }
+}
+@media (-moz-pref('nug-icon-color', 13)) {
+	:root { --nug-icon-color: var(--rosewater); }
+}
+
+/* Zen theme vars — palette-derived assignments applied globally */
+:root {
+	--nug-accent-off: var(--peach);
+	--zen-colors-primary: var(--surface0) !important;
+	--zen-primary-color: var(--nug-accent) !important;
+	--zen-colors-secondary: var(--surface0) !important;
+	--zen-colors-tertiary: var(--mantle) !important;
+	--zen-colors-border: var(--surface0) !important;
+	--toolbarbutton-icon-fill: var(--nug-icon-color) !important;
+	--lwt-text-color: var(--text) !important;
+	--toolbar-field-color: var(--text) !important;
+	--toolbar-field-focus-color: var(--text) !important;
+	--toolbar-color: var(--text) !important;
+	--newtab-text-primary-color: var(--text) !important;
+	--arrowpanel-color: var(--text) !important;
+	--arrowpanel-background: var(--base) !important;
+	--sidebar-text-color: var(--text) !important;
+	--lwt-sidebar-text-color: var(--text) !important;
+	--lwt-sidebar-background-color: var(--crust) !important;
+	--toolbar-bgcolor: var(--surface0) !important;
+	--newtab-background-color: var(--base) !important;
+	--zen-themed-toolbar-bg-transparent: var(--mantle) !important;
+	--zen-main-browser-background: var(--mantle) !important;
+	--zen-main-browser-background-toolbar: var(--mantle) !important;
+	--zen-dialog-background: var(--base) !important;
+	--background-color-canvas: var(--base) !important;
+	--toolbox-bgcolor-inactive: var(--mantle) !important;
+	--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, var(--text));
+	--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, var(--text));
+}

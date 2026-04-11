@@ -1,3 +1,15 @@
+.urlbar-input {
+	font-family: monospace !important;
+}
+
+.urlbar-background {
+	background-color: var(--base) !important;
+}
+
+.urlbarView-url {
+	color: var(--zen-primary-color) !important;
+}
+
 #urlbar-results {
 	transition: height 180ms ease-in-out;
 	overflow-y: auto !important;

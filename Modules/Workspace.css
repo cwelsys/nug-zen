@@ -90,7 +90,7 @@ zen-workspace-icons#zen-workspaces-button {
 }
 
 #zen-workspaces-button {
-	background: transparent !important;
+	background-color: var(--base) !important;
 	box-shadow: 0 0px 0px transparent !important;
 }
 

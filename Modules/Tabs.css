@@ -481,3 +481,117 @@ zen-folder {
 		}
 	}
 }
+
+/* Tab sizing vars */
+:root {
+	--tab-collapsed-background-width: 40px !important;
+}
+
+@media not (-moz-bool-pref: 'zen.view.sidebar-expanded') {
+	:root {
+		--tab-min-height: 39px !important;
+	}
+}
+
+/* Accent color mapping — sets --nug-accent and per-accent tab selected text pastel */
+@media (-moz-pref('nug-accent-color', 0)) {
+	:root {
+		--nug-accent: var(--blue);
+		--tab-selected-textcolor: rgb(171, 197, 247) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 1)) {
+	:root {
+		--nug-accent: var(--lavender);
+		--tab-selected-textcolor: rgb(192, 202, 249) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 2)) {
+	:root {
+		--nug-accent: var(--sapphire);
+		--tab-selected-textcolor: rgb(160, 207, 240) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 3)) {
+	:root {
+		--nug-accent: var(--sky);
+		--tab-selected-textcolor: rgb(171, 217, 240) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 4)) {
+	:root {
+		--nug-accent: var(--teal);
+		--tab-selected-textcolor: rgb(176, 220, 229) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 5)) {
+	:root {
+		--nug-accent: var(--green);
+		--tab-selected-textcolor: rgb(185, 221, 203) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 6)) {
+	:root {
+		--nug-accent: var(--yellow);
+		--tab-selected-textcolor: rgb(227, 220, 210) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 7)) {
+	:root {
+		--nug-accent: var(--peach);
+		--tab-selected-textcolor: rgb(227, 197, 190) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 8)) {
+	:root {
+		--nug-accent: var(--maroon);
+		--tab-selected-textcolor: rgb(220, 187, 208) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 9)) {
+	:root {
+		--nug-accent: var(--red);
+		--tab-selected-textcolor: rgb(224, 177, 206) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 10)) {
+	:root {
+		--nug-accent: var(--mauve);
+		--tab-selected-textcolor: rgb(204, 190, 246) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 11)) {
+	:root {
+		--nug-accent: var(--pink);
+		--tab-selected-textcolor: rgb(225, 204, 238) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 12)) {
+	:root {
+		--nug-accent: var(--flamingo);
+		--tab-selected-textcolor: rgb(223, 210, 225) !important;
+	}
+}
+
+@media (-moz-pref('nug-accent-color', 13)) {
+	:root {
+		--nug-accent: var(--rosewater);
+		--tab-selected-textcolor: rgb(225, 219, 232) !important;
+	}
+}
+
+#TabsToolbar {
+	background-color: var(--mantle) !important;
+}
