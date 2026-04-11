@@ -1,0 +1,17 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.idea/
+
+# Node / stylelint (installed on demand)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Local-only experiments
+*.local.css
+*.local.js

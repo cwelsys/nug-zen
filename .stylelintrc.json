@@ -1,0 +1,64 @@
+{
+	"extends": "stylelint-config-standard",
+	"rules": {
+		"selector-no-unknown": [
+			true,
+			{
+				"ignorePseudoClasses": [
+					"-moz-locale-dir",
+					"-moz-window-active",
+					"-moz-window-inactive",
+					"-moz-lwtheme",
+					"-moz-any"
+				],
+				"ignorePseudoElements": [
+					"-moz-progress-bar",
+					"-moz-range-track",
+					"-moz-range-thumb",
+					"-moz-meter-bar",
+					"-moz-list-bullet",
+					"-moz-focus-inner",
+					"slotted",
+					"part"
+				]
+			}
+		],
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": ["-moz-document", "document"]
+			}
+		],
+		"media-feature-name-no-unknown": [
+			true,
+			{
+				"ignoreMediaFeatureNames": ["-moz-pref", "-moz-bool-pref"]
+			}
+		],
+		"no-duplicate-selectors": null,
+		"no-descending-specificity": null,
+		"selector-class-pattern": null,
+		"selector-id-pattern": null,
+		"custom-property-pattern": null,
+		"keyframes-name-pattern": null,
+		"comment-empty-line-before": null,
+		"declaration-empty-line-before": null,
+		"rule-empty-line-before": null,
+		"color-hex-length": null,
+		"alpha-value-notation": null,
+		"color-function-notation": null,
+		"hue-degree-notation": null,
+		"length-zero-no-unit": null,
+		"shorthand-property-no-redundant-values": null,
+		"declaration-block-no-redundant-longhand-properties": null,
+		"selector-pseudo-element-colon-notation": null,
+		"value-keyword-case": null,
+		"function-no-unknown": [
+			true,
+			{
+				"ignoreFunctions": ["-moz-pref", "light-dark"]
+			}
+		]
+	},
+	"ignoreFiles": ["Modules/Icons.css"]
+}
