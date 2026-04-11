@@ -28,11 +28,9 @@
 }
 
 /* Sine toast — pastel Catppuccin accents are too light for default toolbar text */
-@media (prefers-color-scheme: dark) {
-	.sineToast,
-	.sineToast button {
-		color: var(--crust) !important;
-	}
+.sineToast,
+.sineToast button {
+	color: var(--crust) !important;
 }
 
 /* loading bar animation */
