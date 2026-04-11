@@ -1,9 +1,7 @@
-@import 'Modules/Context.css';
 @import 'Modules/Dialogs.css';
 @import 'Modules/Extensions.css';
 @import 'Modules/Findbar.css';
 @import 'Modules/Icons.css';
-@import 'Modules/Media.css';
 @import 'Modules/Tabs.css';
 @import 'Modules/Tweaks.css';
 @import 'Modules/URLbar.css';
@@ -371,14 +369,6 @@ browser {
 
 	#zenEditBookmarkPanelFaviconContainer {
 		background: var(--crust) !important;
-	}
-
-	#zen-media-controls-toolbar {
-		& #zen-media-progress-bar {
-			&::-moz-range-track {
-				background: var(--surface0) !important;
-			}
-		}
 	}
 
 	toolbar .toolbarbutton-1 {

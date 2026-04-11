@@ -147,8 +147,8 @@
 		opacity: 0.5;
 	}
 
-	/* Hide glow when hovering close/reset - uses JS polyfill for Wayland compatibility */
-	.unified-extensions-item.nug-child-hovered::before {
+	/* Hide glow when hovering close/reset button */
+	.unified-extensions-item:has(.close-button:hover, .reset-button:hover)::before {
 		opacity: 0;
 	}
 
