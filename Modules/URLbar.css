@@ -91,44 +91,6 @@
 	}
 }
 
-@media (-moz-pref('browser.tabs.allow_transparent_browser')) {
-	#browser {
-		position: relative !important; /* Or absolute/fixed depending on context */
-		isolation: isolate; /*might be useful too */
-	}
-
-	#browser::before {
-		content: '';
-		position: absolute;
-		pointer-events: none !important;
-		padding-bottom: 5rem !important;
-		background-color: var(--toolbar-bgcolor, #f0f0f0) !important;
-		border-radius: 1.4rem !important;
-		background: linear-gradient(to right, light-dark(#eee, #666) 0px, light-dark(#eee, #666)) !important;
-		/* --- Positioning & Size --- */
-		top: calc(var(--my-global-zen-top) + var(--url-psuedo-position_top)) !important;
-		left: 50% !important; /* Using left/transform for robustness */
-		transform: translateX(-50%) !important;
-		width: min(90%, 56.5em) !important;
-		/* --- DYNAMIC HEIGHT --- */
-		/* Use the JS variable, fallback to your fixed height if variable isn't set */
-		height: var(--urlbar-view-dynamic-height, 0rem) !important;
-		transition: height 0.5s ease-in-out; /* or whatever duration/timing you like */
-		/* --- Stacking & Visibility --- */
-		z-index: -1 !important;
-		width: 0px !important;
-		opacity: 0 !important;
-		/* --- Animation --- */
-		/* Transition opacity. Height changes might be instant or you could transition height too */
-		transition: opacity 0.1s ease-out, width 0.3s ease;
-	}
-
-	/* --- Trigger for ::before (When URL bar is open) --- */
-	body:has(#urlbar[open]) #browser::before {
-		opacity: 1 !important;
-		width: min(90%, 56.5em) !important;
-	}
-}
 
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml")
 {
@@ -265,11 +227,6 @@
 	}
 }
 
-@media (-moz-pref('browser.tabs.allow_transparent_browser')) {
-	#urlbar[open][zen-floating-urlbar='true'] {
-		top: calc(var(--my-global-zen-top) + var(--url-bar-position_top)) !important;
-	}
-}
 
 #urlbar[open][zen-floating-urlbar='true'] {
 	min-width: 57rem !important;
