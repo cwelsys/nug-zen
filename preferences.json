@@ -1,5 +1,9 @@
 [
 	{
+		"type": "separator",
+		"label": "🎨 Appearance"
+	},
+	{
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-catppuccin-flavor",
@@ -157,20 +161,6 @@
 		"margin": "12px 0"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug.hide.window.controls",
-		"defaultValue": false,
-		"label": "Hide window controls (minimize, maximize, close)",
-		"margin": "12px 0"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-pinned-extensions-mod",
-		"label": "📌 Enable pinnned extensions mod",
-		"defaultValue": true,
-		"margin": "12px 0"
-	},
-	{
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-glow-gradient",
@@ -194,39 +184,29 @@
 				"label": "RGB",
 				"value": 3
 			}
-		]
-	},
-	{
-		"property": "nug.url.bar.animation",
-		"label": "🔍 URL bar opening animation",
-		"type": "dropdown",
-		"placeholder": false,
-		"value": "number",
-		"default": 1,
-		"options": [
-			{
-				"value": 0,
-				"label": "Disabled"
-			},
-			{
-				"value": 1,
-				"label": "Enabled"
-			}
 		],
 		"margin": "12px 0"
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-hide-workspace-indicator",
-		"label": "👁️ Hide workspace indicator",
-		"defaultValue": false,
-		"margin": "12px 0"
+		"type": "separator",
+		"label": "🪟 Window"
 	},
 	{
 		"type": "checkbox",
-		"property": "nug-hide-workspace-buttons",
-		"label": "🔘 Hide workspace buttons",
+		"property": "nug.hide.window.controls",
 		"defaultValue": false,
+		"label": "🪟 Hide window controls (minimize, maximize, close)",
+		"margin": "12px 0"
+	},
+	{
+		"type": "separator",
+		"label": "🧩 Extensions"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-pinned-extensions-mod",
+		"label": "📌 Enable pinned extensions mod",
+		"defaultValue": true,
 		"margin": "12px 0"
 	},
 	{
@@ -246,6 +226,47 @@
 		"defaultValue": true,
 		"restart": true,
 		"label": "💥 Tab closing pop effect",
+		"margin": "12px 0"
+	},
+	{
+		"type": "separator",
+		"label": "🗂️ Workspaces"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-indicator",
+		"label": "👁️ Hide workspace indicator",
+		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-buttons",
+		"label": "🔘 Hide workspace buttons",
+		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
+		"type": "separator",
+		"label": "🔍 URL Bar"
+	},
+	{
+		"property": "nug.url.bar.animation",
+		"label": "🔍 URL bar opening animation",
+		"type": "dropdown",
+		"placeholder": false,
+		"value": "number",
+		"default": 1,
+		"options": [
+			{
+				"value": 0,
+				"label": "Disabled"
+			},
+			{
+				"value": 1,
+				"label": "Enabled"
+			}
+		],
 		"margin": "12px 0"
 	},
 	{
