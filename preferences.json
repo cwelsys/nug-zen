@@ -150,28 +150,6 @@
 		]
 	},
 	{
-		"type": "dropdown",
-		"value": "number",
-		"property": "nug-font",
-		"label": "🔤 Font family",
-		"default": 0,
-		"placeholder": false,
-		"options": [
-			{
-				"label": "Sans Serif",
-				"value": 0
-			},
-			{
-				"label": "Serif",
-				"value": 1
-			},
-			{
-				"label": "Monospace",
-				"value": 2
-			}
-		]
-	},
-	{
 		"type": "checkbox",
 		"property": "nug-icons-enabled",
 		"label": "✨ Enable custom icons",
@@ -226,9 +204,29 @@
 		"value": "number",
 		"default": 1,
 		"options": [
-			{ "value": 0, "label": "Disabled" },
-			{ "value": 1, "label": "Enabled" }
+			{
+				"value": 0,
+				"label": "Disabled"
+			},
+			{
+				"value": 1,
+				"label": "Enabled"
+			}
 		],
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-indicator",
+		"label": "👁️ Hide workspace indicator",
+		"defaultValue": false,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug-hide-workspace-buttons",
+		"label": "🔘 Hide workspace buttons",
+		"defaultValue": false,
 		"margin": "12px 0"
 	},
 	{
@@ -260,20 +258,6 @@
 		"label": "📏 Use compact match indicator (requires restart)",
 		"defaultValue": true,
 		"restart": true,
-		"margin": "12px 0"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-hide-workspace-indicator",
-		"label": "👁️ Hide workspace indicator",
-		"defaultValue": false,
-		"margin": "12px 0"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug-hide-workspace-buttons",
-		"label": "🔘 Hide workspace buttons",
-		"defaultValue": false,
 		"margin": "12px 0"
 	},
 	{

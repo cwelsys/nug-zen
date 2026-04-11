@@ -28,29 +28,6 @@
 	}
 }
 
-/* Font */
-@media (-moz-pref('nug-font', 0)) {
-	:root {
-		--nug-font: sans-serif;
-	}
-}
-
-@media (-moz-pref('nug-font', 1)) {
-	:root {
-		--nug-font: serif;
-	}
-}
-
-@media (-moz-pref('nug-font', 2)) {
-	:root {
-		--nug-font: monospace;
-	}
-}
-
-/* #main-window * { */
-/* 	font-family: var(--nug-font), sans-serif; */
-/* } */
-
 .urlbar-input {
 	font-family: monospace !important;
 }
@@ -170,11 +147,6 @@ browser {
 		}
 	}
 
-	/* Default icon color (mauve) - applied when preference hasn't been explicitly set */
-	:root {
-		--nug-icon-color: var(--mauve);
-	}
-
 	@media (-moz-pref('nug-icon-color', 0)) {
 		:root {
 			--nug-icon-color: var(--blue);
@@ -288,8 +260,6 @@ browser {
 		--toolbox-bgcolor-inactive: var(--mantle) !important;
 		--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, var(--text));
 		--nug-glow-color-2: color-mix(in srgb, var(--nug-accent) 70%, var(--text));
-		--nug-blur-color: color-mix(in srgb, var(--nug-accent) 1%, #000000a0);
-		--nug-glass-bg: color-mix(in srgb, light-dark(var(--text), var(--base)) 50%, transparent 90%);
 	}
 
 	#permissions-granted-icon {

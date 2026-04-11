@@ -67,10 +67,6 @@
 	left: unset !important;
 }
 
-/* .zen-glance-sidebar-container toolbarbutton:hover {
-	border: .1px solid var(--nug-accent) !important;
-} */
-
 /* hide clear all unpinned tabs + seperator */
 .pinned-tabs-container-separator,
 .zen-workspace-close-unpinned-tabs-button {
@@ -91,7 +87,6 @@
 
 	&[selected]:hover .tab-background {
 		background: var(--base) !important;
-		/* 		border: 1px solid var(--nug-accent-off) !important; */
 	}
 
 	&[visuallyselected] .tab-background {
@@ -103,10 +98,8 @@
 .tabbrowser-tab:not([zen-essential]) {
 	& .tab-background {
 		border-radius: 4px !important;
-		/* 		background: none !important; */
 	}
 
-	/*   &[selected]:hover .tab-background, */
 	:not([selected]):hover .tab-background {
 		background: var(--base) !important;
 		border: 1px solid var(--overlay1) !important;
@@ -155,7 +148,6 @@
 
 	#tabs-newtab-button:hover {
 		opacity: 1 !important;
-		/* box-shadow: 0px 0px 3px var(--mauve) !important; */
 
 		& .toolbarbutton-text::before {
 			margin-left: 8px !important;

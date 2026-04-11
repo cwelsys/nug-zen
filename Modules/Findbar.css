@@ -2,23 +2,6 @@ browser {
 	will-change: transform;
 }
 
-@keyframes glass-disappear {
-	0% {
-		backdrop-filter: blur(10px);
-		opacity: 1;
-	}
-
-	99% {
-		backdrop-filter: blur(10px);
-		opacity: 0.1;
-	}
-
-	100% {
-		backdrop-filter: none;
-		opacity: 0;
-	}
-}
-
 findbar {
 	padding-inline-start: 0px !important;
 	padding-inline-end: 5px !important;
@@ -30,13 +13,11 @@ findbar {
 	box-sizing: border-box;
 	position: fixed;
 	width: 325px;
-	/* 	height: unset !important; */
 	height: 80px !important;
 	border-radius: 8px !important;
 	border: 1px solid var(--nug-glow-color-1) !important;
 	box-shadow: 0 8px 32px color-mix(in srgb, var(--zen-primary-color) 15%, transparent 85%);
 	background: var(--base) !important;
-	/* backdrop-filter: saturate(2.5) blur(50px); */
 	opacity: 1;
 	z-index: 9999;
 }
@@ -149,15 +130,6 @@ findbar {
 	}
 }
 
-&:is([hidden='true']) {
-	visibility: inherit !important;
-	pointer-events: none !important;
-	opacity: 0 !important;
-	animation: glass-disappear 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	animation-fill-mode: forwards !important;
-	filter: blur(5px);
-}
-
 findbar:has(.findbar-textbox[status='notfound']) {
 	border: 1px solid var(--red) !important;
 	box-shadow: 0 8px 32px color-mix(in srgb, var(--red) 15%, transparent 85%) !important;
@@ -176,7 +148,6 @@ findbar:has(.findbar-textbox[status='notfound']) {
 	align-content: center !important;
 	background-color: transparent !important;
 	-moz-context-properties: fill !important;
-	/* 	fill: light-dark(black, white) !important; */
 	position: absolute !important;
 	top: 4px !important;
 	right: -2px !important;
@@ -310,7 +281,6 @@ findbar:has(.findbar-textbox[status='notfound']) {
 	}
 
 	checkbox:nth-of-type(3) {
-		/* 		display: none !important; */
 		left: 50% !important;
 		transform: translateX(calc(var(--checkbox-base-offset) + var(--checkbox-spacing) * 2)) !important;
 		bottom: 6px !important;
@@ -335,7 +305,6 @@ findbar:has(.findbar-textbox[status='notfound']) {
 
 	.matches-indicator {
 		font-family: monospace !important;
-		/* 		font-style: italic !important; */
 		position: absolute !important;
 		bottom: 6px !important;
 		right: 7px !important;
