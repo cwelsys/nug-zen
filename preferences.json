@@ -188,6 +188,20 @@
 		"margin": "12px 0"
 	},
 	{
+		"type": "checkbox",
+		"property": "nug.url.bar.animation",
+		"label": "🔍 URL bar opening animation",
+		"defaultValue": true,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
+		"property": "nug.tab.explode",
+		"defaultValue": true,
+		"label": "💥 Tab closing pop effect",
+		"margin": "12px 0"
+	},
+	{
 		"type": "separator",
 		"label": "🪟 Window"
 	},
@@ -211,25 +225,6 @@
 	},
 	{
 		"type": "separator",
-		"label": "📑 Tabs"
-	},
-	{
-		"type": "checkbox",
-		"property": "uc.pins.legacy-layout",
-		"label": "📌 Make pinned tabs look similar to Essentials (icon only in a grid)",
-		"defaultValue": false,
-		"margin": "12px 0"
-	},
-	{
-		"type": "checkbox",
-		"property": "nug.tab.explode",
-		"defaultValue": true,
-		"restart": true,
-		"label": "💥 Tab closing pop effect",
-		"margin": "12px 0"
-	},
-	{
-		"type": "separator",
 		"label": "🗂️ Workspaces"
 	},
 	{
@@ -244,29 +239,6 @@
 		"property": "nug-hide-workspace-buttons",
 		"label": "🔘 Hide workspace buttons",
 		"defaultValue": false,
-		"margin": "12px 0"
-	},
-	{
-		"type": "separator",
-		"label": "🔍 URL Bar"
-	},
-	{
-		"property": "nug.url.bar.animation",
-		"label": "🔍 URL bar opening animation",
-		"type": "dropdown",
-		"placeholder": false,
-		"value": "number",
-		"default": 1,
-		"options": [
-			{
-				"value": 0,
-				"label": "Disabled"
-			},
-			{
-				"value": 1,
-				"label": "Enabled"
-			}
-		],
 		"margin": "12px 0"
 	},
 	{

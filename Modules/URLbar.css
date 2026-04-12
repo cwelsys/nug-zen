@@ -27,7 +27,7 @@
 	color: var(--text) !important;
 }
 
-@media (-moz-pref('nug.url.bar.animation', 1)) {
+@media (-moz-pref('nug.url.bar.animation')) {
 	@media (-moz-pref('zen.urlbar.behavior', 'float')) {
 		#urlbar[breakout-extend='true'] {
 			transition: top 0.5s ease, width 0.3s ease;

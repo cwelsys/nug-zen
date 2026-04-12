@@ -1031,3 +1031,9 @@ if (gBrowserInit.delayedStartupFinished) {
 	}
 	Services.obs.addObserver(delayedListener, 'browser-delayed-startup-finished')
 }
+
+// Override urlbar placeholder text
+;(function () {
+	if (location.href !== 'chrome://browser/content/browser.xhtml') return
+	Services.prefs.setStringPref('browser.urlbar.placeholder.value', '…')
+})()
