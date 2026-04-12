@@ -1035,5 +1035,28 @@ if (gBrowserInit.delayedStartupFinished) {
 // Override urlbar placeholder text
 ;(function () {
 	if (location.href !== 'chrome://browser/content/browser.xhtml') return
-	Services.prefs.setStringPref('browser.urlbar.placeholder.value', '…')
+
+	const PLACEHOLDER = 'What it is'
+
+	function applyPlaceholder() {
+		const input = document.getElementById('urlbar-input')
+		if (!input) return
+		input.setAttribute('placeholder', PLACEHOLDER)
+		new MutationObserver(() => {
+			if (input.getAttribute('placeholder') !== PLACEHOLDER)
+				input.setAttribute('placeholder', PLACEHOLDER)
+		}).observe(input, { attributes: true, attributeFilter: ['placeholder'] })
+	}
+
+	if (gBrowserInit.delayedStartupFinished) {
+		applyPlaceholder()
+	} else {
+		let listener = (subject, topic) => {
+			if (topic === 'browser-delayed-startup-finished' && subject === window) {
+				Services.obs.removeObserver(listener, topic)
+				applyPlaceholder()
+			}
+		}
+		Services.obs.addObserver(listener, 'browser-delayed-startup-finished')
+	}
 })()
