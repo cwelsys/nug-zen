@@ -1,0 +1,74 @@
+/*
+* Based on "Better CtrlTab Panel" by Pontus Sunden
+*/
+
+#ctrlTab-panel {
+	/* reset defaults */
+	--panel-background: none !important;
+	--panel-shadow: none !important;
+	--panel-border-color: none !important;
+	--panel-shadow-margin: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background-color: unset !important;
+
+	--panel-border-radius: 12px !important;
+	--panel-color: var(--text) !important;
+	--panel-padding: 20px 14px !important;
+
+	#ctrlTab-previews {
+		margin: 0 auto !important;
+		padding: 18px 20px !important;
+		background: color-mix(in srgb, var(--crust) 94%, transparent) !important;
+		border-radius: 12px !important;
+		box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.25) !important;
+		border: 1px solid var(--surface0);
+
+		.ctrlTab-preview {
+			margin: 0 !important;
+			padding: 0 !important;
+			border-radius: 10px !important;
+
+			.ctrlTab-preview-inner {
+				margin: 0 !important;
+				padding: 14px !important;
+				padding-bottom: 7px !important;
+				border-radius: 10px !important;
+				border: none !important;
+			}
+
+			.ctrlTab-canvas {
+				margin-bottom: 8px !important;
+				box-shadow: 0 0 0 1px var(--surface0) !important;
+			}
+
+			.ctrlTab-canvas,
+			img,
+			canvas {
+				border-radius: 8px !important;
+			}
+
+			.ctrlTab-label {
+				margin: 0 -4px !important;
+				padding: 0 !important;
+			}
+
+			.ctrlTab-favicon-container image {
+				height: 40px !important;
+				width: 40px !important;
+				box-shadow: none !important;
+				background: transparent !important;
+				position: absolute !important;
+				padding: 2px !important;
+				margin: 0 !important;
+				margin-right: -18px !important;
+				margin-top: -48px !important;
+			}
+
+			&:focus .ctrlTab-preview-inner {
+				background: color-mix(in srgb, var(--nug-accent) 25%, transparent) !important;
+				border: none !important;
+			}
+		}
+	}
+}
