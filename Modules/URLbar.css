@@ -69,7 +69,6 @@
 #main-window #urlbar[breakout-extend='true'] .urlbar-background {
 	background: var(--base) !important;
 	border-radius: 1.7rem !important;
-	box-shadow: var(--nug-glow-color-2) !important;
 	border: 2.2px solid var(--nug-glow-color-1) !important;
 	outline: none !important;
 }

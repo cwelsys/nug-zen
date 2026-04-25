@@ -116,8 +116,7 @@ zen-workspace-icons#zen-workspaces-button {
 
 #zen-workspaces-button .subviewbutton .zen-workspace-icon {
 	border: none !important;
-	background-color: color-mix(in srgb, var(--nug-icon-color) 20%, #f0f0f020) !important;
-	box-shadow: 0 0px 0px color-mix(in srgb, var(--nug-icon-color) 0%, black) !important;
+	background-color: color-mix(in srgb, var(--nug-icon-color) 20%, transparent) !important;
 
 	width: 10px;
 	min-width: 10px !important;
@@ -136,8 +135,8 @@ zen-workspace-icons#zen-workspaces-button {
 	text-align: center !important;
 	text-justify: center !important;
 
-	/* Removes the icons */
-	color: rgba(0, 0, 0, 0) !important;
+	/* Hides the icon glyph; the dot is purely a colored circle. */
+	color: transparent !important;
 	font-size: 0px !important;
 
 	transition: opacity 0.5s ease, background-color 0.5s ease, box-shadow 0.7s ease, scale 0.5s ease, width 0.3s ease;
@@ -183,7 +182,7 @@ zen-workspace-icons#zen-workspaces-button {
 	}
 }
 
-@media (-moz-bool-pref: 'nug-hide-workspace-buttons') {
+@media (-moz-pref('nug-hide-workspace-buttons')) {
 	#zen-workspaces-button {
 		display: none !important;
 	}
