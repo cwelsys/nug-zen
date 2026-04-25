@@ -50,7 +50,6 @@
 	}
 }
 
-/* tweaks */
 /* hide tab audio button */
 .tab-audio-button {
 	display: none !important;
@@ -92,6 +91,14 @@
 	&[visuallyselected] .tab-background {
 		border: 1px solid var(--nug-glow-color-1) !important;
 	}
+
+	/* use hotdog */
+	& .tab-icon-image:not([src]),
+	& .tab-icon-image:-moz-broken {
+		content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='8' y='14' text-anchor='middle' font-size='14'>🌭</text></svg>") !important;
+		background: var(--surface0) !important;
+		opacity: 1 !important;
+	}
 }
 
 /* tabs */
@@ -117,19 +124,28 @@
 	}
 }
 
-/* new tab button */
+:root {
+	--nug-newtab-ease: cubic-bezier(0.4, 0, 0.2, 1);
+	--nug-newtab-duration: 0.2s;
+}
+
 :root[zen-sidebar-expanded='true'] {
 	#tabs-newtab-button {
 		background: var(--mantle) !important;
 		border-radius: 8px !important;
 		margin: 10px 1px !important;
 		justify-content: center !important;
+		transition: opacity var(--nug-newtab-duration) var(--nug-newtab-ease);
 
 		& .toolbarbutton-text {
 			padding: 0px 10px 0px 10px !important;
 			color: var(--subtext0) !important;
 			font-family: monospace !important;
 			font-size: 14px !important;
+			/* Override zen's vertical-tabs.css:1354 opacity 0.7 dim when URL bar is
+			   closed — kills the third state so we have only hovered/not. */
+			opacity: 1 !important;
+			transition: color var(--nug-newtab-duration) var(--nug-newtab-ease);
 		}
 
 		& .toolbarbutton-text::before {
@@ -138,23 +154,15 @@
 			display: flex !important;
 			left: auto !important;
 			right: auto !important;
-			transition: margin-left 0.3s;
-		}
-
-		& .toolbarbutton-icon {
-			transition: scale 0.3s ease;
+			transition: color var(--nug-newtab-duration) var(--nug-newtab-ease);
 		}
 	}
 
 	#tabs-newtab-button:hover {
 		opacity: 1 !important;
 
-		& .toolbarbutton-text::before {
-			margin-left: 8px !important;
-		}
-
-		& .toolbarbutton-icon {
-			scale: 1.2 !important;
+		& .toolbarbutton-text {
+			color: var(--text) !important;
 		}
 	}
 }
@@ -169,24 +177,18 @@
 		width: calc(var(--tab-min-height) - 0.5px) !important;
 		min-height: calc(var(--tab-min-height) - 2px) !important;
 		max-height: calc(var(--tab-min-height) - 2px) !important;
+		transition:
+			opacity var(--nug-newtab-duration) var(--nug-newtab-ease),
+			box-shadow var(--nug-newtab-duration) var(--nug-newtab-ease);
 
 		& .toolbarbutton-icon {
 			background: none !important;
-			transition: scale 0.4s ease;
 		}
 	}
 
 	#tabs-newtab-button:hover {
 		opacity: 1 !important;
 		box-shadow: 0px 0px 3px var(--nug-icon-color) !important;
-
-		& .toolbarbutton-text::before {
-			margin-left: 8px !important;
-		}
-
-		& .toolbarbutton-icon {
-			scale: 1.5 !important;
-		}
 	}
 }
 
@@ -309,103 +311,62 @@ zen-folder {
 	}
 }
 
-/* Accent color mapping — sets --nug-accent and per-accent tab selected text pastel */
+/* Per-accent tab selected text pastel.
+   --nug-accent itself is set on documentElement by JS/nug.uc.js. */
 @media (-moz-pref('nug-accent-color', 0)) {
-	:root {
-		--nug-accent: var(--blue);
-		--tab-selected-textcolor: rgb(171, 197, 247) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(171, 197, 247) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 1)) {
-	:root {
-		--nug-accent: var(--lavender);
-		--tab-selected-textcolor: rgb(192, 202, 249) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(192, 202, 249) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 2)) {
-	:root {
-		--nug-accent: var(--sapphire);
-		--tab-selected-textcolor: rgb(160, 207, 240) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(160, 207, 240) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 3)) {
-	:root {
-		--nug-accent: var(--sky);
-		--tab-selected-textcolor: rgb(171, 217, 240) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(171, 217, 240) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 4)) {
-	:root {
-		--nug-accent: var(--teal);
-		--tab-selected-textcolor: rgb(176, 220, 229) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(176, 220, 229) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 5)) {
-	:root {
-		--nug-accent: var(--green);
-		--tab-selected-textcolor: rgb(185, 221, 203) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(185, 221, 203) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 6)) {
-	:root {
-		--nug-accent: var(--yellow);
-		--tab-selected-textcolor: rgb(227, 220, 210) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(227, 220, 210) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 7)) {
-	:root {
-		--nug-accent: var(--peach);
-		--tab-selected-textcolor: rgb(227, 197, 190) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(227, 197, 190) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 8)) {
-	:root {
-		--nug-accent: var(--maroon);
-		--tab-selected-textcolor: rgb(220, 187, 208) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(220, 187, 208) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 9)) {
-	:root {
-		--nug-accent: var(--red);
-		--tab-selected-textcolor: rgb(224, 177, 206) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(224, 177, 206) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 10)) {
-	:root {
-		--nug-accent: var(--mauve);
-		--tab-selected-textcolor: rgb(204, 190, 246) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(204, 190, 246) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 11)) {
-	:root {
-		--nug-accent: var(--pink);
-		--tab-selected-textcolor: rgb(225, 204, 238) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(225, 204, 238) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 12)) {
-	:root {
-		--nug-accent: var(--flamingo);
-		--tab-selected-textcolor: rgb(223, 210, 225) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(223, 210, 225) !important; }
 }
 
 @media (-moz-pref('nug-accent-color', 13)) {
-	:root {
-		--nug-accent: var(--rosewater);
-		--tab-selected-textcolor: rgb(225, 219, 232) !important;
-	}
+	:root { --tab-selected-textcolor: rgb(225, 219, 232) !important; }
 }
 
 #TabsToolbar {
