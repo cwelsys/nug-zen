@@ -1,0 +1,15 @@
+/* Tab folder coloring.
+ * --nug-folder-color is set by the JS resolver in JS/nug.uc.js based on
+ * the nug-folder-color pref. front/behind panels match the sidebar bg
+ * so only the icon path is visually colored. */
+
+zen-folder {
+	--zen-folder-behind-bgcolor: var(--mantle) !important;
+	--zen-folder-front-bgcolor: var(--mantle) !important;
+	--zen-folder-stroke: var(--nug-folder-color) !important;
+}
+
+/* Override zen-folders.css line 113 mix(stroke 50%, currentColor) — pure folder color */
+zen-folder .tab-group-folder-icon svg image {
+	fill: var(--nug-folder-color) !important;
+}

@@ -1,5 +1,3 @@
-// Inject CSS into chrome subdialogs (preferences dialogs, commonDialog, etc.)
-// Uses document-element-inserted observer to catch subdialog documents as they load
 const NUG_SUBDIALOG_CSS = `
 @media (prefers-color-scheme: dark) {
 	/* Catppuccin Mocha */
@@ -28,21 +26,8 @@ const NUG_SUBDIALOG_CSS = `
 			--flamingo: #f0c6c6; --rosewater: #f4dbd6;
 		}
 	}
-	/* Accent color */
-	@media (-moz-pref('nug-accent-color', 0)) { :root { --nug-accent: var(--blue); } }
-	@media (-moz-pref('nug-accent-color', 1)) { :root { --nug-accent: var(--lavender); } }
-	@media (-moz-pref('nug-accent-color', 2)) { :root { --nug-accent: var(--sapphire); } }
-	@media (-moz-pref('nug-accent-color', 3)) { :root { --nug-accent: var(--sky); } }
-	@media (-moz-pref('nug-accent-color', 4)) { :root { --nug-accent: var(--teal); } }
-	@media (-moz-pref('nug-accent-color', 5)) { :root { --nug-accent: var(--green); } }
-	@media (-moz-pref('nug-accent-color', 6)) { :root { --nug-accent: var(--yellow); } }
-	@media (-moz-pref('nug-accent-color', 7)) { :root { --nug-accent: var(--peach); } }
-	@media (-moz-pref('nug-accent-color', 8)) { :root { --nug-accent: var(--maroon); } }
-	@media (-moz-pref('nug-accent-color', 9)) { :root { --nug-accent: var(--red); } }
-	@media (-moz-pref('nug-accent-color', 10)) { :root { --nug-accent: var(--mauve); } }
-	@media (-moz-pref('nug-accent-color', 11)) { :root { --nug-accent: var(--pink); } }
-	@media (-moz-pref('nug-accent-color', 12)) { :root { --nug-accent: var(--flamingo); } }
-	@media (-moz-pref('nug-accent-color', 13)) { :root { --nug-accent: var(--rosewater); } }
+	/* --nug-accent / --nug-icon-color / --nug-folder-color are set on
+	   documentElement by applyNugColors() — see resolver below. */
 
 	/* Canvas/dialog background (overrides Zen's --zen-dialog-background → #161C31) */
 	:root {
@@ -78,76 +63,132 @@ const NUG_SUBDIALOG_CSS = `
 }
 `
 
-;(function () {
+const NUG_SINE_FIXES_CSS = `
+#nug-accent-custom,
+#nug-icon-custom,
+#nug-folder-custom,
+#nug-findbar-custom-top,
+#nug-findbar-custom-right,
+#nug-findbar-custom-bottom,
+#nug-findbar-custom-left {
+	display: none;
+}
+
+#nug-accent-color menupopup menuitem[value=""],
+#nug-icon-color menupopup menuitem[value=""],
+#nug-folder-color menupopup menuitem[value=""] {
+	display: none;
+}
+`
+
+const NUG_COLORS = [
+	'blue', 'lavender', 'sapphire', 'sky', 'teal', 'green', 'yellow',
+	'peach', 'maroon', 'red', 'mauve', 'pink', 'flamingo', 'rosewater', 'text',
+]
+const NUG_CUSTOM_INDEX = 15
+const NUG_HEX_RE = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i
+const NUG_PREFS = [
+	{ idx: 'nug-accent-color', custom: 'nug-accent-custom', cssVar: '--nug-accent', defIdx: 0 },
+	{ idx: 'nug-icon-color', custom: 'nug-icon-custom', cssVar: '--nug-icon-color', defIdx: 10 },
+	{ idx: 'nug-folder-color', custom: 'nug-folder-custom', cssVar: '--nug-folder-color', defIdx: 10 },
+]
+
+function resolveNugColor(p) {
+	let i = p.defIdx
+	try { i = Services.prefs.getIntPref(p.idx, p.defIdx) } catch (e) { }
+	if (i === NUG_CUSTOM_INDEX) {
+		let hex = ''
+		try { hex = Services.prefs.getStringPref(p.custom, '') } catch (e) { }
+		if (NUG_HEX_RE.test(hex)) return hex
+		return `var(--${NUG_COLORS[p.defIdx]})`
+	}
+	const name = NUG_COLORS[i] || NUG_COLORS[p.defIdx]
+	return `var(--${name})`
+}
+
+function applyNugColors(doc) {
+	const root = doc?.documentElement
+	if (!root) return
+	for (const p of NUG_PREFS) {
+		root.style.setProperty(p.cssVar, resolveNugColor(p))
+	}
+}
+
+; (function () {
 	const subdialogObserver = {
 		observe(subject) {
 			try {
 				const url = subject.documentURI || ''
-				if (
-					!url.startsWith('chrome://') ||
-					!url.endsWith('.xhtml') ||
-					url === 'chrome://extensions/content/dummy.xhtml'
-				)
-					return
+				const isChromeXhtml =
+					url.startsWith('chrome://') &&
+					url.endsWith('.xhtml') &&
+					url !== 'chrome://extensions/content/dummy.xhtml'
+				const isPrefsPage =
+					url === 'about:preferences' ||
+					url.startsWith('about:preferences?') ||
+					url.startsWith('about:preferences#') ||
+					url === 'about:settings' ||
+					url.startsWith('about:settings?') ||
+					url.startsWith('about:settings#')
+				if (!isChromeXhtml && !isPrefsPage) return
 
 				subject.addEventListener(
-						'DOMContentLoaded',
-						() => {
-							try {
-								const style = subject.createElement('style')
-								style.textContent = NUG_SUBDIALOG_CSS
-								subject.documentElement.appendChild(style)
-							} catch (e) {
-							}
+					'DOMContentLoaded',
+					() => {
+						try {
+							const style = subject.createElement('style')
+							style.textContent = NUG_SUBDIALOG_CSS + NUG_SINE_FIXES_CSS
+							subject.documentElement.appendChild(style)
+							applyNugColors(subject)
+						} catch (e) {
+						}
 
-							// Fix dialog cut-off caused by theme CSS increasing
-							// subdialog content height after SubDialog.sys.mjs
-							// measures and sets min-height on .dialogBox. Wait for
-							// SubDialog to finish sizing, then expand if needed.
-							try {
-								const win = subject.defaultView
-								const frame = win?.frameElement
-								const box = frame?.closest('.dialogBox')
-								if (box) {
-									const pWin = win.parent
-									let ticks = 0
-									const waitForSizing = () => {
-										ticks++
-										if (box.getAttribute('style')) {
-											ticks = 0
-											pWin.requestAnimationFrame(checkOverflow)
-										} else if (ticks < 120) {
-											pWin.requestAnimationFrame(waitForSizing)
-										}
+
+						// Wait for SubDialog to finish sizing, then expand if needed.
+						try {
+							const win = subject.defaultView
+							const frame = win?.frameElement
+							const box = frame?.closest('.dialogBox')
+							if (box) {
+								const pWin = win.parent
+								let ticks = 0
+								const waitForSizing = () => {
+									ticks++
+									if (box.getAttribute('style')) {
+										ticks = 0
+										pWin.requestAnimationFrame(checkOverflow)
+									} else if (ticks < 120) {
+										pWin.requestAnimationFrame(waitForSizing)
 									}
-									const checkOverflow = () => {
-										ticks++
-										try {
-											const contentH = subject.documentElement.scrollHeight
-											const frameH = frame.getBoundingClientRect().height
-											if (contentH > frameH + 5 && frameH > 0) {
-												const diff = Math.ceil(contentH - frameH) + 4
-												const curMinH = parseFloat(pWin.getComputedStyle(box).minHeight) || 0
-												let newMinH = curMinH + diff
-												const maxAllowed = Math.floor(pWin.innerHeight * 0.9)
-												if (newMinH > maxAllowed) {
-													newMinH = maxAllowed
-													subject.documentElement.style.setProperty('overflow', 'auto', 'important')
-												}
-												box.style.setProperty('min-height', newMinH + 'px', 'important')
-												return
-											}
-											if (ticks < 60) {
-												pWin.requestAnimationFrame(checkOverflow)
-											}
-										} catch (e) { /* measurement failed */ }
-									}
-									pWin.requestAnimationFrame(waitForSizing)
 								}
-							} catch (e) { /* parent access failed */ }
-						},
-						{ once: true }
-					)
+								const checkOverflow = () => {
+									ticks++
+									try {
+										const contentH = subject.documentElement.scrollHeight
+										const frameH = frame.getBoundingClientRect().height
+										if (contentH > frameH + 5 && frameH > 0) {
+											const diff = Math.ceil(contentH - frameH) + 4
+											const curMinH = parseFloat(pWin.getComputedStyle(box).minHeight) || 0
+											let newMinH = curMinH + diff
+											const maxAllowed = Math.floor(pWin.innerHeight * 0.9)
+											if (newMinH > maxAllowed) {
+												newMinH = maxAllowed
+												subject.documentElement.style.setProperty('overflow', 'auto', 'important')
+											}
+											box.style.setProperty('min-height', newMinH + 'px', 'important')
+											return
+										}
+										if (ticks < 60) {
+											pWin.requestAnimationFrame(checkOverflow)
+										}
+									} catch (e) { /* measurement failed */ }
+								}
+								pWin.requestAnimationFrame(waitForSizing)
+							}
+						} catch (e) { /* parent access failed */ }
+					},
+					{ once: true }
+				)
 			} catch (e) {
 				/* non-document subject, ignore */
 			}
@@ -156,166 +197,172 @@ const NUG_SUBDIALOG_CSS = `
 
 	Services.obs.addObserver(subdialogObserver, 'document-element-inserted')
 
+	// Apply colors to chrome window and react to pref changes live.
+	applyNugColors(document)
+	const onPrefChange = () => applyNugColors(document)
+	const watchedPrefs = NUG_PREFS.flatMap(p => [p.idx, p.custom])
+	for (const pref of watchedPrefs) {
+		Services.prefs.addObserver(pref, onPrefChange)
+	}
+
 	window.addEventListener(
 		'unload',
 		() => {
 			try {
 				Services.obs.removeObserver(subdialogObserver, 'document-element-inserted')
-			} catch (e) {}
+			} catch (e) { }
+			for (const pref of watchedPrefs) {
+				try { Services.prefs.removeObserver(pref, onPrefChange) } catch (e) { }
+			}
 		},
 		{ once: true }
 	)
 })()
-// ==UserScript==
-// @ignorecache
-// @name          Global URL Bar Scroller
-// @description   Makes normal URL bar results scrollable. Customizable via about:config (Strings).
-// ==/UserScript==
-;(function () {
-	if (location.href !== 'chrome://browser/content/browser.xhtml') {
-		return
-	}
 
-	const CONFIG = {
-		URLBAR_ID: 'urlbar',
-		URLBAR_RESULTS_ID: 'urlbar-results',
-		MANUAL_ROW_HEIGHT_PX: 51, // <--- Your desired manual row height
-		VISIBLE_RESULTS_LIMIT: 5, // The number of results to show before scrolling
-		SCROLLABLE_CLASS: 'zen-urlbar-scrollable-script',
-		DEBOUNCE_DELAY_MS: 50,
-	}
+	// ==UserScript==
+	// @ignorecache
+	// @name          Global URL Bar Scroller
+	// @description   Makes normal URL bar results scrollable. Customizable via about:config (Strings).
+	// ==/UserScript==
+	; (function () {
+		if (location.href !== 'chrome://browser/content/browser.xhtml') {
+			return
+		}
 
-	// Pre-calculate the initial cap height for easier reference in CSS
-	CONFIG.INITIAL_CAP_HEIGHT_PX = CONFIG.VISIBLE_RESULTS_LIMIT * CONFIG.MANUAL_ROW_HEIGHT_PX
+		const CONFIG = {
+			URLBAR_ID: 'urlbar',
+			URLBAR_RESULTS_ID: 'urlbar-results',
+			MANUAL_ROW_HEIGHT_PX: 51, // <--- Your desired manual row height
+			VISIBLE_RESULTS_LIMIT: 5, // The number of results to show before scrolling
+			SCROLLABLE_CLASS: 'zen-urlbar-scrollable-script',
+			DEBOUNCE_DELAY_MS: 50,
+		}
 
-	let urlbarElement, resultsElement
-	let updateTimeout = null
-	let lastResultCount = -1
-	let mutationObserver = null
-	let urlbarAttributeObserver = null
+		CONFIG.INITIAL_CAP_HEIGHT_PX = CONFIG.VISIBLE_RESULTS_LIMIT * CONFIG.MANUAL_ROW_HEIGHT_PX
 
-	function updateViewState() {
-		if (!resultsElement || !urlbarElement) return
+		let urlbarElement, resultsElement
+		let updateTimeout = null
+		let lastResultCount = -1
+		let mutationObserver = null
+		let urlbarAttributeObserver = null
 
-		clearTimeout(updateTimeout)
+		function updateViewState() {
+			if (!resultsElement || !urlbarElement) return
 
-		updateTimeout = setTimeout(() => {
-			// Zen command palette active — bail out
-			const isCommandModeActive = window.ZenCommandPalette?.provider?._isInPrefixMode ?? false
-			if (isCommandModeActive) {
-				resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS)
-				resultsElement.style.removeProperty('height')
+			clearTimeout(updateTimeout)
+
+			updateTimeout = setTimeout(() => {
+				const isCommandModeActive = window.ZenCommandPalette?.provider?._isInPrefixMode ?? false
+				if (isCommandModeActive) {
+					resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS)
+					resultsElement.style.removeProperty('height')
+					resultsElement.style.removeProperty('max-height')
+					resultsElement.style.removeProperty('overflow-y')
+					return
+				}
+
+				const isUrlbarOpen = urlbarElement.hasAttribute('open')
+				const isUserTyping = urlbarElement.hasAttribute('usertyping')
+
+				const computedStyle = resultsElement.ownerDocument.defaultView.getComputedStyle(resultsElement)
+				const isUrlbarViewVisibleByCSS =
+					computedStyle.getPropertyValue('display') !== 'none' &&
+					parseFloat(computedStyle.getPropertyValue('opacity')) > 0
+
+				if (!isUrlbarOpen && !isUserTyping) {
+					resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS)
+					resultsElement.style.removeProperty('height')
+					resultsElement.style.removeProperty('max-height')
+					resultsElement.style.removeProperty('overflow-y')
+					resultsElement.scrollTop = 0
+					lastResultCount = -1
+					return
+				}
+
+				if (isUrlbarOpen && !isUrlbarViewVisibleByCSS) {
+					if (!resultsElement.style.height) {
+						resultsElement.style.height = `${CONFIG.INITIAL_CAP_HEIGHT_PX}px`
+						resultsElement.style.overflowY = 'hidden'
+					}
+					return
+				}
+
 				resultsElement.style.removeProperty('max-height')
-				resultsElement.style.removeProperty('overflow-y')
-				return // Exit immediately.
-			}
 
-			const isUrlbarOpen = urlbarElement.hasAttribute('open')
-			const isUserTyping = urlbarElement.hasAttribute('usertyping')
+				const resultRows = resultsElement.querySelectorAll('.urlbarView-row:not([type="tip"], [type="dynamic"])')
+				const currentResultCount = resultRows.length
 
-			const computedStyle = resultsElement.ownerDocument.defaultView.getComputedStyle(resultsElement)
-			const isUrlbarViewVisibleByCSS =
-				computedStyle.getPropertyValue('display') !== 'none' &&
-				parseFloat(computedStyle.getPropertyValue('opacity')) > 0
+				if (currentResultCount === lastResultCount && lastResultCount !== -1) {
+					return
+				}
+				lastResultCount = currentResultCount
 
-			if (!isUrlbarOpen && !isUserTyping) {
+				const isScrollable = currentResultCount > CONFIG.VISIBLE_RESULTS_LIMIT
+				resultsElement.classList.toggle(CONFIG.SCROLLABLE_CLASS, isScrollable)
+
+				let targetHeight
+				if (isScrollable) {
+					targetHeight = CONFIG.VISIBLE_RESULTS_LIMIT * CONFIG.MANUAL_ROW_HEIGHT_PX
+				} else {
+					targetHeight = currentResultCount * CONFIG.MANUAL_ROW_HEIGHT_PX
+				}
+
+				resultsElement.style.height = `${targetHeight}px`
+				resultsElement.style.overflowY = isScrollable ? 'auto' : 'hidden'
+
+				// Auto-scroll to selected row
+				for (const row of resultRows) {
+					if (row.hasAttribute('selected')) {
+						row.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+						break
+					}
+				}
+			}, CONFIG.DEBOUNCE_DELAY_MS)
+		}
+
+		function setupListeners() {
+			mutationObserver = new MutationObserver(() => {
+				updateViewState()
+			})
+			mutationObserver.observe(resultsElement, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+				attributeFilter: ['selected'],
+			})
+
+			urlbarAttributeObserver = new MutationObserver((mutations) => {
+				for (const mutation of mutations) {
+					if (mutation.attributeName === 'usertyping' || mutation.attributeName === 'open') {
+						updateViewState()
+					}
+				}
+			})
+			urlbarAttributeObserver.observe(urlbarElement, { attributes: true, attributeFilter: ['usertyping', 'open'] })
+
+			urlbarElement.addEventListener('popuphidden', () => {
+				clearTimeout(updateTimeout)
 				resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS)
 				resultsElement.style.removeProperty('height')
 				resultsElement.style.removeProperty('max-height')
 				resultsElement.style.removeProperty('overflow-y')
 				resultsElement.scrollTop = 0
 				lastResultCount = -1
-				return
-			}
-
-			if (isUrlbarOpen && !isUrlbarViewVisibleByCSS) {
-				// Not visible yet (CSS animation pending)
-				if (!resultsElement.style.height) {
-					resultsElement.style.height = `${CONFIG.INITIAL_CAP_HEIGHT_PX}px`
-					resultsElement.style.overflowY = 'hidden'
-				}
-				return
-			}
-
-			resultsElement.style.removeProperty('max-height') // clear Zen's max-height
-
-			const resultRows = resultsElement.querySelectorAll('.urlbarView-row:not([type="tip"], [type="dynamic"])')
-			const currentResultCount = resultRows.length
-
-			if (currentResultCount === lastResultCount && lastResultCount !== -1) {
-				return
-			}
-			lastResultCount = currentResultCount
-
-			const isScrollable = currentResultCount > CONFIG.VISIBLE_RESULTS_LIMIT
-			resultsElement.classList.toggle(CONFIG.SCROLLABLE_CLASS, isScrollable)
-
-			let targetHeight
-			if (isScrollable) {
-				targetHeight = CONFIG.VISIBLE_RESULTS_LIMIT * CONFIG.MANUAL_ROW_HEIGHT_PX
-			} else {
-				targetHeight = currentResultCount * CONFIG.MANUAL_ROW_HEIGHT_PX
-			}
-
-			resultsElement.style.height = `${targetHeight}px`
-			resultsElement.style.overflowY = isScrollable ? 'auto' : 'hidden'
-
-			// Auto-scroll to selected row
-			for (const row of resultRows) {
-				if (row.hasAttribute('selected')) {
-					row.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
-					break
-				}
-			}
-		}, CONFIG.DEBOUNCE_DELAY_MS)
-	}
-
-	/**
-	 * Sets up the necessary listeners.
-	 */
-	function setupListeners() {
-		mutationObserver = new MutationObserver(() => {
-			updateViewState()
-		})
-		mutationObserver.observe(resultsElement, {
-			childList: true,
-			subtree: true,
-			attributes: true,
-			attributeFilter: ['selected'],
-		})
-
-		urlbarAttributeObserver = new MutationObserver((mutations) => {
-			for (const mutation of mutations) {
-				if (mutation.attributeName === 'usertyping' || mutation.attributeName === 'open') {
-					updateViewState()
-				}
-			}
-		})
-		urlbarAttributeObserver.observe(urlbarElement, { attributes: true, attributeFilter: ['usertyping', 'open'] })
-
-		urlbarElement.addEventListener('popuphidden', () => {
-			clearTimeout(updateTimeout)
-			resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS)
-			resultsElement.style.removeProperty('height')
-			resultsElement.style.removeProperty('max-height')
-			resultsElement.style.removeProperty('overflow-y')
-			resultsElement.scrollTop = 0
-			lastResultCount = -1
-		})
-	}
-
-	function initialize() {
-		urlbarElement = document.getElementById(CONFIG.URLBAR_ID)
-		resultsElement = document.getElementById(CONFIG.URLBAR_RESULTS_ID)
-
-		if (!urlbarElement || !resultsElement) {
-			setTimeout(initialize, 500)
-			return
+			})
 		}
 
-		const styleId = 'zen-urlbar-animated-height-styles-css-controlled'
-		if (!document.getElementById(styleId)) {
-			const css = `
+		function initialize() {
+			urlbarElement = document.getElementById(CONFIG.URLBAR_ID)
+			resultsElement = document.getElementById(CONFIG.URLBAR_RESULTS_ID)
+
+			if (!urlbarElement || !resultsElement) {
+				setTimeout(initialize, 500)
+				return
+			}
+
+			const styleId = 'zen-urlbar-animated-height-styles-css-controlled'
+			if (!document.getElementById(styleId)) {
+				const css = `
         #${CONFIG.URLBAR_RESULTS_ID} {
           /* Cap initial height to prevent flicker */
           max-height: ${CONFIG.INITIAL_CAP_HEIGHT_PX}px !important;
@@ -326,62 +373,62 @@ const NUG_SUBDIALOG_CSS = `
           overflow-y: auto !important;
         }
       `
-			const style = document.createElement('style')
-			style.id = styleId
-			style.textContent = css
-			document.head.appendChild(style)
+				const style = document.createElement('style')
+				style.id = styleId
+				style.textContent = css
+				document.head.appendChild(style)
+			}
+
+			setupListeners()
+			updateViewState()
+
+			window.addEventListener('unload', () => {
+				mutationObserver?.disconnect()
+				urlbarAttributeObserver?.disconnect()
+				clearTimeout(updateTimeout)
+			}, { once: true })
 		}
 
-		setupListeners()
-		updateViewState()
+		if (document.readyState === 'complete') {
+			initialize()
+		} else {
+			window.addEventListener('load', initialize, { once: true })
+		}
+	})()
 
-		window.addEventListener('unload', () => {
-			mutationObserver?.disconnect()
-			urlbarAttributeObserver?.disconnect()
-			clearTimeout(updateTimeout)
-		}, { once: true })
-	}
-
-	if (document.readyState === 'complete') {
-		initialize()
-	} else {
-		window.addEventListener('load', initialize, { once: true })
-	}
-})()
-
-// ==UserScript==
-// @ignorecache
-// @name           Tab Explode Animation
-// @version        1.0
-// @description    Adds a bubble explosion animation when a tab or tab group is closed.
-// @compatibility  Firefox 100+
-// ==/UserScript==
-;(() => {
-	// Live-reactive pref: cache value and observe for changes so toggling
-	// the pref in the theme panel takes effect without a restart.
-	const TAB_EXPLODE_PREF = 'nug.tab.explode'
-	let tabExplodeEnabled = false
-	try {
-		tabExplodeEnabled = Services.prefs.getBoolPref(TAB_EXPLODE_PREF, true)
-	} catch (e) {}
-	const tabExplodePrefObserver = {
-		observe(_subject, _topic, data) {
-			if (data !== TAB_EXPLODE_PREF) return
-			try {
-				tabExplodeEnabled = Services.prefs.getBoolPref(TAB_EXPLODE_PREF, true)
-			} catch (e) {}
-		},
-	}
-	Services.prefs.addObserver(TAB_EXPLODE_PREF, tabExplodePrefObserver)
-	window.addEventListener(
-		'unload',
-		() => {
-			try {
-				Services.prefs.removeObserver(TAB_EXPLODE_PREF, tabExplodePrefObserver)
-			} catch (e) {}
-		},
-		{ once: true }
-	)
+	// ==UserScript==
+	// @ignorecache
+	// @name           Tab Explode Animation
+	// @version        1.0
+	// @description    Adds a bubble explosion animation when a tab or tab group is closed.
+	// @compatibility  Firefox 100+
+	// ==/UserScript==
+	; (() => {
+		// Live-reactive pref: cache value and observe for changes so toggling
+		// the pref in the theme panel takes effect without a restart.
+		const TAB_EXPLODE_PREF = 'nug.tab.explode'
+		let tabExplodeEnabled = false
+		try {
+			tabExplodeEnabled = Services.prefs.getBoolPref(TAB_EXPLODE_PREF, true)
+		} catch (e) { }
+		const tabExplodePrefObserver = {
+			observe(_subject, _topic, data) {
+				if (data !== TAB_EXPLODE_PREF) return
+				try {
+					tabExplodeEnabled = Services.prefs.getBoolPref(TAB_EXPLODE_PREF, true)
+				} catch (e) { }
+			},
+		}
+		Services.prefs.addObserver(TAB_EXPLODE_PREF, tabExplodePrefObserver)
+		window.addEventListener(
+			'unload',
+			() => {
+				try {
+					Services.prefs.removeObserver(TAB_EXPLODE_PREF, tabExplodePrefObserver)
+				} catch (e) { }
+			},
+			{ once: true }
+		)
 
 		const TAB_EXPLODE_ANIMATION_ID = 'tab-explode-animation-styles'
 		const BUBBLE_COUNT = 25 // Number of bubbles
@@ -435,14 +482,12 @@ const NUG_SUBDIALOG_CSS = `
 
 		function animateElementClose(element) {
 			if (!element || !element.isConnected) return
-			// Honor OS-level reduced-motion preference
 			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
 			const elementRect = element.getBoundingClientRect() // Viewport-relative
 			const explosionContainer = document.createElement('div')
 			explosionContainer.className = 'tab-explosion-container' // Has position: absolute
 
-			// Find animation parent
 			let parentForAnimation = document.getElementById('browser')
 			if (!parentForAnimation || !parentForAnimation.isConnected) {
 				parentForAnimation = document.getElementById('main-window') || document.documentElement
@@ -450,7 +495,6 @@ const NUG_SUBDIALOG_CSS = `
 
 			const parentRect = parentForAnimation.getBoundingClientRect()
 
-			// Position relative to parent
 			explosionContainer.style.left = `${elementRect.left - parentRect.left}px`
 			explosionContainer.style.top = `${elementRect.top - parentRect.top}px`
 			explosionContainer.style.width = `${elementRect.width}px`
@@ -565,7 +609,7 @@ const NUG_SUBDIALOG_CSS = `
 		} else {
 			window.addEventListener('load', init, { once: true })
 		}
-})()
+	})()
 
 // ==UserScript==
 // @name           Findbar Mods
@@ -926,9 +970,7 @@ class FindbarMods {
 		if (!findbar) return
 		if (findbar.findMode != findbar.FIND_NORMAL) findbar._setFindCloseTimeout()
 	}
-	// do the same with the submenus, except since they have type="radio" we don't
-	// need to uncheck anything. checking any of a radio menuitem's siblings will
-	// automatically uncheck it, just like a radio input.
+
 	onSubmenuShowing(e, findbar) {
 		if (e.target === this.contextMenu._menuMatchDiacriticsPopup) {
 			let diacriticsStatus = Services.prefs.getIntPref('findbar.matchdiacritics', 0) || findbar._matchDiacritics
@@ -959,17 +1001,13 @@ class FindbarMods {
 				'box-sizing: border-box; display: inline-block; align-items: center; margin: 0; line-height: 20px; position: absolute; font-size: 10px; right: 110px; color: var(--matches-indicator-text-color, hsla(0, 0%, 100%, 0.25)); pointer-events: none; padding-inline-start: 20px; mask-image: linear-gradient(to right, transparent 0px, black 20px);',
 			empty: true,
 		})
-		// just append it to the findbar container without moving other elements
 		findbar.querySelector('.findbar-container').appendChild(findbar._tinyIndicator)
 	}
-	// for a given findbar, move its label into the proper position.
 	updateLabelPosition(findbar) {
 		let distanceFromEdge =
 			findbar.getBoundingClientRect().right - findbar.querySelector('.findbar-textbox').getBoundingClientRect().right
 		findbar._tinyIndicator.style.right = `${distanceFromEdge + 1}px`
 	}
-	// when a new tab is opened and the findbar somehow activated, a new findbar
-	// is born. so we have to manage it every time.
 	onTabFindInitialized(e) {
 		if (e.target.ownerGlobal !== window) return
 		if (!this.initialized) {
@@ -978,7 +1016,6 @@ class FindbarMods {
 		}
 		let findbar = e.target._findBar
 
-		// determine what to do when the hotkey is pressed
 		function exitFindBar(e) {
 			if (e.repeat || e.shiftKey || e.altKey) return
 			if (e.code === 'KeyF' && (e.ctrlKey || e.metaKey)) {
@@ -1033,7 +1070,7 @@ if (gBrowserInit.delayedStartupFinished) {
 }
 
 // Override urlbar placeholder text
-;(function () {
+; (function () {
 	if (location.href !== 'chrome://browser/content/browser.xhtml') return
 
 	const PLACEHOLDER = 'What it is'

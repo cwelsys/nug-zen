@@ -1,14 +1,10 @@
 [
 	{
-		"type": "separator",
-		"label": "🎨 Appearance"
-	},
-	{
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-catppuccin-flavor",
-		"label": "🎨 Flavor",
-		"default": 0,
+		"label": "Flavor",
+		"defaultValue": 0,
 		"placeholder": false,
 		"options": [
 			{
@@ -25,8 +21,8 @@
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-accent-color",
-		"label": "✨ Accent",
-		"default": 0,
+		"label": "Accent",
+		"defaultValue": 0,
 		"placeholder": "Blue",
 		"options": [
 			{
@@ -84,6 +80,29 @@
 			{
 				"label": "Rosewater",
 				"value": 13
+			},
+			{
+				"label": "Text",
+				"value": 14
+			},
+			{
+				"label": "Custom…",
+				"value": 15
+			}
+		]
+	},
+	{
+		"property": "nug-accent-custom",
+		"label": "Custom Accent Color",
+		"type": "string",
+		"defaultValue": "",
+		"placeholder": "#89b4fa",
+		"conditions": [
+			{
+				"if": {
+					"property": "nug-accent-color",
+					"value": 15
+				}
 			}
 		]
 	},
@@ -91,8 +110,8 @@
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-icon-color",
-		"label": "🎨 Icon Color",
-		"default": 10,
+		"label": "Icon Color",
+		"defaultValue": 10,
 		"placeholder": "Mauve",
 		"options": [
 			{
@@ -150,22 +169,127 @@
 			{
 				"label": "Rosewater",
 				"value": 13
+			},
+			{
+				"label": "Text",
+				"value": 14
+			},
+			{
+				"label": "Custom…",
+				"value": 15
 			}
 		]
 	},
 	{
-		"type": "checkbox",
-		"property": "nug-icons-enabled",
-		"label": "✨ Enable custom icons",
-		"defaultValue": true,
-		"margin": "12px 0"
+		"property": "nug-icon-custom",
+		"label": "Custom Icon Color",
+		"type": "string",
+		"defaultValue": "",
+		"placeholder": "#cba6f7",
+		"conditions": [
+			{
+				"if": {
+					"property": "nug-icon-color",
+					"value": 15
+				}
+			}
+		]
+	},
+	{
+		"type": "dropdown",
+		"value": "number",
+		"property": "nug-folder-color",
+		"label": "Folder Color",
+		"defaultValue": 10,
+		"placeholder": "Mauve",
+		"options": [
+			{
+				"label": "Blue",
+				"value": 0
+			},
+			{
+				"label": "Lavender",
+				"value": 1
+			},
+			{
+				"label": "Sapphire",
+				"value": 2
+			},
+			{
+				"label": "Sky",
+				"value": 3
+			},
+			{
+				"label": "Teal",
+				"value": 4
+			},
+			{
+				"label": "Green",
+				"value": 5
+			},
+			{
+				"label": "Yellow",
+				"value": 6
+			},
+			{
+				"label": "Peach",
+				"value": 7
+			},
+			{
+				"label": "Maroon",
+				"value": 8
+			},
+			{
+				"label": "Red",
+				"value": 9
+			},
+			{
+				"label": "Mauve",
+				"value": 10
+			},
+			{
+				"label": "Pink",
+				"value": 11
+			},
+			{
+				"label": "Flamingo",
+				"value": 12
+			},
+			{
+				"label": "Rosewater",
+				"value": 13
+			},
+			{
+				"label": "Text",
+				"value": 14
+			},
+			{
+				"label": "Custom…",
+				"value": 15
+			}
+		]
+	},
+	{
+		"property": "nug-folder-custom",
+		"label": "Custom Folder Color",
+		"type": "string",
+		"defaultValue": "",
+		"placeholder": "#cba6f7",
+		"conditions": [
+			{
+				"if": {
+					"property": "nug-folder-color",
+					"value": 15
+				}
+			}
+		]
 	},
 	{
 		"type": "dropdown",
 		"value": "number",
 		"property": "nug-glow-gradient",
-		"label": "🌈 Hover glow animation",
-		"default": 0,
+		"label": "Extension Glow Gradient/Anim",
+		"defaultValue": 0,
 		"placeholder": false,
 		"options": [
 			{
@@ -189,8 +313,15 @@
 	},
 	{
 		"type": "checkbox",
+		"property": "nug-icons-enabled",
+		"label": "Enable Custom Icon .svg",
+		"defaultValue": true,
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
 		"property": "nug.url.bar.animation",
-		"label": "🔍 URL bar opening animation",
+		"label": "URL-Bar Animation",
 		"defaultValue": true,
 		"margin": "12px 0"
 	},
@@ -198,57 +329,41 @@
 		"type": "checkbox",
 		"property": "nug.tab.explode",
 		"defaultValue": true,
-		"label": "💥 Tab closing pop effect",
+		"label": "Exploding Tabs",
 		"margin": "12px 0"
-	},
-	{
-		"type": "separator",
-		"label": "🪟 Window"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug.hide.window.controls",
-		"defaultValue": false,
-		"label": "🪟 Hide window controls (minimize, maximize, close)",
+		"defaultValue": true,
+		"label": "Hide Window Decorations",
 		"margin": "12px 0"
-	},
-	{
-		"type": "separator",
-		"label": "🧩 Extensions"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-pinned-extensions-mod",
-		"label": "📌 Enable pinned extensions mod",
+		"label": "Enable 'Pinned Extensions' Mod",
 		"defaultValue": true,
 		"margin": "12px 0"
 	},
 	{
-		"type": "separator",
-		"label": "🗂️ Workspaces"
-	},
-	{
 		"type": "checkbox",
 		"property": "nug-hide-workspace-indicator",
-		"label": "👁️ Hide workspace indicator",
+		"label": "Hide Workspace Indicator",
 		"defaultValue": false,
 		"margin": "12px 0"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug-hide-workspace-buttons",
-		"label": "🔘 Hide workspace buttons",
+		"label": "Hide Workspace Buttons",
 		"defaultValue": false,
 		"margin": "12px 0"
 	},
 	{
-		"type": "separator",
-		"label": "🔎 Findbar"
-	},
-	{
 		"type": "checkbox",
 		"property": "nug.findbar.compact.indicator",
-		"label": "📏 Use compact match indicator (requires restart)",
+		"label": "Findbar Compact Match Indicator",
 		"defaultValue": true,
 		"restart": true,
 		"margin": "12px 0"
@@ -256,9 +371,9 @@
 	{
 		"type": "dropdown",
 		"property": "nug.findbar.position",
-		"label": "📍 Findbar position",
+		"label": "Findbar Position",
 		"value": "number",
-		"default": 0,
+		"defaultValue": 0,
 		"placeholder": false,
 		"options": [
 			{
@@ -294,8 +409,9 @@
 	},
 	{
 		"property": "nug.findbar.custom.top",
-		"label": "📐 Custom position: top",
+		"label": "Top",
 		"type": "string",
+		"defaultValue": "",
 		"placeholder": "e.g., 35px, 10%, auto",
 		"conditions": [
 			{
@@ -308,8 +424,9 @@
 	},
 	{
 		"property": "nug.findbar.custom.right",
-		"label": "📐 Custom position: right",
+		"label": "Right",
 		"type": "string",
+		"defaultValue": "",
 		"placeholder": "e.g., 15px, 5%, auto",
 		"conditions": [
 			{
@@ -322,8 +439,9 @@
 	},
 	{
 		"property": "nug.findbar.custom.bottom",
-		"label": "📐 Custom position: bottom",
+		"label": "Bottom",
 		"type": "string",
+		"defaultValue": "",
 		"placeholder": "e.g., 15px, 5%, auto",
 		"conditions": [
 			{
@@ -336,8 +454,9 @@
 	},
 	{
 		"property": "nug.findbar.custom.left",
-		"label": "📐 Custom position: left",
+		"label": "Left",
 		"type": "string",
+		"defaultValue": "",
 		"placeholder": "e.g., 15px, 5%, auto",
 		"conditions": [
 			{
