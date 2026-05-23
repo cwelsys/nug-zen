@@ -10,10 +10,7 @@
 @import 'Modules/URLbar.css';
 @import 'Modules/Workspace.css';
 
-/* Honor OS-level reduced-motion preference. Kills every animation
-   and transition across all modules in one go — the Tab Explode JS
-   module has its own early-return. */
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) and (not (-moz-bool-pref: 'nug.ignore-reduced-motion')) {
 	*,
 	*::before,
 	*::after {

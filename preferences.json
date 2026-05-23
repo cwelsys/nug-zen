@@ -334,6 +334,13 @@
 	},
 	{
 		"type": "checkbox",
+		"property": "nug.ignore-reduced-motion",
+		"defaultValue": true,
+		"label": "Ignore OS Reduced-Motion Setting",
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
 		"property": "nug.hide.window.controls",
 		"defaultValue": true,
 		"label": "Hide Window Decorations",

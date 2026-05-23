@@ -482,7 +482,10 @@ function applyNugColors(doc) {
 
 		function animateElementClose(element) {
 			if (!element || !element.isConnected) return
-			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+			if (
+				window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+				!Services.prefs.getBoolPref('nug.ignore-reduced-motion', false)
+			) return
 
 			const elementRect = element.getBoundingClientRect() // Viewport-relative
 			const explosionContainer = document.createElement('div')
