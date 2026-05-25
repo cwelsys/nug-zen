@@ -314,7 +314,7 @@
 	{
 		"type": "checkbox",
 		"property": "nug-icons-enabled",
-		"label": "Enable Custom Icon .svg",
+		"label": "Enable Custom Icon .svg's",
 		"defaultValue": true,
 		"margin": "12px 0"
 	},
@@ -335,7 +335,7 @@
 	{
 		"type": "checkbox",
 		"property": "nug.ignore-reduced-motion",
-		"defaultValue": true,
+		"defaultValue": false,
 		"label": "Ignore OS Reduced-Motion Setting",
 		"margin": "12px 0"
 	},
