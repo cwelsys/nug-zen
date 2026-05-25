@@ -87,6 +87,18 @@
 #nug-folder-color menupopup menuitem[value=""] {
 	display: none;
 }
+
+/* Gate the Ephemeral Container sub-prefs on the master toggle. Done here with
+   a live -moz-bool-pref query rather than Sine's "conditions" (its pref-change
+   observer is broken upstream — preferences.sys.mjs calls an undefined \`th\`),
+   so this also updates without a restart. */
+@media not (-moz-bool-pref: 'nug.ephemeral.enabled') {
+	#nug-ephemeral-container,
+	#nug-ephemeral-debug,
+	#nug-ephemeral-dryrun {
+		display: none;
+	}
+}
 `;
 
 	const NUG_COLORS = [

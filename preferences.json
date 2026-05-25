@@ -488,44 +488,20 @@
 		"type": "string",
 		"defaultValue": "Ephemeral",
 		"placeholder": "Ephemeral",
-		"restart": true,
-		"conditions": [
-			{
-				"if": {
-					"property": "nug.ephemeral.enabled",
-					"value": true
-				}
-			}
-		]
+		"restart": true
 	},
 	{
 		"type": "checkbox",
 		"property": "nug.ephemeral.debug",
 		"label": "Debug",
 		"defaultValue": false,
-		"margin": "12px 0",
-		"conditions": [
-			{
-				"if": {
-					"property": "nug.ephemeral.enabled",
-					"value": true
-				}
-			}
-		]
+		"margin": "12px 0"
 	},
 	{
 		"type": "checkbox",
 		"property": "nug.ephemeral.dryrun",
 		"label": "Log without wiping",
 		"defaultValue": false,
-		"margin": "12px 0",
-		"conditions": [
-			{
-				"if": {
-					"property": "nug.ephemeral.enabled",
-					"value": true
-				}
-			}
-		]
+		"margin": "12px 0"
 	}
 ]
