@@ -59,7 +59,7 @@
 }
 
 /* --nug-accent / --nug-icon-color / --nug-folder-color are set on
-   documentElement by JS/nug.uc.js (applyNugColors) — no @media chain needed. */
+   documentElement by JS/subdialog-theme.uc.js (applyNugColors) — no @media chain needed. */
 
 /* Zen theme vars */
 :root {

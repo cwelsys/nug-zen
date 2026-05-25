@@ -1,5 +1,5 @@
 /* Tab folder coloring.
- * --nug-folder-color is set by the JS resolver in JS/nug.uc.js based on
+ * --nug-folder-color is set by the JS resolver in JS/subdialog-theme.uc.js based on
  * the nug-folder-color pref. front/behind panels match the sidebar bg
  * so only the icon path is visually colored. */
 

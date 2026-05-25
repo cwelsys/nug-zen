@@ -1,8 +1,39 @@
 {
+  "$schema": "./theme.schema.json",
   "id": "Nug",
   "scripts": {
     "JS": {
-      "nug.uc.js": {
+      "nug-core.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "subdialog-theme.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "urlbar-scroller.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "urlbar-placeholder.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "tab-explode.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "findbar.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "ephemeral-container.uc.js": {
         "include": [
           "*browser.xhtml"
         ]
@@ -13,9 +44,9 @@
   "author": "cwelsys",
   "name": "Nug",
   "description": "userChrome and more",
-  "version": "0.1.63",
+  "version": "0.1.64",
   "createdAt": "2025-03-11",
-  "updatedAt": "2026-05-22",
+  "updatedAt": "2026-05-24",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"

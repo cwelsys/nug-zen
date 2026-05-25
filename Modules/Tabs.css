@@ -312,7 +312,7 @@ zen-folder {
 }
 
 /* Per-accent tab selected text pastel.
-   --nug-accent itself is set on documentElement by JS/nug.uc.js. */
+   --nug-accent itself is set on documentElement by JS/subdialog-theme.uc.js. */
 @media (-moz-pref('nug-accent-color', 0)) {
 	:root { --tab-selected-textcolor: rgb(171, 197, 247) !important; }
 }
