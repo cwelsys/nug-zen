@@ -1,63 +1,122 @@
-@import 'Modules/Palette.css';
+@import "Modules/Palette.css";
 
+/* poo a  */
 @font-face {
-    font-family: "Liberation Mono";
-    src: local("Symbols Nerd Font");
-    unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+	font-family: "Segoe UI";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
 }
 @font-face {
-    font-family: "Consolas";
-    src: local("Symbols Nerd Font");
-    unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+	font-family: "Roboto";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+}
+@font-face {
+	font-family: "Open Sans";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+}
+@font-face {
+	font-family: "Lato";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+}
+@font-face {
+	font-family: "Cambria";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+}
+@font-face {
+	font-family: "Consolas";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+}
+@font-face {
+	font-family: "Cascadia Code";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
+}
+@font-face {
+	font-family: "Roboto Mono";
+	src: local("Symbols Nerd Font");
+	unicode-range: U+E000-F8FF, U+F0000-10FFFD;
 }
 
 /* Accent color mapping */
-@media (-moz-pref('nug-accent-color', 0)) {
-	:root { --nug-accent: var(--blue); }
+@media (-moz-pref("nug-accent-color", 0)) {
+	:root {
+		--nug-accent: var(--blue);
+	}
 }
-@media (-moz-pref('nug-accent-color', 1)) {
-	:root { --nug-accent: var(--lavender); }
+@media (-moz-pref("nug-accent-color", 1)) {
+	:root {
+		--nug-accent: var(--lavender);
+	}
 }
-@media (-moz-pref('nug-accent-color', 2)) {
-	:root { --nug-accent: var(--sapphire); }
+@media (-moz-pref("nug-accent-color", 2)) {
+	:root {
+		--nug-accent: var(--sapphire);
+	}
 }
-@media (-moz-pref('nug-accent-color', 3)) {
-	:root { --nug-accent: var(--sky); }
+@media (-moz-pref("nug-accent-color", 3)) {
+	:root {
+		--nug-accent: var(--sky);
+	}
 }
-@media (-moz-pref('nug-accent-color', 4)) {
-	:root { --nug-accent: var(--teal); }
+@media (-moz-pref("nug-accent-color", 4)) {
+	:root {
+		--nug-accent: var(--teal);
+	}
 }
-@media (-moz-pref('nug-accent-color', 5)) {
-	:root { --nug-accent: var(--green); }
+@media (-moz-pref("nug-accent-color", 5)) {
+	:root {
+		--nug-accent: var(--green);
+	}
 }
-@media (-moz-pref('nug-accent-color', 6)) {
-	:root { --nug-accent: var(--yellow); }
+@media (-moz-pref("nug-accent-color", 6)) {
+	:root {
+		--nug-accent: var(--yellow);
+	}
 }
-@media (-moz-pref('nug-accent-color', 7)) {
-	:root { --nug-accent: var(--peach); }
+@media (-moz-pref("nug-accent-color", 7)) {
+	:root {
+		--nug-accent: var(--peach);
+	}
 }
-@media (-moz-pref('nug-accent-color', 8)) {
-	:root { --nug-accent: var(--maroon); }
+@media (-moz-pref("nug-accent-color", 8)) {
+	:root {
+		--nug-accent: var(--maroon);
+	}
 }
-@media (-moz-pref('nug-accent-color', 9)) {
-	:root { --nug-accent: var(--red); }
+@media (-moz-pref("nug-accent-color", 9)) {
+	:root {
+		--nug-accent: var(--red);
+	}
 }
-@media (-moz-pref('nug-accent-color', 10)) {
-	:root { --nug-accent: var(--mauve); }
+@media (-moz-pref("nug-accent-color", 10)) {
+	:root {
+		--nug-accent: var(--mauve);
+	}
 }
-@media (-moz-pref('nug-accent-color', 11)) {
-	:root { --nug-accent: var(--pink); }
+@media (-moz-pref("nug-accent-color", 11)) {
+	:root {
+		--nug-accent: var(--pink);
+	}
 }
-@media (-moz-pref('nug-accent-color', 12)) {
-	:root { --nug-accent: var(--flamingo); }
+@media (-moz-pref("nug-accent-color", 12)) {
+	:root {
+		--nug-accent: var(--flamingo);
+	}
 }
-@media (-moz-pref('nug-accent-color', 13)) {
-	:root { --nug-accent: var(--rosewater); }
+@media (-moz-pref("nug-accent-color", 13)) {
+	:root {
+		--nug-accent: var(--rosewater);
+	}
 }
 
 /* Accent */
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 0)) {
+	@media (-moz-pref("nug-accent-color", 0)) {
 		:root {
 			--color-accent-primary-hover: rgb(163, 197, 251) !important;
 			--color-accent-primary-active: rgb(138, 153, 250) !important;
@@ -67,7 +126,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 1)) {
+	@media (-moz-pref("nug-accent-color", 1)) {
 		:root {
 			--color-accent-primary-hover: rgb(206, 212, 254) !important;
 			--color-accent-primary-active: rgb(189, 180, 254) !important;
@@ -77,7 +136,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 2)) {
+	@media (-moz-pref("nug-accent-color", 2)) {
 		:root {
 			--color-accent-primary-hover: rgb(139, 207, 239) !important;
 			--color-accent-primary-active: rgb(116, 168, 236) !important;
@@ -87,7 +146,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 3)) {
+	@media (-moz-pref("nug-accent-color", 3)) {
 		:root {
 			--color-accent-primary-hover: rgb(159, 227, 239) !important;
 			--color-accent-primary-active: rgb(137, 196, 235) !important;
@@ -97,7 +156,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 4)) {
+	@media (-moz-pref("nug-accent-color", 4)) {
 		:root {
 			--color-accent-primary-hover: rgb(169, 231, 221) !important;
 			--color-accent-primary-active: rgb(148, 219, 226) !important;
@@ -107,7 +166,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 5)) {
+	@media (-moz-pref("nug-accent-color", 5)) {
 		:root {
 			--color-accent-primary-hover: rgb(185, 233, 181) !important;
 			--color-accent-primary-active: rgb(161, 227, 172) !important;
@@ -117,7 +176,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 6)) {
+	@media (-moz-pref("nug-accent-color", 6)) {
 		:root {
 			--color-accent-primary-hover: rgb(251, 234, 199) !important;
 			--color-accent-primary-active: rgb(249, 244, 175) !important;
@@ -127,7 +186,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 7)) {
+	@media (-moz-pref("nug-accent-color", 7)) {
 		:root {
 			--color-accent-primary-hover: rgb(251, 195, 161) !important;
 			--color-accent-primary-active: rgb(250, 208, 136) !important;
@@ -137,7 +196,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 8)) {
+	@media (-moz-pref("nug-accent-color", 8)) {
 		:root {
 			--color-accent-primary-hover: rgb(240, 182, 192) !important;
 			--color-accent-primary-active: rgb(235, 167, 161) !important;
@@ -147,7 +206,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 9)) {
+	@media (-moz-pref("nug-accent-color", 9)) {
 		:root {
 			--color-accent-primary-hover: rgb(245, 163, 186) !important;
 			--color-accent-primary-active: rgb(243, 139, 143) !important;
@@ -157,7 +216,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 10)) {
+	@media (-moz-pref("nug-accent-color", 10)) {
 		:root {
 			--color-accent-primary-hover: rgb(217, 191, 249) !important;
 			--color-accent-primary-active: rgb(223, 167, 247) !important;
@@ -167,7 +226,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 11)) {
+	@media (-moz-pref("nug-accent-color", 11)) {
 		:root {
 			--color-accent-primary-hover: rgb(249, 217, 240) !important;
 			--color-accent-primary-active: rgb(245, 195, 219) !important;
@@ -177,7 +236,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 12)) {
+	@media (-moz-pref("nug-accent-color", 12)) {
 		:root {
 			--color-accent-primary-hover: rgb(248, 226, 226) !important;
 			--color-accent-primary-active: rgb(242, 215, 206) !important;
@@ -187,7 +246,7 @@
 }
 
 @-moz-document url-prefix("about:") {
-	@media (-moz-pref('nug-accent-color', 13)) {
+	@media (-moz-pref("nug-accent-color", 13)) {
 		:root {
 			--color-accent-primary-hover: rgb(251, 243, 241) !important;
 			--color-accent-primary-active: rgb(245, 231, 221) !important;
@@ -222,7 +281,7 @@
 	}
 
 	.search-wrapper .logo-and-wordmark .logo {
-		background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xNV85KSI+CiAgICA8cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiByeD0iMjI1IiBmaWxsPSIjMTExMTFiIi8+CiAgICA8Y2lyY2xlIGN4PSI1MTIiIGN5PSI1MTIiIHI9IjM0MCIgc3Ryb2tlPSIjY2RkNmY0IiBzdHJva2Utd2lkdGg9IjcwIi8+CiAgICA8Y2lyY2xlIGN4PSI1MTIiIGN5PSI1MTIiIHI9IjIyNC45MTUiIHN0cm9rZT0iI2NkZDZmNCIgc3Ryb2tlLXdpZHRoPSI1MSIvPgogICAgPGNpcmNsZSBjeD0iNTEyIiBjeT0iNTEyIiByPSIxMjkuMDE4IiBzdHJva2U9IiNjZGQ2ZjQiIHN0cm9rZS13aWR0aD0iMzEiLz4KICA8L2c+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAwXzE1XzkiPgogICAgICA8cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiBmaWxsPSJ3aGl0ZSIvPgogICAgPC9jbGlwUGF0aD4KICA8L2RlZnM+Cjwvc3ZnPgo=')
+		background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xNV85KSI+CiAgICA8cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiByeD0iMjI1IiBmaWxsPSIjMTExMTFiIi8+CiAgICA8Y2lyY2xlIGN4PSI1MTIiIGN5PSI1MTIiIHI9IjM0MCIgc3Ryb2tlPSIjY2RkNmY0IiBzdHJva2Utd2lkdGg9IjcwIi8+CiAgICA8Y2lyY2xlIGN4PSI1MTIiIGN5PSI1MTIiIHI9IjIyNC45MTUiIHN0cm9rZT0iI2NkZDZmNCIgc3Ryb2tlLXdpZHRoPSI1MSIvPgogICAgPGNpcmNsZSBjeD0iNTEyIiBjeT0iNTEyIiByPSIxMjkuMDE4IiBzdHJva2U9IiNjZGQ2ZjQiIHN0cm9rZS13aWR0aD0iMzEiLz4KICA8L2c+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXAwXzE1XzkiPgogICAgICA8cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiBmaWxsPSJ3aGl0ZSIvPgogICAgPC9jbGlwUGF0aD4KICA8L2RlZnM+Cjwvc3ZnPgo=")
 			no-repeat center !important;
 		display: inline-block !important;
 		height: 82px !important;
@@ -266,7 +325,9 @@
 		--in-content-button-background-hover: var(--surface1) !important;
 		--in-content-button-background-active: var(--surface2) !important;
 		--in-content-primary-button-background: var(--nug-accent) !important;
-		--in-content-primary-button-background-hover: var(--nug-accent) !important;
+		--in-content-primary-button-background-hover: var(
+			--nug-accent
+		) !important;
 		--in-content-primary-button-text-color: var(--crust) !important;
 	}
 
@@ -348,14 +409,19 @@
 }
 
 /* commonDialog content (inside dialog iframe - buttons, text, inputs) */
-@-moz-document url("chrome://global/content/commonDialog.xhtml") {
+@-moz-document url("chrome://global/content/commonDialog.xhtml")
+{
 	:root {
 		--in-content-page-background: var(--base) !important;
 		--in-content-page-color: var(--text) !important;
 		--in-content-text-color: var(--text) !important;
 		--in-content-primary-button-background: var(--nug-accent) !important;
-		--in-content-primary-button-background-hover: var(--nug-accent) !important;
-		--in-content-primary-button-background-active: var(--nug-accent) !important;
+		--in-content-primary-button-background-hover: var(
+			--nug-accent
+		) !important;
+		--in-content-primary-button-background-active: var(
+			--nug-accent
+		) !important;
 		--in-content-primary-button-text-color: var(--crust) !important;
 		--in-content-button-background: var(--surface0) !important;
 		--in-content-button-background-hover: var(--surface1) !important;
@@ -376,14 +442,14 @@
 	}
 
 	/* Direct button targeting */
-	button[dlgtype='accept'] {
+	button[dlgtype="accept"] {
 		background-color: var(--nug-accent) !important;
 		color: var(--crust) !important;
 	}
 
-	button[dlgtype='cancel'],
-	button[dlgtype='extra1'],
-	button[dlgtype='extra2'] {
+	button[dlgtype="cancel"],
+	button[dlgtype="extra1"],
+	button[dlgtype="extra2"] {
 		background-color: var(--surface0) !important;
 		color: var(--text) !important;
 	}
@@ -418,7 +484,11 @@
 		--fingerprinter-color: var(--yellow) !important;
 		--cryptominer-color: var(--lavender) !important;
 		--tracker-color: var(--green) !important;
-		--in-content-primary-button-background-hover: rgb(81, 83, 105) !important;
+		--in-content-primary-button-background-hover: rgb(
+			81,
+			83,
+			105
+		) !important;
 		--in-content-primary-button-text-color-hover: var(--text) !important;
 		--in-content-primary-button-background: var(--surface1) !important;
 		--in-content-primary-button-text-color: var(--text) !important;
