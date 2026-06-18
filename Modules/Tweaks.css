@@ -109,7 +109,7 @@
 							#zen-appcontent-navbar-wrapper[panelopen='true'],
 							#zen-appcontent-navbar-wrapper[open='true'],
 							#urlbar:focus-within:not(#urlbar[zen-floating-urlbar='true']),
-							#zen-appcontent-navbar-wrapper[breakout-extend='true']
+							#zen-appcontent-navbar-wrapper[breakout-extend]
 						)
 						:not(.zen-compact-mode-ignore)
 				) {

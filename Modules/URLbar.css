@@ -29,7 +29,7 @@
 
 @media (-moz-pref('nug.url.bar.animation')) {
 	@media (-moz-pref('zen.urlbar.behavior', 'float')) {
-		#urlbar[breakout-extend='true'] {
+		#urlbar[breakout-extend] {
 			transition: top 0.5s ease, width 0.3s ease;
 		}
 		#urlbar[open][zen-floating-urlbar='true'] {
@@ -66,7 +66,7 @@
 	border-radius: 1.7rem !important;
 }
 
-#main-window #urlbar[breakout-extend='true'] .urlbar-background {
+#main-window #urlbar[breakout-extend] .urlbar-background {
 	background: var(--base) !important;
 	border-radius: 1.7rem !important;
 	border: 2.2px solid var(--nug-glow-color-1) !important;
