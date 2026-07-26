@@ -12,112 +12,113 @@ findbar {
 	height: 80px !important;
 	border-radius: 8px !important;
 	border: 1px solid var(--nug-glow-color-1) !important;
-	box-shadow: 0 8px 32px color-mix(in srgb, var(--zen-primary-color) 15%, transparent 85%);
+	box-shadow: 0 8px 32px
+		color-mix(in srgb, var(--zen-primary-color) 15%, transparent 85%);
 	background: var(--base) !important;
 	opacity: 1;
 	z-index: 9999;
 }
 
 /* Top Right (default) - value 0 */
-@media (-moz-pref('nug.findbar.position', 0)) {
+@media (-moz-pref("nug.findbar.position", 0)) {
 	findbar {
 		top: 35px;
 		right: 15px;
 	}
 
-	findbar:is([hidden='true']) {
+	findbar:is([hidden="true"]) {
 		transform: translateY(-10px);
 	}
 }
 
 /* Top Left - value 1 */
-@media (-moz-pref('nug.findbar.position', 1)) {
+@media (-moz-pref("nug.findbar.position", 1)) {
 	findbar {
 		top: 35px;
 		left: 15px;
 	}
 
-	findbar:is([hidden='true']) {
+	findbar:is([hidden="true"]) {
 		transform: translateY(-10px);
 	}
 }
 
 /* Top Center - value 2 */
-@media (-moz-pref('nug.findbar.position', 2)) {
+@media (-moz-pref("nug.findbar.position", 2)) {
 	findbar {
 		top: 35px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 
-	findbar:is([hidden='true']) {
+	findbar:is([hidden="true"]) {
 		transform: translateX(-50%) translateY(-10px);
 	}
 }
 
 /* Bottom Right - value 3 */
-@media (-moz-pref('nug.findbar.position', 3)) {
+@media (-moz-pref("nug.findbar.position", 3)) {
 	findbar {
 		bottom: 15px;
 		right: 15px;
 	}
 
-	findbar:is([hidden='true']) {
+	findbar:is([hidden="true"]) {
 		transform: translateY(10px);
 	}
 }
 
 /* Bottom Left - value 4 */
-@media (-moz-pref('nug.findbar.position', 4)) {
+@media (-moz-pref("nug.findbar.position", 4)) {
 	findbar {
 		bottom: 15px;
 		left: 15px;
 	}
 
-	findbar:is([hidden='true']) {
+	findbar:is([hidden="true"]) {
 		transform: translateY(10px);
 	}
 }
 
 /* Bottom Center - value 5 */
-@media (-moz-pref('nug.findbar.position', 5)) {
+@media (-moz-pref("nug.findbar.position", 5)) {
 	findbar {
 		bottom: 15px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 
-	findbar:is([hidden='true']) {
+	findbar:is([hidden="true"]) {
 		transform: translateX(-50%) translateY(10px);
 	}
 }
 
 /* Custom position - value 6 */
-@media (-moz-string-pref: 'nug.findbar.custom.top') {
+@media (-moz-string-pref: "nug.findbar.custom.top") {
 	:root {
 		--findbar-custom-top: var(--nug-findbar-custom-top, auto);
 	}
 }
 
-@media (-moz-string-pref: 'nug.findbar.custom.right') {
+@media (-moz-string-pref: "nug.findbar.custom.right") {
 	:root {
 		--findbar-custom-right: var(--nug-findbar-custom-right, auto);
 	}
 }
 
-@media (-moz-string-pref: 'nug.findbar.custom.bottom') {
+@media (-moz-string-pref: "nug.findbar.custom.bottom") {
 	:root {
 		--findbar-custom-bottom: var(--nug-findbar-custom-bottom, auto);
 	}
 }
 
-@media (-moz-string-pref: 'nug.findbar.custom.left') {
+@media (-moz-string-pref: "nug.findbar.custom.left") {
 	:root {
 		--findbar-custom-left: var(--nug-findbar-custom-left, auto);
 	}
 }
 
-@media (-moz-pref('nug.findbar.position', 6)) {
+@media (-moz-pref("nug.findbar.position", 6)) {
 	findbar {
 		top: var(--findbar-custom-top, auto);
 		right: var(--findbar-custom-right, auto);
@@ -126,7 +127,7 @@ findbar {
 	}
 }
 
-findbar:has(.findbar-textbox[status='notfound']) {
+findbar:has(.findbar-textbox[status="notfound"]) {
 	border: 1px solid var(--red) !important;
 	box-shadow: 0 8px 32px color-mix(in srgb, var(--red) 15%, transparent 85%) !important;
 }
@@ -227,12 +228,15 @@ findbar:has(.findbar-textbox[status='notfound']) {
 			&:nth-of-type(2) {
 				position: absolute !important;
 				top: var(--toolbarbutton-base-top) !important;
-				left: calc(var(--toolbarbutton-base-left) + var(--toolbarbutton-spacing)) !important;
+				left: calc(
+					var(--toolbarbutton-base-left) +
+						var(--toolbarbutton-spacing)
+				) !important;
 				margin: 2px !important;
 				padding: 0px !important;
 			}
 
-			&[disabled='true'] {
+			&[disabled="true"] {
 				opacity: 1 !important;
 				pointer-events: none !important;
 			}
@@ -271,21 +275,27 @@ findbar:has(.findbar-textbox[status='notfound']) {
 
 	checkbox:nth-of-type(2) {
 		left: 50% !important;
-		transform: translateX(calc(var(--checkbox-base-offset) + var(--checkbox-spacing))) !important;
+		transform: translateX(
+			calc(var(--checkbox-base-offset) + var(--checkbox-spacing))
+		) !important;
 		bottom: 6px !important;
 		top: auto !important;
 	}
 
 	checkbox:nth-of-type(3) {
 		left: 50% !important;
-		transform: translateX(calc(var(--checkbox-base-offset) + var(--checkbox-spacing) * 2)) !important;
+		transform: translateX(
+			calc(var(--checkbox-base-offset) + var(--checkbox-spacing) * 2)
+		) !important;
 		bottom: 6px !important;
 		top: auto !important;
 	}
 
 	checkbox:nth-of-type(4) {
 		left: 50% !important;
-		transform: translateX(calc(var(--checkbox-base-offset) + var(--checkbox-spacing) * 3)) !important;
+		transform: translateX(
+			calc(var(--checkbox-base-offset) + var(--checkbox-spacing) * 3)
+		) !important;
 		bottom: 6px !important;
 		top: auto !important;
 	}
@@ -294,7 +304,7 @@ findbar:has(.findbar-textbox[status='notfound']) {
 		display: none !important;
 		flex-basis: 100% !important;
 
-		&[status='notfound'] {
+		&[status="notfound"] {
 			display: none !important;
 		}
 	}
@@ -307,20 +317,35 @@ findbar:has(.findbar-textbox[status='notfound']) {
 		top: auto !important;
 		font-size: 16px !important;
 		font-weight: 400 !important;
+		line-height: 20px !important;
 		white-space: nowrap !important;
+		pointer-events: none !important;
 		color: var(--text) !important;
 		display: block !important;
 
-		&[empty='true'] {
+		&[empty="true"] {
+			display: none !important;
+		}
+
+		/* Native _updateFindUI hides every findbar-container child in
+		   find-as-you-type mode; without this the !important display above
+		   would keep a stale count on screen. */
+		&[hidden] {
 			display: none !important;
 		}
 	}
 }
 
-findbar[compact-indicator='true'] {
-	.found-matches {
-		display: none !important;
-	}
+findbar:not([compact-indicator="true"]) .findbar-container .found-matches {
+	display: block !important;
+	position: absolute !important;
+	bottom: 6px !important;
+	right: 7px !important;
+	top: auto !important;
+	font-size: 13px !important;
+	white-space: nowrap !important;
+	pointer-events: none !important;
+	color: var(--text) !important;
 }
 
 .checkbox-label {
@@ -350,27 +375,27 @@ findbar[compact-indicator='true'] {
 }
 
 .findbar-highlight::after {
-	content: '';
-	background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyMHB4IiBmaWxsPSJjb250ZXh0LWZpbGwiPjxwYXRoIGQ9Im01NDgtNDEwLTkwLTkxLTE5MyAxOTMgOTEgOTEgMTkyLTE5M1ptLTM4LTE0MyA5MCA5MSAxOTItMTkyLTkwLTkxLTE5MiAxOTJabS03Ny0yNCAxOTIgMTkyLTIxOCAyMThxLTIyIDIwLTUwLjUgMjEuNVQzMDgtMTY0bC0yMCAyMEg5NmwxMTYtMTE2cS0yMS0yMC0yMC00OS41dDIzLTQ5LjVsMjE4LTIxOFptMCAwIDIxOC0yMThxMjEtMjEgNTEtMjF0NTEgMjFsOTAgOTBxMjAgMjIgMjAgNTF0LTIwIDUxTDYyNS0zODUgNDMzLTU3N1oiLz48L3N2Zz4K')
+	content: "";
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyMHB4IiBmaWxsPSJjb250ZXh0LWZpbGwiPjxwYXRoIGQ9Im01NDgtNDEwLTkwLTkxLTE5MyAxOTMgOTEgOTEgMTkyLTE5M1ptLTM4LTE0MyA5MCA5MSAxOTItMTkyLTkwLTkxLTE5MiAxOTJabS03Ny0yNCAxOTIgMTkyLTIxOCAyMThxLTIyIDIwLTUwLjUgMjEuNVQzMDgtMTY0bC0yMCAyMEg5NmwxMTYtMTE2cS0yMS0yMC0yMC00OS41dDIzLTQ5LjVsMjE4LTIxOFptMCAwIDIxOC0yMThxMjEtMjEgNTEtMjF0NTEgMjFsOTAgOTBxMjAgMjIgMjAgNTF0LTIwIDUxTDYyNS0zODUgNDMzLTU3N1oiLz48L3N2Zz4K")
 		no-repeat;
 	background-position: center;
 }
 
 .findbar-case-sensitive::after {
-	content: 'Aa';
+	content: "Aa";
 	justify-content: center;
 	font-weight: 600;
 }
 
 .findbar-match-diacritics::after {
-	content: 'ąâ';
+	content: "ąâ";
 	justify-content: center;
 	font-weight: 600;
 }
 
 .findbar-entire-word::after {
-	content: '';
-	background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSJjb250ZXh0LWZpbGwiPjxwYXRoIGQ9Ik00MC0xOTl2LTIwMGg4MHYxMjBoNzIwdi0xMjBoODB2MjAwSDQwWm0zNDItMTYxdi0zNGgtM3EtMTMgMjAtMzUgMzEuNVQyOTQtMzUxcS00OSAwLTc3LTI1LjVUMTg5LTQ0NnEwLTQyIDMyLjUtNjguNVQzMDUtNTQxcTIzIDAgNDIuNSAzLjVUMzgxLTUyNnYtMTRxMC0yNy0xOC41LTQzVDMxMi01OTlxLTIxIDAtMzkuNSA5VDI0MS01NjRsLTQzLTMycTE5LTI3IDQ4LTQxdDY3LTE0cTYyIDAgOTUgMjkuNXQzMyA4NS41djE3NmgtNTlabS02Ni0xMzRxLTMyIDAtNDkgMTIuNVQyNTAtNDQ2cTAgMjAgMTUgMzIuNXQzOSAxMi41cTMyIDAgNTQuNS0yMi41VDM4MS00NzhxLTE0LTgtMzItMTJ0LTMzLTRabTE4NSAxMzR2LTQwMWg2MnYxMTNsLTMgNDBoM3EzLTUgMjQtMjUuNXQ2Ni0yMC41cTY0IDAgMTAxIDQ2dDM3IDEwNnEwIDYwLTM2LjUgMTA1LjVUNjUzLTM1MXEtNDEgMC02Mi41LTE4VDU2My0zOTdoLTN2MzdoLTU5Wm0xNDMtMjM4cS00MCAwLTYyIDI5LjVUNTYwLTUwM3EwIDM3IDIyIDY2dDYyIDI5cTQwIDAgNjIuNS0yOXQyMi41LTY2cTAtMzctMjIuNS02NlQ2NDQtNTk4WiIvPjwvc3ZnPgo=')
+	content: "";
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSJjb250ZXh0LWZpbGwiPjxwYXRoIGQ9Ik00MC0xOTl2LTIwMGg4MHYxMjBoNzIwdi0xMjBoODB2MjAwSDQwWm0zNDItMTYxdi0zNGgtM3EtMTMgMjAtMzUgMzEuNVQyOTQtMzUxcS00OSAwLTc3LTI1LjVUMTg5LTQ0NnEwLTQyIDMyLjUtNjguNVQzMDUtNTQxcTIzIDAgNDIuNSAzLjVUMzgxLTUyNnYtMTRxMC0yNy0xOC41LTQzVDMxMi01OTlxLTIxIDAtMzkuNSA5VDI0MS01NjRsLTQzLTMycTE5LTI3IDQ4LTQxdDY3LTE0cTYyIDAgOTUgMjkuNXQzMyA4NS41djE3NmgtNTlabS02Ni0xMzRxLTMyIDAtNDkgMTIuNVQyNTAtNDQ2cTAgMjAgMTUgMzIuNXQzOSAxMi41cTMyIDAgNTQuNS0yMi41VDM4MS00NzhxLTE0LTgtMzItMTJ0LTMzLTRabTE4NSAxMzR2LTQwMWg2MnYxMTNsLTMgNDBoM3EzLTUgMjQtMjUuNXQ2Ni0yMC41cTY0IDAgMTAxIDQ2dDM3IDEwNnEwIDYwLTM2LjUgMTA1LjVUNjUzLTM1MXEtNDEgMC02Mi41LTE4VDU2My0zOTdoLTN2MzdoLTU5Wm0xNDMtMjM4cS00MCAwLTYyIDI5LjVUNTYwLTUwM3EwIDM3IDIyIDY2dDYyIDI5cTQwIDAgNjIuNS0yOXQyMi41LTY2cTAtMzctMjIuNS02NlQ2NDQtNTk4WiIvPjwvc3ZnPgo=")
 		no-repeat;
 	background-position: center;
 }
@@ -379,7 +404,7 @@ findbar[compact-indicator='true'] {
 	display: none !important;
 }
 
-findbar [anonid='findbar-textbox-wrapper'] toolbarbutton {
+findbar [anonid="findbar-textbox-wrapper"] toolbarbutton {
 	position: absolute !important;
 	width: 28px !important;
 	height: 28px !important;
@@ -398,7 +423,7 @@ findbar checkbox:hover {
 	background-color: var(--tab-hover-background-color);
 }
 
-findbar checkbox[checked='true'] {
+findbar checkbox[checked="true"] {
 	color: var(--zen-colors-tertiary);
 	background-color: var(--green);
 }
