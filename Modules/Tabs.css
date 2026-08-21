@@ -77,11 +77,21 @@
 	.tab-background {
 		background: var(--base) !important;
 		border-radius: 5px !important;
+		border: 1px solid transparent !important;
 		backdrop-filter: blur(10px) !important;
+		transition:
+			background-color var(--nug-tab-duration) var(--nug-tab-ease),
+			border-color var(--nug-tab-duration) var(--nug-tab-ease);
 	}
 
 	&:hover .tab-background {
 		background: var(--surface0) !important;
+	}
+
+	&:active .tab-background {
+		background: var(--surface1) !important;
+		border-color: var(--nug-glow-color-1) !important;
+		transition-duration: 0ms;
 	}
 
 	&[selected]:hover .tab-background {
@@ -89,7 +99,7 @@
 	}
 
 	&[visuallyselected] .tab-background {
-		border: 1px solid var(--nug-glow-color-1) !important;
+		border-color: var(--nug-glow-color-1) !important;
 	}
 
 	/* use hotdog */
@@ -102,31 +112,61 @@
 }
 
 /* tabs */
+:root {
+	--nug-tab-ease: cubic-bezier(0.4, 0, 0.2, 1);
+	--nug-tab-duration: 120ms;
+	--nug-tab-border-hover: var(--overlay1);
+	--nug-tab-border-selected: var(--nug-glow-color-2);
+	--nug-tab-border-multi: var(--nug-glow-color-1);
+	--zen-active-tab-scale: 1 !important;
+	--nug-newtab-ease: var(--nug-tab-ease);
+	--nug-newtab-duration: 0.2s;
+}
+
+:root:not([zen-renaming-tab="true"])
+	#tabbrowser-tabs:not([movingtab])
+	.tabbrowser-tab:active:not(:has(.tab-content > image:active)) {
+	rotate: 0deg !important;
+}
+
 .tabbrowser-tab:not([zen-essential]) {
 	& .tab-background {
 		border-radius: 4px !important;
+		border: 1px solid transparent !important;
+		transition:
+			background-color var(--nug-tab-duration) var(--nug-tab-ease),
+			border-color var(--nug-tab-duration) var(--nug-tab-ease);
 	}
 
-	&:not([selected]):hover .tab-background {
+	&:not([selected], [multiselected]):hover .tab-background {
 		background: var(--base) !important;
-		border: 1px solid var(--overlay1) !important;
+		border-color: var(--nug-tab-border-hover) !important;
+	}
+
+	&:not([selected], [multiselected]):active .tab-background {
+		background: var(--surface0) !important;
+		border-color: var(--nug-tab-border-selected) !important;
+		transition-duration: 0ms;
 	}
 
 	&[selected] .tab-background,
 	&[selected]:hover .tab-background {
 		background: var(--base) !important;
-		border: 1px solid var(--nug-glow-color-2) !important;
+		border-color: var(--nug-tab-border-selected) !important;
 	}
 
-	&[multiselected] .tab-background {
+	&[multiselected] .tab-background,
+	&[multiselected]:hover .tab-background {
 		background: var(--base) !important;
-		border: 1px solid var(--nug-accent-off) !important;
+		border-color: var(--nug-tab-border-multi) !important;
 	}
-}
 
-:root {
-	--nug-newtab-ease: cubic-bezier(0.4, 0, 0.2, 1);
-	--nug-newtab-duration: 0.2s;
+	&[selected]:active .tab-background,
+	&[multiselected]:active .tab-background {
+		background: var(--surface0) !important;
+		border-color: var(--nug-glow-color-1) !important;
+		transition-duration: 0ms;
+	}
 }
 
 :root[zen-sidebar-expanded="true"] {
@@ -142,8 +182,6 @@
 			color: var(--subtext0) !important;
 			font-family: monospace !important;
 			font-size: 14px !important;
-			/* Override zen's vertical-tabs.css:1354 opacity 0.7 dim when URL bar is
-			   closed — kills the third state so we have only hovered/not. */
 			opacity: 1 !important;
 			transition: color var(--nug-newtab-duration) var(--nug-newtab-ease);
 		}
@@ -310,8 +348,6 @@ zen-folder {
 	}
 }
 
-/* Per-accent tab selected text pastel.
-   --nug-accent itself is set on documentElement by JS/subdialog-theme.uc.js. */
 @media (-moz-pref("nug-accent-color", 0)) {
 	:root {
 		--tab-selected-textcolor: rgb(171, 197, 247) !important;
