@@ -1,0 +1,14 @@
+{
+	"name": "nug-zen",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Lint tooling for the Nug Zen theme. Not a published package.",
+	"scripts": {
+		"lint": "stylelint \"*.css\" \"Modules/*.css\"",
+		"lint:fix": "stylelint --fix \"*.css\" \"Modules/*.css\""
+	},
+	"devDependencies": {
+		"stylelint": "^17.14.1",
+		"stylelint-config-standard": "^40.0.0"
+	}
+}

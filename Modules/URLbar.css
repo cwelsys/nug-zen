@@ -108,7 +108,7 @@
 	& > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
 		background: transparent !important;
 		border: none !important;
-		padding: none !important;
+		padding: 0 !important;
 	}
 }
 
@@ -167,7 +167,6 @@
 		font-weight: 600 !important;
 		color: var(--text) !important;
 		margin-top: 3px !important;
-		scale: 0.89 !important;
 		margin-left: -9px !important;
 		border-radius: 18px !important;
 		padding: 7px 8px !important;

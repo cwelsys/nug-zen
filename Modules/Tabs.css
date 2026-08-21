@@ -265,10 +265,6 @@
 	.tab-reset-button {
 		left: -2px !important;
 		right: auto !important;
-		padding: 3px 3px !important;
-		height: 18px !important;
-		width: 18px !important;
-		border-radius: 20px !important;
 	}
 }
 
@@ -295,7 +291,6 @@ zen-workspace[collapsedpinnedtabs] .zen-workspace-pinned-tabs-section {
 
 /* folder label container styling */
 .tab-group-label-container::before {
-	background-color: transparent !important;
 	background: none !important;
 }
 

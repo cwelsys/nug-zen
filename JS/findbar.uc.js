@@ -8,6 +8,8 @@
 // Provided as-is, no warranty. ShareAlike keeps this file under CC BY-NC-SA 4.0,
 
 (() => {
+	const { prefs } = window.Nug;
+
 	// Firefox has no localization strings for these phrases, since they can only
 	// be configured in about:config. Change the label and accesskey values for your language. Keep the quotes.
 	const L10N = {
@@ -28,6 +30,27 @@
 
 	const CASE_PREF = "accessibility.typeaheadfind.casesensitive";
 	const DIACRITICS_PREF = "findbar.matchdiacritics";
+
+	const CUSTOM_SIDES = ["top", "right", "bottom", "left"];
+	const CUSTOM_PREFS = CUSTOM_SIDES.map((s) => `nug.findbar.custom.${s}`);
+
+	function applyCustomPosition() {
+		const root = document.documentElement;
+		if (!root) return;
+		for (const side of CUSTOM_SIDES) {
+			const value = prefs.getString(`nug.findbar.custom.${side}`, "").trim();
+			const name = `--nug-findbar-custom-${side}`;
+			if (value) root.style.setProperty(name, value);
+			else root.style.removeProperty(name);
+		}
+	}
+
+	applyCustomPosition();
+	const unsubscribeCustomPosition = prefs.subscribe(
+		CUSTOM_PREFS,
+		applyCustomPosition,
+	);
+	window.addEventListener("unload", unsubscribeCustomPosition, { once: true });
 
 	// Ctrl/Cmd+F closes the findbar when it's already open and focused.
 	function exitFindBar(e) {

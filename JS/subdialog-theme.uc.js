@@ -74,12 +74,17 @@
 	const NUG_SINE_FIXES_CSS = `
 #nug-accent-custom,
 #nug-icon-custom,
-#nug-folder-custom,
-#nug-findbar-custom-top,
-#nug-findbar-custom-right,
-#nug-findbar-custom-bottom,
-#nug-findbar-custom-left {
+#nug-folder-custom {
 	display: none;
+}
+
+@media not (-moz-pref('nug.findbar.position', 6)) {
+	#nug-findbar-custom-top,
+	#nug-findbar-custom-right,
+	#nug-findbar-custom-bottom,
+	#nug-findbar-custom-left {
+		display: none;
+	}
 }
 
 #nug-accent-color menupopup menuitem[value=""],

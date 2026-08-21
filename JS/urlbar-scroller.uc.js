@@ -7,7 +7,7 @@
 (function () {
 	if (location.href !== "chrome://browser/content/browser.xhtml") return;
 
-	const { whenReady, injectStyle } = window.Nug;
+	const { whenReady, injectStyle, prefersReducedMotion } = window.Nug;
 
 	const CONFIG = {
 		URLBAR_ID: "urlbar",
@@ -90,7 +90,10 @@
 			// Auto-scroll to selected row
 			for (const row of resultRows) {
 				if (row.hasAttribute("selected")) {
-					row.scrollIntoView({ block: "nearest", behavior: "smooth" });
+					row.scrollIntoView({
+						block: "nearest",
+						behavior: prefersReducedMotion() ? "auto" : "smooth",
+					});
 					break;
 				}
 			}

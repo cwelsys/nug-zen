@@ -94,36 +94,12 @@ findbar {
 }
 
 /* Custom position - value 6 */
-@media (-moz-string-pref: "nug.findbar.custom.top") {
-	:root {
-		--findbar-custom-top: var(--nug-findbar-custom-top, auto);
-	}
-}
-
-@media (-moz-string-pref: "nug.findbar.custom.right") {
-	:root {
-		--findbar-custom-right: var(--nug-findbar-custom-right, auto);
-	}
-}
-
-@media (-moz-string-pref: "nug.findbar.custom.bottom") {
-	:root {
-		--findbar-custom-bottom: var(--nug-findbar-custom-bottom, auto);
-	}
-}
-
-@media (-moz-string-pref: "nug.findbar.custom.left") {
-	:root {
-		--findbar-custom-left: var(--nug-findbar-custom-left, auto);
-	}
-}
-
 @media (-moz-pref("nug.findbar.position", 6)) {
 	findbar {
-		top: var(--findbar-custom-top, auto);
-		right: var(--findbar-custom-right, auto);
-		bottom: var(--findbar-custom-bottom, auto);
-		left: var(--findbar-custom-left, auto);
+		top: var(--nug-findbar-custom-top, auto);
+		right: var(--nug-findbar-custom-right, auto);
+		bottom: var(--nug-findbar-custom-bottom, auto);
+		left: var(--nug-findbar-custom-left, auto);
 	}
 }
 
@@ -139,7 +115,6 @@ findbar:has(.findbar-textbox[status="notfound"]) {
 	outline: none !important;
 	border: none !important;
 	border-radius: 5px !important;
-	transition: all 0.2s ease;
 	display: inline-flex !important;
 	justify-content: center !important;
 	align-content: center !important;
@@ -148,7 +123,9 @@ findbar:has(.findbar-textbox[status="notfound"]) {
 	position: absolute !important;
 	top: 4px !important;
 	right: -2px !important;
-	transition: background-color 0.2s ease;
+	transition:
+		background-color 0.2s ease,
+		scale 0.2s ease;
 	z-index: 10 !important;
 
 	label {
