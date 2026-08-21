@@ -71,7 +71,7 @@ zen-workspace-icons#zen-workspaces-button {
 	}
 }
 
-:root:not([animating-background='true'])[zen-sidebar-expanded='true'] zen-workspace {
+:root[zen-sidebar-expanded='true'] zen-workspace {
 	&[active] {
 		& .zen-current-workspace-indicator {
 			&::before {

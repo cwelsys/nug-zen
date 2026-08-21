@@ -107,18 +107,18 @@
 		border-radius: 4px !important;
 	}
 
-	:not([selected]):hover .tab-background {
+	&:not([selected]):hover .tab-background {
 		background: var(--base) !important;
 		border: 1px solid var(--overlay1) !important;
 	}
 
-	&[selected='true'] .tab-background,
-	&[selected='true']:hover .tab-background {
+	&[selected] .tab-background,
+	&[selected]:hover .tab-background {
 		background: var(--base) !important;
 		border: 1px solid var(--nug-glow-color-2) !important;
 	}
 
-	&[multiselected='true'] .tab-background {
+	&[multiselected] .tab-background {
 		background: var(--base) !important;
 		border: 1px solid var(--nug-accent-off) !important;
 	}
@@ -129,7 +129,7 @@
 	--nug-newtab-duration: 0.2s;
 }
 
-:root[zen-sidebar-expanded='true'] {
+:root[zen-sidebar-expanded="true"] {
 	#tabs-newtab-button {
 		background: var(--mantle) !important;
 		border-radius: 8px !important;
@@ -167,7 +167,7 @@
 	}
 }
 
-:root:not([zen-sidebar-expanded='true']) {
+:root:not([zen-sidebar-expanded="true"]) {
 	#tabs-newtab-button {
 		margin: 10px auto !important;
 		justify-self: center !important;
@@ -197,7 +197,7 @@
 .zen-workspace-pinned-tabs-section .tabbrowser-tab .tab-background::before {
 	display: flex !important;
 	opacity: 0;
-	content: '' !important;
+	content: "" !important;
 	width: 100%;
 	height: 100%;
 	position: absolute !important;
@@ -222,7 +222,7 @@
 	background: color-mix(in srgb, var(--overlay1) 20%, transparent) !important;
 }
 
-:root:not([zen-sidebar-expanded='true']) {
+:root:not([zen-sidebar-expanded="true"]) {
 	.tab-close-button,
 	.tab-reset-button {
 		left: -2px !important;
@@ -234,12 +234,12 @@
 	}
 }
 
-
-.tabbrowser-tab:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background::before {
-	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1) forwards;
+.tabbrowser-tab:has(.tab-close-button:hover, .tab-reset-button:hover)
+	.tab-background::before {
+	animation: half-borderTrail 3s infinite cubic-bezier(0.7, 0, 0.3, 1)
+		forwards;
 	clip-path: inset(0 0 0 0);
 }
-
 
 /* Collapse pinned tabs when chevron is toggled */
 zen-workspace[collapsedpinnedtabs] .zen-workspace-pinned-tabs-section {
@@ -255,7 +255,6 @@ zen-workspace[collapsedpinnedtabs] .zen-workspace-pinned-tabs-section {
 	gap: 0 !important;
 }
 
-
 /* folder label container styling */
 .tab-group-label-container::before {
 	background-color: transparent !important;
@@ -265,7 +264,7 @@ zen-workspace[collapsedpinnedtabs] .zen-workspace-pinned-tabs-section {
 zen-folder {
 	& > .tab-group-label-container {
 		&::before {
-			content: '';
+			content: "";
 			position: absolute;
 			top: 2px;
 			left: 1px !important;
@@ -305,7 +304,7 @@ zen-folder {
 	--tab-collapsed-background-width: 40px !important;
 }
 
-@media not (-moz-bool-pref: 'zen.view.sidebar-expanded') {
+@media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
 	:root {
 		--tab-min-height: 39px !important;
 	}
@@ -313,60 +312,88 @@ zen-folder {
 
 /* Per-accent tab selected text pastel.
    --nug-accent itself is set on documentElement by JS/subdialog-theme.uc.js. */
-@media (-moz-pref('nug-accent-color', 0)) {
-	:root { --tab-selected-textcolor: rgb(171, 197, 247) !important; }
+@media (-moz-pref("nug-accent-color", 0)) {
+	:root {
+		--tab-selected-textcolor: rgb(171, 197, 247) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 1)) {
-	:root { --tab-selected-textcolor: rgb(192, 202, 249) !important; }
+@media (-moz-pref("nug-accent-color", 1)) {
+	:root {
+		--tab-selected-textcolor: rgb(192, 202, 249) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 2)) {
-	:root { --tab-selected-textcolor: rgb(160, 207, 240) !important; }
+@media (-moz-pref("nug-accent-color", 2)) {
+	:root {
+		--tab-selected-textcolor: rgb(160, 207, 240) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 3)) {
-	:root { --tab-selected-textcolor: rgb(171, 217, 240) !important; }
+@media (-moz-pref("nug-accent-color", 3)) {
+	:root {
+		--tab-selected-textcolor: rgb(171, 217, 240) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 4)) {
-	:root { --tab-selected-textcolor: rgb(176, 220, 229) !important; }
+@media (-moz-pref("nug-accent-color", 4)) {
+	:root {
+		--tab-selected-textcolor: rgb(176, 220, 229) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 5)) {
-	:root { --tab-selected-textcolor: rgb(185, 221, 203) !important; }
+@media (-moz-pref("nug-accent-color", 5)) {
+	:root {
+		--tab-selected-textcolor: rgb(185, 221, 203) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 6)) {
-	:root { --tab-selected-textcolor: rgb(227, 220, 210) !important; }
+@media (-moz-pref("nug-accent-color", 6)) {
+	:root {
+		--tab-selected-textcolor: rgb(227, 220, 210) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 7)) {
-	:root { --tab-selected-textcolor: rgb(227, 197, 190) !important; }
+@media (-moz-pref("nug-accent-color", 7)) {
+	:root {
+		--tab-selected-textcolor: rgb(227, 197, 190) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 8)) {
-	:root { --tab-selected-textcolor: rgb(220, 187, 208) !important; }
+@media (-moz-pref("nug-accent-color", 8)) {
+	:root {
+		--tab-selected-textcolor: rgb(220, 187, 208) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 9)) {
-	:root { --tab-selected-textcolor: rgb(224, 177, 206) !important; }
+@media (-moz-pref("nug-accent-color", 9)) {
+	:root {
+		--tab-selected-textcolor: rgb(224, 177, 206) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 10)) {
-	:root { --tab-selected-textcolor: rgb(204, 190, 246) !important; }
+@media (-moz-pref("nug-accent-color", 10)) {
+	:root {
+		--tab-selected-textcolor: rgb(204, 190, 246) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 11)) {
-	:root { --tab-selected-textcolor: rgb(225, 204, 238) !important; }
+@media (-moz-pref("nug-accent-color", 11)) {
+	:root {
+		--tab-selected-textcolor: rgb(225, 204, 238) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 12)) {
-	:root { --tab-selected-textcolor: rgb(223, 210, 225) !important; }
+@media (-moz-pref("nug-accent-color", 12)) {
+	:root {
+		--tab-selected-textcolor: rgb(223, 210, 225) !important;
+	}
 }
 
-@media (-moz-pref('nug-accent-color', 13)) {
-	:root { --tab-selected-textcolor: rgb(225, 219, 232) !important; }
+@media (-moz-pref("nug-accent-color", 13)) {
+	:root {
+		--tab-selected-textcolor: rgb(225, 219, 232) !important;
+	}
 }
 
 #TabsToolbar {

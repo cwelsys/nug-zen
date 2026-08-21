@@ -10,8 +10,19 @@
 	color: var(--zen-primary-color) !important;
 }
 
+:root {
+	/* bar entry */
+	--nug-urlbar-in: 160ms;
+	--nug-urlbar-ease: cubic-bezier(0.16, 1, 0.3, 1);
+	--nug-urlbar-rise: 6px;
+	--nug-urlbar-out: 140ms;
+	--nug-urlbar-resize: 200ms;
+	--nug-urlbar-ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+	--nug-urlbar-width: min(70%, 57rem);
+}
+
 #urlbar-results {
-	transition: height 180ms ease-in-out;
+	transition: height var(--nug-urlbar-resize) var(--nug-urlbar-ease-soft);
 	overflow-y: auto !important;
 }
 
@@ -27,38 +38,54 @@
 	color: var(--text) !important;
 }
 
-@media (-moz-pref('nug.url.bar.animation')) {
-	@media (-moz-pref('zen.urlbar.behavior', 'float')) {
-		#urlbar[breakout-extend] {
-			transition: top 0.5s ease, width 0.3s ease;
-		}
-		#urlbar[open][zen-floating-urlbar='true'] {
-			--urlbar-container-height: 4.5rem !important;
-			min-width: min(60%, 10rem) !important;
+@keyframes nug-urlbar-in {
+	from {
+		opacity: 0;
+		transform: translateY(var(--nug-urlbar-rise)) scale(0.985);
+	}
 
-			width: min(70%, 57rem) !important;
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (-moz-pref("nug.url.bar.animation")) {
+	@media (-moz-pref("zen.urlbar.behavior", "float")) {
+		/* Size the bar on [open], not on [zen-floating-urlbar].
+		   UrlbarInput.startLayoutExtend() sets zen-floating-urlbar after
+		   open/breakout-extend, and Firefox's .urlbar[breakout-extend] width is
+		   the full toolbar width, so gating on the later attribute rendered the
+		   bar full-width first. The second selector only exists to outrank Zen's
+		   own [zen-floating-urlbar] sizing — same values, so nothing moves. */
+		#urlbar[open],
+		#urlbar[open][zen-floating-urlbar="true"] {
+			--urlbar-container-height: 4.5rem !important;
+			width: var(--nug-urlbar-width) !important;
+			min-width: var(--nug-urlbar-width) !important;
+		}
+
+		#urlbar[open][zen-floating-urlbar="true"] {
+			animation: nug-urlbar-in var(--nug-urlbar-in) var(--nug-urlbar-ease);
 
 			& #urlbar-background {
-				transition: border-radius 0.4s ease;
-			}
-
-			& .urlbarView {
-				transition: opacity 0.1s ease;
+				transition: border-radius var(--nug-urlbar-in)
+					var(--nug-urlbar-ease);
 			}
 		}
 	}
 }
 
-@media (-moz-pref('zen.urlbar.behavior', 'float')) {
-	#urlbar[open]:not([usertyping='']) > .urlbarView {
+@media (-moz-pref("zen.urlbar.behavior", "float")) {
+	#urlbar[open]:not([usertyping=""]) > .urlbarView {
 		max-height: 0 !important;
 		overflow: hidden !important;
-		transition: max-height 0.4s ease;
+		transition: max-height var(--nug-urlbar-out) var(--nug-urlbar-ease-soft);
 	}
 
-	#urlbar[open][usertyping=''] > .urlbarView {
+	#urlbar[open][usertyping=""] > .urlbarView {
 		max-height: 500px !important;
-		transition: max-height 0.3s ease;
+		transition: max-height var(--nug-urlbar-in) var(--nug-urlbar-ease);
 	}
 }
 
@@ -73,7 +100,11 @@
 	outline: none !important;
 }
 
-.urlbarView-row[has-action]:is([type='switchtab'], [type='remotetab'], [type='clipboard']) {
+.urlbarView-row[has-action]:is(
+		[type="switchtab"],
+		[type="remotetab"],
+		[type="clipboard"]
+	) {
 	& > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
 		background: transparent !important;
 		border: none !important;
@@ -89,7 +120,6 @@
 		border-top: 2px solid rgba(255, 255, 255, 0.1) !important;
 	}
 }
-
 
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml")
 {
@@ -127,9 +157,13 @@
 	margin-right: 8px !important;
 }
 
-:root[zen-single-toolbar='true'] {
+:root[zen-single-toolbar="true"] {
 	#urlbar-label-box {
-		background: color-mix(in srgb, var(--zen-primary-color) 50%, transparent 50%) !important;
+		background: color-mix(
+			in srgb,
+			var(--zen-primary-color) 50%,
+			transparent 50%
+		) !important;
 		font-weight: 600 !important;
 		color: var(--text) !important;
 		margin-top: 3px !important;
@@ -151,11 +185,14 @@
 		padding-bottom: 13px !important;
 		padding-left: 5px !important;
 		scale: 0.8 !important;
-		background-color: light-dark(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.15)) !important;
+		background-color: light-dark(
+			rgba(255, 255, 255, 0.15),
+			rgba(0, 0, 0, 0.15)
+		) !important;
 		text-align: center !important;
 	}
 
-	#urlbar[open][zen-floating-urlbar='true'] {
+	#urlbar[open][zen-floating-urlbar="true"] {
 		#urlbar-searchmode-switcher {
 			height: 2.6rem !important;
 			margin-right: -2px !important;
@@ -166,7 +203,10 @@
 			padding-right: 8px !important;
 			padding-bottom: 15px !important;
 			padding-left: 8px !important;
-			background-color: light-dark(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.15)) !important;
+			background-color: light-dark(
+				rgba(255, 255, 255, 0.15),
+				rgba(0, 0, 0, 0.15)
+			) !important;
 			text-align: center !important;
 		}
 	}
@@ -210,8 +250,8 @@
 }
 
 .urlbarView-row {
-	&[rich-suggestion][type='search'] {
-		:root:not([uidensity='touch']) & {
+	&[rich-suggestion][type="search"] {
+		:root:not([uidensity="touch"]) & {
 			min-height: 26px !important;
 			max-height: 45px !important;
 		}
@@ -219,17 +259,14 @@
 }
 
 .urlbarView-row {
-	&:not([type='tip'], [type='dynamic']) {
-		:root[uidensity='touch'] & {
+	&:not([type="tip"], [type="dynamic"]) {
+		:root[uidensity="touch"] & {
 			padding-block: 5px !important;
 		}
 	}
 }
 
-
-#urlbar[open][zen-floating-urlbar='true'] {
-	min-width: 57rem !important;
-
+#urlbar[open][zen-floating-urlbar="true"] {
 	.urlbar-input {
 		font-size: 18px !important;
 		max-width: 85% !important;
@@ -243,9 +280,9 @@
 	}
 }
 
-#urlbar[zen-floating-urlbar='true'] {
+#urlbar[zen-floating-urlbar="true"] {
 	padding: 4px !important;
-	#identity-box[pageproxystate='invalid'] {
+	#identity-box[pageproxystate="invalid"] {
 		& #identity-icon {
 			scale: 0.9 !important;
 			margin-top: 0px !important;
@@ -260,13 +297,13 @@
 
 	.urlbarView-row {
 		padding: 0 0px !important;
-		&:not([type='tip'], [type='dynamic']) {
+		&:not([type="tip"], [type="dynamic"]) {
 			padding-block: 0px !important;
 		}
 	}
 }
 
-:root:not([zen-single-toolbar='true']) {
+:root:not([zen-single-toolbar="true"]) {
 	#urlbar:not([open]) {
 		margin-left: 18% !important;
 		margin-right: 75% !important;
@@ -274,13 +311,13 @@
 		max-width: 22% !important;
 	}
 
-	#urlbar[open][zen-floating-urlbar='true'] {
+	#urlbar[open][zen-floating-urlbar="true"] {
 		#urlbar-container:has(&) {
 			background: transparent !important;
 		}
 	}
 
-	#urlbar[open][zen-floating-urlbar='true'] {
+	#urlbar[open][zen-floating-urlbar="true"] {
 		#urlbar-container:has(&) {
 			position: relative !important;
 			overflow: hidden !important;
