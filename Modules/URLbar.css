@@ -302,41 +302,24 @@
 	}
 }
 
+#urlbar[open][zen-floating-urlbar="true"] {
+	#urlbar-container:has(&) {
+		background: transparent !important;
+	}
+}
+
+#identity-icon-box,
+#identity-permission-box,
+#tracking-protection-icon-container {
+	display: none !important;
+}
+
 :root:not([zen-single-toolbar="true"]) {
 	#urlbar:not([open]) {
 		margin-left: 18% !important;
 		margin-right: 75% !important;
 		min-width: 1px !important;
 		max-width: 22% !important;
-	}
-
-	#urlbar[open][zen-floating-urlbar="true"] {
-		#urlbar-container:has(&) {
-			background: transparent !important;
-		}
-	}
-
-	#urlbar[open][zen-floating-urlbar="true"] {
-		#urlbar-container:has(&) {
-			position: relative !important;
-			overflow: hidden !important;
-		}
-
-		#urlbar-container:has(&)::after {
-			display: none !important;
-		}
-	}
-
-	.urlbar-page-action #star-button {
-		display: none !important;
-		max-height: 0 !important;
-	}
-
-	#identity-icon-box,
-	#identity-permission-box,
-	#star-button-box,
-	#tracking-protection-icon-container {
-		display: none !important;
 	}
 
 	#zen-sidebar-top-buttons {

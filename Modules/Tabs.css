@@ -55,9 +55,12 @@
 	display: none !important;
 }
 
-/* make glance buttons dark */
 .zen-glance-sidebar-container toolbarbutton {
 	background: var(--surface0) !important;
+
+	&:hover {
+		background: var(--surface1) !important;
+	}
 }
 
 /* move glances back to the left */

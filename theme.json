@@ -43,9 +43,9 @@
   "author": "cwelsys",
   "name": "Nug",
   "description": "userChrome and more",
-  "version": "0.1.78",
+  "version": "0.1.80",
   "createdAt": "2025-03-11",
-  "updatedAt": "2026-08-21",
+  "updatedAt": "2026-08-23",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
