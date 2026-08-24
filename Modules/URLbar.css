@@ -31,6 +31,11 @@
 	display: none !important;
 }
 
+/* hide Multi-Account Containers' */
+#pageAction-urlbar-_testpilot-containers {
+	display: none !important;
+}
+
 #urlbar-input {
 	text-align: center !important;
 	line-height: 14px !important;
