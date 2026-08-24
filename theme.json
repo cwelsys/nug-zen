@@ -1,43 +1,62 @@
 {
-	"id": "Nug",
-	"scripts": {
-		"JS": {
-			"nug-core.uc.js": {
-				"include": ["*browser.xhtml"]
-			},
-			"subdialog-theme.uc.js": {
-				"include": ["*browser.xhtml"]
-			},
-			"urlbar-scroller.uc.js": {
-				"include": ["*browser.xhtml"]
-			},
-			"urlbar-placeholder.uc.js": {
-				"include": ["*browser.xhtml"]
-			},
-			"tab-explode.uc.js": {
-				"include": ["*browser.xhtml"]
-			},
-			"findbar.uc.js": {
-				"include": ["*browser.xhtml"]
-			},
-			"ephemeral-container.uc.js": {
-				"include": ["*browser.xhtml"]
-			}
-		}
-	},
-	"homepage": "https://github.com/cwelsys/nug-zen",
-	"author": "cwelsys",
-	"name": "Nug",
-	"description": "userChrome and more",
-	"version": "0.1.81",
-	"createdAt": "2025-03-11",
-	"updatedAt": "2026-08-23",
-	"style": {
-		"chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
-		"content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
-	},
-	"preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
-	"image": "https://tiermaker.com/images/media/template_images/2024/16793215/on-cinema-characters-ranked-16793215/tim-heidecker.png",
-	"tags": ["content", "chrome"],
-	"fork": ["zen"]
+  "id": "Nug",
+  "scripts": {
+    "JS": {
+      "nug-core.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "subdialog-theme.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "urlbar-scroller.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "urlbar-placeholder.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "tab-explode.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "findbar.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
+      "ephemeral-container.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      }
+    }
+  },
+  "homepage": "https://github.com/cwelsys/nug-zen",
+  "author": "cwelsys",
+  "name": "Nug",
+  "description": "userChrome and more",
+  "version": "0.1.82",
+  "createdAt": "2025-03-11",
+  "updatedAt": "2026-08-24T01:25:22Z",
+  "style": {
+    "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
+    "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
+  },
+  "preferences": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/preferences.json",
+  "image": "https://tiermaker.com/images/media/template_images/2024/16793215/on-cinema-characters-ranked-16793215/tim-heidecker.png",
+  "tags": [
+    "content",
+    "chrome"
+  ],
+  "fork": [
+    "zen"
+  ]
 }

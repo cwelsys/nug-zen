@@ -32,8 +32,9 @@ IFS='.' read -r major minor patch <<< "$current_version"
 new_patch=$((patch + 1))
 new_version="${major}.${minor}.${new_patch}"
 
-# Get current date
-current_date=$(date +%Y-%m-%d)
+# Get current timestamp. Sine compares updatedAt with Date(), so a date-only
+# value gives day granularity and same-day pushes never trigger an update.
+current_date=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
 # Update theme.json
 jq --arg version "$new_version" --arg date "$current_date" \
