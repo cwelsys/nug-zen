@@ -7,7 +7,7 @@
 	}
 }
 
-@media (-moz-pref('nug-pinned-extensions-mod')) {
+@media (-moz-pref("nug-pinned-extensions-mod")) {
 	:root[customizing] #TabsToolbar-customization-target {
 		visibility: visible !important;
 	}
@@ -17,7 +17,7 @@
 		flex-direction: column;
 	}
 
-	:root[zen-single-toolbar='true'] #nav-bar {
+	:root[zen-single-toolbar="true"] #nav-bar {
 		margin-bottom: 8px !important;
 	}
 
@@ -53,15 +53,24 @@
 			background-color: var(--zen-colors-tertiary) !important;
 			box-shadow: 0 0 3px transparent !important;
 			border-radius: 12.5px !important;
-			transition: background-color 0.3s ease, box-shadow 0.3s ease;
+			transition:
+				background-color 0.3s ease,
+				box-shadow 0.3s ease;
 		}
 
 		.unified-extensions-item:hover {
-			background-color: color-mix(in srgb, var(--zen-primary-color) 20%, var(--mantle)) !important;
-			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.95)) !important;
+			background-color: color-mix(
+				in srgb,
+				var(--zen-primary-color) 20%,
+				var(--mantle)
+			) !important;
+			box-shadow: 0 0px 3px
+				light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.95)) !important;
 		}
 
-		> toolbarbutton:not([id='tabs-newtab-button']):not(#sort-button):not(#clear-button),
+		> toolbarbutton:not([id="tabs-newtab-button"]):not(#sort-button):not(
+				#clear-button
+			),
 		> toolbaritem:not(#sort-button):not(#clear-button) {
 			height: 32px !important;
 			width: 32px !important;
@@ -72,6 +81,8 @@
 			stack {
 				--toolbarbutton-active-background: transparent !important;
 				--toolbarbutton-hover-background: transparent !important;
+				--toolbarbutton-background-color-hover: transparent !important;
+				--toolbarbutton-background-color-active: transparent !important;
 			}
 
 			.toolbarbutton-badge {
@@ -83,26 +94,34 @@
 			}
 		}
 
-		> toolbarbutton:not([id='tabs-newtab-button']),
+		> toolbarbutton:not([id="tabs-newtab-button"]),
 		> toolbaritem {
 			background-color: var(--zen-colors-tertiary) !important;
-			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.12)) !important;
+			box-shadow: 0 0px 3px
+				light-dark(rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.12)) !important;
 			border-radius: 14px !important;
 			margin: 0px !important;
 			order: -1 !important;
 			flex-grow: 1 !important;
-			transition: background-color 0.3s ease, box-shadow 0.3s ease;
+			transition:
+				background-color 0.3s ease,
+				box-shadow 0.3s ease;
 		}
 
-		> toolbarbutton:not([id='tabs-newtab-button']):hover,
+		> toolbarbutton:not([id="tabs-newtab-button"]):hover,
 		> toolbaritem:hover {
-			background-color: color-mix(in srgb, var(--zen-primary-color) 20%, var(--mantle)) !important;
-			box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.95), rgba(0, 0, 0, 0.95)) !important;
+			background-color: color-mix(
+				in srgb,
+				var(--zen-primary-color) 20%,
+				var(--mantle)
+			) !important;
+			box-shadow: 0 0px 3px
+				light-dark(rgba(255, 255, 255, 0.95), rgba(0, 0, 0, 0.95)) !important;
 		}
 	}
 
 	/* for collapsed toolbar */
-	html:not([zen-sidebar-expanded='true']):not([zen-single-toolbar='true'])
+	html:not([zen-sidebar-expanded="true"]):not([zen-single-toolbar="true"])
 		#TabsToolbar-customization-target
 		.unified-extensions-item {
 		width: 24px !important;
@@ -117,7 +136,7 @@
 	}
 
 	.unified-extensions-item::before {
-		content: '';
+		content: "";
 		position: absolute;
 		inset: -0.1px;
 		background: linear-gradient(
@@ -148,19 +167,22 @@
 	}
 
 	/* Hide glow when hovering close/reset button */
-	.unified-extensions-item:has(.close-button:hover, .reset-button:hover)::before {
+	.unified-extensions-item:has(
+			.close-button:hover,
+			.reset-button:hover
+		)::before {
 		opacity: 0;
 	}
 
 	/* Style 0 - No gradient */
-	@media (-moz-pref('nug-glow-gradient', 0)) {
+	@media (-moz-pref("nug-glow-gradient", 0)) {
 		.unified-extensions-item::before {
 			display: none;
 		}
 	}
 
 	/* Style 2 - Monochrome gradient (light-dark) */
-	@media (-moz-pref('nug-glow-gradient', 2)) {
+	@media (-moz-pref("nug-glow-gradient", 2)) {
 		.unified-extensions-item::before {
 			background: linear-gradient(
 				45deg,
@@ -178,9 +200,16 @@
 	}
 
 	/* Style 3 - RGB gradient */
-	@media (-moz-pref('nug-glow-gradient', 3)) {
+	@media (-moz-pref("nug-glow-gradient", 3)) {
 		.unified-extensions-item::before {
-			background: linear-gradient(45deg, var(--peach), var(--red), var(--mauve), var(--sapphire), var(--maroon));
+			background: linear-gradient(
+				45deg,
+				var(--peach),
+				var(--red),
+				var(--mauve),
+				var(--sapphire),
+				var(--maroon)
+			);
 			background-size: 200% 200%;
 			animation: tab-hover-gradient 3.5s linear infinite;
 			animation-play-state: paused;
