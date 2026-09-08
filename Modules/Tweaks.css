@@ -24,7 +24,7 @@
 #zen-toast-container,
 .zen-toast,
 #zen-toast-container .zen-toast {
-	color: var(--zen-toast-text-color, #222) !important;
+	color: var(--crust) !important;
 }
 
 /* Sine toast — pastel Catppuccin accents are too light for default toolbar text */

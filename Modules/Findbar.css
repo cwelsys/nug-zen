@@ -133,7 +133,7 @@ findbar:has(.findbar-textbox[status="notfound"]) {
 	}
 
 	&:hover {
-		background: var(--tab-hover-background-color) !important;
+		background: var(--tab-background-color-hover) !important;
 		border: none !important;
 	}
 
@@ -223,7 +223,7 @@ findbar:has(.findbar-textbox[status="notfound"]) {
 			}
 
 			&:hover {
-				background: var(--tab-hover-background-color) !important;
+				background: var(--tab-background-color-hover) !important;
 			}
 
 			&:active {
@@ -397,7 +397,7 @@ findbar [anonid="findbar-textbox-wrapper"] toolbarbutton {
 }
 
 findbar checkbox:hover {
-	background-color: var(--tab-hover-background-color);
+	background-color: var(--tab-background-color-hover);
 }
 
 findbar checkbox[checked="true"] {
