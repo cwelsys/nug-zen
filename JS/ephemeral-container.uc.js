@@ -235,19 +235,7 @@
 		}, 0);
 	}
 
-	let ContextualIdentityService;
-
 	function init() {
-		try {
-			({ ContextualIdentityService } = ChromeUtils.importESModule(
-				"resource://gre/modules/ContextualIdentityService.sys.mjs",
-			));
-		} catch (e) {
-			Cu.reportError("[nug-ephemeral] module import failed: " + e);
-			log("module-import-failed", String(e));
-			return;
-		}
-
 		const ucid = ephemeralUcid();
 		log("init", {
 			container: containerName(),
