@@ -217,3 +217,8 @@ hbox#titlebar {
 	-moz-default-appearance: none !important;
 	appearance: none !important;
 }
+
+/* content area before the page paints */
+#tabbrowser-tabpanels browser[type='content']:not([transparent='true']) {
+	background: var(--base) !important;
+}
