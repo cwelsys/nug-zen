@@ -498,3 +498,13 @@
 		background-color: var(--surface0) !important;
 	}
 }
+
+@-moz-document domain("news.ycombinator.com") {
+	body,
+	#hnmain,
+	textarea,
+	input[type="submit"] {
+		appearance: none !important;
+		background-color: var(--base) !important;
+	}
+}
