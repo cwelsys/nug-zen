@@ -84,6 +84,7 @@
 	--zen-main-browser-background: var(--mantle) !important;
 	--zen-main-browser-background-toolbar: var(--mantle) !important;
 	--zen-dialog-background: var(--base) !important;
+	--zen-sidebar-notification-bg: var(--crust) !important;
 	--background-color-canvas: var(--base) !important;
 	--toolbox-bgcolor-inactive: var(--mantle) !important;
 	--nug-glow-color-1: color-mix(in srgb, var(--nug-accent) 90%, var(--text));
