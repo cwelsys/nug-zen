@@ -37,6 +37,11 @@
 			max-height: 700px !important;
 		}
 
+		#zen-media-controls-toolbar {
+			position: absolute !important;
+			inset: auto 0 0 !important;
+		}
+
 		.unified-extensions-item-action-button {
 			padding: 0 !important;
 		}
