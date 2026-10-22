@@ -36,11 +36,6 @@
         "include": [
           "*browser.xhtml"
         ]
-      },
-      "sync-close.uc.js": {
-        "include": [
-          "*browser.xhtml"
-        ]
       }
     }
   },
@@ -48,9 +43,9 @@
   "author": "cwelsys",
   "name": "Nug",
   "description": "userChrome and more",
-  "version": "0.1.90",
+  "version": "0.1.91",
   "createdAt": "2025-03-11",
-  "updatedAt": "2026-10-22T18:11:34Z",
+  "updatedAt": "2026-10-22T18:30:47Z",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
