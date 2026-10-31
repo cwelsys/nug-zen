@@ -54,6 +54,83 @@
 		["paneExperimental", "Experimental Features"],
 	];
 
+	const onPage = (win) => !win.gBrowser.selectedTab.hasAttribute("zen-empty-tab");
+	const inGlance = (win) => win.gBrowser.selectedTab.hasAttribute("glance-id");
+	const inCompactMode = (win) => !!win.gZenCompactModeManager?.preference;
+	const pinnedChanged = (win) => {
+		const tab = win.gBrowser.selectedTab;
+		return tab.pinned && tab.hasAttribute("zen-pinned-changed");
+	};
+
+	function fromTabContextMenu(itemId) {
+		return (win) => {
+			win.TabContextMenu.contextTab = win.gBrowser.selectedTab;
+			win.document.getElementById(itemId)?.doCommand();
+		};
+	}
+
+	function restart(clearCache) {
+		if (clearCache) Services.appinfo.invalidateCachesOnRestart();
+		const cancelQuit = Cc["@mozilla.org/supports-PRBool;1"].createInstance(
+			Ci.nsISupportsPRBool,
+		);
+		Services.obs.notifyObservers(cancelQuit, "quit-application-requested", "restart");
+		if (cancelQuit.data) return;
+		Services.startup.quit(Services.startup.eAttemptQuit | Services.startup.eRestart);
+	}
+
+	const COMMANDS = [
+		["Move Tab Up", "arrow-up", (win) => win.gBrowser.moveTabBackward()],
+		["Move Tab Down", "arrow-down", (win) => win.gBrowser.moveTabForward()],
+		["Move Tab to New Window", "window", (win) => win.gBrowser.replaceTabWithWindow(win.gBrowser.selectedTab), onPage],
+		["Mute or Unmute Tab", "media-mute", "cmd_toggleMute", onPage],
+		["Unload Tab", "forget", (win) => win.gBrowser.explicitUnloadTabs([win.gBrowser.selectedTab]), onPage],
+		["Unload Other Tabs", "forget", (win) => win.gBrowser.explicitUnloadTabs(win.gBrowser.tabs.filter((t) => !t.selected && t.linkedPanel))],
+		["Close Unpinned Tabs", "close", "cmd_zenCloseUnpinnedTabs"],
+		["Rename Tab", "text-title-case", fromTabContextMenu("context_zen-edit-tab-title")],
+		["Change Tab Icon", "palette", fromTabContextMenu("context_zen-edit-tab-icon")],
+		["Replace Pinned Tab URL with Current", "pin", "cmd_zenReplacePinnedUrlWithCurrent", pinnedChanged],
+		["Show All Tabs", "tab", "Browser:ShowAllTabs"],
+		["Reopen Closed Window", "window", "History:UndoCloseWindow"],
+		["Bookmark This Page", "bookmark", "Browser:AddBookmarkAs", onPage],
+		["Bookmark All Tabs", "bookmark-star-on-tray", "Browser:BookmarkAllTabs"],
+		["Toggle Bookmarks Toolbar", "bookmark-hollow", "viewBookmarksToolbarKb"],
+		["Toggle Fullscreen", "fullscreen", "View:FullScreen"],
+		["Reader Mode", "reader-mode", "View:ReaderView", onPage],
+		["Zoom In", "plus", "cmd_fullZoomEnlarge", onPage],
+		["Zoom Out", "zoom-out", "cmd_fullZoomReduce", onPage],
+		["Reset Zoom", "arrow-rotate-anticlockwise", "cmd_fullZoomReset", onPage],
+		["View Page Source", "brackets-curly", "View:PageSource", onPage],
+		["Page Info", "info", "View:PageInfo", onPage],
+		["Picture-in-Picture", "popup", "View:PictureInPicture", onPage],
+		["Translate Page", "translations", "cmd_translate", onPage],
+		["Developer Tools", "developer", "key_toggleToolboxF12"],
+		["Inspector", "developer", "key_inspector", onPage],
+		["Web Console", "developer", "key_webconsole", onPage],
+		["Responsive Design Mode", "developer", "key_responsiveDesignMode", onPage],
+		["Browser Toolbox", "hammer", "key_browserToolbox"],
+		["Browser Console", "hammer", "key_browserConsole"],
+		["Toggle Floating Sidebar", "sidebar", "cmd_zenCompactModeShowSidebar", inCompactMode],
+		["Toggle Sidebar Width", "expand-sidebar", "cmd_zenToggleSidebar"],
+		["Close Glance", "close", "cmd_zenGlanceClose", inGlance],
+		["Expand Glance", "open", "cmd_zenGlanceExpand", inGlance],
+		["Split Glance", "split", "cmd_zenGlanceSplit", inGlance],
+		["Copy URL as Markdown", "link", "cmd_zenCopyCurrentURLMarkdown", onPage],
+		["Rename Space", "text-title-case", "cmd_zenChangeWorkspaceName"],
+		["Change Space Icon", "palette", "cmd_zenChangeWorkspaceIcon"],
+		["Save Page As", "save", "Browser:SavePage", onPage],
+		["Open File", "folder", "Browser:OpenFile"],
+		["Clear Recent History", "forget", "Tools:Sanitize"],
+		["Customize Toolbar", "customize", "cmd_CustomizeToolbars"],
+		["Minimize Memory Usage", "algorithm", () =>
+			Cc["@mozilla.org/memory-reporter-manager;1"]
+				.getService(Ci.nsIMemoryReporterManager)
+				.minimizeMemoryUsage(() => {})],
+		["Restart Browser", "reload", () => restart(false)],
+		["Clear Startup Cache and Restart", "trash", () => restart(true)],
+		["Quit Browser", "close", "cmd_quitApplication"],
+	];
+
 	function registerActions() {
 		let globalActions;
 		try {
@@ -89,6 +166,25 @@
 				isAvailable: always,
 				extraPayload: {},
 				command: (win) => win.openPreferences(pane),
+			});
+		}
+		const native = new Set(globalActions.map((a) => a.commandId));
+		for (const [label, icon, command, when] of COMMANDS) {
+			const isElement = typeof command === "string";
+			if (isElement && native.has(command)) continue;
+			globalActions.push({
+				label,
+				icon: `chrome://browser/skin/zen-icons/${icon}.svg`,
+				commandId: isElement ? command : `nug:${label}`,
+				isAvailable: (win) => {
+					if (isElement) {
+						const el = win.document.getElementById(command);
+						if (!el || el.getAttribute("disabled") === "true") return false;
+					}
+					return when ? when(win) : true;
+				},
+				extraPayload: {},
+				command,
 			});
 		}
 	}
@@ -138,14 +234,6 @@
 			try {
 				const engine = getSearchService().getEngineByName(engineName);
 				iconURL = await engine?.getIconURL(16);
-				if (engine && !iconURL) {
-					engine.updateFavicon?.();
-					const origin = engine.getSubmission("").uri.prePath;
-					const favicon = await PlacesUtils.favicons.getFaviconForPage(
-						Services.io.newURI(origin),
-					);
-					iconURL = favicon?.dataURI.spec;
-				}
 			} catch (err) {}
 		}
 		if (request !== iconRequest) return;
