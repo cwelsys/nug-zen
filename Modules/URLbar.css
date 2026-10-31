@@ -156,6 +156,8 @@
 :is(#urlbar-search-mode-indicator, #zen-cmd-palette-mode-indicator) {
 	padding: 5px !important;
 	border-radius: 8px !important;
+	background: none !important;
+	color: var(--green) !important;
 
 	&::before {
 		content: "";
@@ -199,6 +201,10 @@
 }
 
 #urlbar-search-mode-indicator-title {
+	display: none !important;
+}
+
+.urlbarView-row[dynamicType="ZenCommandPalette"] .urlbarView-shortcutContent {
 	display: none !important;
 }
 
