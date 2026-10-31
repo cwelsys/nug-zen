@@ -227,15 +227,6 @@
 	}
 }
 
-.urlbarView-body-inner {
-	#urlbar[open] > .urlbarView > .urlbarView-body-outer > & {
-		transform: translate(0px, 2px) !important;
-		margin-top: -5px !important;
-		margin-bottom: 3px !important;
-		border-top: 2px solid rgba(255, 255, 255, 0.1) !important;
-	}
-}
-
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml")
 {
 	html {
@@ -245,26 +236,10 @@
 
 .urlbarView-row {
 	position: relative !important;
-}
+	border-radius: 10px !important;
 
-.urlbarView-row {
 	&[selected] {
 		background-color: var(--surface1) !important;
-	}
-}
-
-#urlbar[searchmode] #urlbar-results {
-	margin-top: 0px !important;
-	margin-bottom: 0px !important;
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
-}
-
-#urlbar[searchmode] .urlbarView-body-inner {
-	#urlbar[open] > .urlbarView > .urlbarView-body-outer > & {
-		margin-top: -5px !important;
-		margin-bottom: 5px !important;
-		border-top: 0px solid rgba(255, 255, 255, 0.1) !important;
 	}
 }
 
