@@ -389,7 +389,8 @@
 
 		onTabFindInitialized(e) {
 			if (e.target.ownerDocument !== document) return;
-			let findbar = e.target._findBar;
+			let findbar =
+				gBrowser.getCachedFindBar?.(e.target) ?? e.target._findBar;
 			if (!findbar) return;
 
 			if (!this.initialized) {
