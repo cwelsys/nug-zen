@@ -59,8 +59,8 @@
 
 			resultsElement.style.removeProperty("max-height");
 
-			const resultRows = resultsElement.querySelectorAll(
-				'.urlbarView-row:not([type="tip"], [type="dynamic"]:not([dynamicType^="zen-"]))',
+			const resultRows = [...resultsElement.querySelectorAll('.urlbarView-row:not([type="tip"])')].filter(
+				(row) => row.getBoundingClientRect().height > 0,
 			);
 			const currentResultCount = resultRows.length;
 
@@ -74,8 +74,8 @@
 
 			const scale = resultsElement.getBoundingClientRect().width / resultsElement.offsetWidth || 1;
 			let targetHeight = 0;
-			for (const row of [...resultRows].slice(0, CONFIG.VISIBLE_RESULTS_LIMIT)) {
-				targetHeight += row.getBoundingClientRect().height / scale || CONFIG.MANUAL_ROW_HEIGHT_PX;
+			for (const row of resultRows.slice(0, CONFIG.VISIBLE_RESULTS_LIMIT)) {
+				targetHeight += row.getBoundingClientRect().height / scale;
 			}
 
 			resultsElement.style.height = `${targetHeight}px`;

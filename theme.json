@@ -22,6 +22,11 @@
           "*browser.xhtml"
         ]
       },
+      "urlbar-actions.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
+      },
       "tab-explode.uc.js": {
         "include": [
           "*browser.xhtml"
@@ -43,9 +48,9 @@
   "author": "cwelsys",
   "name": "Nug",
   "description": "userChrome and more",
-  "version": "0.1.96",
+  "version": "0.1.97",
   "createdAt": "2025-03-11",
-  "updatedAt": "2026-10-31T02:41:23Z",
+  "updatedAt": "2026-10-31T02:41:30Z",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
