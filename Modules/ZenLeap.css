@@ -1,5 +1,11 @@
 :root {
 	--nug-zenleap-scale: 1.25;
+	--zl-text-muted: var(--overlay1) !important;
+	--zl-text-tertiary: color-mix(
+		in srgb,
+		var(--overlay1),
+		var(--subtext0)
+	) !important;
 }
 
 :is(
