@@ -15,13 +15,12 @@
 		MANUAL_ROW_HEIGHT_PX: 51, // <--- Your desired manual row height
 		VISIBLE_RESULTS_LIMIT: 5, // The number of results to show before scrolling
 		SCROLLABLE_CLASS: "zen-urlbar-scrollable-script",
-		DEBOUNCE_DELAY_MS: 50,
 	};
 
 	CONFIG.INITIAL_CAP_HEIGHT_PX = CONFIG.VISIBLE_RESULTS_LIMIT * CONFIG.MANUAL_ROW_HEIGHT_PX;
 
 	let urlbarElement, resultsElement;
-	let updateTimeout = null;
+	let updateFrame = null;
 	let lastResultCount = -1;
 	let mutationObserver = null;
 	let urlbarAttributeObserver = null;
@@ -29,9 +28,9 @@
 	function updateViewState() {
 		if (!resultsElement || !urlbarElement) return;
 
-		clearTimeout(updateTimeout);
+		cancelAnimationFrame(updateFrame);
 
-		updateTimeout = setTimeout(() => {
+		updateFrame = requestAnimationFrame(() => {
 			const isUrlbarOpen = urlbarElement.hasAttribute("open");
 			const isUserTyping = urlbarElement.hasAttribute("usertyping");
 
@@ -92,7 +91,7 @@
 					break;
 				}
 			}
-		}, CONFIG.DEBOUNCE_DELAY_MS);
+		});
 	}
 
 	function setupListeners() {
@@ -106,17 +105,14 @@
 			attributeFilter: ["selected"],
 		});
 
-		urlbarAttributeObserver = new MutationObserver((mutations) => {
-			for (const mutation of mutations) {
-				if (mutation.attributeName === "usertyping" || mutation.attributeName === "open") {
-					updateViewState();
-				}
-			}
+		urlbarAttributeObserver = new MutationObserver(updateViewState);
+		urlbarAttributeObserver.observe(urlbarElement, {
+			attributes: true,
+			attributeFilter: ["usertyping", "open", "noresults"],
 		});
-		urlbarAttributeObserver.observe(urlbarElement, { attributes: true, attributeFilter: ["usertyping", "open"] });
 
 		urlbarElement.addEventListener("popuphidden", () => {
-			clearTimeout(updateTimeout);
+			cancelAnimationFrame(updateFrame);
 			resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS);
 			resultsElement.style.removeProperty("height");
 			resultsElement.style.removeProperty("max-height");
@@ -154,7 +150,7 @@
 			() => {
 				mutationObserver?.disconnect();
 				urlbarAttributeObserver?.disconnect();
-				clearTimeout(updateTimeout);
+				cancelAnimationFrame(updateFrame);
 			},
 			{ once: true },
 		);
