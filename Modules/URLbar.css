@@ -129,16 +129,16 @@
 			position: relative !important;
 		}
 
+		.urlbar-input-box:has(> #zen-cmd-palette-mode-indicator) {
+			position: static !important;
+		}
+
 		:is(#urlbar-search-mode-indicator, #zen-cmd-palette-mode-indicator) {
 			position: absolute !important;
-			inset-inline-start: 40px;
+			inset-inline-start: 14px;
 			top: 50%;
 			translate: 0 -50%;
 			margin: 0 !important;
-		}
-
-		#zen-cmd-palette-mode-indicator {
-			inset-inline-start: -7px;
 		}
 	}
 }

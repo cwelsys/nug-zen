@@ -138,6 +138,14 @@
 			try {
 				const engine = getSearchService().getEngineByName(engineName);
 				iconURL = await engine?.getIconURL(16);
+				if (engine && !iconURL) {
+					engine.updateFavicon?.();
+					const origin = engine.getSubmission("").uri.prePath;
+					const favicon = await PlacesUtils.favicons.getFaviconForPage(
+						Services.io.newURI(origin),
+					);
+					iconURL = favicon?.dataURI.spec;
+				}
 			} catch (err) {}
 		}
 		if (request !== iconRequest) return;
