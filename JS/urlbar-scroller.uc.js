@@ -32,15 +32,6 @@
 		clearTimeout(updateTimeout);
 
 		updateTimeout = setTimeout(() => {
-			const isCommandModeActive = window.ZenCommandPalette?.provider?._isInPrefixMode ?? false;
-			if (isCommandModeActive) {
-				resultsElement.classList.remove(CONFIG.SCROLLABLE_CLASS);
-				resultsElement.style.removeProperty("height");
-				resultsElement.style.removeProperty("max-height");
-				resultsElement.style.removeProperty("overflow-y");
-				return;
-			}
-
 			const isUrlbarOpen = urlbarElement.hasAttribute("open");
 			const isUserTyping = urlbarElement.hasAttribute("usertyping");
 
@@ -69,7 +60,9 @@
 
 			resultsElement.style.removeProperty("max-height");
 
-			const resultRows = resultsElement.querySelectorAll('.urlbarView-row:not([type="tip"], [type="dynamic"])');
+			const resultRows = resultsElement.querySelectorAll(
+				'.urlbarView-row:not([type="tip"], [type="dynamic"]:not([dynamicType^="zen-"]))',
+			);
 			const currentResultCount = resultRows.length;
 
 			if (currentResultCount === lastResultCount && lastResultCount !== -1) {
@@ -80,9 +73,11 @@
 			const isScrollable = currentResultCount > CONFIG.VISIBLE_RESULTS_LIMIT;
 			resultsElement.classList.toggle(CONFIG.SCROLLABLE_CLASS, isScrollable);
 
-			const targetHeight = isScrollable
-				? CONFIG.VISIBLE_RESULTS_LIMIT * CONFIG.MANUAL_ROW_HEIGHT_PX
-				: currentResultCount * CONFIG.MANUAL_ROW_HEIGHT_PX;
+			const scale = resultsElement.getBoundingClientRect().width / resultsElement.offsetWidth || 1;
+			let targetHeight = 0;
+			for (const row of [...resultRows].slice(0, CONFIG.VISIBLE_RESULTS_LIMIT)) {
+				targetHeight += row.getBoundingClientRect().height / scale || CONFIG.MANUAL_ROW_HEIGHT_PX;
+			}
 
 			resultsElement.style.height = `${targetHeight}px`;
 			resultsElement.style.overflowY = isScrollable ? "auto" : "hidden";

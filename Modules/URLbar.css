@@ -82,13 +82,13 @@
 }
 
 @media (-moz-pref("zen.urlbar.behavior", "float")) {
-	#urlbar[open]:not([usertyping=""]) > .urlbarView {
+	#urlbar[open]:not([usertyping=""], [searchmode]) > .urlbarView {
 		max-height: 0 !important;
 		overflow: hidden !important;
 		transition: max-height var(--nug-urlbar-out) var(--nug-urlbar-ease-soft);
 	}
 
-	#urlbar[open][usertyping=""] > .urlbarView {
+	#urlbar[open]:is([usertyping=""], [searchmode]) > .urlbarView {
 		max-height: 500px !important;
 		transition: max-height var(--nug-urlbar-in) var(--nug-urlbar-ease);
 	}
