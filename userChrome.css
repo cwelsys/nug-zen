@@ -9,6 +9,7 @@
 @import 'Modules/Tweaks.css';
 @import 'Modules/URLbar.css';
 @import 'Modules/Workspace.css';
+@import 'Modules/ZenLeap.css';
 
 @media (prefers-reduced-motion: reduce) and (not (-moz-bool-pref: 'nug.ignore-reduced-motion')) {
 	*,

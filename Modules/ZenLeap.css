@@ -1,0 +1,27 @@
+:root {
+	--nug-zenleap-scale: 1.25;
+}
+
+:is(
+		#zenleap-help-container,
+		#zenleap-settings-container,
+		#zenleap-search-container,
+		#zenleap-plugin-manager-container,
+		#zenleap-reorg-container,
+		#zenleap-update-container,
+		#zenleap-overlay-content
+	) {
+	zoom: var(--nug-zenleap-scale);
+}
+
+:is(#zenleap-help-container, #zenleap-settings-container) {
+	max-height: calc(85vh / var(--nug-zenleap-scale)) !important;
+}
+
+#zenleap-plugin-manager-container {
+	max-height: calc(80vh / var(--nug-zenleap-scale)) !important;
+}
+
+#zenleap-search-results {
+	max-height: calc(60vh / var(--nug-zenleap-scale)) !important;
+}
