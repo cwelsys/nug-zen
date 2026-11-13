@@ -46,6 +46,11 @@
         "include": [
           "*browser.xhtml"
         ]
+      },
+      "vimium-zoom.uc.js": {
+        "include": [
+          "*browser.xhtml"
+        ]
       }
     }
   },
@@ -53,9 +58,9 @@
   "author": "cwelsys",
   "name": "Nug",
   "description": "userChrome and more",
-  "version": "0.1.106",
+  "version": "0.1.107",
   "createdAt": "2025-03-11",
-  "updatedAt": "2026-11-13T21:00:58Z",
+  "updatedAt": "2026-11-13T22:29:59Z",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"
