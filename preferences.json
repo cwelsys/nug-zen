@@ -334,6 +334,13 @@
 	},
 	{
 		"type": "checkbox",
+		"property": "nug.vimium.scale-with-zoom",
+		"defaultValue": false,
+		"label": "Vimium UI Scales With Page Zoom",
+		"margin": "12px 0"
+	},
+	{
+		"type": "checkbox",
 		"property": "uc.loadbar.no-rounded-corner",
 		"defaultValue": false,
 		"label": "Square Loading Bar Corners",

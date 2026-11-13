@@ -508,3 +508,233 @@
 		background-color: var(--base) !important;
 	}
 }
+
+iframe.vimium-hud-frame {
+	top: 35px !important;
+	right: 15px !important;
+	bottom: auto !important;
+	left: auto !important;
+	width: 325px !important;
+	min-width: 0 !important;
+	height: 44px !important;
+	margin: 0 !important;
+	border-radius: 8px !important;
+	box-shadow: 0 8px 32px
+		color-mix(in srgb, var(--nug-accent, #89b4fa) 15%, transparent 85%) !important;
+}
+
+@media (-moz-pref("nug.findbar.position", 1)) {
+	iframe.vimium-hud-frame {
+		right: auto !important;
+		left: 15px !important;
+	}
+}
+
+@media (-moz-pref("nug.findbar.position", 2)) {
+	iframe.vimium-hud-frame {
+		right: auto !important;
+		left: 50% !important;
+		margin-left: -162.5px !important;
+	}
+}
+
+@media (-moz-pref("nug.findbar.position", 3)) {
+	iframe.vimium-hud-frame {
+		top: auto !important;
+		bottom: 15px !important;
+	}
+}
+
+@media (-moz-pref("nug.findbar.position", 4)) {
+	iframe.vimium-hud-frame {
+		top: auto !important;
+		right: auto !important;
+		bottom: 15px !important;
+		left: 15px !important;
+	}
+}
+
+@media (-moz-pref("nug.findbar.position", 5)) {
+	iframe.vimium-hud-frame {
+		top: auto !important;
+		right: auto !important;
+		bottom: 15px !important;
+		left: 50% !important;
+		margin-left: -162.5px !important;
+	}
+}
+
+@-moz-document regexp("moz-extension://[^/]+/pages/hud_page\\.html.*") {
+	div#hud-container {
+		inset: 0 !important;
+		box-sizing: border-box !important;
+		width: auto !important;
+		border: 1px solid var(--nug-glow-color-1) !important;
+		border-radius: 8px !important;
+		box-shadow: none !important;
+		background: var(--base) !important;
+		color: var(--text) !important;
+		font-family: monospace !important;
+	}
+
+	div#hud-container #search-area {
+		display: flex !important;
+		align-items: center !important;
+		box-sizing: border-box !important;
+		height: 100% !important;
+		padding: 0 12px !important;
+		border-radius: 0 !important;
+		background: transparent !important;
+	}
+
+	div#hud-container #hud {
+		height: auto !important;
+		padding: 0 !important;
+		border: none !important;
+		background: transparent !important;
+		color: var(--text) !important;
+		font-size: 16px !important;
+		line-height: 24px !important;
+		white-space: nowrap !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+	}
+
+	div#hud-container #hud.hud-find {
+		display: flex !important;
+		align-items: center !important;
+	}
+
+	div#hud-container #hud.hud-find::before {
+		flex: none !important;
+		margin-right: 2px !important;
+		color: var(--nug-accent) !important;
+		content: "/" !important;
+	}
+
+	div#hud-container span#hud-find-input {
+		flex: 1 !important;
+		min-width: 0 !important;
+		min-height: 24px !important;
+		overflow: hidden !important;
+		color: var(--text) !important;
+	}
+
+	div#hud-container span#hud-find-input::before {
+		content: none !important;
+	}
+
+	div#hud-container span#hud-match-count {
+		flex: none !important;
+		margin-left: 10px !important;
+		color: var(--subtext0) !important;
+		font-size: 13px !important;
+	}
+}
+
+@media not (-moz-pref("nug.vimium.scale-with-zoom")) {
+	@media (resolution < 0.4dppx) {
+		:root {
+			--nug-unzoom: 3.3333;
+		}
+	}
+
+	@media (0.4dppx <= resolution < 0.585dppx) {
+		:root {
+			--nug-unzoom: 2;
+		}
+	}
+
+	@media (0.585dppx <= resolution < 0.735dppx) {
+		:root {
+			--nug-unzoom: 1.5;
+		}
+	}
+
+	@media (0.735dppx <= resolution < 0.85dppx) {
+		:root {
+			--nug-unzoom: 1.25;
+		}
+	}
+
+	@media (0.85dppx <= resolution < 0.95dppx) {
+		:root {
+			--nug-unzoom: 1.1167;
+		}
+	}
+
+	@media (1.05dppx <= resolution < 1.15dppx) {
+		:root {
+			--nug-unzoom: 0.9167;
+		}
+	}
+
+	@media (1.15dppx <= resolution < 1.265dppx) {
+		:root {
+			--nug-unzoom: 0.8333;
+		}
+	}
+
+	@media (1.265dppx <= resolution < 1.415dppx) {
+		:root {
+			--nug-unzoom: 0.75;
+		}
+	}
+
+	@media (1.415dppx <= resolution < 1.6dppx) {
+		:root {
+			--nug-unzoom: 0.6667;
+		}
+	}
+
+	@media (1.6dppx <= resolution < 1.85dppx) {
+		:root {
+			--nug-unzoom: 0.5833;
+		}
+	}
+
+	@media (1.85dppx <= resolution < 2.2dppx) {
+		:root {
+			--nug-unzoom: 0.5;
+		}
+	}
+
+	@media (2.2dppx <= resolution < 2.7dppx) {
+		:root {
+			--nug-unzoom: 0.4167;
+		}
+	}
+
+	@media (2.7dppx <= resolution < 3.5dppx) {
+		:root {
+			--nug-unzoom: 0.3333;
+		}
+	}
+
+	@media (3.5dppx <= resolution < 4.5dppx) {
+		:root {
+			--nug-unzoom: 0.25;
+		}
+	}
+
+	@media (resolution >= 4.5dppx) {
+		:root {
+			--nug-unzoom: 0.2;
+		}
+	}
+}
+
+:root {
+	--nug-vimium-scale: 1.25;
+}
+
+iframe.vimium-hud-frame,
+iframe.vomnibar-frame,
+iframe.vimium-help-dialog-frame {
+	zoom: calc(var(--nug-unzoom, 1) * var(--nug-vimium-scale, 1)) !important;
+}
+
+div.internal-vimium-hint-marker {
+	transform: scale(calc(var(--nug-unzoom, 1) * var(--nug-vimium-scale, 1))) !important;
+	transform-origin: 0 0 !important;
+}
