@@ -56,6 +56,17 @@
         "include": [
           "*browser.xhtml"
         ]
+      },
+      "window-zoom.uc.js": {
+        "include": [
+          "*zen-settings-window.xhtml",
+          "*places/places.xhtml",
+          "*pageinfo/pageInfo.xhtml",
+          "*windows/zen-about.xhtml",
+          "*browser/content/browser/aboutDialog.xhtml",
+          "*zen-boost-editor.xhtml",
+          "*global/content/commonDialog.xhtml"
+        ]
       }
     }
   },
@@ -63,9 +74,9 @@
   "author": "cwelsys",
   "name": "Nug",
   "description": "userChrome and more",
-  "version": "0.1.109",
+  "version": "0.1.111",
   "createdAt": "2025-03-11",
-  "updatedAt": "2026-11-17T19:39:06Z",
+  "updatedAt": "2026-11-17T19:50:49Z",
   "style": {
     "chrome": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/cwelsys/nug-zen/main/userContent.css"

@@ -166,6 +166,11 @@
 		}
 	}
 
+	function nugColorsRule() {
+		const decls = NUG_PREFS.map((p) => `${p.cssVar}: ${resolveNugColor(p)};`);
+		return `\n:root { ${decls.join(" ")} }\n`;
+	}
+
 	const subdialogObserver = {
 		observe(subject) {
 			try {
@@ -189,7 +194,9 @@
 						try {
 							const style = subject.createElement("style");
 							style.textContent =
-								NUG_SUBDIALOG_CSS + NUG_SINE_FIXES_CSS;
+								NUG_SUBDIALOG_CSS +
+								NUG_SINE_FIXES_CSS +
+								nugColorsRule();
 							subject.documentElement.appendChild(style);
 							applyNugColors(subject);
 						} catch (e) {}

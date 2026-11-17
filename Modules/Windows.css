@@ -1,0 +1,203 @@
+:root[windowtype='Zen:Settings'] {
+	color-scheme: dark !important;
+	--zen-settings-background: var(--base) !important;
+	--zen-settings-sticky-background: var(--base) !important;
+	--zen-settings-sidebar-background: var(--base) !important;
+	--zen-settings-sidebar-mica-background: var(--base) !important;
+	--zen-settings-sidebar-border-color: var(--surface0) !important;
+	--zen-settings-card-background: color-mix(in srgb, var(--surface0) 30%, var(--base)) !important;
+	--zen-settings-text-color: var(--text) !important;
+	--zen-settings-muted-color: var(--subtext0) !important;
+	--zen-settings-subtitle-color: var(--subtext1) !important;
+	--zen-settings-separator-color: var(--surface0) !important;
+	--zen-settings-hover-background: var(--surface0) !important;
+	--zen-settings-button-background: var(--surface0) !important;
+	--zen-settings-button-background-hover: var(--surface1) !important;
+	--zen-settings-primary-background-hover: color-mix(in srgb, var(--nug-accent) 85%, var(--text)) !important;
+	--zen-settings-success-color: var(--green) !important;
+	--zen-settings-warning-color: var(--yellow) !important;
+	--zen-settings-heart-color: var(--red) !important;
+	--zen-settings-dialog-backdrop: color-mix(in srgb, var(--crust) 70%, transparent) !important;
+	--zen-settings-drop-before-shadow: inset 0 2px 0 var(--nug-accent) !important;
+	--zen-settings-drop-after-shadow: inset 0 -2px 0 var(--nug-accent) !important;
+	--zen-settings-art-key-face: linear-gradient(
+		color-mix(in srgb, var(--nug-accent) 60%, var(--text)),
+		var(--nug-accent)
+	) !important;
+	--zen-settings-art-key-edge: color-mix(in srgb, var(--nug-accent) 70%, var(--crust)) !important;
+	--zen-settings-art-key-color: color-mix(in srgb, var(--nug-accent) 70%, var(--crust)) !important;
+	--color-accent-primary: var(--nug-accent) !important;
+	--focus-outline-color: var(--nug-accent) !important;
+	--zen-dialog-border-color: var(--surface0) !important;
+
+	.zen-settings-dialog {
+		background: var(--base) !important;
+	}
+
+	.zen-settings-card {
+		border: 1px solid var(--surface0) !important;
+	}
+
+	.zen-settings-category[aria-selected='true'] {
+		background: var(--surface0) !important;
+		color: var(--nug-accent) !important;
+		box-shadow: inset 3px 0 0 var(--nug-accent) !important;
+	}
+
+	.zen-settings-button-primary {
+		background: var(--nug-accent) !important;
+		color: var(--crust) !important;
+
+		&:hover {
+			background: var(--zen-settings-primary-background-hover) !important;
+		}
+	}
+
+	.zen-settings-layout-option[aria-checked='true'] > img {
+		outline-color: var(--nug-accent) !important;
+	}
+
+	moz-toggle {
+		--color-accent-primary: var(--nug-accent) !important;
+	}
+}
+
+:root:is([windowtype='Places:Organizer'], [windowtype='Browser:page-info']) {
+	color-scheme: dark !important;
+	background-color: var(--base) !important;
+	color: var(--text) !important;
+
+	tree {
+		background-color: var(--base) !important;
+		color: var(--text) !important;
+	}
+
+	treechildren::-moz-tree-row(hover) {
+		background-color: var(--surface0) !important;
+	}
+
+	treechildren::-moz-tree-row(selected) {
+		background-color: var(--surface0) !important;
+	}
+
+	treechildren::-moz-tree-row(selected, focus) {
+		background-color: color-mix(in srgb, var(--nug-accent) 30%, var(--base)) !important;
+	}
+
+	treechildren::-moz-tree-cell-text(selected),
+	treechildren::-moz-tree-cell-text(selected, focus) {
+		color: var(--text) !important;
+	}
+}
+
+:root[windowtype='Places:Organizer'] {
+	#placesList,
+	#placesToolbar {
+		background-color: var(--mantle) !important;
+	}
+
+	#placesView {
+		background-color: var(--base) !important;
+	}
+}
+
+:root[windowtype='Browser:page-info'] {
+	#topBar {
+		background-color: var(--mantle) !important;
+	}
+
+	#viewGroup > radio {
+		color: var(--text) !important;
+
+		&[selected] {
+			background-color: var(--surface0) !important;
+			color: var(--nug-accent) !important;
+		}
+	}
+}
+
+:root[windowtype='Browser:About'] {
+	color-scheme: dark !important;
+	background: var(--base) !important;
+	--zen-about-text-color: var(--text) !important;
+	--zen-about-muted-color: var(--subtext0) !important;
+	--zen-about-button-background: var(--surface0) !important;
+	--zen-about-button-background-hover: var(--surface1) !important;
+	--zen-about-primary-background: var(--nug-accent) !important;
+	--zen-about-primary-color: var(--crust) !important;
+	--zen-about-success-color: var(--green) !important;
+	--zen-about-warning-color: var(--yellow) !important;
+
+	#zen-about-copied {
+		color: var(--nug-accent) !important;
+	}
+}
+
+:root[windowtype='Zen:BoostEditor'] {
+	color-scheme: dark !important;
+	background: var(--base) !important;
+	--zen-boosts-primary-background: var(--base) !important;
+	--zen-boosts-secondary-background: var(--mantle) !important;
+	--zen-boosts-mica-background: var(--base) !important;
+	--zen-boosts-primary-color: var(--text) !important;
+	--zen-boosts-secondary-color: var(--subtext0) !important;
+	--zen-boosts-button-background: var(--surface0) !important;
+	--mod-button-c1: var(--surface0) !important;
+	--mod-button-c2: var(--surface0) !important;
+	--zen-boosts-active-button-background: var(--nug-accent) !important;
+	--zen-boosts-active-button-hover-background: color-mix(in srgb, var(--nug-accent) 85%, var(--text)) !important;
+	--zen-boosts-active-button-color: var(--crust) !important;
+	--zen-boosts-back-button-hover-background: var(--surface1) !important;
+	--zen-boosts-magic-theme-background: var(--surface1) !important;
+	--zen-boosts-magic-theme-active-background: var(--text) !important;
+	--zen-boosts-font-wrapper-background: var(--surface0) !important;
+	--zen-boosts-primary-border-color: var(--surface0) !important;
+	--zen-boosts-footer-background: var(--mantle) !important;
+	--zen-boosts-color-picker-background: color-mix(in srgb, var(--mantle) 92%, transparent) !important;
+	--zen-boosts-color-picker-pattern-color: var(--surface1) !important;
+}
+
+@-moz-document url("chrome://global/content/commonDialog.xhtml") {
+	:root {
+		color-scheme: dark !important;
+		background-color: var(--mantle) !important;
+		color: var(--text) !important;
+	}
+
+	#commonDialog {
+		background-color: var(--mantle) !important;
+		color: var(--text) !important;
+	}
+
+	#infoTitle {
+		color: var(--text) !important;
+	}
+
+	#infoBody {
+		color: var(--subtext1) !important;
+	}
+
+	button[dlgtype='accept'] {
+		appearance: none !important;
+		background-color: var(--nug-accent) !important;
+		color: var(--crust) !important;
+	}
+
+	button:is([dlgtype='cancel'], [dlgtype='extra1'], [dlgtype='extra2']) {
+		appearance: none !important;
+		background-color: var(--surface0) !important;
+		color: var(--text) !important;
+	}
+
+	#loginTextbox,
+	#password1Textbox {
+		background-color: var(--surface0) !important;
+		color: var(--text) !important;
+		border-color: var(--surface2) !important;
+	}
+
+	#infoIcon {
+		-moz-context-properties: fill !important;
+		fill: var(--nug-accent) !important;
+	}
+}
