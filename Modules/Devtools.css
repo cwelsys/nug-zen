@@ -1,0 +1,19 @@
+@-moz-document url-prefix("chrome://devtools/") {
+	.CodeMirror-dialog {
+		font-size: var(--theme-body-font-size) !important;
+		line-height: normal !important;
+		padding-block: 1px !important;
+
+		& input {
+			font-family: var(--monospace-font-family) !important;
+			font-size: var(--theme-code-font-size) !important;
+			margin-block: 0 !important;
+			padding: 0 var(--space-xsmall, 4px) !important;
+			border-radius: 3px !important;
+		}
+	}
+
+	.jsterm-input-container .CodeMirror-dialog {
+		padding-inline-start: var(--console-inline-start-gutter, 32px) !important;
+	}
+}
