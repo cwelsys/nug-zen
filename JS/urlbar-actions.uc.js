@@ -36,9 +36,7 @@
 
 	const SETTINGS_PANES = [
 		["paneGeneral", "General"],
-		["paneZenLooks", "Look and Feel"],
-		["paneZenTabManagement", "Tab Management and Workspaces"],
-		["paneZenMarketplace", "Zen Mods"],
+		["paneZenMarketplace", "Sine Mods"],
 		["paneSync", "Account and Sync"],
 		["paneHome", "Home and Startup"],
 		["paneSearch", "Search Engines and Shortcuts"],
@@ -167,8 +165,7 @@
 				extraPayload: {},
 				command: (win) => win.openPreferences(pane),
 			});
-		}
-		const native = new Set(globalActions.map((a) => a.commandId));
+		}		const native = new Set(globalActions.map((a) => a.commandId));
 		for (const [label, icon, command, when] of COMMANDS) {
 			const isElement = typeof command === "string";
 			if (isElement && native.has(command)) continue;

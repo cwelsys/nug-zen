@@ -404,6 +404,12 @@
 	display: none !important;
 }
 
+:root[zen-single-toolbar="true"]
+	:is(#navigator-toolbox[zen-has-implicit-hover="true"], #urlbar[has-popup-open="true"])
+	#urlbar-zoom-button {
+	display: none !important;
+}
+
 :root:not([zen-single-toolbar="true"]) {
 	#urlbar:not([open]) {
 		margin-left: 18% !important;
