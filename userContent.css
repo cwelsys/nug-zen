@@ -510,22 +510,20 @@
 }
 
 iframe.vimium-hud-frame {
-	top: 35px !important;
-	right: 15px !important;
+	top: 19px !important;
+	right: -1px !important;
 	bottom: auto !important;
 	left: auto !important;
-	width: 325px !important;
+	width: 357px !important;
 	min-width: 0 !important;
-	height: 44px !important;
+	height: 76px !important;
 	margin: 0 !important;
-	box-shadow: 0 8px 32px
-		color-mix(in srgb, var(--nug-accent, #89b4fa) 15%, transparent 85%) !important;
 }
 
 @media (-moz-pref("nug.findbar.position", 1)) {
 	iframe.vimium-hud-frame {
 		right: auto !important;
-		left: 15px !important;
+		left: -1px !important;
 	}
 }
 
@@ -533,14 +531,14 @@ iframe.vimium-hud-frame {
 	iframe.vimium-hud-frame {
 		right: auto !important;
 		left: 50% !important;
-		margin-left: -162.5px !important;
+		margin-left: -178.5px !important;
 	}
 }
 
 @media (-moz-pref("nug.findbar.position", 3)) {
 	iframe.vimium-hud-frame {
 		top: auto !important;
-		bottom: 15px !important;
+		bottom: -1px !important;
 	}
 }
 
@@ -548,8 +546,8 @@ iframe.vimium-hud-frame {
 	iframe.vimium-hud-frame {
 		top: auto !important;
 		right: auto !important;
-		bottom: 15px !important;
-		left: 15px !important;
+		bottom: -1px !important;
+		left: -1px !important;
 	}
 }
 
@@ -557,20 +555,30 @@ iframe.vimium-hud-frame {
 	iframe.vimium-hud-frame {
 		top: auto !important;
 		right: auto !important;
-		bottom: 15px !important;
+		bottom: -1px !important;
 		left: 50% !important;
-		margin-left: -162.5px !important;
+		margin-left: -178.5px !important;
 	}
+}
+
+iframe.vimium-hud-frame.vimium-hud-message {
+	top: auto !important;
+	right: -1px !important;
+	bottom: -1px !important;
+	left: auto !important;
+	margin: 0 !important;
+	pointer-events: none !important;
 }
 
 @-moz-document regexp("moz-extension://[^/]+/pages/hud_page\\.html.*") {
 	div#hud-container {
-		inset: 0 !important;
+		inset: 16px !important;
 		box-sizing: border-box !important;
 		width: auto !important;
 		border: 1px solid var(--nug-glow-color-1) !important;
 		border-radius: 8px !important;
-		box-shadow: none !important;
+		box-shadow: 0 4px 12px
+			color-mix(in srgb, var(--nug-accent) 15%, transparent 85%) !important;
 		background: var(--base) !important;
 		color: var(--text) !important;
 		font-family: monospace !important;
@@ -628,6 +636,48 @@ iframe.vimium-hud-frame {
 		margin-left: 10px !important;
 		color: var(--subtext0) !important;
 		font-size: 13px !important;
+	}
+
+	div#hud-container:not(:has(#hud.hud-find)) {
+		--nug-pill: var(--surface2);
+
+		inset: auto 16px 16px auto !important;
+		width: fit-content !important;
+		max-width: calc(100% - 32px) !important;
+		border-color: var(--nug-pill) !important;
+		box-shadow: 0 2px 8px color-mix(in srgb, var(--crust) 60%, transparent) !important;
+		background: var(--mantle) !important;
+	}
+
+	div#hud-container:has(#hud:empty) {
+		visibility: hidden !important;
+	}
+
+	div#hud-container:not(:has(#hud.hud-find)) #search-area {
+		height: auto !important;
+		padding: 3px 10px !important;
+	}
+
+	div#hud-container #hud:not(.hud-find) {
+		color: color-mix(in srgb, var(--nug-pill) 55%, var(--text)) !important;
+		font-size: 13px !important;
+		line-height: 20px !important;
+	}
+
+	div#hud-container:has(#hud[data-message-name^="link-hints/"]) {
+		--nug-pill: var(--nug-accent);
+	}
+
+	div#hud-container:has(#hud:is([data-message-name="insert"], [data-message-name="pass-next-key"])) {
+		--nug-pill: var(--green);
+	}
+
+	div#hud-container:has(#hud:is([data-message-name^="visual"], [data-message-name="caret"])) {
+		--nug-pill: var(--mauve);
+	}
+
+	div#hud-container:has(#hud[data-message-name$="-mark"]) {
+		--nug-pill: var(--peach);
 	}
 }
 
